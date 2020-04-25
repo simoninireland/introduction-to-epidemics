@@ -1,0 +1,9 @@
+ipython
+jupyter
+networkx >= 2.4
+epydemic
+numpy
+matplotlib
+seaborn
+pandas
+
