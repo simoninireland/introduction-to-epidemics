@@ -1,37 +1,42 @@
-## Welcome to GitHub Pages
+# Epidemic modelling: an introduction
 
-You can use the [editor on GitHub](https://github.com/simoninireland/introduction-to-epidemics/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+[Simon Dobson](mailto:simon.dobson@st-andrews.ac.uk)<br>
+School of Computer Science, University of St Andrews, Scotland  UK
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<hr>
 
-### Markdown
+## Contents
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+* The structure of diseases
+* Models
+* [The simplest model](continuous.ipynb)
+* [Connectivity](network.ipynb)
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+* [Bibliography](bibliography.ipynb)
+* [Notes](notes.ipynb)
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
+## About the author
 
-[Link](url) and ![Image](src)
-```
+<div style="overflow: auto; width: 50%; padding-top: 10px;">
+    <div style="float: left; width: 20%; vertical-align: middle; padding-right: 20px;">
+        <img src="sd.jpg" width="100px">
+    </div>
+    <div style="width: 80%; padding-top: 20px;">
+        Simon is a Professor of Computer Science at the University of St Andrews,
+        Scotland, and a Fellow of the Royal Society of Edinburgh.
+    </div>
+</div>
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+<hr>
 
-### Jekyll Themes
+<div style="align: center">
+<img src="https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png">
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/simoninireland/introduction-to-epidemics/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+This work is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.    
+</div>
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master)
