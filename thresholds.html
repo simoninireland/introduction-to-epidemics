@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Notes &#8212; Epidemic modelling &amp;ndash; an introduction</title>
+    <title>Epidemic threshold &#8212; Epidemic modelling &amp;ndash; an introduction</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -31,8 +31,6 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Annotated bibliography" href="zbibliography.html" />
-    <link rel="prev" title="Connectivity" href="network.html" />
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -84,8 +82,8 @@
   <li class="">
     <a href="network.html">Connectivity</a>
   </li>
-  <li class="active">
-    <a href="">Notes</a>
+  <li class="">
+    <a href="notes.html">Notes</a>
   </li>
   <li class="">
     <a href="zbibliography.html">Annotated bibliography</a>
@@ -123,7 +121,7 @@
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/notes.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <a class="dropdown-buttons" href="_sources/thresholds.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
                 <!-- Download PDF via print -->
                 <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
@@ -138,24 +136,24 @@
 
         <!-- Launch buttons -->
         
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/thresholds.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                
+            </div>
+        </div>
+        
 
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#the-simplest-model" class="nav-link">The simplest model</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#connectivity" class="nav-link">Connectivity</a>
-        </li>
     
     </ul>
 </nav>
@@ -168,35 +166,8 @@
         
               <div>
                 
-  <div class="section" id="notes">
-<h1>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="the-simplest-model">
-<h2>The simplest model<a class="headerlink" href="#the-simplest-model" title="Permalink to this headline">¶</a></h2>
-<p id="note-beta">[1] In the computational epidemiology and network science literatures the
-parameter we’ve called <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> is usually denoted
-<span class="math notranslate nohighlight">\(\beta\)</span>, while <span class="math notranslate nohighlight">\(p_{remove}\)</span> is denoted <span class="math notranslate nohighlight">\(\alpha\)</span>. It’s easier to
-understand what’s going on if we spell the meaning of the symbols out.</p>
-<p id="note-euler">[2] This approach to integration to get a time series, known as the
-<em>direct</em> or <em>Euler</em> method, isn’t safe in general, as it risks falling
-foul of numerical instability in the equations. There are several more
-robust solutions for the more complex cases, notably the Runge-Kutta
-methods that are built into Python’s <code class="docutils literal notranslate"><span class="pre">scipy</span></code> library.</p>
-<p id="note-ode">[3] We’ve engaged in some mathematical sleight-of-hand here, in that what
-we’ve described as a <em>discrete</em> model (of people being susceptible,
-infected, and so on) has then be treated as a <em>continuous</em> model that
-represents the sizes of compartments as real numbers. In order to work
-in this way the three SIR equations should really be be phrased as
-<em>differential</em> equations rather than as <em>difference</em> equations so that
-the passage from discrete to continuous time makes mathematical
-sense. The results obtained are the same in both cases, however.</p>
-</div>
-<div class="section" id="connectivity">
-<h2>Connectivity<a class="headerlink" href="#connectivity" title="Permalink to this headline">¶</a></h2>
-<p id="note-chickenpox">[1] In chickenpox the infected individual – almost always a
-child – is latent for 7–10 days after exposure, but only
-infectious for about 24 hours before the symptoms (an itchy rash)
-appear.</p>
-</div>
+  <div class="section" id="epidemic-threshold">
+<h1>Epidemic threshold<a class="headerlink" href="#epidemic-threshold" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -208,8 +179,6 @@ appear.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="network.html" title="previous page">Connectivity</a>
-    <a class='right-next' id="next-link" href="zbibliography.html" title="next page">Annotated bibliography</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

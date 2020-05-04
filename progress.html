@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>The progession of a disease &#8212; Epidemic modelling &amp;ndash; an introduction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The simplest model" href="continuous.html" />
+    <link rel="prev" title="Epidemic modelling – An introduction" href="index.html" />
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!-- Put requirejs at the end so it's always after bootstrap -->
+<!-- TODO: remove this once https://github.com/pandas-dev/pydata-sphinx-theme/pull/149 is merged -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Epidemic modelling &ndash; an introduction</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="index.html">Epidemic modelling – An introduction</a>
+  </li>
+  <li class="active">
+    <a href="">The progession of a disease</a>
+  </li>
+  <li class="">
+    <a href="continuous.html">The simplest model</a>
+  </li>
+  <li class="">
+    <a href="network.html">Connectivity</a>
+  </li>
+  <li class="">
+    <a href="notes.html">Notes</a>
+  </li>
+  <li class="">
+    <a href="zbibliography.html">Annotated bibliography</a>
+  </li>
+  <li class="">
+    <a href="about.html">About the author</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/progress.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#disease-progression" class="nav-link">Disease progression</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#measuring-and-modelling-epidemics" class="nav-link">Measuring and modelling epidemics</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#controlling-epidemics" class="nav-link">Controlling epidemics</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 col-xxl-7 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="the-progession-of-a-disease">
+<h1>The progession of a disease<a class="headerlink" href="#the-progession-of-a-disease" title="Permalink to this headline">¶</a></h1>
+<p>Everyone suffers from a disease at some point. The lucky amongst us
+avoid anything more serious that influenza, measles, or (in my case,
+long ago) whooping cough. But all diseases share some comon
+characteristics: characteristics so common, in fact, that their
+mathematical properties are shared by other processes that aren’t
+actually diseases at all, including the spread of computer viruses
+<a class="bibtex reference internal" href="zbibliography.html#kw91" id="id1">[KW91]</a> and the spread of rumours or other information.</p>
+<p>The diseases in which we are interested are caused by <em>pathogens</em>,
+typically viruses or bacteria: simple living organisms that make their
+home in humans (or other living organisms) and cause some adverse
+reaction as a result of their lifecycle. These pathogens can pass
+between individuals in a number of ways, causing the disease to
+spread. A disease might be airborne, able to live in the air and be
+breathed by passing individuals. It might be deposited on objects and
+picked up by future physical contact with the contaminated
+surfaces. Or it might be communicable only by direct contact, skin to
+skin, through sex, or might require an even closer contact such as a
+blood transfusion. It might be foodborne, transmitted through
+contaminated food that infects several people from a common source. It
+might be vectored through an animal, as is the case for malaria. And
+finally there is a class of non-communicable diseases such as cancer
+or heart disease, typically not caused directly by pathogens but
+perhaps influenced by their presence.</p>
+<p>Each different kind of disease will have its own characteristic
+pathology when it infects a person, and also its own epidemiology that
+controls how it spreads. Clinically, both these characteristics are
+extremely important. From a network science perspective we focus on
+the epidemiology, but the pathology remains important, because factors
+involved in how a disease progresses <em>in</em> individuals may have a
+profound effect on how it spreads <em>between</em> individuals.</p>
+<div class="section" id="disease-progression">
+<h2>Disease progression<a class="headerlink" href="#disease-progression" title="Permalink to this headline">¶</a></h2>
+<p>A person’s infection goes through several periods. Once infected, the
+disease resides <strong>latent</strong> in their system, not showing symptoms and
+not being infectious to others. After this latent period the disease
+becomes infectious, capable of being spread to others: this is the
+<strong>infectious</strong> period. Typically a person’s infectiousness peaks and
+dies away before the end of the disease progression.</p>
+<p><img alt="Disease stages" src="_images/disease-periods.png" /></p>
+<p>These two periods – latent and infectious – control the
+<em>transmission</em> of infection. After initial infection, however, there
+is an <strong>incubation</strong> period before the person shows symptoms of the
+disease. After the onset of symptoms, the disease progresses and ends
+in some <strong>resolution</strong>: the patient gets better, or dies. If they
+recover, they may then have some immunity to further infection.</p>
+<p><img alt="Disease types" src="_images/disease-types.png" /></p>
+<p>For different diseases, the lengths of these periods and the ways they
+overlap vary. For <strong>Type A</strong> diseases, the incubation period is longer
+than the latent period. This means that a patient can start to
+transmit the disease before the disease becomes manifest in
+themselves. This happens in cases of measles. In <strong>Type B</strong> diseases
+such as SARS or ebola, by contrast, the incubation period is shorter
+than the latent period, meaning that asymptomatic patients cannot
+infect others. So despite ebola being a more feared disease than
+measles, it may be easier to treat epidemiologically since
+quarantining patients showing symptoms will prevent transmission in
+the general population (although not to medical staff); in measles,
+transmission starts before symptoms show themselves, so quarantine
+based on symptoms is less effective. Moreover for some disease the
+infectious period may continue after the patient has died: the corpses
+of victims of ebola, which are transmitted <em>via</em> bodily fluids, can be
+extremely infectious for some time after death, meaning that funerals
+become very dangerous loci of potential infection for mourners.</p>
+<p>How long do the different periods last? For each disease there will be
+typical durations, often with substantial variance. In the case of
+ebola, for example, a typical timeline would be a 0–3 day
+incubation period, a 7–12 day progression to recovery or death,
+and a latent period of 2–5 days. The ranges give the variance of
+periods, different for different individuals that depend on factors
+including the severity of infection and the individual’s overall
+health. However, the incubation period for ebola can be up to 21 days,
+meaning that a suspected case needs to be quarantined for this period:
+long enough, in other words, for the disease symptoms to manifest if
+the person is actually infected. While one can test for most diseases
+(including ebola) in a laboratory, during an epidemic such tests may
+overwhelm the public health infrastructure, making quarantine the most
+practical option. (During historical disease outbreaks, of course,
+quarantine was the <em>only</em> option.)</p>
+</div>
+<div class="section" id="measuring-and-modelling-epidemics">
+<h2>Measuring and modelling epidemics<a class="headerlink" href="#measuring-and-modelling-epidemics" title="Permalink to this headline">¶</a></h2>
+<p>Epidemiology is the science of creating models of diseases and their
+spread that can be analysed, to make predictions or to simulate the
+effects of different responses. To do this, we need to identify the
+core elements of a disease from the perspective of transmission: we do
+not need to understand the disease’s biology, only the timings and
+other factors that affect its spread.</p>
+<p>We discussed above the periods of diseases, their relationships, and
+their different, often characteristics, periods and variances. We need
+some other numbers as well, however, and it turns out that these can
+be measured directly in the field.</p>
+<p>The first important number is known as the <strong>secondary attack rate</strong>,
+denoted 2°AR. This measures what proportion of people exposed to
+each for each primary case will develop infection. For example in the
+first ebola outbreak 498 family members were exposed to infected
+relatives, of whom 38 developed ebola themselves. This gives a
+2°AR of <span class="math notranslate nohighlight">\(38 / 498 = 7.6\%\)</span>.</p>
+<p>There are a couple of caveats with this number. Firstly, 2°AR only
+applies to small populations, typically villages: it doesn’t scale-up
+to whole populations. Secondly, 2°AR is very context-sensitive and
+depends on the degree of contact that individuals have with the
+infected individual: for close family members, the 2°AR in the
+first ebola outbreak was around 27% rather than around 8%. Thirdly,
+individuals may become increasingly infectious as their own infection
+progresses. Fourthly, disease organisms are subject to natural
+selection and, since they reproduce quickly, can vary in their
+infectiousness over time. The selection pressures often lead to
+diseases become progressively more transmissible but less severe,
+eventually become sufficiently weak for people’s immune systems to be
+able to cope with them directly – and the epidemic dies out.</p>
+<p>The second important metric is the <strong>basic case reproduction number</strong>,
+denoted <span class="math notranslate nohighlight">\(R_0\)</span>. <span class="math notranslate nohighlight">\(R_0\)</span> represents the total number of secondary
+infections expected for each primary infection in a totally
+susceptible population. The <span class="math notranslate nohighlight">\(0\)</span> in <span class="math notranslate nohighlight">\(R_0\)</span> stands for <span class="math notranslate nohighlight">\(t = 0\)</span>: the basic
+case reproduction number applies at the start of an epidemic. Over
+time, the number of people susceptible to infection will vary as they
+become infected, recover, die, and so forth. We can account for this
+by developing a <strong>net case reproduction number</strong> <span class="math notranslate nohighlight">\(R_t\)</span> by multiplying
+<span class="math notranslate nohighlight">\(R_0\)</span> by the susceptible fraction of the population at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(R_0\)</span> is affected by three factors:</p>
+<ol class="simple">
+<li><p>The duration of infectiousness. All other things being equal, a
+disease with a longer period of infectiousness has more time in which
+to infect other patients.</p></li>
+<li><p>The probability of transmission at each contact. Some diseases are
+extremely contagious, with each contact having a high probability of
+passing on the infection; others are much harder to pass one to
+secondary cases.</p></li>
+<li><p>The rate of contact. Someone coming into contact with a lot of
+susceptible individuals will have more opportunities to generate a
+secondary case than someone meeting fewer people.</p></li>
+</ol>
+<p>The first two factors are characteristic of the disease, derived from
+its biology. The third is affected by the social conditions in which
+the epidemic takes place: it is this factor that quarantine affects,
+by reducing (to zero) the contacts an infected person has with
+uninfected individuals.</p>
+<p>These two metrics, 2°AR and <span class="math notranslate nohighlight">\(R_0\)</span>, are related. If we compute
+2°AR for the different circumstances of contact – family,
+neighbours, community, and so forth – and multiply each by the
+number of contacts a person has in each circumstance, we can sum them
+to get <span class="math notranslate nohighlight">\(R_0\)</span>:</p>
+<p>\begin{align}
+R_0 &amp;= 2^oAR_{family} \times contacts_{family} \
+&amp;+ 2^oAR_{neighbours} \times contacts_{neighbours} \
+&amp;+ 2^oAR_{community} \times contacts_{community} \
+&amp;+ \cdots
+\end{align}</p>
+<p>As with disease periods, <span class="math notranslate nohighlight">\(R_0\)</span> is an average that is affected by
+various factors and is best treated as a mean value with some
+variance: some infected individuals will affect more people, some
+less, but <em>on average</em> they will generate <span class="math notranslate nohighlight">\(R_0\)</span> secondary infections.</p>
+</div>
+<div class="section" id="controlling-epidemics">
+<h2>Controlling epidemics<a class="headerlink" href="#controlling-epidemics" title="Permalink to this headline">¶</a></h2>
+<p>The importance of <span class="math notranslate nohighlight">\(R_0\)</span> is that it indicates whether, and how fast, a
+disease can spread through a susceptible population. If <span class="math notranslate nohighlight">\(R_0 &lt; 1\)</span> then
+we expect fewer than one secondary case per primary. This means that
+each “generation” of the disese will be smaller than the one that
+infected it, and the disease will die out. If <span class="math notranslate nohighlight">\(R_0 = 1\)</span> then the
+disease will perpetuate itself in whatever size of population was
+originally infected. Nature is never so precise as to present us with
+a disease like this, of course. However, <span class="math notranslate nohighlight">\(R_0 = 1\)</span> is the <em>threshold
+value</em> about which diseases become epidemics. If <span class="math notranslate nohighlight">\(R_0 &gt; 1\)</span>, the
+disease will break-out and infect more and more people exponentially
+quickly. Exactly <em>how</em> quickly depends on how large <span class="math notranslate nohighlight">\(R_0\)</span> is. For
+measles, <span class="math notranslate nohighlight">\(R_0 \ge 15\)</span> – fifteen new infections for each case
+– which explains how measles spread so quickly in unvaccinated
+populations. Different strains of influenza have different ranges of
+<span class="math notranslate nohighlight">\(R_0\)</span>: for the<a class="reference external" href="https://en.wikipedia.org/wiki/1918_flu_pandemic">1918 “Spanish flu”
+epidemic</a> it has been
+estimated <a class="bibtex reference internal" href="zbibliography.html#vtm07" id="id2">[VTM07]</a> that <span class="math notranslate nohighlight">\(1.2 \le R_0 \le 3.0\)</span> in the community
+(although substantially more in confined settings). If this sounds
+benign, remember that this epidemic killed more people than the First
+World War. Perhaps interesting in light of its media coverage, for
+ebola we have <span class="math notranslate nohighlight">\(1.5 \le R_0 \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id3">[Alt14]</a>, roughly the same as
+a not-too-severe winter flu outbreak.</p>
+<p>In order to bring an epidemic under control, then, we need to reduce
+the <em>effective</em> value of <span class="math notranslate nohighlight">\(R_0\)</span>. This will generally happen anyway
+through mutation and selection as the disease agent (typically a
+bacterium or a virus) evolves. We can quarantine infected individuals
+so that they do not cause further secondary infections. This is
+clearly more effective with Type B diseases than with Type A, since
+the latter will have already become infectious before they become
+symptomatic.</p>
+<p>A more effective approach is to reduce the susceptible fraction of the
+population. The approach is to make the value of <span class="math notranslate nohighlight">\(R_t\)</span> less than one
+(the epidemic threshold) so that the disease dies out naturally. This
+happens naturally in diseases to which individuals have natural or
+acquired immunity, for example by surviving a bout of the disease.</p>
+<p>An even more effective approach is to artificially give people
+immunity: vaccination. A vaccine, where it exists, confers full or
+partial immunity on its recipients.</p>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Epidemic modelling – An introduction</a>
+    <a class='right-next' id="next-link" href="continuous.html" title="next page">The simplest model</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; Copyright 2020.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+    </p>
+  </div>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>
