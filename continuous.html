@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>The simplest model &#8212; Epidemic modelling -- an introduction</title>
+    <title>The simplest model &#8212; Epidemic modelling &amp;ndash; an introduction</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -28,10 +28,11 @@
     <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Connectivity" href="network.html" />
-    <link rel="prev" title="Epidemic modelling: An introduction" href="index.html" />
+    <link rel="prev" title="Epidemic modelling – An introduction" href="index.html" />
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,7 +59,7 @@
 <a class="navbar-brand text-wrap" href="index.html">
   
   
-  <h1 class="site-logo" id="site-title">Epidemic modelling -- an introduction</h1>
+  <h1 class="site-logo" id="site-title">Epidemic modelling &ndash; an introduction</h1>
   
 </a>
 </div>
@@ -72,7 +73,7 @@
   
   <ul class="nav sidenav_l1">
   <li class="">
-    <a href="index.html">Epidemic modelling: An introduction</a>
+    <a href="index.html">Epidemic modelling – An introduction</a>
   </li>
   <li class="active">
     <a href="">The simplest model</a>
@@ -81,7 +82,13 @@
     <a href="network.html">Connectivity</a>
   </li>
   <li class="">
-    <a href="zbibliography.html">Bibliography</a>
+    <a href="notes.html">Notes</a>
+  </li>
+  <li class="">
+    <a href="zbibliography.html">Annotated bibliography</a>
+  </li>
+  <li class="">
+    <a href="about.html">About the author</a>
   </li>
 </ul>
 </nav>
@@ -192,7 +199,7 @@
 <li><p><em>Removed (R)</em>, representing those people whose infection has resolved itself and have been “removed” from progressing the disease any further.</p></li>
 </ul>
 <p>Notice how simple this is. A person is either infected, or they’re not. If they <em>are</em> infected, they are infectious: there’s no latency. And they’re “removed” when their infection resolves, without us noting whether they recovered or died.</p>
-<p>You might ask whether something this simple can tell us anything: does any real disease work like this? But the simplicity of the model amkes it tractable and easy to study, and once we’ve got a feel for how these things work we can if desired move onto more detailed models. SIR is just one of the possible compartmented models: the others include SIS (for diseases where you can be re-infected once recovered), SEIR (for diseases with an infectious period when someone has been “exposed”), MSEIR (for diseases with maternally-conferred temporary immunity), so so on in dizzying array (see <span class="bibtex" id="id1">[Heth00]</span> for a more detailed discussion).</p>
+<p>You might ask whether something this simple can tell us anything: does any real disease work like this? But the simplicity of the model amkes it tractable and easy to study, and once we’ve got a feel for how these things work we can if desired move onto more detailed models. SIR is just one of the possible compartmented models: the others include SIS (for diseases where you can be re-infected once recovered), SEIR (for diseases with an infectious period when someone has been “exposed”), MSEIR (for diseases with maternally-conferred temporary immunity), so so on in dizzying array (see Hethcote<a class="bibtex reference internal" href="zbibliography.html#heth00" id="id1">[Het00]</a> for a more detailed discussion).</p>
 </div>
 <div class="section" id="the-mathematical-model">
 <h2>The mathematical model<a class="headerlink" href="#the-mathematical-model" title="Permalink to this headline">¶</a></h2>
@@ -208,7 +215,7 @@
 <p>with the minus sign indicating that <span class="math notranslate nohighlight">\(S\)</span> is getting smaller.</p>
 <p>What about <span class="math notranslate nohighlight">\(I\)</span>? Every person who leaves <span class="math notranslate nohighlight">\(S\)</span> (and so ceases to be susceptible) becomes infected and so enters <span class="math notranslate nohighlight">\(I\)</span>. So we’d expect that the corresponding change in <span class="math notranslate nohighlight">\(I\)</span>, <span class="math notranslate nohighlight">\(\Delta I\)</span>, would <em>increase</em> the the same amount as <span class="math notranslate nohighlight">\(\Delta S\)</span> <em>decreased</em>, so as not to lose anyone from the population. But as well as contracting the disease, people also recover from it (or die): either way are “removed” from the population affected by the disease.</p>
 <p>(Whether you recover or die is obviously quite important to you, but in either event you are no longer infected or susceptible and so take no further part in the spread of the infection. Epidemic modelling can seem quite heartless at times.)</p>
-<p>How many people are removed? SIR assumes that, just as a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> of contacts result in infection, a fraction <span class="math notranslate nohighlight">\(p_{remove}\)</span> of infected individuals are removed <a class="reference external" href="notes.ipynb#continuous1">[1]</a>. So the size of <span class="math notranslate nohighlight">\(I\)</span> is <em>increased</em> by susceptible people becoming infected, and <em>reduced</em> by infected people becoming removed. Putting this together we get</p>
+<p>How many people are removed? SIR assumes that, just as a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> of contacts result in infection, a fraction <span class="math notranslate nohighlight">\(p_{remove}\)</span> of infected individuals are removed <a class="reference internal" href="notes.html#note-beta"><span class="std std-ref">[1]</span></a>. So the size of <span class="math notranslate nohighlight">\(I\)</span> is <em>increased</em> by susceptible people becoming infected, and <em>reduced</em> by infected people becoming removed. Putting this together we get</p>
 <div class="math notranslate nohighlight">
 \[
     \Delta I = (p_{\mathit{infect}} \, SI) - (p_{remove} \, I)
@@ -253,7 +260,7 @@
 </div>
 </div>
 <p>We’ve used as far as possible the same names in the code as we did in the maths: <code class="docutils literal notranslate"><span class="pre">pInfect</span></code> for <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, <code class="docutils literal notranslate"><span class="pre">deltaS</span></code> for <span class="math notranslate nohighlight">\(\Delta S\)</span>, and so forth. This will help keep things straight in our minds.</p>
-<p>How do we “run” the epidemic? We’ve defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time <a class="reference external" href="notes.ipynb#continuous2">[2]</a>. The result will be a time series for each sub-population tracking its size over time.</p>
+<p>How do we “run” the epidemic? We’ve defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time <a class="reference internal" href="notes.html#note-euler"><span class="std std-ref">[2]</span></a>. The result will be a time series for each sub-population tracking its size over time.</p>
 <p>What should the initial sizes of the sub-populations be? Since we’re interested only in their sizes, we could say that given <span class="math notranslate nohighlight">\(N\)</span> individuals a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infected}}\)</span> are initially infected, while everyone else is susceptible: no-one starts off removed.</p>
 <p>We can code this behaviour up as a single function.</p>
 <div class="cell docutils container">
@@ -348,7 +355,7 @@
 <img alt="_images/continuous_17_0.svg" src="_images/continuous_17_0.svg" /></div>
 </div>
 <p>What are these graphs telling us? Start in the top left. At the start of the epidemic (when <span class="math notranslate nohighlight">\(t = 0\)</span>) we have a very small number of infected individuals and a very large number of susceptibles. The number of infecteds grows slowly as the time passes and the graph moves form left to right. But the disease is not very infectious: only 0.000001 of contacts leads to infection, just one in a million. At the start of the epidemic there are 990 susceptible people and 10 infecteds (1% of the total population), which means there can be at most 9900 susceptible-infected contacts. In the first timestep, then, the equations suggest that approximately 0.01 people become infected.</p>
-<p>We can’t infect two-hundreths of a person, of course <a class="reference external" href="notes.ipynb#continuous3">[3]</a>: clearly it will take some time for there to be one new person infected. And once infections start people also start to recover, and the epidemic clearly never gets going.</p>
+<p>We can’t infect two-hundreths of a person, of course <a class="reference internal" href="notes.html#note-ode"><span class="std std-ref">[3]</span></a>: clearly it will take some time for there to be one new person infected. And once infections start people also start to recover, and the epidemic clearly never gets going.</p>
 <p>But now look at the next diagrams. Even for very modest values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> – 0.000002 to 0.000008 – we get considerable epidemics. At the peak of infections around 40–60% of the population is infected, compared to essentially no-one for the smallest value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>. And that’s with <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> still tiny: eight contacts in every million resulting in an infection.</p>
 </div>
 <div class="section" id="consequences">
@@ -367,7 +374,7 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Epidemic modelling: An introduction</a>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">Epidemic modelling – An introduction</a>
     <a class='right-next' id="next-link" href="network.html" title="next page">Connectivity</a>
 
     </div>
