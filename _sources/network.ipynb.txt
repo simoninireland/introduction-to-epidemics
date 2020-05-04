@@ -15,7 +15,7 @@
     "\n",
     "Admittedly you get this sort of \"complete mixing\" in *some* scenarios. A school for young children (or, even better, a toddler's nursery) perhaps works like this as the children go out to play together and everyone mixes with everyone else. And this is why diseases spread so rapidly through nurseries: one sick child will infect all the others.\n",
     "\n",
-    "This phenomenon can be used constructively, and when I was a child it was commonplace for parents to hold \"chickpox parties\" and bring all the neighbouring children together to play so they could be exposed &ndash; and then subsequently be immune from further infection, since chickenpox is quite well-modelled by SIR [[1]](notes.ipynb#network1).\n",
+    "This phenomenon can be used constructively, and when I was a child it was commonplace for parents to hold \"chickpox parties\" and bring all the neighbouring children together to play so they could be exposed &ndash; and then subsequently be immune from further infection, since chickenpox is quite well-modelled by SIR {ref}`[1] <note:chickenpox>`.\n",
     "\n",
     "But in other cases the assumption of complete mixing is going to break down. And since we know that even a small change in infectivity can have a dramatic effect on the progress of an epidemic, can we change SIR to accommodate the social realities in which there are substantially fewer connections between individuals that we might expect?\n",
     "\n",

@@ -24,3 +24,13 @@ in this way the three SIR equations should really be be phrased as
 *differential* equations rather than as *difference* equations so that
 the passage from discrete to continuous time makes mathematical
 sense. The results obtained are the same in both cases, however.
+
+
+## Connectivity
+
+(note:chickenpox)=
+[1] In chickenpox the infected individual &ndash; almost always a
+child &ndash; is latent for 7–10 days after exposure, but only
+infectious for about 24 hours before the symptoms (an itchy rash)
+appear.
+
