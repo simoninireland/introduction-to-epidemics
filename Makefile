@@ -8,27 +8,28 @@
 
 # ----- Sources -----
 
+# Text
+TEXT = \
+	src/index.md \
+	src/progress.md \
+	src/notes.md \
+	src/zbibliography.md \
+	src/about.md
+
 # Notebooks
-HEADER = src/index.ipynb
 NOTEBOOKS =  \
-	src/continuous.ipynb\
+	src/continuous.ipynb \
 	src/network.ipynb \
-	src/notes.ipynb \
-	src/zbibliography.md
+	src/thresholds.ipynb
 
 # Image files
 RAW_IMAGES = \
-	src/sd.jpg
+	src/disease-types.png \
+	src/disease-periods.png \
+	src/sd.png
 
 # Bibliograohy
 BIBLIOGRAPHY = src/bibliography.bib
-
-# All content
-CONTENT = \
-	$(HEADER) \
-	$(NOTEBOOKS) \
-	$(RAW_IMAGES) \
-	$(BIBLIOGRAPHY)
 
 # License
 LICENSE = LICENSE
@@ -36,6 +37,15 @@ LICENSE = LICENSE
 # Structure
 BOOK_CONFIG = _config.yml
 BOOK_TOC = _toc.yml
+
+# All content
+CONTENT = \
+	$(TEXT) \
+	$(NOTEBOOKS) \
+	$(RAW_IMAGES) \
+	$(BIBLIOGRAPHY) \
+	$(LICENSE) \
+	$(BOOK_CONFIG) $(BOOK_TOC)
 
 
 # ----- Tools -----
@@ -45,6 +55,7 @@ PYTHON = python3
 IPYTHON = ipython
 JUPYTER = jupyter
 JUPYTER_BOOK = jupyter-book
+GHP_IMPORT = ghp-import
 PIP = pip
 VIRTUALENV = python3 -m venv
 ACTIVATE = . $(VENV)/bin/activate
@@ -65,19 +76,13 @@ REQUIREMENTS = requirements.txt
 
 # Book construction
 BOOK_DIR = bookdir
-BOOK_CONTENT = content
+BOOK_CONTENT = src
 
 # Constructed commands
 RUN_SERVER = PYTHONPATH=. $(JUPYTER) notebook
-CREATE_BOOK = \
-	$(JUPYTER_BOOK) create $(BOOK_DIR) \
-	--overwrite \
-	--license $(LICENSE) \
-	--toc $(BOOK_TOC) \
-	--config $(BOOK_CONFIG) \
-	--content-folder $(BOOK_CONTENT)
-BUILD_BOOK = \
-	$(JUPYTER_BOOK) build $(BOOK_DIR)
+CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
+BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
+UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_DIR)/_build/html
 
 
 # ----- Top-level targets -----
@@ -92,11 +97,17 @@ live: env
 
 # Book building
 book: $(BOOK_DIR)
+	$(CP) $(CONTENT) $(BOOK_DIR)
 	$(ACTIVATE) && $(BUILD_BOOK)
 
 $(BOOK_DIR): Makefile $(BOOK_CONFIG) $(BOOK_TOC) $(CONTENT) $(BIBLIOGRAPHY)
 	$(RM) $(BOOK_DIR)
 	$(ACTIVATE) && $(CREATE_BOOK)
+	$(RM) $(BOOK_DIR)/*.ipynb $(BOOK_DIR)/*.md
+
+# Upload book to public web site
+upload:
+	$(ACTIVATE) && $(UPLOAD_BOOK)
 
 # Build a development venv
 .PHONY: env
@@ -109,9 +120,9 @@ $(VENV):
 
 # Clean up the build
 clean:
-	$(RM) $(BOOKDIR)
+	$(RM) $(BOOK_DIR)
 
-# Clean up everything. including the venv
+# Clean up everything, including the venv (which is quite expensive to rebuild)
 reallyclean: clean
 	$(RM) $(VENV)
 
@@ -121,10 +132,13 @@ reallyclean: clean
 define HELP_MESSAGE
 Editing:
    make live         run the notebook server
+
+Production:
    make book         build the book using Jupyter Book
+   make upload       upload book to public web site
 
 Maintenance:
-   make env          create a known-good development virtual environment
+   make env          create a virtual environment
    make clean        clean-up the build
    make reallyclean  delete the venv as well
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="576px" height="270px" viewBox="0 0 576 270" enable-background="new 0 0 576 270" xml:space="preserve">
+<line fill="none" stroke="#000000" stroke-width="2" x1="36" y1="135" x2="540" y2="135"/>
+<text transform="matrix(1 0 0 1 18 81)" font-family="'MyriadPro-Regular'" font-size="12">infection</text>
+<text transform="matrix(1 0 0 1 153 27)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">onset of </tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">infectiousness</tspan></text>
+<text transform="matrix(1 0 0 1 234 72)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">onset of</tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">symptoms</tspan></text>
+<text transform="matrix(1 0 0 1 378 27)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="12">end of </tspan><tspan x="0" y="14.4" font-family="'MyriadPro-Regular'" font-size="12">infectiousness</tspan></text>
+<text transform="matrix(1 0 0 1 513 81)" font-family="'MyriadPro-Regular'" font-size="12">resolution</text>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" x1="36" y1="90" x2="36" y2="117"/>
+		<polygon points="36,124.061 31.936,114.111 36,116.472 40.065,114.111 		"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" x1="180" y1="45" x2="180" y2="117"/>
+		<polygon points="180,124.061 175.935,114.111 180,116.472 184.064,114.111 		"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" x1="252" y1="90" x2="252" y2="117"/>
+		<polygon points="252,124.061 247.935,114.11 252,116.472 256.064,114.11 		"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" x1="396" y1="45" x2="396" y2="117"/>
+		<polygon points="396,124.061 391.936,114.111 396,116.472 400.064,114.111 		"/>
+	</g>
+</g>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" x1="540" y1="90" x2="540" y2="117"/>
+		<polygon points="540,124.061 535.936,114.11 540,116.472 544.064,114.11 		"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 81 171)" font-family="'MyriadPro-Regular'" font-size="12">latent period</text>
+<line fill="none" stroke="#000000" x1="36" y1="171" x2="36" y2="189"/>
+<line fill="none" stroke="#000000" x1="180" y1="171" x2="180" y2="189"/>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="45" y1="180" x2="171" y2="180"/>
+		<polygon points="178.061,180 168.111,184.065 170.472,180 168.111,175.936 		"/>
+		<polygon points="37.939,180 47.889,175.935 45.528,180 47.889,184.064 		"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 99 234)" font-family="'MyriadPro-Regular'" font-size="12">incubation period</text>
+<line fill="none" stroke="#000000" x1="36" y1="234" x2="36" y2="252"/>
+<line fill="none" stroke="#000000" x1="252" y1="234" x2="252" y2="252"/>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="45" y1="243" x2="243" y2="243"/>
+		<polygon points="250.061,243 240.111,247.065 242.473,243 240.111,238.936 		"/>
+		<polygon points="37.939,243 47.889,238.935 45.528,243 47.889,247.064 		"/>
+	</g>
+</g>
+<text transform="matrix(1 0 0 1 252 171)" font-family="'MyriadPro-Regular'" font-size="12">infectious period</text>
+<line fill="none" stroke="#000000" x1="396" y1="171" x2="396" y2="189"/>
+<g>
+	<g>
+		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="189" y1="180" x2="387" y2="180"/>
+		<polygon points="394.061,180 384.111,184.065 386.473,180 384.111,175.936 		"/>
+		<polygon points="181.939,180 191.889,175.935 189.528,180 191.889,184.064 		"/>
+	</g>
+</g>
+</svg>

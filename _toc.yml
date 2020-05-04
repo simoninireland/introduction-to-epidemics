@@ -1,9 +1,13 @@
-- url: /index
+- file: index
 
-- url: /continuous
-- url: /network
+- file: progress
+- file: continuous
+- file: network
 
-- url: /zbibliography
-  title: Bibliography
+- file: notes
+
+- file: zbibliography
+
+- file: about
 
 
