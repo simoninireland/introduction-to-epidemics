@@ -5,16 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,minimum-scale=1">
 
-  <title>Bibliography</title>
-  <meta name="description" content="        Bibliography    Bibliography {bibliography} bibliography.bib         ">
+  <title>Search the site</title>
+  <meta name="description" content="        ">
 
-  <link rel="canonical" href="/YOUR%20URL//zbibliography.html">
+  <link rel="canonical" href="/YOUR%20URL//search">
   <link rel="alternate" type="application/rss+xml" title="Epidemic modelling" href="/YOUR%20URL//feed.xml">
 
-  <meta property="og:url"         content="/YOUR%20URL//zbibliography.html" />
+  <meta property="og:url"         content="/YOUR%20URL//search" />
 <meta property="og:type"        content="article" />
-<meta property="og:title"       content="Bibliography" />
-<meta property="og:description" content="        Bibliography    Bibliography {bibliography} bibliography.bib         " />
+<meta property="og:title"       content="Search the site" />
+<meta property="og:description" content="        " />
 <meta property="og:image"       content="YOUR%20URL/images/logo/logo.png" />
 
 <meta name="twitter:card" content="summary">
@@ -24,11 +24,11 @@
   {
   "@context": "http://schema.org",
   "@type": "NewsArticle",
-  "mainEntityOfPage": "YOUR URL//zbibliography.html",
-  "headline": "Bibliography",
+  "mainEntityOfPage": "YOUR URL//search",
+  "headline": "Search the site",
   "datePublished": "2020-05-04T13:35:08+01:00",
   "dateModified": "2020-05-04T13:35:08+01:00",
-  "description": "        Bibliography    Bibliography {bibliography} bibliography.bib         ",
+  "description": "        ",
   "author": {
     "@type": "Person",
     "name": "Simon Dobson"
@@ -600,45 +600,49 @@ initFunction(initPrint)
 
       <main class="c-textbook__page" tabindex="-1">
             <div class="c-textbook__content" id="textbook_content">
-                  <main class="jupyter-page">
-    <div id="page-info"><div id="page-title">Bibliography</div>
-</div>
-    <div class="jb_cell">
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Bibliography">Bibliography<a class="anchor-link" href="#Bibliography"> </a></h1><p>{bibliography} bibliography.bib</p>
-
-</div>
-</div>
-</div>
+              <div class="search-content__inner-wrap">
+    <input type="text" id="lunr_search" class="search-input" tabindex="-1" placeholder="'Enter your search term...''" />
+    <div id="results" class="results"></div>
 </div>
 
- 
-
-
-    </main>
-    
+<script>
+    // Add the lunr store since we will now search it
+    var store = [{
+        "title": "The simplest model",
+        
+        "excerpt": "s infected disease population p model infect sir susceptible infection change mathit size epidemic removed r delta start need ndash fraction represent between compartment three us sub result contacts sizes get lets compartments everyone those individuals well populations si timestep rate value any things progress infectious recover progresses move person not once diseases someone always clearly only since smaller same also remove increases equations parameters infections pinfect very million being become take different ways compartmented exactly its representing further either whether anything does weve models just where period numbers individual n say assume passes through together becoming notes ipynb continuous",
+        "categories": [],
+        "tags": [],
+        "url": "YOUR%20URL/continuous.html",
+        "teaser":null},{
+        "title": "Epidemic modelling: An introduction",
+        
+        "excerpt": "simon dobson st andrews uk epidemic modelling introduction mailto ac br school computer scienc e university scotland hr",
+        "categories": [],
+        "tags": [],
+        "url": "YOUR%20URL/index.html",
+        "teaser":null},{
+        "title": "Connectivity",
+        
+        "excerpt": "network social everyone k ndash same contacts langle rangle complete fewer nodes degree population networks edges epidemic f connected simulation sir between expect lets p potentially node meet mixing together else infect since well road need every disease where individuals take children exposed infection change might equation happens mathit infected simply add another our less also spreading wed results us epydemic function equations sparser reasonable mean neighbours gets idea possible dont work get even perhaps works play child hold assumption progress connections question delta si remove takes factor proportion want fraction into above infectious such lt choose happen approach its",
+        "categories": [],
+        "tags": [],
+        "url": "YOUR%20URL/network.html",
+        "teaser":null},{
+        "title": "Bibliography",
+        
+        "excerpt": "bibliography bib",
+        "categories": [],
+        "tags": [],
+        "url": "YOUR%20URL/zbibliography.html",
+        "teaser":null},]
+</script>
             </div>
             <div class="c-textbook__footer" id="textbook_footer">
               
 <nav class="c-page__nav">
   
-    
-    
 
-    <a id="js-page__nav__prev" class="c-page__nav__prev" href="/network.html">
-      〈 <span class="u-margin-right-tiny"></span> Connectivity
-    </a>
-  
-
-  
-    
-
-    
-    <a id="js-page__nav__next" class="c-page__nav__next" href="">
-       <span class="u-margin-right-tiny"></span> 〉
-    </a>
   
 </nav>
 
