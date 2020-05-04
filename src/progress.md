@@ -1,5 +1,4 @@
-The progession of a disease
-===========================
+# The progession of a disease
 
 Everyone suffers from a disease at some point. The lucky amongst us
 avoid anything more serious that influenza, measles, or (in my case,
@@ -90,8 +89,7 @@ practical option. (During historical disease outbreaks, of course,
 quarantine was the *only* option.)
 
 
-Measuring and modelling epidemics
----------------------------------
+## Measuring and modelling epidemics
 
 Epidemiology is the science of creating models of diseases and their
 spread that can be analysed, to make predictions or to simulate the
@@ -174,8 +172,7 @@ variance: some infected individuals will affect more people, some
 less, but *on average* they will generate $R_0$ secondary infections.
 
 
-Controlling epidemics
----------------------
+## Controlling epidemics
 
 The importance of $R_0$ is that it indicates whether, and how fast, a
 disease can spread through a susceptible population. If $R_0 < 1$ then
