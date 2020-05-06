@@ -20,7 +20,7 @@ understand the world.
 
 But what *is* a model of a disease? How do they work, and what can they
 tell us about what we can expect from epidemics and other events? I'm writing
-this document as an attemot to explain the one small corner of this
+this document as an attempt to explain the one small corner of this
 vast field that I know something about: how to model epidemics using
 network science and computer simulations. I put it out as a work
 in progress in the hope that it'll be interesting and useful to someone.

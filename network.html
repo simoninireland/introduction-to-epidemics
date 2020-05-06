@@ -76,6 +76,9 @@
     <a href="index.html">Epidemic modelling – An introduction</a>
   </li>
   <li class="">
+    <a href="model.html">Models of disease</a>
+  </li>
+  <li class="">
     <a href="progress.html">The progession of a disease</a>
   </li>
   <li class="">
@@ -153,9 +156,24 @@
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#networks" class="nav-link">Networks</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#complete-networks" class="nav-link">Complete networks</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#towards-sparser-social-networks" class="nav-link">Towards sparser social networks</a>
+        </li>
     
     </ul>
 </nav>
@@ -186,13 +204,13 @@
     \Delta I = p_{\mathit{infect}} \, (f \, SI) - p_{remove} I
 \]</div>
 <p>If <span class="math notranslate nohighlight">\(f = 0\)</span> then there are no potentially infectious contacts; if <span class="math notranslate nohighlight">\(f = 1\)</span> then <em>all</em> contacts are potentially infectious and we recover our original equation; and for values of <span class="math notranslate nohighlight">\(f\)</span> such that <span class="math notranslate nohighlight">\(0 \lt f \lt 1\)</span> we choose the fraction of contacts we want to happen.</p>
-</div>
 <div class="section" id="networks">
-<h1>Networks<a class="headerlink" href="#networks" title="Permalink to this headline">¶</a></h1>
+<h2>Networks<a class="headerlink" href="#networks" title="Permalink to this headline">¶</a></h2>
 <p>There is another, more interesting, approach that uses networks, and it’s this approach that we’ll now turn to.</p>
 <p>A <em>network</em> is simply a collection of <em>nodes</em> connected by <em>edges</em>. A road map is a good example of a network: the nodes are the road junctions, while the edges (which connect the junctions together) are the segments of roads. This is the reason we sometimes refer to the <em>road network</em>: it’s a collection of (bits of) road that meet at various points.</p>
 <p>Another good example of a network – and closer to our current application – is a <em>social network</em>. In a social network the nodes are people and the edges are “social links” or “social contacts” between them. While we usually think of social networks as being online, like Facebook or Twitter, they idea works in the real world too: when you meet your family, go shopping, go to work, or indulge in any of the activities of daily life you add edges to your social network between yourself and the people you meet. Typically the number of people you’ll have social contact with will be considerably less that the entire population.</p>
 <p>Do the same thing for everyone in the population, and you have a social network for that population. The nodes are the individuals; the edges are the potentially infection-carrying social contacts.</p>
+</div>
 <div class="section" id="complete-networks">
 <h2>Complete networks<a class="headerlink" href="#complete-networks" title="Permalink to this headline">¶</a></h2>
 <p>Suppose that, on your travels, you <em>did</em> actually happen to come into contact with everyone in the population, so that your social network had edges connecting you to everyone else. And suppose that everyone else did the same, so that everyone was connected to everyone. This is still a social network – a very dense one to be sure, but perhaps like that of a crowd at a rugby match. It also matches the assumptions we made earlier about complete mixing. So if we  ran a simulation of diosease spreading over this network, we’d presumably expect to see the same results as we did before.</p>
