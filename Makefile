@@ -15,7 +15,8 @@ TEXT = \
 	src/progress.md \
 	src/notes.md \
 	src/zbibliography.md \
-	src/about.md
+	src/about.md \
+	src/copyright.md
 
 # Notebooks
 NOTEBOOKS =  \
@@ -25,9 +26,10 @@ NOTEBOOKS =  \
 
 # Image files
 RAW_IMAGES = \
+	src/sd.png \
+	src/cc-by-nc-sa.png \
 	src/disease-types.png \
-	src/disease-periods.png \
-	src/sd.png
+	src/disease-periods.png
 
 # Bibliograohy
 BIBLIOGRAPHY = src/bibliography.bib
