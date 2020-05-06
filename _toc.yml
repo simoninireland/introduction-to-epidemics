@@ -1,5 +1,6 @@
 - file: index
 
+- file: model
 - file: progress
 - file: continuous
 - file: network

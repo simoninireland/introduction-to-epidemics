@@ -1,5 +1,16 @@
 # Notes
 
+## The progression of a disease
+
+(note:evolution)=
+[1] This will generally happen anyway through mutation and selection
+as the disease agent evolves. It's important to remember that mutation
+is happening throughout an epidemic, meaning that a person infected
+towards the end of an outbreak often gets a disease that is
+*different* to so that experienced by someone infected earlier, and
+this can sometimes have significant consequences. 
+
+
 ## The simplest model
 
 (note:beta)=

@@ -11,6 +11,7 @@
 # Text
 TEXT = \
 	src/index.md \
+	src/model.md \
 	src/progress.md \
 	src/notes.md \
 	src/zbibliography.md \
