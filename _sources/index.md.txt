@@ -1,4 +1,4 @@
-# Epidemic modelling &ndash; An introduction
+# Epidemic modelling &ndash; Some notes, maths, and code
 
 [Simon Dobson](mailto:simon.dobson@st-andrews.ac.uk)
 
