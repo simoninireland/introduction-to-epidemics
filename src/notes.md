@@ -12,6 +12,9 @@ graphical presentation.
 This book is written with a combination of "markdown" text and
 [Jupyter](https://www.jjupyter.org) notebooks to allow executable
 content. It was then assembled using [Jupyter
-Book](https://jupyterbook.org).
+Book](https://jupyterbook.org), and hosted by [GitHub
+Pages](https://pages.github.com/).
+All text, code, and diagrams are available for download from
+[the project's GitHub repo](https://github.com/simoninireland/introduction-to-epidemics).
 
 
