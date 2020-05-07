@@ -171,12 +171,21 @@ World War. Perhaps interesting in light of its media coverage, for
 ebola we have $1.5 \le R_0 \le 2.7$ {cite}`Alt14`, roughly the same as
 a not-too-severe winter flu outbreak.
 
+```{margin}
+This will generally happen anyway through mutation and selection
+as the disease agent evolves. It's important to remember that mutation
+is happening throughout an epidemic, meaning that a person infected
+towards the end of an outbreak often gets a disease that is
+*different* to so that experienced by someone infected earlier, and
+this can sometimes have significant consequences. 
+```
+
 In order to bring an epidemic under control, then, we need to reduce
-the **effective** value of $R_0$ over time {ref}`[1] <note:evolution>`.
-We can quarantine infected individuals so that
-they do not cause further secondary infections. This is clearly more
-effective with Type B diseases than with Type A, since the latter will
-have already become infectious before they become symptomatic.
+the **effective** value of $R_0$ over time.  We can quarantine
+infected individuals so that they do not cause further secondary
+infections. This is clearly more effective with Type B diseases than
+with Type A, since the latter will have already become infectious
+before they become symptomatic.
 
 A more effective approach is to reduce the susceptible fraction of the
 population. The approach is to make the value of $R_t$ less than one

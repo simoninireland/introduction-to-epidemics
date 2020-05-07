@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="The simplest model" href="continuous.html" />
+    <link rel="next" title="SIR" href="continuous.html" />
     <link rel="prev" title="Models of disease" href="model.html" />
 
 
@@ -83,13 +83,16 @@
     <a href="">The progession of a disease</a>
   </li>
   <li class="">
-    <a href="continuous.html">The simplest model</a>
+    <a href="continuous.html">SIR</a>
   </li>
   <li class="">
-    <a href="network.html">Connectivity</a>
+    <a href="network.html">Network models</a>
   </li>
   <li class="">
-    <a href="notes.html">Notes</a>
+    <a href="er.html">Making fewer connections</a>
+  </li>
+  <li class="">
+    <a href="notes.html">Notes on software</a>
   </li>
   <li class="">
     <a href="zbibliography.html">Annotated bibliography</a>
@@ -148,7 +151,7 @@
 
         
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
+    <div class="d-none d-md-block col-md-2 bd-toc ">
 <div class="tocsection onthispage pt-5 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
@@ -335,12 +338,21 @@ benign, remember that this epidemic killed more people than the First
 World War. Perhaps interesting in light of its media coverage, for
 ebola we have <span class="math notranslate nohighlight">\(1.5 \le R_0 \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id3">[Alt14]</a>, roughly the same as
 a not-too-severe winter flu outbreak.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>This will generally happen anyway through mutation and selection
+as the disease agent evolves. It’s important to remember that mutation
+is happening throughout an epidemic, meaning that a person infected
+towards the end of an outbreak often gets a disease that is
+<em>different</em> to so that experienced by someone infected earlier, and
+this can sometimes have significant consequences.</p>
+</div>
 <p>In order to bring an epidemic under control, then, we need to reduce
-the <strong>effective</strong> value of <span class="math notranslate nohighlight">\(R_0\)</span> over time <a class="reference internal" href="notes.html#note-evolution"><span class="std std-ref">[1]</span></a>.
-We can quarantine infected individuals so that
-they do not cause further secondary infections. This is clearly more
-effective with Type B diseases than with Type A, since the latter will
-have already become infectious before they become symptomatic.</p>
+the <strong>effective</strong> value of <span class="math notranslate nohighlight">\(R_0\)</span> over time.  We can quarantine
+infected individuals so that they do not cause further secondary
+infections. This is clearly more effective with Type B diseases than
+with Type A, since the latter will have already become infectious
+before they become symptomatic.</p>
 <p>A more effective approach is to reduce the susceptible fraction of the
 population. The approach is to make the value of <span class="math notranslate nohighlight">\(R_t\)</span> less than one
 (the epidemic threshold) so that the disease dies out naturally. This
@@ -362,7 +374,7 @@ partial immunity on its recipients, permanently or for some period.</p>
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="model.html" title="previous page">Models of disease</a>
-    <a class='right-next' id="next-link" href="continuous.html" title="next page">The simplest model</a>
+    <a class='right-next' id="next-link" href="continuous.html" title="next page">SIR</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

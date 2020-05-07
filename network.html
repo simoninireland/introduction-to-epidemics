@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Connectivity &#8212; Epidemic modelling &amp;ndash; an introduction</title>
+    <title>Network models &#8212; Epidemic modelling &amp;ndash; an introduction</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -32,8 +32,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="Notes" href="notes.html" />
-    <link rel="prev" title="The simplest model" href="continuous.html" />
+    <link rel="next" title="Making fewer connections" href="er.html" />
+    <link rel="prev" title="SIR" href="continuous.html" />
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -83,13 +83,16 @@
     <a href="progress.html">The progession of a disease</a>
   </li>
   <li class="">
-    <a href="continuous.html">The simplest model</a>
+    <a href="continuous.html">SIR</a>
   </li>
   <li class="active">
-    <a href="">Connectivity</a>
+    <a href="">Network models</a>
   </li>
   <li class="">
-    <a href="notes.html">Notes</a>
+    <a href="er.html">Making fewer connections</a>
+  </li>
+  <li class="">
+    <a href="notes.html">Notes on software</a>
   </li>
   <li class="">
     <a href="zbibliography.html">Annotated bibliography</a>
@@ -159,7 +162,7 @@
 
         
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
+    <div class="d-none d-md-block col-md-2 bd-toc ">
 <div class="tocsection onthispage pt-5 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
@@ -190,27 +193,22 @@
         
               <div>
                 
-  <div class="section" id="connectivity">
-<h1>Connectivity<a class="headerlink" href="#connectivity" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="network-models">
+<h1>Network models<a class="headerlink" href="#network-models" title="Permalink to this headline">¶</a></h1>
 <p>One thing that may be bothering you about SIR is the idea of a population where all the possible interactions between individuals take place. You don’t meet everyonme in your city, town, or village like that on a regular basis: that isn’t how societies work.</p>
 <p>Admittedly you get this sort of “complete mixing” in <em>some</em> scenarios. A school for young children (or, even better, a toddler’s nursery) perhaps works like this as the children go out to play together and everyone mixes with everyone else. And this is why diseases spread so rapidly through nurseries: one sick child will infect all the others.</p>
-<p>This phenomenon can be used constructively, and when I was a child it was commonplace for parents to hold “chickpox parties” and bring all the neighbouring children together to play so they could be exposed – and then subsequently be immune from further infection, since chickenpox is quite well-modelled by SIR <a class="reference internal" href="notes.html#note-chickenpox"><span class="std std-ref">[1]</span></a>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In chickenpox the infected individual – almost always a
+child – is latent for 7–10 days after exposure, but only
+infectious for about 24 hours before the symptoms (an itchy rash)
+appear.</p>
+</div>
+<p>This phenomenon can be used constructively, and when I was a child it was commonplace for parents to hold “chickpox parties” and bring all the neighbouring children together to play so they could be exposed – and then subsequently be immune from further infection, since chickenpox is quite well-modelled by SIR.</p>
 <p>But in other cases the assumption of complete mixing is going to break down. And since we know that even a small change in infectivity can have a dramatic effect on the progress of an epidemic, can we change SIR to accommodate the social realities in which there are substantially fewer connections between individuals that we might expect?</p>
-<p>There are a couple of ways we could answer this question.</p>
-<p>Let’s return to the equation where all the intreresting stuff happens:</p>
-<div class="math notranslate nohighlight">
-\[
-    \Delta I = p_{\mathit{infect}} \, SI - p_{remove} I
-\]</div>
-<p>The first term essentially takes all the possible contacts (all <span class="math notranslate nohighlight">\(S \times I\)</span> of them) and “exposes” them to the <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> factor that decides what proportion of them are infected. If we want fewer contacts to be exposed, we can simply add another factor – let’s call it <span class="math notranslate nohighlight">\(f\)</span> for “fraction exposed” – that determines what proportion of the contacts are taken into consideration. This would lead os to re-write the above equation as:</p>
-<div class="math notranslate nohighlight">
-\[
-    \Delta I = p_{\mathit{infect}} \, (f \, SI) - p_{remove} I
-\]</div>
-<p>If <span class="math notranslate nohighlight">\(f = 0\)</span> then there are no potentially infectious contacts; if <span class="math notranslate nohighlight">\(f = 1\)</span> then <em>all</em> contacts are potentially infectious and we recover our original equation; and for values of <span class="math notranslate nohighlight">\(f\)</span> such that <span class="math notranslate nohighlight">\(0 \lt f \lt 1\)</span> we choose the fraction of contacts we want to happen.</p>
 <div class="section" id="networks">
 <h2>Networks<a class="headerlink" href="#networks" title="Permalink to this headline">¶</a></h2>
-<p>There is another, more interesting, approach that uses networks, and it’s this approach that we’ll now turn to.</p>
+<p>There are a couple of ways of ansering this question, but the one we’ll turn to here uses networks.</p>
 <p>A <em>network</em> is simply a collection of <em>nodes</em> connected by <em>edges</em>. A road map is a good example of a network: the nodes are the road junctions, while the edges (which connect the junctions together) are the segments of roads. This is the reason we sometimes refer to the <em>road network</em>: it’s a collection of (bits of) road that meet at various points.</p>
 <p>Another good example of a network – and closer to our current application – is a <em>social network</em>. In a social network the nodes are people and the edges are “social links” or “social contacts” between them. While we usually think of social networks as being online, like Facebook or Twitter, they idea works in the real world too: when you meet your family, go shopping, go to work, or indulge in any of the activities of daily life you add edges to your social network between yourself and the people you meet. Typically the number of people you’ll have social contact with will be considerably less that the entire population.</p>
 <p>Do the same thing for everyone in the population, and you have a social network for that population. The nodes are the individuals; the edges are the potentially infection-carrying social contacts.</p>
@@ -481,8 +479,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="continuous.html" title="previous page">The simplest model</a>
-    <a class='right-next' id="next-link" href="notes.html" title="next page">Notes</a>
+    <a class='left-prev' id="prev-link" href="continuous.html" title="previous page">SIR</a>
+    <a class='right-next' id="next-link" href="er.html" title="next page">Making fewer connections</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -4,7 +4,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# The simplest model"
+    "# SIR"
    ]
   },
   {
@@ -73,7 +73,14 @@
     "\n",
     "(Whether you recover or die is obviously quite important to you, but in either event you are no longer infected or susceptible and so take no further part in the spread of the infection. Epidemic modelling can seem quite heartless at times.)\n",
     "\n",
-    "How many people are removed? SIR assumes that, just as a fraction $p_{\\mathit{infect}}$ of contacts result in infection, a fraction $p_{remove}$ of infected individuals are removed {ref}`[1] <note:beta>`. So the size of $I$ is *increased* by susceptible people becoming infected, and *reduced* by infected people becoming removed. Putting this together we get\n",
+    "```{margin}\n",
+    "In the computational epidemiology and network science literatures the\n",
+    "parameter we've called $p_{\\mathit{infect}}$ is usually denoted\n",
+    "$\\beta$, while $p_{remove}$ is denoted $\\alpha$. It's easier to\n",
+    "understand what's going on if we spell the meaning of the symbols out.\n",
+    "```\n",
+    "\n",
+    "How many people are removed? SIR assumes that, just as a fraction $p_{\\mathit{infect}}$ of contacts result in infection, a fraction $p_{remove}$ of infected individuals are removed. So the size of $I$ is *increased* by susceptible people becoming infected, and *reduced* by infected people becoming removed. Putting this together we get\n",
     "\n",
     "$$\n",
     "    \\Delta I = (p_{\\mathit{infect}} \\, SI) - (p_{remove} \\, I)\n",
@@ -113,7 +120,11 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "metadata": {},
+   "metadata": {
+    "tags": [
+     "remove-cell"
+    ]
+   },
    "outputs": [],
    "source": [
     "import numpy"
@@ -151,7 +162,15 @@
    "source": [
     "We've used as far as possible the same names in the code as we did in the maths: `pInfect` for $p_{\\mathit{infect}}$, `deltaS` for $\\Delta S$, and so forth. This will help keep things straight in our minds.\n",
     "\n",
-    "How do we \"run\" the epidemic? We've defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time {ref}`[2] <note:euler>`. The result will be a time series for each sub-population tracking its size over time.\n",
+    "```{margin}\n",
+    "This approach to integration to get a time series, known as the\n",
+    "*direct* or *Euler* method, isn't safe in general, as it risks falling\n",
+    "foul of numerical instability in the equations. There are several more\n",
+    "robust solutions for the more complex cases, notably the Runge-Kutta\n",
+    "methods that are built into Python's `scipy` library.\n",
+    "```\n",
+    "\n",
+    "How do we \"run\" the epidemic? We've defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time. The result will be a time series for each sub-population tracking its size over time.\n",
     "\n",
     "What should the initial sizes of the sub-populations be? Since we're interested only in their sizes, we could say that given $N$ individuals a fraction $p_{\\mathit{infected}}$ are initially infected, while everyone else is susceptible: no-one starts off removed.\n",
     "\n",
@@ -219,21 +238,12 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 6,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "import matplotlib\n",
-    "%matplotlib inline\n",
-    "%config InlineBackend.figure_format = 'svg'\n",
-    "import matplotlib.pyplot as plt\n",
-    "import seaborn"
-   ]
-  },
-  {
-   "cell_type": "code",
    "execution_count": 8,
-   "metadata": {},
+   "metadata": {
+    "tags": [
+     "hide-input"
+    ]
+   },
    "outputs": [
     {
      "data": {
@@ -3061,6 +3071,12 @@
     }
    ],
    "source": [
+    "import matplotlib\n",
+    "%matplotlib inline\n",
+    "%config InlineBackend.figure_format = 'svg'\n",
+    "import matplotlib.pyplot as plt\n",
+    "import seaborn\n",
+    "\n",
     "(fig, axs) = plt.subplots(3, 2, sharex=True, sharey=True, figsize=(8, 12))\n",
     "\n",
     "# draw the sub-plots for selected values of pInfect\n",
@@ -3095,9 +3111,20 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "```{margin}\n",
+    "We've engaged in some mathematical sleight-of-hand here, in that what\n",
+    "we've described as a *discrete* model (of people being susceptible,\n",
+    "infected, and so on) has then be treated as a *continuous* model that\n",
+    "represents the sizes of compartments as real numbers. In order to work\n",
+    "in this way the three SIR equations should really be be phrased as\n",
+    "*differential* equations rather than as *difference* equations so that\n",
+    "the passage from discrete to continuous time makes mathematical\n",
+    "sense. The results obtained are the same in both cases, however.\n",
+    "```\n",
+    "\n",
     "What are these graphs telling us? Start in the top left. At the start of the epidemic (when $t = 0$) we have a very small number of infected individuals and a very large number of susceptibles. The number of infecteds grows slowly as the time passes and the graph moves form left to right. But the disease is not very infectious: only 0.000001 of contacts leads to infection, just one in a million. At the start of the epidemic there are 990 susceptible people and 10 infecteds (1% of the total population), which means there can be at most 9900 susceptible-infected contacts. In the first timestep, then, the equations suggest that approximately 0.01 people become infected.\n",
     "\n",
-    "We can't infect two-hundreths of a person, of course {ref}`[3] <note:ode>`: clearly it will take some time for there to be one new person infected. And once infections start people also start to recover, and the epidemic clearly never gets going.\n",
+    "We can't infect two-hundreths of a person, of course: clearly it will take some time for there to be one new person infected. And once infections start people also start to recover, and the epidemic clearly never gets going.\n",
     "\n",
     "But now look at the next diagrams. Even for very modest values of $p_{\\mathit{infect}}$ &ndash; 0.000002 to 0.000008 &ndash; we get considerable epidemics. At the peak of infections around 40&ndash;60% of the population is infected, compared to essentially no-one for the smallest value of $p_{\\mathit{infect}}$. And that's with $p_{\\mathit{infect}}$ still tiny: eight contacts in every million resulting in an infection."
    ]
@@ -3121,6 +3148,7 @@
   }
  ],
  "metadata": {
+  "celltoolbar": "Tags",
   "kernelspec": {
    "display_name": "Python 3",
    "language": "python",

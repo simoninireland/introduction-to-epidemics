@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>The simplest model &#8212; Epidemic modelling &amp;ndash; an introduction</title>
+    <title>SIR &#8212; Epidemic modelling &amp;ndash; an introduction</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="Connectivity" href="network.html" />
+    <link rel="next" title="Network models" href="network.html" />
     <link rel="prev" title="The progession of a disease" href="progress.html" />
 
 
@@ -83,13 +83,16 @@
     <a href="progress.html">The progession of a disease</a>
   </li>
   <li class="active">
-    <a href="">The simplest model</a>
+    <a href="">SIR</a>
   </li>
   <li class="">
-    <a href="network.html">Connectivity</a>
+    <a href="network.html">Network models</a>
   </li>
   <li class="">
-    <a href="notes.html">Notes</a>
+    <a href="er.html">Making fewer connections</a>
+  </li>
+  <li class="">
+    <a href="notes.html">Notes on software</a>
   </li>
   <li class="">
     <a href="zbibliography.html">Annotated bibliography</a>
@@ -159,7 +162,7 @@
 
         
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
+    <div class="d-none d-md-block col-md-2 bd-toc ">
 <div class="tocsection onthispage pt-5 pb-3">
     <i class="fas fa-list"></i> On this page
 </div>
@@ -194,8 +197,8 @@
         
               <div>
                 
-  <div class="section" id="the-simplest-model">
-<h1>The simplest model<a class="headerlink" href="#the-simplest-model" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="sir">
+<h1>SIR<a class="headerlink" href="#sir" title="Permalink to this headline">¶</a></h1>
 <p>Any disease model will share some things in common. It will need to represent the population of people being modelled, some (or all) of whom will get the disease in the course of the outbreak. It will need to represent the progress of the disease, as people are infected, become infectious, recover, and so forth. It will need some notion of how the disease spreads between people. And it will need to represent the disease dynamics, how long the various stages of the disease take, how virulently it spreads in the population, and so on.</p>
 <p>There are lots different ways to represent these phenomena, and each choice gives rise toi a different modelling approach. There are a lot of trade-offs to be made, with more detail allowing more subtle issues to be captured and explored at the cost of making the model more complicated to understand and compute.</p>
 <p>Let’s start with what is perhaps the simplest model of an epidemic, the <em>SIR model</em>.</p>
@@ -225,7 +228,14 @@
 <p>with the minus sign indicating that <span class="math notranslate nohighlight">\(S\)</span> is getting smaller.</p>
 <p>What about <span class="math notranslate nohighlight">\(I\)</span>? Every person who leaves <span class="math notranslate nohighlight">\(S\)</span> (and so ceases to be susceptible) becomes infected and so enters <span class="math notranslate nohighlight">\(I\)</span>. So we’d expect that the corresponding change in <span class="math notranslate nohighlight">\(I\)</span>, <span class="math notranslate nohighlight">\(\Delta I\)</span>, would <em>increase</em> the the same amount as <span class="math notranslate nohighlight">\(\Delta S\)</span> <em>decreased</em>, so as not to lose anyone from the population. But as well as contracting the disease, people also recover from it (or die): either way are “removed” from the population affected by the disease.</p>
 <p>(Whether you recover or die is obviously quite important to you, but in either event you are no longer infected or susceptible and so take no further part in the spread of the infection. Epidemic modelling can seem quite heartless at times.)</p>
-<p>How many people are removed? SIR assumes that, just as a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> of contacts result in infection, a fraction <span class="math notranslate nohighlight">\(p_{remove}\)</span> of infected individuals are removed <a class="reference internal" href="notes.html#note-beta"><span class="std std-ref">[1]</span></a>. So the size of <span class="math notranslate nohighlight">\(I\)</span> is <em>increased</em> by susceptible people becoming infected, and <em>reduced</em> by infected people becoming removed. Putting this together we get</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In the computational epidemiology and network science literatures the
+parameter we’ve called <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> is usually denoted
+<span class="math notranslate nohighlight">\(\beta\)</span>, while <span class="math notranslate nohighlight">\(p_{remove}\)</span> is denoted <span class="math notranslate nohighlight">\(\alpha\)</span>. It’s easier to
+understand what’s going on if we spell the meaning of the symbols out.</p>
+</div>
+<p>How many people are removed? SIR assumes that, just as a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> of contacts result in infection, a fraction <span class="math notranslate nohighlight">\(p_{remove}\)</span> of infected individuals are removed. So the size of <span class="math notranslate nohighlight">\(I\)</span> is <em>increased</em> by susceptible people becoming infected, and <em>reduced</em> by infected people becoming removed. Putting this together we get</p>
 <div class="math notranslate nohighlight">
 \[
     \Delta I = (p_{\mathit{infect}} \, SI) - (p_{remove} \, I)
@@ -244,13 +254,6 @@
 <div class="section" id="the-computational-model">
 <h2>The computational model<a class="headerlink" href="#the-computational-model" title="Permalink to this headline">¶</a></h2>
 <p>To explore SIR, let’s turn the mathematical model of three equations into a computational model that “runs the numbers” to show how the epidemic progresses.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>We can represent each of the three chanmges in population directly as Python functions. Since they share the parameters <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> and <span class="math notranslate nohighlight">\(p_{remove}\)</span>, we’ll define them together using another function to which we pass the parameters and get back the change functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -270,7 +273,15 @@
 </div>
 </div>
 <p>We’ve used as far as possible the same names in the code as we did in the maths: <code class="docutils literal notranslate"><span class="pre">pInfect</span></code> for <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, <code class="docutils literal notranslate"><span class="pre">deltaS</span></code> for <span class="math notranslate nohighlight">\(\Delta S\)</span>, and so forth. This will help keep things straight in our minds.</p>
-<p>How do we “run” the epidemic? We’ve defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time <a class="reference internal" href="notes.html#note-euler"><span class="std std-ref">[2]</span></a>. The result will be a time series for each sub-population tracking its size over time.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>This approach to integration to get a time series, known as the
+<em>direct</em> or <em>Euler</em> method, isn’t safe in general, as it risks falling
+foul of numerical instability in the equations. There are several more
+robust solutions for the more complex cases, notably the Runge-Kutta
+methods that are built into Python’s <code class="docutils literal notranslate"><span class="pre">scipy</span></code> library.</p>
+</div>
+<p>How do we “run” the epidemic? We’ve defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time. The result will be a time series for each sub-population tracking its size over time.</p>
 <p>What should the initial sizes of the sub-populations be? Since we’re interested only in their sizes, we could say that given <span class="math notranslate nohighlight">\(N\)</span> individuals a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infected}}\)</span> are initially infected, while everyone else is susceptible: no-one starts off removed.</p>
 <p>We can code this behaviour up as a single function.</p>
 <div class="cell docutils container">
@@ -316,20 +327,15 @@
 </div>
 </div>
 <p>We can then choose different values of <code class="docutils literal notranslate"><span class="pre">pInfect</span></code> and see what the simulation shows us about the ways in which the sub-populations evolve.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 <span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;svg&#39;</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 
 <span class="c1"># draw the sub-plots for selected values of pInfect</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">pInfect</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span> <span class="p">(</span><span class="mf">0.0000010</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
@@ -361,10 +367,21 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/continuous_17_0.svg" src="_images/continuous_17_0.svg" /></div>
+<img alt="_images/continuous_16_0.svg" src="_images/continuous_16_0.svg" /></div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>We’ve engaged in some mathematical sleight-of-hand here, in that what
+we’ve described as a <em>discrete</em> model (of people being susceptible,
+infected, and so on) has then be treated as a <em>continuous</em> model that
+represents the sizes of compartments as real numbers. In order to work
+in this way the three SIR equations should really be be phrased as
+<em>differential</em> equations rather than as <em>difference</em> equations so that
+the passage from discrete to continuous time makes mathematical
+sense. The results obtained are the same in both cases, however.</p>
 </div>
 <p>What are these graphs telling us? Start in the top left. At the start of the epidemic (when <span class="math notranslate nohighlight">\(t = 0\)</span>) we have a very small number of infected individuals and a very large number of susceptibles. The number of infecteds grows slowly as the time passes and the graph moves form left to right. But the disease is not very infectious: only 0.000001 of contacts leads to infection, just one in a million. At the start of the epidemic there are 990 susceptible people and 10 infecteds (1% of the total population), which means there can be at most 9900 susceptible-infected contacts. In the first timestep, then, the equations suggest that approximately 0.01 people become infected.</p>
-<p>We can’t infect two-hundreths of a person, of course <a class="reference internal" href="notes.html#note-ode"><span class="std std-ref">[3]</span></a>: clearly it will take some time for there to be one new person infected. And once infections start people also start to recover, and the epidemic clearly never gets going.</p>
+<p>We can’t infect two-hundreths of a person, of course: clearly it will take some time for there to be one new person infected. And once infections start people also start to recover, and the epidemic clearly never gets going.</p>
 <p>But now look at the next diagrams. Even for very modest values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> – 0.000002 to 0.000008 – we get considerable epidemics. At the peak of infections around 40–60% of the population is infected, compared to essentially no-one for the smallest value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>. And that’s with <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> still tiny: eight contacts in every million resulting in an infection.</p>
 </div>
 <div class="section" id="consequences">
@@ -384,7 +401,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="progress.html" title="previous page">The progession of a disease</a>
-    <a class='right-next' id="next-link" href="network.html" title="next page">Connectivity</a>
+    <a class='right-next' id="next-link" href="network.html" title="next page">Network models</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

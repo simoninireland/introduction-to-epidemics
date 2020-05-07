@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Annotated bibliography &#8212; Epidemic modelling &amp;ndash; an introduction</title>
+    <title>Making fewer connections &#8212; Epidemic modelling &amp;ndash; an introduction</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -32,8 +32,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="About the author" href="about.html" />
-    <link rel="prev" title="Notes on software" href="notes.html" />
+    <link rel="next" title="Notes on software" href="notes.html" />
+    <link rel="prev" title="Network models" href="network.html" />
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,14 +88,14 @@
   <li class="">
     <a href="network.html">Network models</a>
   </li>
-  <li class="">
-    <a href="er.html">Making fewer connections</a>
+  <li class="active">
+    <a href="">Making fewer connections</a>
   </li>
   <li class="">
     <a href="notes.html">Notes on software</a>
   </li>
-  <li class="active">
-    <a href="">Annotated bibliography</a>
+  <li class="">
+    <a href="zbibliography.html">Annotated bibliography</a>
   </li>
   <li class="">
     <a href="about.html">About the author</a>
@@ -133,7 +133,7 @@
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/zbibliography.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <a class="dropdown-buttons" href="_sources/er.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
                 <!-- Download PDF via print -->
                 <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
@@ -148,13 +148,31 @@
 
         <!-- Launch buttons -->
         
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/er.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                
+            </div>
+        </div>
+        
 
         
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
+    <div class="d-none d-md-block col-md-2 bd-toc ">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#er-networks" class="nav-link">ER networks</a>
+        </li>
     
     </ul>
 </nav>
@@ -167,29 +185,26 @@
         
               <div>
                 
-  <div class="section" id="annotated-bibliography">
-<h1>Annotated bibliography<a class="headerlink" href="#annotated-bibliography" title="Permalink to this headline">¶</a></h1>
-<p id="bibtex-bibliography-zbibliography-0"><dl class="citation">
-<dt class="bibtex label" id="alt14"><span class="brackets">Alt14</span></dt>
-<dd><p>Christian Althous. Estimating the reproduction number of Zaire ebolavirus (EBOV) during the 2014 outbreak in West Africa. <em>PLOS Currents Outbreaks</em>, September 2014. URL: <a class="reference external" href="http://dx.doi.org/10.1371/currents.outbreaks.91afb5e0f279e7f29e7056095255b288">http://dx.doi.org/10.1371/currents.outbreaks.91afb5e0f279e7f29e7056095255b288</a>.</p>
-</dd>
-<dt class="bibtex label" id="er59"><span class="brackets">Erd337sReacutenyi59</span></dt>
-<dd><p>Paul Erd&amp;#337;s and Alfred R&amp;eacute;nyi. On random graphs. <em>Publicationes Mathematicæ</em>, 6:290–297, 1959. The paper that revolutionised the field of graph theory and paved to way for the modern approach to network science. It contains proofs of a wide range of properties of random – or as they are now called, Erd&amp;#337;s-R&amp;eacute;nyi – graphs, which serve as the benchmark against which the behaviours of other topologies are measured.</p>
-</dd>
-<dt class="bibtex label" id="heth00"><span class="brackets">Het00</span></dt>
-<dd><p>Herbert Hethcote. The mathematics of infectious diseases. <em>SIAM Review</em>, 42(4):599–653, December 2000. The best readily-available introduction to the mathematics of the classical epidemic models. URL: <a class="reference external" href="http://dx.doi.org/10.1137/S0036144500371907">http://dx.doi.org/10.1137/S0036144500371907</a>.</p>
-</dd>
-<dt class="bibtex label" id="hof98"><span class="brackets">Hof98</span></dt>
-<dd><p>Paul Hoffman. <em>The man who loved only numbers</em>. Hyperion, 1998. ISBN 978-0786863624. The biography of Paul Erd&amp;#337;s, very accessible in style and fascinating in content.</p>
-</dd>
-<dt class="bibtex label" id="kw91"><span class="brackets">KW91</span></dt>
-<dd><p>Jeffrey Kephart and Steve White. Directed-graph epidemiological models of computer viruses. In <em>Proceedings of Research in Security and Privacy</em>, 343–359. IEEE Press, May 1991. An application of network-based epidemiology to computer viruses. The mathematics of spread are essentially identical, and even the methods of infection – through contacts between ‘infected’ and ‘susceptible’ computers – are sufficiently analogous to make the two systems behave very similarly. The main differences come because computer viruses, unlike ‘natural’ diseases, are targetted at specific hosts. This can be a lot more effective (in the short term, at least) than random evolution. URL: <a class="reference external" href="http://dx.doi.org/10.1109/RISP.1991.130801">http://dx.doi.org/10.1109/RISP.1991.130801</a>.</p>
-</dd>
-<dt class="bibtex label" id="vtm07"><span class="brackets">VTM07</span></dt>
-<dd><p>Emilia Vynnycky, Amy Trindall, and Punam Mangtani. Estimates of the reproduction numbers of Spanish influenza using morbidity data. <em>International Journal of Epidemiology</em>, 36:881–889, 2007. URL: <a class="reference external" href="http://dx.doi.org/10.1093/ije/dym071">http://dx.doi.org/10.1093/ije/dym071</a>.</p>
-</dd>
-</dl>
-</p>
+  <div class="section" id="making-fewer-connections">
+<h1>Making fewer connections<a class="headerlink" href="#making-fewer-connections" title="Permalink to this headline">¶</a></h1>
+<p>If the complete graph is a representation of complete mixing, how do we represent “incomplete” mixing?</p>
+<div class="section" id="er-networks">
+<h2>ER networks<a class="headerlink" href="#er-networks" title="Permalink to this headline">¶</a></h2>
+<p>…</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Paul Erdős (pronounced “AIR-dish”) was the most prolific mathematician of the 20th
+century. A peripatetic genius, he owned essentially nothing and
+travelled between the leading mathematical schools of Europe and
+America seeking problems to work on. His biography <a class="bibtex reference internal" href="zbibliography.html#hof98" id="id1">[Hof98]</a>
+provides a fascinating insight into mathematical life.
+Alfred Rényi was a noted mathematician whose other work was
+completely overshadowed by his wonderfully productive association with
+Erdős. He was however responsible for the quip that “A
+mathematician is a machine for turning coffee into theorems”.</p>
+</div>
+<p>The simplest approach is to use random graphs, which were investigated in the late 1950’s by Paul Erdős and Alfred Rényi <a class="bibtex reference internal" href="zbibliography.html#er59" id="id2">[Erd337sReacutenyi59]</a> <span class="xref std std-ref">[1]</span>.</p>
+</div>
 </div>
 
 
@@ -201,8 +216,8 @@
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="notes.html" title="previous page">Notes on software</a>
-    <a class='right-next' id="next-link" href="about.html" title="next page">About the author</a>
+    <a class='left-prev' id="prev-link" href="network.html" title="previous page">Network models</a>
+    <a class='right-next' id="next-link" href="notes.html" title="next page">Notes on software</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
