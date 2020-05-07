@@ -22,6 +22,7 @@ TEXT = \
 NOTEBOOKS =  \
 	src/continuous.ipynb \
 	src/network.ipynb \
+	src/er.ipynb \
 	src/thresholds.ipynb
 
 # Image files

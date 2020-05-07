@@ -4,12 +4,10 @@
 - file: progress
 - file: continuous
 - file: network
+- file: er
 
 - file: notes
-
 - file: zbibliography
-
 - file: about
-
 - file: copyright
 
