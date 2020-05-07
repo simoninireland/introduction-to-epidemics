@@ -1,5 +1,6 @@
 # Copyright
 
+This book is Copyright (c) 2020, Simon Dobson.
 
 ![CC BY-NC-SA-4.0](cc-by-nc-sa.png)
 
