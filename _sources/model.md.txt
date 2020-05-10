@@ -230,4 +230,6 @@ our ignorance that gives science its reliability.
 
 Modelling, like experimentation, is both integral to science and
 subject to it: both a tool and an object of study, to be approached
-sceptically and 
+sceptically and refined through time. The study of epidemics is an
+excellent example of this process, and we can progressively refine our
+models better to reflect our improving understanding.
