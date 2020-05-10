@@ -192,7 +192,7 @@
     "    iss = [ N * pInfected ]           # ...except for this fraction of people...\n",
     "    rss = [ 0 ]                       # ...and no-one starts off removed\n",
     "\n",
-    "    # push the initial conditions through the differential equations\n",
+    "    # push the initial conditions through the equations\n",
     "    for t in range(1, T):\n",
     "        # apply the change functions to the sub-populations of \n",
     "        # the previous timestep to compute the changes\n",
@@ -3148,7 +3148,6 @@
   }
  ],
  "metadata": {
-  "celltoolbar": "Tags",
   "kernelspec": {
    "display_name": "Python 3",
    "language": "python",

@@ -77,7 +77,7 @@
     <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
   </li>
   <li class="">
-    <a href="model.html">Models of disease</a>
+    <a href="model.html">Models and modelling</a>
   </li>
   <li class="">
     <a href="progress.html">The progession of a disease</a>
@@ -295,7 +295,7 @@ methods that are built into Python’s <code class="docutils literal notranslate
     <span class="n">iss</span> <span class="o">=</span> <span class="p">[</span> <span class="n">N</span> <span class="o">*</span> <span class="n">pInfected</span> <span class="p">]</span>           <span class="c1"># ...except for this fraction of people...</span>
     <span class="n">rss</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="p">]</span>                       <span class="c1"># ...and no-one starts off removed</span>
 
-    <span class="c1"># push the initial conditions through the differential equations</span>
+    <span class="c1"># push the initial conditions through the equations</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
         <span class="c1"># apply the change functions to the sub-populations of </span>
         <span class="c1"># the previous timestep to compute the changes</span>
