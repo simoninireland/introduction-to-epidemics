@@ -23,6 +23,7 @@ NOTEBOOKS =  \
 	src/continuous.ipynb \
 	src/network.ipynb \
 	src/er.ipynb \
+	src/tracing.ipynb \
 	src/thresholds.ipynb
 
 # Image files

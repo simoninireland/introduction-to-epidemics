@@ -5,6 +5,8 @@
 - file: continuous
 - file: network
 - file: er
+- file: tracing
+- file: thresholds
 
 - file: zbibliography
 - file: notes

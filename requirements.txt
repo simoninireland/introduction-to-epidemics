@@ -8,4 +8,6 @@ numpy
 matplotlib
 seaborn
 pandas
+ete3
+
 
