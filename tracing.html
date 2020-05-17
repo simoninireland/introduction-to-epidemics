@@ -1,0 +1,554 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Contact tracing &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
+    <link href="_static/css/index.css" rel="stylesheet">
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/mystnb.js"></script>
+    <script src="_static/sphinx-book-theme.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Epidemic threshold" href="thresholds.html" />
+    <link rel="prev" title="Making fewer connections" href="er.html" />
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="docsearch:language" content="en">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!-- Put requirejs at the end so it's always after bootstrap -->
+<!-- TODO: remove this once https://github.com/pandas-dev/pydata-sphinx-theme/pull/149 is merged -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Epidemic modelling &ndash; Some notes, maths, and code</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  
+  <ul class="nav sidenav_l1">
+  <li class="">
+    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
+  </li>
+  <li class="">
+    <a href="model.html">Models and modelling</a>
+  </li>
+  <li class="">
+    <a href="progress.html">The progession of a disease</a>
+  </li>
+  <li class="">
+    <a href="continuous.html">SIR</a>
+  </li>
+  <li class="">
+    <a href="network.html">Network models</a>
+  </li>
+  <li class="">
+    <a href="er.html">Making fewer connections</a>
+  </li>
+  <li class="active">
+    <a href="">Contact tracing</a>
+  </li>
+  <li class="">
+    <a href="thresholds.html">Epidemic threshold</a>
+  </li>
+  <li class="">
+    <a href="zbibliography.html">Annotated bibliography</a>
+  </li>
+  <li class="">
+    <a href="notes.html">Notes on software</a>
+  </li>
+  <li class="">
+    <a href="about.html">About the author</a>
+  </li>
+  <li class="">
+    <a href="copyright.html">Copyright</a>
+  </li>
+</ul>
+</nav>
+<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+
+            
+            <div class="dropdown-buttons">
+                <!-- ipynb file if we had a myst markdown file -->
+                
+                <!-- Download raw file -->
+                <a class="dropdown-buttons" href="_sources/tracing.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
+                <!-- Download PDF via print -->
+                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+            </div>
+            
+        </div>
+
+        <!-- Edit this page -->
+        
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/tracing.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                
+            </div>
+        </div>
+        
+
+        
+    </div>
+    <div class="d-none d-md-block col-md-2 bd-toc ">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#contact-trees" class="nav-link">Contact trees</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#the-shape-of-the-contact-tree" class="nav-link">The shape of the contact tree</a>
+        </li>
+    
+    </ul>
+</nav>
+
+
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 col-xxl-7 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="contact-tracing">
+<h1>Contact tracing<a class="headerlink" href="#contact-tracing" title="Permalink to this headline">¶</a></h1>
+<p>Let’s now turn to a more detailed look at how an epidemic spreads, and in particular to the subject of who infects whom. Working this out is the subject of <strong>contact tracing</strong>, which is the process of determining the infection history as the disease passes through the population. In an SIR infection this boils down to deducing the pattern of infected individuals over the course of the disease.</p>
+<p>The point of contact tracing is three-fold:</p>
+<ol class="simple">
+<li><p>It provides <strong>data</strong>: how many people have been infected in the population?, how many were not infected even though they were in contact with an infected individual?, and so forth.</p></li>
+<li><p>It allows <strong>treatment</strong> of the infected individuals, possibly before they are symptomatic.</p></li>
+<li><p>It allows <strong>countermeasures</strong> to be deployed to reduce the spread of the diseaase.</p></li>
+</ol>
+<p>In a real epidemic the data-collection aspect is vital, since we will often now know how contagious a new disease is. The treatment aspect is also vitally important for the individuals concerned, since early treatment is often more effective. And for many diseases there will be effective countermeasures such as quarantine that can be imposed to reduce the disease’s spread even further. (We should really consider treatment to be a countermeasure at the population level, since treated individuals will probably spread the disease less than the untreated.)</p>
+<p>However, contact tracing in a real epidemic is a laborious process. We need to identify infected people, either by testing them or by observation of their symptoms of thesae are sufficiently distimnct to permit definitive identification. Then we need to identify all those with whom they have been in contact (their contact network) and test (or observe) <em>them</em> to determine if they are infected – and then repeat the process with <em>their</em> contact network, and so forth.</p>
+<p>Fortunately, in a simulated epidemic, all the information we need is directly available. We know the contact network <em>a priori</em>, and can instrument our simulation to determine the ways in which individuals were infected. We can then use this instrumented model as a basis for studying disease dynamics, treatment strategies, and other countermeasures.</p>
+<div class="section" id="contact-trees">
+<h2>Contact trees<a class="headerlink" href="#contact-trees" title="Permalink to this headline">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In the case of malaria the name itself reflects this idea, being derived from the Italian <em>mala aria</em>, “bad air”.</p>
+</div>
+<p>Most diseases that spread by contact share a remarkable property: if you have the disease, <em>someone gave it to you</em>: exactly one person. Contrary to the notion in earlier ages that diseases resulted from “bad air”, in many cases pathogens pass from one person to another by fairly direct contact. Each contact offers the possibility of infection from one person to another.</p>
+<p>This is a simplification, of course. Some disease are airborne, or leave long-lived traces on furniture or objects from which they can be picked up. If a lot of infected people move through the same space, they increase the “load” of pathogens in the space and so make infection more likely – and also mask who it was who actually did the infecting. But for the sorts of infections we’re currently considering we assume that they pass person to person.</p>
+<p>What, then, does the spread of the disease through the population look like?</p>
+<p>Let’s simplify a little more and assume we have a single infected person within a wholly susceptible population. How does the infection spread? Let’s trace the infection as it progresses. We’ll do this a little more “manually” than we have done previously, jjust to make the mechanism more explicit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">networkx</span>
+<span class="kn">import</span> <span class="nn">epyc</span>
+<span class="kn">import</span> <span class="nn">epydemic</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;svg&#39;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.collections</span> <span class="kn">import</span> <span class="n">PatchCollection</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patches</span> <span class="kn">import</span> <span class="n">Circle</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Compare this to the description  of SIR earlier.</p>
+</div>
+<p>We first create a small ER network and “seed” it with a single infected person, which we store in the network itself as an attribute. We then step through time and at each step look at the neighbours of each infected node. If they are susceptible, we infect them with some probability and – if they become infected – we record their infection for the next timestap. We also mark the edge that the infection traversed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">stepEpidemic</span><span class="p">(</span><span class="n">g</span><span class="p">):</span>
+    <span class="c1"># keep track of progress in this timestep</span>
+    <span class="n">inf</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="c1"># extract all the infceted ndoes</span>
+    <span class="n">infecteds</span> <span class="o">=</span> <span class="p">[</span> <span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">nodes</span> <span class="k">if</span> <span class="s1">&#39;infected&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="p">]</span>
+    
+    <span class="c1"># advance the epidemic</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">infecteds</span><span class="p">:</span>
+        <span class="n">infs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="s1">&#39;infected&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="c1"># infect every susceptible neighbour with probability pInfect</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="c1"># ignore already-infected neighbours</span>
+                <span class="k">if</span> <span class="s1">&#39;infected&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="c1"># decide whether to iunfect or not</span>
+                    <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">pInfect</span><span class="p">:</span>
+                        <span class="c1"># we&#39;re infecting, record this and the edge the infection traversed</span>
+                        <span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">m</span><span class="p">][</span><span class="s1">&#39;infected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                        <span class="n">infs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+                        <span class="n">g</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">][</span><span class="s1">&#39;occupied&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+                        
+        <span class="c1"># record the infection mapping</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">infs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">inf</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">infs</span><span class="p">))</span>
+    
+    <span class="c1"># return the mapping of who infected whom</span>
+    <span class="k">return</span> <span class="n">inf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can then draw the progress of the infection over the network as time progresses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">drawEpidemic</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="c1"># compute node colours</span>
+    <span class="n">inf</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+    <span class="n">ncs</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;blue&#39;</span> <span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">nodes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;infected&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">ncs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+            <span class="n">inf</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+    <span class="c1"># compute edge colours</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+    <span class="n">ecs</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;black&#39;</span> <span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">edges</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">edges</span><span class="p">)):</span>
+        <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">=</span> <span class="n">edges</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="s1">&#39;occupied&#39;</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">ecs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+
+    <span class="c1"># draw the contact tree</span>
+    <span class="n">networkx</span><span class="o">.</span><span class="n">draw_circular</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">ncs</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="n">ecs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$t = </span><span class="si">{t}</span><span class="s1">, [I] = </span><span class="si">{i}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">inf</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+
+<span class="c1"># build a small ER contact network</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">pEdge</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">gnp_random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">pEdge</span><span class="p">)</span>
+
+<span class="c1"># infect a single person</span>
+<span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;infected&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+<span class="n">pInfect</span> <span class="o">=</span> <span class="mf">0.19</span>
+
+<span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">):</span>
+        <span class="c1"># draw the infected nodes and tramission edges</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span>
+        <span class="n">drawEpidemic</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">ax</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+        
+        <span class="c1"># advance the epidemic</span>
+        <span class="n">stepEpidemic</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        <span class="n">t</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="c1"># fine-tune the figure</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Progress of an epidemic ($p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">} = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{i}</span><span class="s1">)$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">pInfect</span><span class="p">))</span>        
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/tracing_9_0.svg" src="_images/tracing_9_0.svg" /></div>
+</div>
+<p>There are several things to note here. Firstly, look how fast the number of infected (denoted <span class="math notranslate nohighlight">\([I]\)</span> in the figures) people increases! The disease rapidly goes from being somewhere to being <em>everywhere</em>, and just explodes as grows: the rate at which it spreads increases as the proportion of infected people increases, which is the essential characteristic of exponential growth.</p>
+<p>Secondly, notice how few edges were traversed. This makes sense, because there can only be one “transmission” edge for every node, which will only be a small fraction of the total nodes.</p>
+<p>We can make this clearer by drawing the process slightly differently. Instead of drawing the network as a whole and showing the way the infection spreads, we’ll focus on the infected nodes only and show how they relate. We’ll start at <span class="math notranslate nohighlight">\(t = 0\)</span> with one infected node. At the next timestep we’ll draw a second line of nodes that were infected by this node, and so on as time progresses.</p>
+<p>[To be done]</p>
+</div>
+<div class="section" id="the-shape-of-the-contact-tree">
+<h2>The shape of the contact tree<a class="headerlink" href="#the-shape-of-the-contact-tree" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SeededSIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;An SIR process &quot;seeded&quot; with a single infected node, chosen at random.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="c1"># Extra results</span>
+    <span class="n">CONTACT_TREE</span> <span class="o">=</span> <span class="s1">&#39;SeededSIR.contact_tree&#39;</span>  <span class="c1">#: Result holding the contact tree of the single infection</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SeededSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Inhibit the default process (seeding with some probability)</span>
+<span class="sd">        by setting `P_INFECTED` to zero.</span>
+<span class="sd">        </span>
+<span class="sd">        :param params: experimental parameters&#39;&#39;&#39;</span>
+        <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SeededSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Seed the network with a single infected node.</span>
+<span class="sd">        </span>
+<span class="sd">        :param params: experimental parameters&#39;&#39;&#39;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SeededSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+        <span class="c1"># seed the one node, chosen at random</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_seed</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">g</span><span class="o">.</span><span class="n">order</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">changeCompartment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_seed</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">INFECTED</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">results</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Include the contact tree in the results.</span>
+<span class="sd">        </span>
+<span class="sd">        :returns: a results dict&#39;&#39;&#39;</span>
+        <span class="n">rc</span> <span class="o">=</span> <span class="nb">super</span><span class="p">(</span><span class="n">SeededSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">results</span><span class="p">()</span>
+        
+        <span class="c1"># skeletonise the network and add the contact tree to the results</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">skeletonise</span><span class="p">()</span>
+        <span class="n">rc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CONTACT_TREE</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span>
+        <span class="k">return</span> <span class="n">rc</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">kmean</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">gnp_random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="p">(</span><span class="n">kmean</span> <span class="o">+</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">SeededSIR</span><span class="p">()</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">StochasticDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">params</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">params</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0001</span>
+
+<span class="n">rc</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ct</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">m</span><span class="o">.</span><span class="n">CONTACT_TREE</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pInfect = </span><span class="si">{p}</span><span class="s1">, [R] = </span><span class="si">{r}</span><span class="s1">, &lt;k&gt; = </span><span class="si">{kmean}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">PARAMETERS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span>
+                                                       <span class="n">r</span><span class="o">=</span><span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span>
+                                                       <span class="n">kmean</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pInfect = 0.0001, [R] = 3, &lt;k&gt; = 0.0004
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0002</span>
+<span class="n">rc</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">m</span><span class="o">.</span><span class="n">CONTACT_TREE</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pInfect = </span><span class="si">{p}</span><span class="s1">, [R] = </span><span class="si">{r}</span><span class="s1">, &lt;k&gt; = </span><span class="si">{kmean}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">PARAMETERS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span>
+                                                       <span class="n">r</span><span class="o">=</span><span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span>
+                                                       <span class="n">kmean</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pInfect = 0.0002, [R] = 9987, &lt;k&gt; = 1.9972
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0005</span>
+<span class="n">rc</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">m</span><span class="o">.</span><span class="n">CONTACT_TREE</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pInfect = </span><span class="si">{p}</span><span class="s1">, [R] = </span><span class="si">{r}</span><span class="s1">, &lt;k&gt; = </span><span class="si">{kmean}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">PARAMETERS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span>
+                                                       <span class="n">r</span><span class="o">=</span><span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span>
+                                                       <span class="n">kmean</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pInfect = 0.0005, [R] = 10000, &lt;k&gt; = 1.9998
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">params</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="n">rc</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="n">ct</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">m</span><span class="o">.</span><span class="n">CONTACT_TREE</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pInfect = </span><span class="si">{p}</span><span class="s1">, [R] = </span><span class="si">{r}</span><span class="s1">, &lt;k&gt; = </span><span class="si">{kmean}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">PARAMETERS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span>
+                                                       <span class="n">r</span><span class="o">=</span><span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span>
+                                                       <span class="n">kmean</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()))))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>pInfect = 0.0005, [R] = 8597, &lt;k&gt; = 1.9998
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="c1"># the values of pInfect to explore</span>
+<span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">params</span><span class="p">[</span><span class="n">m</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">pInfects</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># compute R_0 for different values of pInfect</span>
+<span class="c1">#r0s = []</span>
+<span class="c1">#stds = []</span>
+<span class="c1">#for pInfect in pInfects:</span>
+<span class="c1">#    # run the epidemic for this infection rate</span>
+<span class="c1">#    params[m.P_INFECT] = pInfect</span>
+<span class="c1">#    rc = e.set(params).run()</span>
+<span class="c1">#    </span>
+<span class="c1">#    # store the R0 number</span>
+<span class="c1">#    ct = rc[epyc.Experiment.RESULTS][m.CONTACT_TREE]</span>
+<span class="c1">#    r0 = numpy.mean(list(dict(ct.degree()).values()))</span>
+<span class="c1">#    std = numpy.std(list(dict(ct.degree()).values()))</span>
+<span class="c1">#    r0s.append(r0)</span>
+<span class="c1">#    stds.append(std)</span>
+    
+<span class="c1"># plot the R0s</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pInfects</span><span class="p">,</span> <span class="n">r0s</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="c1">#ax.errorbar(pInfects, r0s, yerr=stds, fmt=&#39;r-&#39;)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$R_0$ for different values pf $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$R_0$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/tracing_20_0.svg" src="_images/tracing_20_0.svg" /></div>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="er.html" title="previous page">Making fewer connections</a>
+    <a class='right-next' id="next-link" href="thresholds.html" title="next page">Epidemic threshold</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    <p>
+          &copy; <a href="copyright.html">Copyright</a> 2020.<br/>
+        Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.<br/>
+    </p>
+  </div>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+
+    <script src="_static/js/index.js"></script>
+    
+  </body>
+</html>

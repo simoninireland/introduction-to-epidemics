@@ -32,7 +32,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="Annotated bibliography" href="zbibliography.html" />
+    <link rel="next" title="Contact tracing" href="tracing.html" />
     <link rel="prev" title="Network models" href="network.html" />
 
 
@@ -90,6 +90,12 @@
   </li>
   <li class="active">
     <a href="">Making fewer connections</a>
+  </li>
+  <li class="">
+    <a href="tracing.html">Contact tracing</a>
+  </li>
+  <li class="">
+    <a href="thresholds.html">Epidemic threshold</a>
   </li>
   <li class="">
     <a href="zbibliography.html">Annotated bibliography</a>
@@ -205,6 +211,10 @@
 <p>In the networks we’ll be considering for now the degree of a node is fixed when the network is created. Later on when we encounter adaptive networks degree itself becomes a process that changes with time.</p>
 </div>
 <p>Since we have a range of different topologies, we’ll need some way of describing their properties so thhat we can tell them apart. There are a huge number of such <strong>graph metrics</strong> that have been developed, and we’ll encounter a few them in the course of this book. For the time being, we’ll start with the most influential number, the <strong>degree</strong> of a node, which is simply the number of edges intersecting each node. Each node has its own degree. In your social network, the degree of the node that represents you is simply the number of people you’re connected to. The degree of a node is usually denoted <span class="math notranslate nohighlight">\(k\)</span>, for no particular reason.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(\langle k \rangle\)</span> is usually pronounced “k mean”.</p>
+</div>
 <p>For a given network we can enumerate the degrees of every node, but that’s clearly not going to be very useful for a large network: you wouldn’t be able to extract any useful information from the large list of numbers. But we can derive two statistics from suchh lists. The first is the <strong>mean degree</strong>, the “average” degree of a node, denoted <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>. While the degree of every node has to be an integer (you can’t have half a friend), the mean degree of the population overall will typically be a real number.</p>
 <p>For the complete graph every node has exactly the same degree, being one less that the number of nodes in the network, since there’s an edge between every node and every other (except itself). This means that <span class="math notranslate nohighlight">\(k\)</span> is always <span class="math notranslate nohighlight">\((N - 1)\)</span> for every node, and therefore so is <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>.</p>
 <div class="margin sidebar">
@@ -232,7 +242,11 @@ Erdős. He was also responsible for the definition of a mathematician as
 “a machine for turning coffee into theorems”.</p>
 </div>
 <p>Let’s start with one of the simplest non-complete topologies. This topology was initially explored in depth in the late 1950’s by Paul Erdős and Alfred Rényi <a class="bibtex reference internal" href="zbibliography.html#er59" id="id2">[ER59]</a>. They called their approach “random graphs”, but that’s a slightly misleading name: we can produce “random” netwoprks with <em>any</em> topologym as we saw above. Fortunately the influence of Erdős and Rényi has been so profound that networks of this type are now referred to as <strong>Erdős-Rényi</strong> or <strong>ER networks</strong>.</p>
-<p>An ER network is very simple to describe. Pick a number of nodes <span class="math notranslate nohighlight">\(N\)</span>, and build the complete graph <span class="math notranslate nohighlight">\(K_N\)</span>. Remember that the complete graph has an edge between every paiur of nodes. Now pick a parameter <span class="math notranslate nohighlight">\(\phi\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. Work through all the edges, and for each edge pick a random number <span class="math notranslate nohighlight">\(s\)</span> between <span class="math notranslate nohighlight">\(0\)</span> ands <span class="math notranslate nohighlight">\(1\)</span>. If <span class="math notranslate nohighlight">\(s \le \phi\)</span> then keep the edge; if <span class="math notranslate nohighlight">\(s \gt \phi\)</span>, remove it. You’ll end up with a network in which there’s an edge between each pair of nodes with a probability <span class="math notranslate nohighlight">\(\phi\)</span>. If <span class="math notranslate nohighlight">\(\phi = 1\)</span> we have the complete graph (there’s <em>always</em> and edge); if <span class="math notranslate nohighlight">\(\phi = 0\)</span> we have the empty graph (there’s <em>never</em> an edge); and for values in between we have a more or less sparse collection of edges.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Again, in the literature <span class="math notranslate nohighlight">\(p_{edge}\)</span> is usually denoted <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
+</div>
+<p>An ER network is very simple to describe. Pick a number of nodes <span class="math notranslate nohighlight">\(N\)</span>, and build the complete graph <span class="math notranslate nohighlight">\(K_N\)</span>. Remember that the complete graph has an edge between every pair of nodes. Now pick a parameter <span class="math notranslate nohighlight">\(p_{edge}\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. Work through all the edges, and for each edge pick a random number <span class="math notranslate nohighlight">\(s\)</span> between <span class="math notranslate nohighlight">\(0\)</span> ands <span class="math notranslate nohighlight">\(1\)</span>. If <span class="math notranslate nohighlight">\(s \le p_{edge}\)</span> then keep the edge; if <span class="math notranslate nohighlight">\(s \gt p_{edge}\)</span>, remove it. You’ll end up with a network in which there’s an edge between each pair of nodes with a probability <span class="math notranslate nohighlight">\(p_{edge}\)</span>. If <span class="math notranslate nohighlight">\(p_{edge} = 1\)</span> we have the complete graph (there’s <em>always</em> and edge); if <span class="math notranslate nohighlight">\(p_{edge} = 0\)</span> we have the empty graph (there’s <em>never</em> an edge); and for values in between we have a more or less sparse collection of edges.</p>
 <p>Drawing the result can help get the idea straight.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -261,10 +275,10 @@ Erdős. He was also responsible for the definition of a mathematician as
     
     <span class="c1"># draw the network in the sub-plot</span>
     <span class="n">networkx</span><span class="o">.</span><span class="n">draw_circular</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">phi = </span><span class="si">{p}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">phi</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$p_</span><span class="si">{edge}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">phi</span><span class="p">))</span>
         
 <span class="c1"># fine-tune the figure</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;ER networks for different values of $</span><span class="se">\\</span><span class="s1">phi$ ($N = </span><span class="si">{n}</span><span class="s1">)$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;ER networks for different values of $p_</span><span class="si">{edge}</span><span class="s1">$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">)$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -274,10 +288,10 @@ Erdős. He was also responsible for the definition of a mathematician as
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>We sometimes denote the ER network with <span class="math notranslate nohighlight">\(N\)</span> nodes and a connection probability <span class="math notranslate nohighlight">\(\phi\)</span> by <span class="math notranslate nohighlight">\(G_{N, \phi}\)</span>.</p>
+<p>We sometimes denote the ER network with <span class="math notranslate nohighlight">\(N\)</span> nodes and a connection probability <span class="math notranslate nohighlight">\(p_{edge}\)</span> by <span class="math notranslate nohighlight">\(G_{N, p_{edge}}\)</span>.</p>
 </div>
-<p>At the top left where <span class="math notranslate nohighlight">\(\phi\)</span> is small, we have very few edges: 5% of the possible total, in fact. As we progress towards the bottom right the network gets more and more dense, until at 99% of the possible edges it’s quite hard to spot that any are actually missing at all.</p>
-<p>What is <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> for this topology? The answer turns out to be quite simple. An ER network has <span class="math notranslate nohighlight">\(\langle k \rangle = \frac{\phi}{N}\)</span>. Moreover the degree distribution – the number of nodes with more, or less, edges than the mean, is a <strong>normal</strong> distribution, the “bell curve” we see in many phenomena.</p>
+<p>At the top left where <span class="math notranslate nohighlight">\(p_{edge}\)</span> is small, we have very few edges: 5% of the possible total, in fact. As we progress towards the bottom right the network gets more and more dense, until at 99% of the possible edges it’s quite hard to spot that any are actually missing at all.</p>
+<p>What is <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> for this topology? The answer turns out to be quite simple. An ER network has <span class="math notranslate nohighlight">\(\langle k \rangle = \frac{p_{edge}}{N}\)</span>. Moreover the degree distribution – the number of nodes with more, or less, edges than the mean, is a <strong>normal</strong> distribution, the “bell curve” we see in many phenomena.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
@@ -295,7 +309,7 @@ Erdős. He was also responsible for the definition of a mathematician as
 <span class="c1"># draw the degree distribution</span>
 <span class="n">ks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">networkx</span><span class="o">.</span><span class="n">degree</span><span class="p">(</span><span class="n">G</span><span class="p">))</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">ks</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ER network degree distribution ($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">phi = </span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">phi</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;ER network degree distribution ($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, p_</span><span class="si">{edge}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">phi</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$k$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;$N_k$&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -309,6 +323,10 @@ Erdős. He was also responsible for the definition of a mathematician as
 </div>
 <div class="section" id="epidemic-spreading-on-er-networks">
 <h2>Epidemic spreading on ER networks<a class="headerlink" href="#epidemic-spreading-on-er-networks" title="Permalink to this headline">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>From now on we’ll mainly use <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> as the parameter for ER networks rather than <span class="math notranslate nohighlight">\(\phi\)</span>: we can convert between them easily, and <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> is a more intuitive idea.</p>
+</div>
 <p>After all that network science we can finally ask ourselves a disease-related question: what happens as we vary <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>? We already know that when <span class="math notranslate nohighlight">\(\langle k \rangle = (N - 1)\)</span> the network has complete mixing. But what happens as <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> gets <em>smaller</em> – that is, people have fewer and fewer contacts with each other – for the <em>same</em> disease? We’d presumably expect that fewer people will become infected overall, which also suggests that at some point the disease will simply die out without affecting very many people at all.</p>
 <p>Let’s see.</p>
 <p>We’ll take the same parameters for the size of the network and the disease that we had before.</p>
@@ -361,6 +379,7 @@ Erdős. He was also responsible for the definition of a mathematician as
 <div class="cell_output docutils container">
 <img alt="_images/er_17_0.svg" src="_images/er_17_0.svg" /></div>
 </div>
+<p>Compare these graphs to the ones earlier, and you’ll see the same shapes: changing <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> has the same effect as changing <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> in terms of moving the peak of infections.</p>
 </div>
 </div>
 
@@ -374,7 +393,7 @@ Erdős. He was also responsible for the definition of a mathematician as
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="network.html" title="previous page">Network models</a>
-    <a class='right-next' id="next-link" href="zbibliography.html" title="next page">Annotated bibliography</a>
+    <a class='right-next' id="next-link" href="tracing.html" title="next page">Contact tracing</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

@@ -32,6 +32,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Annotated bibliography" href="zbibliography.html" />
+    <link rel="prev" title="Contact tracing" href="tracing.html" />
 
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,6 +90,12 @@
   </li>
   <li class="">
     <a href="er.html">Making fewer connections</a>
+  </li>
+  <li class="">
+    <a href="tracing.html">Contact tracing</a>
+  </li>
+  <li class="active">
+    <a href="">Epidemic threshold</a>
   </li>
   <li class="">
     <a href="zbibliography.html">Annotated bibliography</a>
@@ -161,9 +169,16 @@
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#the-epidemic-threshold-of-an-er-network" class="nav-link">The epidemic threshold of an ER network</a>
+        </li>
     
     </ul>
 </nav>
@@ -178,6 +193,79 @@
                 
   <div class="section" id="epidemic-threshold">
 <h1>Epidemic threshold<a class="headerlink" href="#epidemic-threshold" title="Permalink to this headline">¶</a></h1>
+<p>We’re familiar with the idea that some diseases are more infectious than others. In real-world epidemics this is emobodied in the basic case reproduction number <span class="math notranslate nohighlight">\(R_0\)</span>, which counts the number of other infections arising on average from every infection. In modelling it is embodied in <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, the probability that a contact leads to an infection.</p>
+<p>But how infectious does a disease have to be to cause an epidemic? – that is to say, to create infection in a sizeable fraction of a population?</p>
+<p>Clearly these two ideas are related: a disease that passes eassily between people will be more likely to pass to more people. But it turns out that the relationship isn’t as simple as we might expect. It’s affected by a number of factors, including the disease parameters and the topology of the network – in other words, by the disease <em>and</em> the environment in which it finds itself. This is important: we can’t do anything about the basic infectiousness of a disease since that’s defined by its biology, but the significance of topology opens-up the possibilty of countermeasures at a population level.</p>
+<p>Looking back at the SIR model on an ER network, we see patterns in the way it spreads. For very low values of <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>, the mean degree of the network, the epidemic never really “gets going”. We can think of this as being what happens when the disease begins in population that’s too disconnected to spread the disease before the infected individuals recover (or die). This is the other extreme to the fully connected network where <em>all</em> connections were in play and the propagation of the disease depended solely on the relationship between the rates of infection and recovery.</p>
+<p>Let’s ask a different qiuestion, though. If we fix the topology but change the infectivity, what happens to the numnbers of people infected? We already know that in the fully-mixed case a very small change in infectivity results in a massive change in the size of the epidemic. But that was in a somewhat unrealistic case. What happens if we place the disease on a network and see how it propagates?</p>
+<div class="section" id="the-epidemic-threshold-of-an-er-network">
+<h2>The epidemic threshold of an ER network<a class="headerlink" href="#the-epidemic-threshold-of-an-er-network" title="Permalink to this headline">¶</a></h2>
+<p>Let’s look at the case for an ER network, the simplest model we have. (We’ve already accepted that it’s not a great model of human contact networks, but we’ll refine this later.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">networkx</span>
+<span class="kn">import</span> <span class="nn">epyc</span>
+<span class="kn">import</span> <span class="nn">epydemic</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;svg&#39;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">kmean</span> <span class="o">=</span> <span class="mi">40</span>
+<span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">gnp_random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="p">(</span><span class="n">kmean</span> <span class="o">+</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">Lab</span><span class="p">()</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">()</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">SynchronousDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
+<span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="c1"># plot the size of the removed population</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Size of eventual epidemic for different values of $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/thresholds_8_0.svg" src="_images/thresholds_8_0.svg" /></div>
+</div>
+</div>
 </div>
 
 
@@ -189,6 +277,8 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="tracing.html" title="previous page">Contact tracing</a>
+    <a class='right-next' id="next-link" href="zbibliography.html" title="next page">Annotated bibliography</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

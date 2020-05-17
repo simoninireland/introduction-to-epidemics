@@ -92,6 +92,12 @@
     <a href="er.html">Making fewer connections</a>
   </li>
   <li class="">
+    <a href="tracing.html">Contact tracing</a>
+  </li>
+  <li class="">
+    <a href="thresholds.html">Epidemic threshold</a>
+  </li>
+  <li class="">
     <a href="zbibliography.html">Annotated bibliography</a>
   </li>
   <li class="">
@@ -320,7 +326,7 @@ appear.</p>
 <span class="c1">#ax.plot(sim_ts, sim_rss, &#39;kx&#39;, label=&#39;removed (simulation)&#39;)</span>
 
 <span class="c1"># fine-tune the figure</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Equations vs network ($p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{Infect}</span><span class="s1">} = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{b:.7f}</span><span class="s1">$, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="n">pInfect</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;$p_</span><span class="si">{remove}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{a}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">pRemove</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Equations vs network ($p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">} = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{b:.7f}</span><span class="s1">$, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="n">pInfect</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;$p_</span><span class="si">{remove}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{a}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">pRemove</span><span class="p">))</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
