@@ -33,7 +33,14 @@ RAW_IMAGES = \
 	src/disease-types.png \
 	src/disease-periods.png
 
-# Bibliograohy
+# Generated plots
+GENERATED_IMAGES =
+
+# Generated datasets
+GENERATED_DATASETS = \
+	src/threshold-er.json
+
+# Bibliography
 BIBLIOGRAPHY = src/bibliography.bib
 
 # License
@@ -56,13 +63,13 @@ CONTENT = \
 # ----- Tools -----
 
 # Base commands
-PYTHON = python3
+PYTHON = python3.6
 IPYTHON = ipython
 JUPYTER = jupyter
 JUPYTER_BOOK = jupyter-book
 GHP_IMPORT = ghp-import
 PIP = pip
-VIRTUALENV = python3 -m venv
+VIRTUALENV = $(PYTHON) -m venv
 ACTIVATE = . $(VENV)/bin/activate
 TR = tr
 CAT = cat
@@ -71,9 +78,13 @@ RM = rm -fr
 CP = cp
 CHDIR = cd
 ZIP = zip -r
+ECHO = echo
 
 # Root directory
 ROOT = $(shell pwd)
+
+# Datestamp
+DATE = `date`
 
 # Requirements and venv
 VENV = venv3
@@ -85,6 +96,7 @@ BOOK_CONTENT = src
 
 # Constructed commands
 RUN_SERVER = PYTHONPATH=. $(JUPYTER) notebook
+MAKE_DATESTAMP = $(ECHO) "(This version built $(DATE))" >>$(BOOK_DIR)/index.md
 CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
 BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
 UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_DIR)/_build/html
@@ -103,6 +115,7 @@ live: env
 # Book building
 book: $(BOOK_DIR)
 	$(CP) $(CONTENT) $(BOOK_DIR)
+	$(MAKE_DATESTAMP)
 	$(ACTIVATE) && $(BUILD_BOOK)
 
 $(BOOK_DIR): Makefile $(BOOK_CONFIG) $(BOOK_TOC) $(CONTENT) $(BIBLIOGRAPHY)
