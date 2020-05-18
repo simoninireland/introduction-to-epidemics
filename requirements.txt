@@ -5,9 +5,9 @@ ghp-import
 networkx >= 2.4
 epydemic
 numpy
+mpmath
 matplotlib
 seaborn
 pandas
-ete3
 
 
