@@ -1,6 +1,6 @@
 # Makefile for "Introduction to epidemics"
 #
-# Copyright (C) 2020 Simon Dobson
+# Copyright (C) 2020 Simon Dobson <simon.dobson@st-andrews.ac.uk>
 # 
 # Licensed under the Creative Commons Attribution-Share Alike 4.0 
 # International License (https://creativecommons.org/licenses/by-sa/4.0/).
@@ -15,6 +15,7 @@ TEXT = \
 	src/progress.md \
 	src/notes.md \
 	src/zbibliography.md \
+	src/acknowledgements.md \
 	src/about.md \
 	src/copyright.md
 
@@ -24,7 +25,8 @@ NOTEBOOKS =  \
 	src/network.ipynb \
 	src/er.ipynb \
 	src/tracing.ipynb \
-	src/thresholds.ipynb
+	src/thresholds.ipynb \
+	src/hcn.ipynb
 
 # Image files
 RAW_IMAGES = \
@@ -38,7 +40,9 @@ GENERATED_IMAGES =
 
 # Generated datasets
 GENERATED_DATASETS = \
-	src/threshold-er.json
+	src/threshold-er.json \
+	src/threshold-plc.json \
+	src/gc-plc.json
 
 # Bibliography
 BIBLIOGRAPHY = src/bibliography.bib
