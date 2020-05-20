@@ -33,7 +33,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="Annotated bibliography" href="zbibliography.html" />
+    <link rel="next" title="Human contact networks" href="hcn.html" />
     <link rel="prev" title="Contact tracing" href="tracing.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -90,6 +90,9 @@
   </li>
   <li class="active">
     <a href="">Epidemic threshold</a>
+  </li>
+  <li class="">
+    <a href="hcn.html">Human contact networks</a>
   </li>
   <li class="">
     <a href="zbibliography.html">Annotated bibliography</a>
@@ -206,14 +209,12 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;threshold-er.json&#39;</span><span class="p">))</span>
-<span class="c1">#lab = epyc.ClusterLab(profile=&#39;hogun&#39;)</span>
 <span class="k">with</span> <span class="n">lab</span><span class="o">.</span><span class="n">sync_imports</span><span class="p">():</span>
     <span class="kn">import</span> <span class="nn">time</span>
     <span class="kn">import</span> <span class="nn">networkx</span>
     <span class="kn">import</span> <span class="nn">epyc</span>
     <span class="kn">import</span> <span class="nn">epydemic</span>
     <span class="kn">import</span> <span class="nn">numpy</span>
-    <span class="kn">import</span> <span class="nn">mpmath</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{n}</span><span class="s1"> engines available&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">numberOfEngines</span><span class="p">()))</span>
 </pre></div>
 </div>
@@ -388,7 +389,7 @@ importing mpmath on engine(s)
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="tracing.html" title="previous page">Contact tracing</a>
-    <a class='right-next' id="next-link" href="zbibliography.html" title="next page">Annotated bibliography</a>
+    <a class='right-next' id="next-link" href="hcn.html" title="next page">Human contact networks</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
