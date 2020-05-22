@@ -26,7 +26,8 @@ NOTEBOOKS =  \
 	src/er.ipynb \
 	src/tracing.ipynb \
 	src/thresholds.ipynb \
-	src/hcn.ipynb
+	src/hcn.ipynb \
+	src/vaccination.ipynb
 
 # Image files
 RAW_IMAGES = \
