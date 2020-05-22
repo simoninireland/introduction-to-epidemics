@@ -10,7 +10,7 @@ repository:
   branch: "master"
 
 google_analytics:
-  mytrackingcode: UA-42241903-2
+  mytrackingcode: "UA-42241903-2"
   
 launch_buttons:
   notebook_interface: "classic"

@@ -40,9 +40,8 @@ GENERATED_IMAGES =
 
 # Generated datasets
 GENERATED_DATASETS = \
-	src/threshold-er.json \
-	src/threshold-plc.json \
-	src/gc-plc.json
+	src/datasets/threshold-er.json \
+	src/datasets/threshold-plc.json
 
 # Bibliography
 BIBLIOGRAPHY = src/bibliography.bib
