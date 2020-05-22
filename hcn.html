@@ -101,6 +101,9 @@
     <a href="notes.html">Notes on production</a>
   </li>
   <li class="">
+    <a href="acknowledgements.html">Acknowledgements</a>
+  </li>
+  <li class="">
     <a href="about.html">About the author</a>
   </li>
   <li class="">
@@ -173,11 +176,23 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#friendship-structures" class="nav-link">Friendship structures</a>
+            <a href="#social-structures" class="nav-link">Social structures</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
             <a href="#powerlaw-networks" class="nav-link">Powerlaw networks</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#building-a-contact-network" class="nav-link">Building a contact network</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#epidemics-spreading-on-powerlaw-networks" class="nav-link">Epidemics spreading on powerlaw networks</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#the-preponderance-of-epidemics" class="nav-link">The preponderance of epidemics</a>
         </li>
     
     </ul>
@@ -198,36 +213,33 @@
 <p>A city is not just a large village: the ways in which people mix change fundamentally as the geographic and population scales increase, when you no longer know your neighbours and mix over a wider area. Even such a simple sentence implies a lot of mathematical complexity. There is less mixing on a small scale with neighbours, but more mixing at longer distances with non-neighbours – and this is before we consider how friendship networks interrelate, and the effects of disease countermeasures such as social distancing that suddenly became a feature of modern life.</p>
 <p>Suffice it to say that the study of contact networks is still an active field of research, being conducted experimentally by the study of real-world social networks as exposed by social media, and theoretically by the study of networks with topological structures that reflect how people interact.</p>
 <p>While the endpoint is not yet know, we can still make progress and follow the scientific method by making use of (what we claim is) a better model than the simple ER network, and explore what effects it has.</p>
-<div class="section" id="friendship-structures">
-<h2>Friendship structures<a class="headerlink" href="#friendship-structures" title="Permalink to this headline">¶</a></h2>
-<p>Friendship models have a number of interesting properties</p>
-<p><a class="bibtex reference internal" href="zbibliography.html#wat99" id="id1">[Wat99]</a>. <a class="bibtex reference internal" href="zbibliography.html#ws98" id="id2">[WS98]</a>.</p>
-<p>It’s as well to point out what this model <em>doesn’t</em> do for us. One thing that’s obvious about friendship networks is that they tend not to be random. If you have two friends, they are likely to be friends of each other – although not necessarily, as people oftenm have disjoint sub-sets of friends. Mathematically this manifests itself as <strong>clusters</strong> in the network that are more highly connected that would be expected in a randomly-connected network: so much more connected, in fact, that it’s breathtakingly unlikely for such structures to appear in a random network. Handling this clustering is mathematically very challenging, and forms one of the frontiers of current research <a class="bibtex reference internal" href="zbibliography.html#mmsd20" id="id3">[MMSD20]</a>.</p>
+<div class="section" id="social-structures">
+<h2>Social structures<a class="headerlink" href="#social-structures" title="Permalink to this headline">¶</a></h2>
+<p>A human contact network has to model the structures we actually find in human social structures. These structures have been studied extensively <a class="bibtex reference internal" href="zbibliography.html#ws98" id="id1">[WS98]</a> <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id2">[Wat99]</a>. They exhibit huge variation – far more than we find in, for example the structure of networks in natural physical and biological systems. This is perhaps due to the diversity of cultural factors that drive social structures, or perhaps because a lot of such networks have been designed for specific purposes rather than simply evolving at random.</p>
+<p>One common factor is that the degree distribution of a contact network is not normal (in the mathematical sense) like that of an ER network. Instead of the number of contacts clustering around a mean, we tend to observe a small number of “hub” nodes who are very highly connected – far more connected than is possible in an ER network. These people are sometimes referred to as “hubs” <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id3">[Wat99]</a>. In disease modelling, “super-spreaders” might be a better term: individuals whjo, if they are infected, can potentially infect a huge number of others. This has implications for countermeasures and for vaccination, as we’ll see later.</p>
+<p>Contact networks often also exagerate factors that are present in the basic mathematics. Pick a node in the network at random, and look at its neighbours: what would you expect <em>their</em> degrees to be? It turns out that the degrees of the neighbours of a node chosen at random tend to be greater than that of the node itself. This is because there are more opportunities to connect to a node that has high degree than to one with low degree. In a social setting this means that your friends are typically more popular than you are: they on average have more friends, on average. This is true of any node chosen at random – and so, paradoxically, while your friends are on average more popular than you are, <em>their</em> friends are also on average more popular than <em>them</em>.</p>
+<p>The nature of human relationships then emphasises this phenomenon. One thing that’s obvious about friendship networks is that they tend not to be random. If you have two friends, they are likely to be friends of each other – although not necessarily, as people oftenm have disjoint sub-sets of friends. Mathematically this manifests itself as <strong>clusters</strong> in the network that are more highly connected that would be expected in a randomly-connected network: in fact it’s breathtakingly unlikely for such structures to appear in a randomly-constructed network. Handling this clustering is mathematically very challenging, and forms one of the frontiers of current research <a class="bibtex reference internal" href="zbibliography.html#mmsd20" id="id4">[MMSD20]</a>.</p>
 </div>
 <div class="section" id="powerlaw-networks">
-<h2>Powerlaw networks<a class="headerlink" href="#powerlaw-networks" title="Permalink to this headline">¶</a></h2>
-<p>What is it about ER networks that is so misleading? The problem is in the basic mathematics that drives the formation of a network of “averaghe” people – “average” in terms of the numbers of social contacts they have. The degree distribution of an ER network is “normal”, with a well-defined mean and a quick drop-off in the number of nodes with significantly more, or significantly less, neighbours.</p>
-<p>But social networks aren’t like that: there are some people who have massively more contacts than others, or than the average. This is taken to an extreme on social media, where a relatively small number of public figures and celebrity figures have <em>millions</em> of “friends”. Even though this notion of friendship and social contact is different to “real” friendship, we see similar effects in physical contact networks, in which there are several</p>
-<p><a class="bibtex reference internal" href="zbibliography.html#nws02" id="id4">[NWS02]</a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">networkx</span>
-<span class="kn">import</span> <span class="nn">epyc</span>
-<span class="kn">import</span> <span class="nn">epydemic</span>
-<span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">import</span> <span class="nn">mpmath</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;svg&#39;</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span>
-</pre></div>
+<span id="sec-hcn-powerlaw"></span><h2>Powerlaw networks<a class="headerlink" href="#powerlaw-networks" title="Permalink to this headline">¶</a></h2>
+<p>So contact networks have some people who have massively more contacts than others, or than the average. This is taken to an extreme on social media, where a relatively small number of public figures and celebrity figures have <em>millions</em> of “friends”. Even though this notion of friendship and social contact is different to “real” friendship, we see similar effects in physical contact networks. This happens at an individual social level, where some people are natural (or enforced) recluses while others are social butterflies. It also happens through factors like work, where some people – postmen, shop cashiers, bus drivers, teachers – interact far more people, and far more closely, than do those in other jobs.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Powerlaw networks are also called <strong>BA networks</strong> after their discoverers, and <strong>scale-free</strong> networks because their large-scale and small-scale structures look the same.</p>
 </div>
+<p>What degree distributions do these networks have? They often follow a power law, where the probability of a node having a particular degree. <span class="math notranslate nohighlight">\(p_k \propto k^{-\alpha}\)</span> for some power <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>. These <strong>powerlaw</strong> networks were first studied by Albert and Barab´si <a class="bibtex reference internal" href="zbibliography.html#ab02" id="id5">[ABarabasi02]</a>, and describe the structures of networks in a bewildering range of applications: most famously, they describe both the structure of the underlying engineering of the internet and numbers of links to web pages.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>In the literature the exponent of the distributiuon is usually denoted <span class="math notranslate nohighlight">\(\alpha\)</span>, whule the cutoff is denoted <span class="math notranslate nohighlight">\(\kappa\)</span>.</p>
 </div>
+<p>Power-law networks are not <em>quite</em> right for contact networks, though, because they can create nodes with really, <em>really</em> high degree: too high to appear in human situations. A variation on the idea was however studied by Newman, Watts, and Strogatz <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id6">[NWS02]</a>. In these networks the power-law degree is “cut off” before it can get too large, essentially setting a ceiling on the number of contacts an individual can have. Unsurprisingly, these networks are known as <strong>powerlaw with cutoff</strong> networks.</p>
 </div>
-<p><a class="bibtex reference internal" href="zbibliography.html#mr95" id="id5">[MR95]</a></p>
+<div class="section" id="building-a-contact-network">
+<span id="sec-hcn-building"></span><h2>Building a contact network<a class="headerlink" href="#building-a-contact-network" title="Permalink to this headline">¶</a></h2>
+<p>Building a contact network means constructing a network where the nodes have the right degree distribution. In other words, the nodes in the network having degree <span class="math notranslate nohighlight">\(%k\)</span> appear in the correct fraction as defined by the degree distribution.</p>
+<p>When we <a class="reference internal" href="er.html#sec-er-building"><span class="std std-ref">constructed an ER network</span></a> we described an algorithm that, when followed, produced a network with the desired distribution. We need a different algorithm to handle different topologies. It turns out that there is a very general algorithm, called the <strong>configuration model</strong>, that can construct a random network with <em>any</em> degree distribution simply from a function that defines that distribution <a class="bibtex reference internal" href="zbibliography.html#mr95" id="id7">[MR95]</a>.</p>
+<p>To build a network of size <span class="math notranslate nohighlight">\(N\)</span> the configuration model takes a list of <span class="math notranslate nohighlight">\(N\)</span> numbers, each describing the degree of a node. It then creates nodes with these degrees and wires them together randomly. If we can therefore create the degree sequence wa want from a degree distribution, we can use the configuration model to build a network with nodes of these degrees.</p>
+<p>We define a function <code class="docutils literal notranslate"><span class="pre">p</span></code> that, given a degree, returns the probability <span class="math notranslate nohighlight">\(p_k\)</span> of a node of that degree appearing in the network. We can then define another function to which we provide this function along with the number of nodes we want, and which creates the random network. It repeatedly picks a random degree and then picks a random number betwen 0 and 1. is this second number is less than the probability of a node with that degree occurring, it adds the degree to the sequence; otrherwise it repeats the process for another degree. This continues until we have <span class="math notranslate nohighlight">\(N\)</span> node degrees.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generateFrom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">maxdeg</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
@@ -244,24 +256,26 @@
                 <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
                 <span class="k">break</span>
 
-    <span class="c1"># if the sequence is odd, remove an odd element and draw another from</span>
+    <span class="c1"># the final sequence of degrees has to sum to an even number, as</span>
+    <span class="c1"># each edge has two endpoints</span>
+    <span class="c1"># if the sequence is odd, remove an element and draw another from</span>
     <span class="c1"># the distribution, repeating until the overall sequence is even</span>
     <span class="k">while</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="c1"># draw a node at random</span>
+        <span class="c1"># pick a node at random</span>
         <span class="n">i</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="c1"># odd-degree node, remove it from the sequence</span>
-            <span class="n">t</span> <span class="o">-=</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="k">del</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># remove it from the sequence and from the total</span>
+        <span class="n">t</span> <span class="o">-=</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">del</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             
-            <span class="c1"># draw again</span>
-            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="n">k</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxdeg</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-                    <span class="c1"># add new node to the sequence</span>
-                    <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-                    <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
-                    <span class="k">break</span>
+        <span class="c1"># draw a new degree from the distribution</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxdeg</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+                <span class="c1"># add new node to the sequence</span>
+                <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+                <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
+                <span class="k">break</span>
 
     <span class="c1"># populate the network using the configuration</span>
     <span class="c1"># model with the given degree distribution</span>
@@ -271,6 +285,11 @@
 </div>
 </div>
 </div>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>The number <code class="docutils literal notranslate"><span class="pre">C</span></code> is a normalising constant needed to make the probabilities for the different degrees sum to 1 so that they form a valid probability distribution.</p>
+</div>
+<p>We still need to describe the degree distribution. Since the distribution is described by two parameters – the exponent and the cutoff – we define a function that takes these two parameters and returns a function that returns <span class="math notranslate nohighlight">\(p_k\)</span> for any degree <span class="math notranslate nohighlight">\(k\)</span>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">makePowerlawWithCutoff</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">):</span>
@@ -282,6 +301,7 @@
 </div>
 </div>
 </div>
+<p>We can then show the degree distribution that results, by again creating a network and then plotting a histogram of the degrees of the nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># a small sample network</span>
@@ -295,7 +315,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -312,47 +332,22 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hcn_11_0.svg" src="_images/hcn_11_0.svg" /></div>
+<img alt="_images/hcn_15_0.svg" src="_images/hcn_15_0.svg" /></div>
 </div>
+<p>Notice that the number of nodes falls exponentially until it hits the cutoff (40), after which it becomes very sparse indeed: there are very few nodes with degrees larger than the cutoff value.</p>
+</div>
+<div class="section" id="epidemics-spreading-on-powerlaw-networks">
+<span id="sec-hcn-spreading"></span><h2>Epidemics spreading on powerlaw networks<a class="headerlink" href="#epidemics-spreading-on-powerlaw-networks" title="Permalink to this headline">¶</a></h2>
+<p>Now we can builod a human contact network, we can again run epidemics over it to see what happens: is there an equivalent of the <a class="reference internal" href="thresholds.html#sec-thresholds-er"><span class="std std-ref">epidemic threshold that we saw for ER networks</span></a>?</p>
+<p>Again, we need to conduct some fairly intensive simulation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;threshold-plc.json&#39;</span><span class="p">))</span>
-<span class="c1">#lab = epyc.ClusterLab(profile=&#39;hogun&#39;)</span>
-<span class="k">with</span> <span class="n">lab</span><span class="o">.</span><span class="n">sync_imports</span><span class="p">():</span>
-    <span class="kn">import</span> <span class="nn">time</span>
-    <span class="kn">import</span> <span class="nn">networkx</span>
-    <span class="kn">import</span> <span class="nn">epyc</span>
-    <span class="kn">import</span> <span class="nn">epydemic</span>
-    <span class="kn">import</span> <span class="nn">numpy</span>
-    <span class="kn">import</span> <span class="nn">mpmath</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{n}</span><span class="s1"> engines available&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">numberOfEngines</span><span class="p">()))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>importing time on engine(s)
-importing networkx on engine(s)
-importing epyc on engine(s)
-importing epydemic on engine(s)
-importing numpy on engine(s)
-importing mpmath on engine(s)
-72 engines available
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-plc.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from https://nbviewer.jupyter.org/gist/minrk/4470122</span>
-<span class="k">def</span> <span class="nf">pxlocal</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
-    <span class="n">ip</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span>
-    <span class="n">ip</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s2">&quot;px&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-    <span class="n">ip</span><span class="o">.</span><span class="n">run_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
-<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">register_magic_function</span><span class="p">(</span><span class="n">pxlocal</span><span class="p">,</span> <span class="s2">&quot;cell&quot;</span><span class="p">)</span>    
-</pre></div>
-</div>
-</div>
-</div>
+<p>We define a class that constructs random powerlaw with cutoff networks, essentially just impoirting the code we developed <a class="reference internal" href="#sec-hcn-building"><span class="std std-ref">above</span></a> into the simulator.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
@@ -385,32 +380,17 @@ importing mpmath on engine(s)
                     <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
                     <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
                     <span class="k">break</span>
-<span class="k">def</span> <span class="nf">generateFrom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">maxdeg</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-    <span class="c1"># construct degrees according to the distribution given</span>
-    <span class="c1"># by the model function</span>
-    <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-    <span class="n">ns</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxdeg</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-                <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-                <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
-                <span class="k">break</span>
-    <span class="k">while</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
             <span class="n">t</span> <span class="o">-=</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="k">del</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            
             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
                 <span class="n">k</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxdeg</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
                     <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
                     <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
                     <span class="k">break</span>
-    <span class="k">return</span> <span class="n">networkx</span><span class="o">.</span><span class="n">configuration_model</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">create_using</span><span class="o">=</span><span class="n">networkx</span><span class="o">.</span><span class="n">Graph</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">networkx</span><span class="o">.</span><span class="n">configuration_model</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span> <span class="n">create_using</span><span class="o">=</span><span class="n">networkx</span><span class="o">.</span><span class="n">Graph</span><span class="p">())</span>
 
     <span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">PLCNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
@@ -425,6 +405,7 @@ importing mpmath on engine(s)
 </div>
 </div>
 </div>
+<p>From this we can then build a sample network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
@@ -434,6 +415,7 @@ importing mpmath on engine(s)
 </div>
 </div>
 </div>
+<p>And then define a parameter space over which to to run experiments. We run a normal SIR process for the range of infection probabilities (values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># test network</span>
@@ -458,14 +440,16 @@ importing mpmath on engine(s)
 </div>
 </div>
 </div>
+<p>Much compoutation again ensues before we can retrieve the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;threshold-plc.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-plc.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<p>Plotting the size of the resulting epidemic as beffore then yields the folowing:</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -482,8 +466,10 @@ importing mpmath on engine(s)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hcn_19_0.svg" src="_images/hcn_19_0.svg" /></div>
+<img alt="_images/hcn_33_0.svg" src="_images/hcn_33_0.svg" /></div>
 </div>
+<p>Now that’s a different result! It seems that, for all values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> we can get an epidemic, and with not a lot of variance between the repetitions. This is very much unlike <a class="reference internal" href="thresholds.html#sec-thresholds-er"><span class="std std-ref">the ER network case</span></a> for which there was a distinct point of infection below which epidemics didn’t take hold. Also different is that the size of the epidemic is relatively fixed at about 60% of the population.</p>
+<p>If <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> isn’t a deciding factor in the emergence of an epidemic, might it depend on the details of the network topology? We can explore this by keeping the disease parameters the same but changing the topological parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cutoff</span> <span class="o">=</span> <span class="mi">2</span>
@@ -501,12 +487,12 @@ importing mpmath on engine(s)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;threshold-plc.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-plc.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -523,110 +509,20 @@ importing mpmath on engine(s)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/hcn_23_0.svg" src="_images/hcn_23_0.svg" /></div>
+<img alt="_images/hcn_39_0.svg" src="_images/hcn_39_0.svg" /></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;gc-plc.json&#39;</span><span class="p">))</span>
-<span class="k">with</span> <span class="n">lab</span><span class="o">.</span><span class="n">sync_imports</span><span class="p">():</span>
-    <span class="kn">import</span> <span class="nn">time</span>
-    <span class="kn">import</span> <span class="nn">networkx</span>
-    <span class="kn">import</span> <span class="nn">epyc</span>
-    <span class="kn">import</span> <span class="nn">epydemic</span>
-    <span class="kn">import</span> <span class="nn">numpy</span>
-    <span class="kn">import</span> <span class="nn">mpmath</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{n}</span><span class="s1"> engines available&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">numberOfEngines</span><span class="p">()))</span>
-</pre></div>
+<p>For a network with a smaller cutoff, meaning a smaller mean degree for nodes. we still get behaviour that’s independent of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>. But look at the range of the y axis: instead of an epidemic through 60% of the population, we get a tiny outbreak affectring less than 5%.</p>
 </div>
+<div class="section" id="the-preponderance-of-epidemics">
+<h2>The preponderance of epidemics<a class="headerlink" href="#the-preponderance-of-epidemics" title="Permalink to this headline">¶</a></h2>
+<p>If we were to explore this phenomenon systematically, we’d discover that it’s the value of the exponent and cutoff that control the size of the disease outbreak <em>not</em> the infectiousness of the disease. In fact we’ that there are two possible regimes for these networks, one in which epidemics <em>always</em> affect a large fraction of the population, and one in which they <em>never</em> take off <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id8">[NWS02]</a>.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>The network science community captures this insight with the catchphrase “powerlaw networks always percolate”.</p>
 </div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>importing time on engine(s)
-importing networkx on engine(s)
-importing epyc on engine(s)
-importing epydemic on engine(s)
-importing numpy on engine(s)
-importing mpmath on engine(s)
-72 engines available
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">pInfect</span> <span class="o">=</span> <span class="mf">0.1</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># test networks</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">ALPHA</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-
-<span class="c1"># disease parameters</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.002</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">()</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">PLCNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-<span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">50</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="o">.</span><span class="n">readyFraction</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;gc-plc.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
-
-<span class="c1"># plot the size of the epidemic for the different values of alpha and kappa</span>
-<span class="n">alphas</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">ALPHA</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)):</span>
-    <span class="n">alpha</span> <span class="o">=</span> <span class="n">alphas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">marker</span> <span class="o">=</span> <span class="s1">&#39;C</span><span class="si">{i}</span><span class="s1">-&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">size</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">a</span> <span class="o">==</span> <span class="n">alpha</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">ALPHA</span><span class="p">]]]</span>
-    <span class="n">cutoffs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">])</span>
-    <span class="n">removeds</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">stdErrors</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">cutoff</span> <span class="ow">in</span> <span class="n">cutoffs</span><span class="p">:</span>
-        <span class="n">removeds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="n">size</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span> <span class="o">==</span> <span class="n">cutoff</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span>
-        <span class="n">stdErrors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="n">size</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span> <span class="o">==</span> <span class="n">cutoff</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">cutoffs</span><span class="p">,</span> <span class="n">removeds</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">stdErrors</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="n">marker</span><span class="p">,</span> <span class="n">ecolor</span><span class="o">=</span><span class="s1">&#39;0.75&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">alpha = </span><span class="si">{a:.2f}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="n">alpha</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">kappa$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Epidemic size vs $</span><span class="se">\\</span><span class="s1">kappa$ for different $</span><span class="se">\\</span><span class="s1">alpha$ ($N = </span><span class="si">{n}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">} = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pInfect</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
-
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<img alt="_images/hcn_30_0.svg" src="_images/hcn_30_0.svg" /></div>
-</div>
+<p>From empirical studies it turns out that human contact networks tend to have an exponent of about 2, and for such networks an epidemic will break out for almost <em>any</em> value of the cutoff above 2. Put another way, even a small mean number of contacts won’t stop an epidemic from spreading through a population, pretty much regardless of the disease’s infectiousness. The reason is that the “hubs” of highly connected individuals, if they are infected, become “super-spreaders” who disseminate the epidemic widely.</p>
+<p>This is a significant result.</p>
+<p>On the one hand, it’s bad news: even minor diseases will be spread, driven by the characterics of the contact network itself. However, on the other hand, it suggests strategies for containment if we reduce the mean degree sufficiently, <em>or</em> if we tackle the issue of the hubs acting as super-spreaders. These ideas are the basis of both vaccination and social distancing.</p>
 </div>
 </div>
 

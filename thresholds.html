@@ -101,6 +101,9 @@
     <a href="notes.html">Notes on production</a>
   </li>
   <li class="">
+    <a href="acknowledgements.html">Acknowledgements</a>
+  </li>
+  <li class="">
     <a href="about.html">About the author</a>
   </li>
   <li class="">
@@ -196,7 +199,7 @@
 <p>Let’s ask a different question, though. If we fix the topology but change the infectivity, what happens to the numbers of people infected? We already know that in the fully-mixed case a very small change in infectivity results in a massive change in the size of the epidemic. But that was in a somewhat unrealistic case.</p>
 <p>A related question is: for a particular topology, is there a characteristic degree of infectiousness that’s needed to start an epidemic, below which one doesn’t occur? To put it another way, is there an <strong>epidemic threshold</strong> that a disease must exceed in order to go epidemic?</p>
 <div class="section" id="the-epidemic-threshold-of-an-er-network">
-<h2>The epidemic threshold of an ER network<a class="headerlink" href="#the-epidemic-threshold-of-an-er-network" title="Permalink to this headline">¶</a></h2>
+<span id="sec-thresholds-er"></span><h2>The epidemic threshold of an ER network<a class="headerlink" href="#the-epidemic-threshold-of-an-er-network" title="Permalink to this headline">¶</a></h2>
 <p>Let’s look at the case for an ER network, the simplest model we have. (We’ve already accepted that it’s not a great model of human contact networks, but we’ll refine this later.)</p>
 <p>To locate the epidemic threshold (assuming it exists), we need to simulate epidemics on networks across a range of infectiousness – that is to say, for different values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>. If we want to test, shall we say, 50 different values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> we’ll need to run at least 50 experiments, one per value.</p>
 <p>But we know there’s a lot of randomness going on here as well. The networks we create are random; we seed them randomly with infected individuals; and the disease progresion is itself a random process. What if, by chance, we chose as the “seed” individuals a group of people who were all right next to each other, with few other people to infect? What if, by chance, the infection failed to transmit a large number of times, and so died out?</p>
@@ -208,7 +211,7 @@
 <p>The disadvantage of this approach is that it involves doing a lot more simulation, which in turn requires more computing power. Fortunately the scale of compute power we need is readily available nowadays, and we can conduct experiments using “clusters” of computers configured identically and each performing a share of the experiments we need doing..</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;threshold-er.json&#39;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-er.json&#39;</span><span class="p">))</span>
 <span class="k">with</span> <span class="n">lab</span><span class="o">.</span><span class="n">sync_imports</span><span class="p">():</span>
     <span class="kn">import</span> <span class="nn">time</span>
     <span class="kn">import</span> <span class="nn">networkx</span>
@@ -298,7 +301,7 @@ importing mpmath on engine(s)
 <p>A lot of computation now ensues, and eventually we get the results back.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;threshold-er.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-er.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>

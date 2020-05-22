@@ -28,6 +28,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "(sec:thresholds-er)=\n",
     "## The epidemic threshold of an ER network"
    ]
   },
@@ -98,7 +99,7 @@
     }
    ],
    "source": [
-    "lab = epyc.ClusterLab(profile='hogun', notebook=epyc.JSONLabNotebook('threshold-er.json'))\n",
+    "lab = epyc.ClusterLab(profile='hogun', notebook=epyc.JSONLabNotebook('datasets/threshold-er.json'))\n",
     "with lab.sync_imports():\n",
     "    import time\n",
     "    import networkx\n",
@@ -215,7 +216,7 @@
    "metadata": {},
    "outputs": [],
    "source": [
-    "df = epyc.JSONLabNotebook('threshold-er.json').dataframe()"
+    "df = epyc.JSONLabNotebook('datasets/threshold-er.json').dataframe()"
    ]
   },
   {
