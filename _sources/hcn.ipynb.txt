@@ -60,7 +60,7 @@
     "Powerlaw networks are also called **BA networks** after their discoverers, and **scale-free** networks because their large-scale and small-scale structures look the same.\n",
     "```\n",
     "\n",
-    "What degree distributions do these networks have? They often follow a power law, where the probability of a node having a particular degree. $p_k \\propto k^{-\\alpha}$ for some power $\\alpha > 0$. These **powerlaw** networks were first studied by Albert and Barab&acute;si {cite}`AB02`, and describe the structures of networks in a bewildering range of applications: most famously, they describe both the structure of the underlying engineering of the internet and numbers of links to web pages.\n",
+    "What degree distributions do these networks have? They often follow a power law, where the probability of a node having a particular degree. $p_k \\propto k^{-\\alpha}$ for some power $\\alpha > 0$. These **powerlaw** networks were first studied by Albert and Barab&aacute;si {cite}`AB02`, and describe the structures of networks in a bewildering range of applications: most famously, they describe both the structure of the underlying engineering of the internet and numbers of links to web pages.\n",
     "\n",
     "```{margin}\n",
     "In the literature the exponent of the distributiuon is usually denoted $\\alpha$, whule the cutoff is denoted $\\kappa$.\n",
@@ -2173,7 +2173,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Now we can builod a human contact network, we can again run epidemics over it to see what happens: is there an equivalent of the {ref}`epidemic threshold that we saw for ER networks <sec:thresholds-er>`?\n",
+    "Now we can build a human contact network, we can again run epidemics over it to see what happens: is there an equivalent of the {ref}`epidemic threshold that we saw for ER networks <sec:thresholds-er>`?\n",
     "\n",
     "Again, we need to conduct some fairly intensive simulation. "
    ]

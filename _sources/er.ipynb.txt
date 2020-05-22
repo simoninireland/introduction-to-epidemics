@@ -118,7 +118,8 @@
     "%matplotlib inline\n",
     "%config InlineBackend.figure_format = 'svg'\n",
     "import matplotlib.pyplot as plt\n",
-    "import seaborn"
+    "import seaborn\n",
+    "matplotlib.style.use('seaborn')"
    ]
   },
   {

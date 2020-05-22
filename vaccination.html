@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Epidemic modelling – Some notes, maths, and code &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
+    <title>Vaccination &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -33,7 +33,6 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="Models and modelling" href="model.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -50,7 +49,7 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="#">
+<a class="navbar-brand text-wrap" href="index.html">
   
   
   <h1 class="site-logo" id="site-title">Epidemic modelling &ndash; Some notes, maths, and code</h1>
@@ -66,8 +65,8 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="active">
-    <a href="#">Epidemic modelling – Some notes, maths, and code</a>
+  <li class="">
+    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
   </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
@@ -139,7 +138,7 @@
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/index.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <a class="dropdown-buttons" href="_sources/vaccination.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
                 <!-- Download PDF via print -->
                 <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
@@ -153,6 +152,17 @@
         <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
+        
+        <div class="dropdown-buttons-trigger">
+            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+            <div class="dropdown-buttons">
+                
+                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/vaccination.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
+                
+                
+                
+            </div>
+        </div>
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
@@ -171,30 +181,26 @@
         
               <div>
                 
-  <div class="section" id="epidemic-modelling-some-notes-maths-and-code">
-<h1>Epidemic modelling – Some notes, maths, and code<a class="headerlink" href="#epidemic-modelling-some-notes-maths-and-code" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="mailto:simon&#46;dobson&#37;&#52;&#48;st-andrews&#46;ac&#46;uk">Simon Dobson</a></p>
-<p>We’ve unexpectedly found ourselves in a situation in which the science
-of diseases is of critical importance to us all. On an individual
-level, we want to know what to expect of vaccines or other
-therapies. At a population level. we want to know how diseases become
-epidemics and then pandemics, and how the different strategies might
-influence their course. Above all, we want certainty that the disease
-will be conquered and the future will be better.</p>
-<p>Scientists don’t really <em>do</em> certainty, though. All of science
-is based around <em>models</em> that we construct to tell us about the things
-we’re interested in, and <em>experiments</em> we conduct to see to what extent
-the models match the reality on the ground. It’s this combination of
-model and experiment, trial and error and correction, that help us
-understand the world.</p>
-<p>But what <em>is</em> a model of a disease? How do they work, and what can they
-tell us about what we can expect from epidemics and other events? I’m writing
-this document as an attempt to explain the one small corner of this
-vast field that I know something about: how to model epidemics using
-network science and computer simulations. I put it out as a work
-in progress in the hope that it’ll be interesting and useful to someone.</p>
-<p>(This version built Fri 22 May 2020 11:04:14 BST)</p>
-<div class="toctree-wrapper compound">
+  <div class="section" id="vaccination">
+<h1>Vaccination<a class="headerlink" href="#vaccination" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">networkx</span>
+<span class="kn">import</span> <span class="nn">epyc</span>
+<span class="kn">import</span> <span class="nn">epydemic</span>
+<span class="kn">import</span> <span class="nn">pandas</span>
+<span class="kn">import</span> <span class="nn">mpmath</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;svg&#39;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 </div>
 
@@ -207,7 +213,6 @@ in progress in the hope that it’ll be interesting and useful to someone.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="model.html" title="next page">Models and modelling</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
