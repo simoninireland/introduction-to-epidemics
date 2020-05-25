@@ -26,7 +26,7 @@ For the experiments with a lot of numbers crunched we use the
 experiment management library and
 [`pandas`](https://pandas.pydata.org/) to handle the resulting
 datasets. The experiments used our local compute cluster ("`hogun`"):
-11 machines each with 16Gb of memory and 2 4-core Intel Xeon
+11 machines each with 16Gb of memory and dual 4-core Intel Xeon
 E3-1240@3.4MHz processors.
 
 

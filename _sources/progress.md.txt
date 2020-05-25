@@ -92,6 +92,7 @@ practical option. (During historical disease outbreaks, of course,
 quarantine was the *only* option.)
 
 
+(sec:progress-R0)=
 ## Measuring and modelling epidemics
 
 Epidemiology is the science of creating models of diseases and their
@@ -144,6 +145,7 @@ despite the number of secondary infections from a particular infected
 person necessarily being so.)
 
 
+(sec:progress-control)=
 ## Controlling epidemics
 
 The importance of $R_0$ is that it indicates whether, and how fast, a

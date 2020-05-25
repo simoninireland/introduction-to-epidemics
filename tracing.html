@@ -95,6 +95,12 @@
     <a href="hcn.html">Human contact networks</a>
   </li>
   <li class="">
+    <a href="herd.html">Herd immunity</a>
+  </li>
+  <li class="">
+    <a href="vaccination.html">Vaccination</a>
+  </li>
+  <li class="">
     <a href="zbibliography.html">Annotated bibliography</a>
   </li>
   <li class="">
@@ -322,7 +328,7 @@
 <p>Secondly, notice how few edges were traversed. This makes sense, because there can only be one “transmission” edge for every node, which will only be a small fraction of the total nodes.</p>
 </div>
 <div class="section" id="contact-trees">
-<h2>Contact trees<a class="headerlink" href="#contact-trees" title="Permalink to this headline">¶</a></h2>
+<span id="sec-tracing-contact-trees"></span><h2>Contact trees<a class="headerlink" href="#contact-trees" title="Permalink to this headline">¶</a></h2>
 <p>We can make this clearer by drawing the process slightly differently. Instead of drawing the network as a whole and showing the way the infection spreads, we’ll focus on the infected nodes only and show how they relate – in other words, who affected whom.</p>
 <p>We start at <span class="math notranslate nohighlight">\(t = 0\)</span> with one infected node. At the next timestep we’ll draw a second line of nodes that were infected by this node, connected to it byb edges. In the next timestep we’ll draw a third line of those who were infected by <em>those</em> nodes, and so on as time progresses.</p>
 <div class="cell tag_hide-input docutils container">
@@ -410,7 +416,7 @@
 <div class="section" id="case-reproduction-rate">
 <h2>Case reproduction rate<a class="headerlink" href="#case-reproduction-rate" title="Permalink to this headline">¶</a></h2>
 <p>The contact tree is important for other reasons too: it’s the data structure that lets us compute the case reproduction number <span class="math notranslate nohighlight">\(R_t\)</span> on a on-going basis.</p>
-<p>Remember that <span class="math notranslate nohighlight">\(R_t\)</span> is the average number of cases occurring per secondary case. Looking back at the figure above, the number of secondary cases for each individual is given by number of individuals in the next layer down that the original individual is connected to. Dividing the total nomber of infected people by the number of people who infected them, we arrive at <span class="math notranslate nohighlight">\(R_t\)</span>. It’s shown in the title of each sub-figure above.</p>
+<p>Remember that <span class="math notranslate nohighlight">\(R_t\)</span> is the average number of cases occurring per secondary case. Looking back at the figure above, the number of secondary cases for each individual is given by number of individuals in the next layer down that the original individual is connected to. Dividing the total number of infected people by the number of people who infected them, we arrive at <span class="math notranslate nohighlight">\(R_t\)</span>. It’s shown in the title of each sub-figure above.</p>
 </div>
 </div>
 
