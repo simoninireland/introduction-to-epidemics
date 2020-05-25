@@ -8,6 +8,8 @@
 - file: tracing
 - file: thresholds
 - file: hcn
+- file: herd
+- file: vaccination
 
 - file: zbibliography
 - file: notes

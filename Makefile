@@ -27,6 +27,7 @@ NOTEBOOKS =  \
 	src/tracing.ipynb \
 	src/thresholds.ipynb \
 	src/hcn.ipynb \
+	src/herd.ipynb \
 	src/vaccination.ipynb
 
 # Image files
@@ -37,7 +38,9 @@ RAW_IMAGES = \
 	src/disease-periods.png
 
 # Generated plots
-GENERATED_IMAGES =
+GENERATED_IMAGES = \
+	src/networks-same-beta-alpha.svg \
+	src/herd-finals.png
 
 # Generated datasets
 GENERATED_DATASETS = \
@@ -67,7 +70,7 @@ CONTENT = \
 # ----- Tools -----
 
 # Base commands
-PYTHON = python3.6
+PYTHON = python3.6            # specific sub-version for use with compute cluster
 IPYTHON = ipython
 JUPYTER = jupyter
 JUPYTER_BOOK = jupyter-book
