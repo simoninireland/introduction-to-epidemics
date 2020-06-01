@@ -1,5 +1,5 @@
-Annotated bibliography
-======================
+References
+==========
 
 ```{bibliography} bibliography.bib
 ```

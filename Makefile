@@ -14,6 +14,7 @@ TEXT = \
 	src/model.md \
 	src/progress.md \
 	src/notes.md \
+	src/reading.md \
 	src/zbibliography.md \
 	src/acknowledgements.md \
 	src/about.md \
@@ -28,7 +29,8 @@ NOTEBOOKS =  \
 	src/thresholds.ipynb \
 	src/hcn.ipynb \
 	src/herd.ipynb \
-	src/vaccination.ipynb
+	src/vaccination.ipynb \
+	src/seir.ipynb
 
 # Image files
 RAW_IMAGES = \

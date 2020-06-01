@@ -10,8 +10,11 @@
 - file: hcn
 - file: herd
 - file: vaccination
+- file: seir
 
+- file: reading
 - file: zbibliography
+
 - file: notes
 - file: acknowledgements
 - file: about
