@@ -9,7 +9,6 @@ pages = "47--97",
 month = "January",
 year = 2002,
 url = "https://dx.doi.org/10.1103/RevModPhys.74.47",
-note = "The classic paper on powerlaw networks, and the work that first showed how ER networks were a poor model for many natural phenomena. Powerlaw networks appear across science from the interactions of proteins in cells to the interconnections of the internet.", 
 }
 
 @article{Alt14,
@@ -21,6 +20,16 @@ year = 2014,
 url = "http://dx.doi.org/10.1371/currents.outbreaks.91afb5e0f279e7f29e7056095255b288",
 }
 
+@article{Bart11,
+author = "Marc Barth\'elemy",
+title = "Spatial networks",
+journal = "Physics Reports",
+volume = 499,
+pages = "1--101",
+year = 2011,
+url = "http://dx.doi.org/10.1016/j.physrep.2010.11.002",
+}
+
 @article{ER59,
 author = "Paul Erdos and Alfred Renyi",
 title = "On random graphs",
@@ -28,7 +37,6 @@ journal = "Publicationes Mathematic\ae",
 volume = 6,
 pages = "290--297",
 year = 1959,
-note = "The paper that revolutionised the field of graph theory and paved to way for the modern approach to network science. It contains proofs of a wide range of properties of random -- or as they are now called, Erdos-Renyi or ER -- graphs, which serve as the benchmark against which the behaviours of other topologies are measured.",
 }
 
 @article{Heth00,
@@ -41,7 +49,6 @@ pages = "599--653",
 month = "December",
 year = 2000,
 url = "http://dx.doi.org/10.1137/S0036144500371907",
-note = "The best readily-available introduction to the mathematics of the classical epidemic models.",
 }
 
 @article{Hou14,
@@ -62,7 +69,6 @@ city = "Oakland, CA",
 month = "May",
 year = 1991,
 url = "http://dx.doi.org/10.1109/RISP.1991.130801",
-note = "An application of network-based epidemiology to computer viruses. The mathematics of spread are essentially identical, and even the methods of infection -- through contacts between 'infected' and 'susceptible' computers -- are sufficiently analogous to make the two systems behave very similarly. The main differences come because computer viruses, unlike 'natural' diseases, are targetted at specific hosts. This can be a lot more effective (in the short term, at least) than random evolution.",
 }
 
 @unpublished{MMSD20,
@@ -81,7 +87,6 @@ number = "2--3",
 month = "March--May",
 year = 1995,
 url = "https://dx.doi.org/10.1002/rsa.3240060204",
-note = "The paper that introduces the Molloy-Reed criterion for the conditions required to generate a giant component in a network, which it turns out leads to the criteria for a disease becoming epidemic.",
 }
 
 @article{New02,
@@ -91,7 +96,6 @@ journal = "Physical Review E",
 volume = 66,
 year = 2002,
 url = "http://dx.doi.org/10.1103/PhysRevE.66.016128",
-note = "One of the classic papers in the field that rigourously studies the solution of SIR (and other) models on networks in particular special cases. It also demonstrates that the notion of an 'average' infection rate between individuals is meaningful by deriving a precise notion of transmissibility, the probability of the infection passing between two individuals which, combines the infectiousness and the duration of infection into a single number.",
 }
 
 @article{NWS02,
@@ -101,7 +105,6 @@ journal = "Proceedings of the National Academy of Sciences",
 volume = 19,
 year = 2002,
 url = "https://dx.doi.org/10.1073/pnas.012582999",
-note = "The paper that introduces the idea of the powerlaw-with-cutoff degree distribution as a model for social networks.",
 }
 
 @article{SD13,
@@ -113,7 +116,6 @@ number = 4,
 month = "April",
 year = 2013,
 url = "https://dx.doi.org/10.1103/PhysRevE.87.042812",
-note = "Shows how diseases can be transmitted between relatively isolated populations, even when they are taking countermeasures. Also finds an interesting special case in which a disease can become endemic at the contact points (for example port cities) even though the countermeasures are strong enough to prevent it breaking out into the wider population.", 
 }
 
 @article{SSDB15,
@@ -125,7 +127,6 @@ number = 111,
 month = "October",
 year = 2015,
 url = "https://dx.doi.org/10.1098/rsif.2015.0651",
-note = "An illustration of how topology can affect the behaviour of processes. Minor changes in the relative speeds of two transportation networks massively affect the 'commutability' of different areas of cities, demonstrated against the real-life transport networks of London and New York.", 
 }
 
 @article{VTM07,
@@ -146,12 +147,46 @@ volume = 393,
 pages = "440--442",
 year = 1998,
 url = "https://dx.doi.org/10.1038/30918",
-note = "The original analysis of the small-world phenomenon of networks with a tuned amount of disorder, allowing them to be clustered and yet having many of the characteristics of random networks. The name  'small worlds' come by analogy to the common idea that 'six degrees of separation' connect any two people on the planet, which has been found to be true in many human social networks.",
 }
 
 
-% Technical books
+% Technical and text books
 
+@book{KMS17,
+author = "Istv\'an Kiss and Joel Miller and P\'eter Simon",
+title = "Mathematics of epidemics on networks",
+publisher = "Springer-Verlag",
+series = "Interdisciplinary Applied Mathematics",
+volume = 46,
+year = 2017,
+url = "http://dx.doi.org/10.1007/978-3-319-50806-1",
+isbn = "978-3-319-50804-7",
+}
+
+@book{New10,
+author = "M.E.J. Newman",
+title = "Networks: an introduction",
+publisher = "Oxford University Press",
+year = 2010,
+isbn = "978-0-19-920665-0",
+}
+
+@techreport{PG14,
+author = "Mason Porter and James Gleeson",
+title = "Dynamical systems on networks: a tutorial",
+institution = "arXiv",
+number = "arXiv:1403.7663v1",
+url = "http://arxiv.org/abs/1403.7663v1",
+year = 2014,
+}
+
+@book{Say15,
+author = "Hiroki Sayama",
+title = "Introduction to the modeling and analysis of complex systems",
+publisher = "SUNY Open Textbooks",
+year = 2015,
+isbn = "978-1-942341-06-2",
+}
 
 @book{Wat99,
 author = "Duncan Watts",
@@ -160,18 +195,41 @@ publisher = "Princeton University Press",
 series = "Princeton Studies in Complexity",
 year = 1999,
 isbn = "0-691-00541-9",
-note = "A social science take on network science, by one of the pioneers.",
 }
 
 
 % Popular science and other books
+
+@book{Bar03,
+author = "Albert-L\'aszl\'o Barab\'asi",
+title = "Linked: The new science of networks",
+publisher = "Perseus",
+year = 2003,
+isbn = "978-0-738-20667-7",
+}
+
+@book{Bar11,
+author = "Albert-L\'aszl\'o Barab\'asi",
+title = "Bursts: The hidden patterns behind everything you do, from your e-mail to the {B}loody {C}rusades",
+publisher = "Plume",
+year = 2011,
+isbn = "978-0-452-29718-0",
+}
+
+@book{Hat09,
+author = "John Hatcher",
+title = "The {B}lack {D}eath: An intimate story of a village in crisis, 1345--1350",
+publisher = "Phoenix",
+isbn = "978-0-75382307-1",
+year = 2009,
+}
 
 @book{Hof98,
 author = "Paul Hoffman",
 title = "The man who loved only numbers: The story of Paul Erdos and the search for mathematical truth",
 publisher = "Hyperion",
 year = 1998,
-isbn = "978-0786863624",
+isbn = "978-0-78686362-4",
 }
 
 @book{Rov17,
@@ -179,5 +237,23 @@ author = "Carlo Rovelli",
 title = "Reality is not what it seems: The journey to quantum gravity",
 publisher = "Penguin",
 year = 2017,
-isbn = "978-0141983219",
+isbn = "978-0-14198321-9",
 }
+
+@book{Slo11,
+author = "Barney Sloane",
+title = "The {B}lack {D}eath in {L}ondon",
+publisher = "The History Press",
+isbn = "978-0-75242829-1",
+year = 2011,
+}
+
+@book{Spi18,
+author = "Laura Spinney",
+title = "{P}ale {R}ider: The {S}panish flu epidemic of 1918 and how it changed the world",
+publisher = "Vintage",
+isbn = "978-1-78470-3",
+year = 2018,
+}
+
+
