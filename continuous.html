@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>SIR &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
+    <title>Compartmented models and SIR &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -77,7 +77,7 @@
     <a href="progress.html">The progession of a disease</a>
   </li>
   <li class="active">
-    <a href="">SIR</a>
+    <a href="">Compartmented models and SIR</a>
   </li>
   <li class="">
     <a href="network.html">Network models</a>
@@ -101,7 +101,10 @@
     <a href="vaccination.html">Vaccination</a>
   </li>
   <li class="">
-    <a href="zbibliography.html">Annotated bibliography</a>
+    <a href="reading.html">Further reading</a>
+  </li>
+  <li class="">
+    <a href="zbibliography.html">References</a>
   </li>
   <li class="">
     <a href="notes.html">Notes on production</a>
@@ -208,8 +211,8 @@
         
               <div>
                 
-  <div class="section" id="sir">
-<h1>SIR<a class="headerlink" href="#sir" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="compartmented-models-and-sir">
+<h1>Compartmented models and SIR<a class="headerlink" href="#compartmented-models-and-sir" title="Permalink to this headline">¶</a></h1>
 <p>All disease models share some commonalities. Each model will need to represent the population of people being modelled, some (or all) of whom will get the disease in the course of the outbreak. It will need to represent the progress of the disease, as people are infected, become infectious, recover, and so forth. It will need some notion of how the disease spreads between people. And it will need to represent the disease dynamics: how long the various stages of the disease take, how virulently it spreads in the population, and so on.</p>
 <p>There are many different ways to represent these phenomena, and each choice gives rise to a different modelling approach. There are a lot of trade-offs to be made, with more detail allowing more subtle issues to be captured and explored at the cost of making the model more complicated to understand and compute.</p>
 <p>Let’s start with what is perhaps the simplest model of an epidemic, the <em>SIR model</em>.</p>

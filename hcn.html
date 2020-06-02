@@ -77,7 +77,7 @@
     <a href="progress.html">The progession of a disease</a>
   </li>
   <li class="">
-    <a href="continuous.html">SIR</a>
+    <a href="continuous.html">Compartmented models and SIR</a>
   </li>
   <li class="">
     <a href="network.html">Network models</a>
@@ -101,7 +101,10 @@
     <a href="vaccination.html">Vaccination</a>
   </li>
   <li class="">
-    <a href="zbibliography.html">Annotated bibliography</a>
+    <a href="reading.html">Further reading</a>
+  </li>
+  <li class="">
+    <a href="zbibliography.html">References</a>
   </li>
   <li class="">
     <a href="notes.html">Notes on production</a>
@@ -277,7 +280,7 @@
         <span class="c1"># draw a new degree from the distribution</span>
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
             <span class="n">k</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxdeg</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
                 <span class="c1"># add new node to the sequence</span>
                 <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
                 <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
@@ -392,7 +395,7 @@
             <span class="k">del</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
                 <span class="n">k</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxdeg</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
                     <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
                     <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
                     <span class="k">break</span>
@@ -520,13 +523,13 @@
 <p>For a network with a smaller cutoff, meaning a smaller mean degree for nodes. we still get behaviour that’s independent of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>. But look at the range of the y axis: instead of an epidemic through 60% of the population, we get a tiny outbreak affectring less than 5%.</p>
 </div>
 <div class="section" id="the-preponderance-of-epidemics">
-<h2>The preponderance of epidemics<a class="headerlink" href="#the-preponderance-of-epidemics" title="Permalink to this headline">¶</a></h2>
-<p>If we were to explore this phenomenon systematically, we’d discover that it’s the value of the exponent and cutoff that control the size of the disease outbreak <em>not</em> the infectiousness of the disease. In fact we’ that there are two possible regimes for these networks, one in which epidemics <em>always</em> affect a large fraction of the population, and one in which they <em>never</em> take off <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id8">[NWS02]</a>.</p>
+<span id="sec-hcn-always-percolate"></span><h2>The preponderance of epidemics<a class="headerlink" href="#the-preponderance-of-epidemics" title="Permalink to this headline">¶</a></h2>
+<p>If we were to explore this phenomenon systematically, we’d discover that it’s the value of the exponent and cutoff that control the size of the disease outbreak <em>not</em> the infectiousness of the disease. In fact there are two possible regimes for these networks, one in which epidemics <em>always</em> affect a large fraction of the population, and one in which they <em>never</em> take off <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id8">[NWS02]</a>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>The network science community captures this insight with the catchphrase “powerlaw networks always percolate”.</p>
 </div>
-<p>From empirical studies it turns out that human contact networks tend to have an exponent of about 2, and for such networks an epidemic will break out for almost <em>any</em> value of the cutoff above 2. Put another way, even a small mean number of contacts won’t stop an epidemic from spreading through a population, pretty much regardless of the disease’s infectiousness. The reason is that the “hubs” of highly connected individuals, if they are infected, become “super-spreaders” who disseminate the epidemic widely.</p>
+<p>From empirical studies it turns out that human contact networks tend to have an exponent of about 2, and for such networks an epidemic will break out for almost <em>any</em> value of the cutoff above 2 – and will <em>always</em> break out for powerlaw networks that don;t have a cutoff. Put another way, even a small mean number of contacts won’t stop an epidemic from spreading through a population, pretty much regardless of the disease’s infectiousness. The reason is that the “hubs” of highly connected individuals, if they are infected, become “super-spreaders” who disseminate the epidemic widely.</p>
 <p>This is a significant result.</p>
 <p>On the one hand, it’s bad news: even minor diseases will be spread, driven by the characterics of the contact network itself. However, on the other hand, it suggests strategies for containment if we reduce the mean degree sufficiently, <em>or</em> if we tackle the issue of the hubs acting as super-spreaders. These ideas are the basis of both vaccination and social distancing.</p>
 </div>

@@ -145,7 +145,7 @@
     "\n",
     "class ERNetworkDynamics(epydemic.StochasticDynamics):\n",
     "    \n",
-    "    # Experimental paramerters\n",
+    "    # Experimental parameters\n",
     "    N = 'N'\n",
     "    KMEAN = 'kmean'\n",
     "    \n",

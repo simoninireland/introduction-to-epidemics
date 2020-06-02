@@ -26,7 +26,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "By **immunity** we mean making an individual imepervious to future infection by the disease. Immunity is conferred on an individual in three main ways.\n",
+    "By **immunity** we mean making an individual impervious to future infection by the disease. Immunity is conferred on an individual in three main ways.\n",
     "\n",
     "```{margin}\n",
     "Note that this isn't quite the same as saying that the immune individual can't be re-infected. They *are* re-infected, but defeat that infection far more efficiently than does a \"normal\" individual.\n",
@@ -38,7 +38,7 @@
     "Most diseases pathogens can't cross the placental barrier and so the mother doesn't infect the child.\n",
     "```\n",
     "\n",
-    "For some diseases, an infection confers immunity on the pre-natal chidren of any mothers who are infected. This is a clever piece of evolution that means that children born into the midst of an epidemic are often immune to the disease if their mother was exposed.  \n",
+    "For some diseases, an infection confers immunity on the pre-natal children of any mothers who are infected. This is a clever piece of evolution that means that children born into the midst of an epidemic are often immune to the disease if their mother was exposed.  \n",
     "\n",
     "The widespread use of vaccines in the modern world for serious diseases is the final way to confer immunity. A vaccine essentially just pre-sensitises a person's immune system in the same way that a pre-occurring infection would do &ndash; but without the disadvantage of making the person sick in the first place."
    ]
@@ -57,13 +57,13 @@
    "source": [
     "If immunity is the inability of an individual to contract a disease, then **herd immunity** is the corresponding property for a population that can't contract an epidemic of the disease. More precisely, in a herd-immune population any outbreak of the disease will tend to die out quickly without infecting a large proportion of the population.\n",
     "\n",
-    "To understand herd immunity we need to return to the initial notions we had of how an epidemic persists in a population. We saw that {ref}`contact trees <sec:tracing-contact-trees>` capture the case reproduction number $R_t$ of an ongoing epidemic. We also {ref}`saw <sec:progress-control>` If  $R_t \\ge 1$ then the epidemic continues, as the next generation of cases is at least the same size as the previous one; if, however, $R_t$ falls and remains below 1, then the size of trhe next generation is smaller than the previous one, and if this trend continues then the disease will die out. \n",
+    "To understand herd immunity we need to return to the initial notions we had of how an epidemic persists in a population. We saw that {ref}`contact trees <sec:tracing-contact-trees>` capture the case reproduction number $R_t$ of an ongoing epidemic. We also {ref}`saw <sec:progress-control>` If  $R_t \\ge 1$ then the epidemic continues, as the next generation of cases is at least the same size as the previous one; if, however, $R_t$ falls and remains below 1, then the size of the next generation is smaller than the previous one, and if this trend continues then the disease will die out. \n",
     "\n",
     "Herd immunity occurs when $R_t \\ll 1$ so that any epidemic never gets started. More importantly, it means that if an epidemic re-starts through the disease being re-introduced, it won't get re-started.\n",
     "\n",
     "This doesn't mean that no-one ever gets infected in a herd-immune population: it's perfectly possible for people to come into contact with infected individuals from outside, and to become infected themselves if they aren't personally immune. But the disease doesn't spread from them into the rest of the population.\n",
     "\n",
-    "How does this come about? When discussing $R_0$ we {ref}`saw <sec:progress-R0>` that the case reproduction number is affected by three things: the duration of infectiousness, the probability of disease transmission per contact, and the rate of contacts between infected and susceptible individuals. The first two are properties of the disease, while the second is a property of the environment in which it finds itself. A herd-immune population is one in which the nunber of contacts between susceptible and infected individuals is too low to sustain an outbreak. Essentially herd immunity uses the topology of the contact network to reduce the *effective* value of $R_0$ below the critical threshold of 1."
+    "How does this come about? When discussing $R_0$ we {ref}`saw <sec:progress-R0>` that the case reproduction number is affected by three things: the duration of infectiousness, the probability of disease transmission per contact, and the rate of contacts between infected and susceptible individuals. The first two are properties of the disease, while the second is a property of the environment in which it finds itself. A herd-immune population is one in which the number of contacts between susceptible and infected individuals is too low to sustain an outbreak. Essentially herd immunity uses the topology of the contact network to reduce the *effective* value of $R_0$ below the critical threshold of 1."
    ]
   },
   {
@@ -77,9 +77,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We can model the effects of herd immunity by using the idea of a disease *repeatedly* being introduced to the *same* contact network. We let the disease run through the population, and then note that, for SIR infections, anyone who has been removed from the population cannot be re-infected, and indeed takes no further part in the disease dynamics. We are left with a **residual network** into which we re-introduce the same diseasem and see what happens.\n",
+    "We can model the effects of herd immunity by using the idea of a disease *repeatedly* being introduced to the *same* contact network. We let the disease run through the population, and then note that, for SIR infections, anyone who has been removed from the population cannot be re-infected, and indeed takes no further part in the disease dynamics. We are left with a **residual network** into which we re-introduce the same disease and see what happens.\n",
     "\n",
-    "The important thing to notice is that the second epidemic is caused by the re-introduciton of the *same* disease, with the same infectiousness and period of infection. Will this instance of the disease spread? &ndash; only if the residual network is such that the disease can get hold in it. If the first epidemic caused enough nodes to be removed, then this may prevent a secoind epidemic in the same population (or, more accurately, in a large sub-set of the population who weren't infected the first time). \n",
+    "The important thing to notice is that the second epidemic is caused by the re-introduction of the *same* disease, with the same infectiousness and period of infection. Will this instance of the disease spread? &ndash; only if the residual network is such that the disease can get hold in it. If the first epidemic caused enough nodes to be removed, then this may prevent a second epidemic in the same population (or, more accurately, in a large sub-set of the population who weren't infected the first time). \n",
     "\n",
     "This is another way to think about herd immunity. By removing nodes from the population it changes its topology so that disease propagation is no longer possible, or at least occurs at a radically smaller level. Any subsequent outbreaks are in some sense \"squashed by the topology\" even though the biology of the situation is unchanged. "
    ]
@@ -196,7 +196,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We can now see how many nodes were infected in the course of the epiudemic (the size of the removed compartment) and how many escaped infection and remain susceptible. "
+    "We can now see how many nodes were infected in the course of the epidemic (the size of the removed compartment) and how many escaped infection and remain susceptible. "
    ]
   },
   {
@@ -213,14 +213,14 @@
     }
    ],
    "source": [
-    "print('Remining susceptible {s}, removed {r}'.format(s=len(m1.compartment(epydemic.SIR.SUSCEPTIBLE)), r=len(m1.compartment(epydemic.SIR.REMOVED))))"
+    "print('Remaining susceptible {s}, removed {r}'.format(s=len(m1.compartment(epydemic.SIR.SUSCEPTIBLE)), r=len(m1.compartment(epydemic.SIR.REMOVED))))"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Quite a large epidemic, but one that left a substantial number uninfected. We now contruct the residual network by deleting all the nodes who are (or have been) infected, leaving the susceptibles. We don't touch the the edges between the nodes. "
+    "Quite a large epidemic, but one that left a substantial number uninfected. We now construct the residual network by deleting all the nodes who are (or have been) infected, leaving the susceptibles. We don't touch the the edges between the nodes. "
    ]
   },
   {
@@ -262,7 +262,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We now run the *samne* disease on this network: we don;t touch the experimental parameters."
+    "We now run the *same* disease on this network: we don;t touch the experimental parameters."
    ]
   },
   {
@@ -280,7 +280,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "What is the result? We can plot the progress of the two epidemics side by side: the \"main\" epidemic and thesecondary infection on the resodual network."
+    "What is the result? We can plot the progress of the two epidemics side by side: the \"main\" epidemic and the secondary infection on the residual network."
    ]
   },
   {
@@ -2166,12 +2166,12 @@
      "name": "stdout",
      "output_type": "stream",
      "text": [
-      "Remining susceptible 1119, removed 22\n"
+      "Remaining susceptible 1119, removed 22\n"
      ]
     }
    ],
    "source": [
-    "print('Remining susceptible {s}, removed {r}'.format(s=len(m2.compartment(epydemic.SIR.SUSCEPTIBLE)), r=len(m2.compartment(epydemic.SIR.REMOVED))))"
+    "print('Remaining susceptible {s}, removed {r}'.format(s=len(m2.compartment(epydemic.SIR.SUSCEPTIBLE)), r=len(m2.compartment(epydemic.SIR.REMOVED))))"
    ]
   },
   {
@@ -2278,7 +2278,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "In the left-hand panel we have the network after the first epidemic, with black nodes being those that have been infected. In the middle panel we remove these nodes, leaving only the resiodual susceptibles: we've not drawn the connections for reasons of scale. In the right-hand panel we show the network after the second epidemic &ndash; look carefully to find the nodes that were infected! The visual first impression is ehat's important, though: after the first epidemic the network had been mostly infected, but after the second it was largely untouched despite the fact that the same disease was introduced both times. The population has been rendered herd-immune by its first brush with the disease. "
+    "In the left-hand panel we have the network after the first epidemic, with black nodes being those that have been infected. In the middle panel we remove these nodes, leaving only the residual susceptibles: we've not drawn the connections for reasons of scale. In the right-hand panel we show the network after the second epidemic &ndash; look carefully to find the nodes that were infected! The visual first impression is what's important, though: after the first epidemic the network had been mostly infected, but after the second it was largely untouched despite the fact that the same disease was introduced both times. The population has been rendered herd-immune by its first brush with the disease. "
    ]
   },
   {
@@ -2286,14 +2286,14 @@
    "metadata": {},
    "source": [
     "(sec:herd-complexity)=\n",
-    "## The compexities of immunity"
+    "## The complexities of immunity"
    ]
   },
   {
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "This description makles things sound simple. Infecting the population once means that they can't, as a body, be infected again, and so the risks of subsequent disease outbreaks are minimised.\n",
+    "This description makes things sound simple. Infecting the population once means that they can't, as a body, be infected again, and so the risks of subsequent disease outbreaks are minimised.\n",
     "\n",
     "Not quite. There are more things we need to consider.\n",
     "\n",
@@ -2307,9 +2307,9 @@
     "\n",
     "In other diseases. infection confers **temporary immunity** so that an individual's $p_{\\mathit{infect}}$ changes with time, perhaps dropping to zero immediately after recovery and rising over time. The exact way in which immunity decays may be different too, perhaps rising steadily or perhaps jumping, and perhaps eventually reaching \"normal\" level as though the first infection hadn't occurred. And of course one can always have the case of **temporary partial immunity** that combines the features of both.\n",
     "\n",
-    "To all these complexities we also need to add uncertainty. In an epidemic of a new disease we almost certainly *don't know* what, if any, immunity infection confers. This implies that we don't know whether a recurrance of the disease will result in another epidemic or not.\n",
+    "To all these complexities we also need to add uncertainty. In an epidemic of a new disease we almost certainly *don't know* what, if any, immunity infection confers. This implies that we don't know whether a recurrence of the disease will result in another epidemic or not.\n",
     "\n",
-    "All this means that achieving herd immunity isn't a viable strategy for managing new diseases with large potential epidemic sizes, evewn if they're known (or assumed) to have relatively low mortality rates. A tiny fraction of a huge number can still be considerable. Fortunately herd immunity is not the only management strategy we have available to us. "
+    "All this means that achieving herd immunity isn't a viable strategy for managing new diseases with large potential epidemic sizes, even if they're known (or assumed) to have relatively low mortality rates. A tiny fraction of a huge number can still be considerable. Fortunately herd immunity is not the only management strategy we have available to us. "
    ]
   }
  ],

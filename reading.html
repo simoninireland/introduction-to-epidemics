@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Epidemic modelling – Some notes, maths, and code &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
+    <title>Further reading &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -33,7 +33,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="Models and modelling" href="model.html" />
+    <link rel="next" title="References" href="zbibliography.html" />
+    <link rel="prev" title="Vaccination" href="vaccination.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -50,7 +51,7 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="#">
+<a class="navbar-brand text-wrap" href="index.html">
   
   
   <h1 class="site-logo" id="site-title">Epidemic modelling &ndash; Some notes, maths, and code</h1>
@@ -66,8 +67,8 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="active">
-    <a href="#">Epidemic modelling – Some notes, maths, and code</a>
+  <li class="">
+    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
   </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
@@ -99,8 +100,8 @@
   <li class="">
     <a href="vaccination.html">Vaccination</a>
   </li>
-  <li class="">
-    <a href="reading.html">Further reading</a>
+  <li class="active">
+    <a href="">Further reading</a>
   </li>
   <li class="">
     <a href="zbibliography.html">References</a>
@@ -148,7 +149,7 @@
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/index.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <a class="dropdown-buttons" href="_sources/reading.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
                 <!-- Download PDF via print -->
                 <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
@@ -165,9 +166,24 @@
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#to-learn-more-about-historical-epidemics" class="nav-link">To learn more about historical epidemics</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#popular-treatments-of-network-science" class="nav-link">Popular treatments of network science</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#textbooks-and-reference-works-on-network-science" class="nav-link">Textbooks and reference works on network science</a>
+        </li>
     
     </ul>
 </nav>
@@ -180,30 +196,42 @@
         
               <div>
                 
-  <div class="section" id="epidemic-modelling-some-notes-maths-and-code">
-<h1>Epidemic modelling – Some notes, maths, and code<a class="headerlink" href="#epidemic-modelling-some-notes-maths-and-code" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="mailto:simon&#46;dobson&#37;&#52;&#48;st-andrews&#46;ac&#46;uk">Simon Dobson</a></p>
-<p>We’ve unexpectedly found ourselves in a situation in which the science
-of diseases is of critical importance to us all. On an individual
-level, we want to know what to expect of vaccines or other
-therapies. At a population level. we want to know how diseases become
-epidemics and then pandemics, and how the different strategies might
-influence their course. Above all, we want certainty that the disease
-will be conquered and the future will be better.</p>
-<p>Scientists don’t really <em>do</em> certainty, though. All of science
-is based around <em>models</em> that we construct to tell us about the things
-we’re interested in, and <em>experiments</em> we conduct to see to what extent
-the models match the reality on the ground. It’s this combination of
-model and experiment, trial and error and correction, that help us
-understand the world.</p>
-<p>But what <em>is</em> a model of a disease? How do they work, and what can they
-tell us about what we can expect from epidemics and other events? I’m writing
-this document as an attempt to explain the one small corner of this
-vast field that I know something about: how to model epidemics using
-network science and computer simulations. I put it out as a work
-in progress in the hope that it’ll be interesting and useful to someone.</p>
-<p>(This version built Tue  2 Jun 2020 14:57:43 BST)</p>
-<div class="toctree-wrapper compound">
+  <div class="section" id="further-reading">
+<h1>Further reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="to-learn-more-about-historical-epidemics">
+<h2>To learn more about historical epidemics<a class="headerlink" href="#to-learn-more-about-historical-epidemics" title="Permalink to this headline">¶</a></h2>
+<p>The 1918 or “Spanish” flu is very much in the news at close to its
+centenary. Laura Spinney’s treatment is definitive <a class="bibtex reference internal" href="zbibliography.html#spi18" id="id1">[Spi18]</a>.</p>
+<p>The Black Death of the fourteenth century has had a huge number of
+histories written about it – and to show that history is a process
+and not a state, is still generating new works that encourage us to
+revisit both the sociology and the science. Hatcher explores it from
+the perspective of a village <a class="bibtex reference internal" href="zbibliography.html#hat09" id="id2">[Hat09]</a>, while Sloane deals with
+a capital city <a class="bibtex reference internal" href="zbibliography.html#slo11" id="id3">[Slo11]</a>. An accessible scientific treatment is still
+waiting to be written.</p>
+</div>
+<div class="section" id="popular-treatments-of-network-science">
+<h2>Popular treatments of network science<a class="headerlink" href="#popular-treatments-of-network-science" title="Permalink to this headline">¶</a></h2>
+<p>As well as being one of the scientific pioneers, Albert-L’aszl’o
+Barab’asi has written extensively and accessibly about complex
+networks and their applications. His book <em>Linked: the new science of
+networks</em> <a class="bibtex reference internal" href="zbibliography.html#bar03" id="id4">[Barabasi03]</a> is probably the best-known introductory work,
+with the follow-up on “bursty” processes <a class="bibtex reference internal" href="zbibliography.html#bar11" id="id5">[Barabasi11]</a> also well worth
+reading.</p>
+<p>For a more social science perspective, Watts’ book on small worlds
+<a class="bibtex reference internal" href="zbibliography.html#wat99" id="id6">[Wat99]</a> explores issue such as rumour spreading and the ways in
+which different social structures can be understood mathematically.</p>
+</div>
+<div class="section" id="textbooks-and-reference-works-on-network-science">
+<h2>Textbooks and reference works on network science<a class="headerlink" href="#textbooks-and-reference-works-on-network-science" title="Permalink to this headline">¶</a></h2>
+<p>The absolute best textbook on the mathematics of networks is that by
+Newman, another pioneer of the field <a class="bibtex reference internal" href="zbibliography.html#new10" id="id7">[New10]</a>. Sayama deals with
+networks as part of a wider introduction to modelling complex systems
+<a class="bibtex reference internal" href="zbibliography.html#say15" id="id8">[Say15]</a>. Porter and Gleeson have produced a freely-available
+tutorial <a class="bibtex reference internal" href="zbibliography.html#pg14" id="id9">[PG14]</a>. Kiss, Miller, and Simon’s book on epidemic
+spreading on networks is probably the most comprehensive recent
+mathematical treatment, and has some associated Python code
+<a class="bibtex reference internal" href="zbibliography.html#kms17" id="id10">[KMS17]</a>.</p>
 </div>
 </div>
 
@@ -216,7 +244,8 @@ in progress in the hope that it’ll be interesting and useful to someone.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='right-next' id="next-link" href="model.html" title="next page">Models and modelling</a>
+    <a class='left-prev' id="prev-link" href="vaccination.html" title="previous page">Vaccination</a>
+    <a class='right-next' id="next-link" href="zbibliography.html" title="next page">References</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
