@@ -80,6 +80,7 @@ GHP_IMPORT = ghp-import
 PIP = pip
 VIRTUALENV = $(PYTHON) -m venv
 ACTIVATE = . $(VENV)/bin/activate
+RSYNC = rsync
 TR = tr
 CAT = cat
 SED = sed
@@ -123,11 +124,11 @@ live: env
 
 # Book building
 book: $(BOOK_DIR)
-	$(CP) $(CONTENT) $(BOOK_DIR)
+	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(MAKE_DATESTAMP)
 	$(ACTIVATE) && $(BUILD_BOOK)
 
-$(BOOK_DIR): Makefile $(BOOK_CONFIG) $(BOOK_TOC) $(CONTENT) $(BIBLIOGRAPHY)
+$(BOOK_DIR): Makefile $(BOOK_CONFIG)
 	$(RM) $(BOOK_DIR)
 	$(ACTIVATE) && $(CREATE_BOOK)
 	$(RM) $(BOOK_DIR)/*.ipynb $(BOOK_DIR)/*.md
