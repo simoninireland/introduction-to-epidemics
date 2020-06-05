@@ -4,7 +4,27 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# Vaccination"
+    "# Changing individual susceptibility"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "We now turn to countermeasures that we can take to reduce the size of an epidemic.\n",
+    "\n",
+    "There are several ways we can approach this. In this chapter we'll look at ways in which we can change an individual's response to potential infection. By making individuals less likely to be infected, we reduce the chances that an encounter will result in secondary infection and therefor reduce the chance of the disease spreading widely. We'll see that it matters *how many* individuals' susceptibility we modifgy, and often *which individuals*. \n",
+    "\n",
+    "(In a  later chapter we'll look at an alternative approach which leaves individual susceptibilities alone but changes the topology of encounters at the population level.)\n",
+    "\n",
+    "**Vaccination** changes susceptibility at a **biological** level, by changing an individual's immune response, and in this chapter we'll talk about the ways in which vaccines affect epidemic spreading in a population. But it's important to remember that the same effect can be achieved at a **physical** level, with no biological interventions at all, as we'll {ref}`see later <sec:vaccination-no-vaccine>`. From the perspective of epidemic spreading both biological and physical approaches behave in largely the same way."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Vaccines"
    ]
   },
   {
@@ -12028,6 +12048,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "(sec:vaccination-no-vaccine)=\n",
     "## \"Vaccination\" without vaccines"
    ]
   },

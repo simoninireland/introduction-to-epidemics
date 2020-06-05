@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Vaccination &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
+    <title>Changing individual susceptibility &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -98,7 +98,7 @@
     <a href="herd.html">Herd immunity</a>
   </li>
   <li class="active">
-    <a href="">Vaccination</a>
+    <a href="">Changing individual susceptibility</a>
   </li>
   <li class="">
     <a href="reading.html">Further reading</a>
@@ -185,6 +185,10 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
+            <a href="#vaccines" class="nav-link">Vaccines</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
             <a href="#epidemics-on-human-contact-networks" class="nav-link">Epidemics on human contact networks</a>
         </li>
     
@@ -219,8 +223,14 @@
         
               <div>
                 
-  <div class="section" id="vaccination">
-<h1>Vaccination<a class="headerlink" href="#vaccination" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="changing-individual-susceptibility">
+<h1>Changing individual susceptibility<a class="headerlink" href="#changing-individual-susceptibility" title="Permalink to this headline">¶</a></h1>
+<p>We now turn to countermeasures that we can take to reduce the size of an epidemic.</p>
+<p>There are several ways we can approach this. In this chapter we’ll look at ways in which we can change an individual’s response to potential infection. By making individuals less likely to be infected, we reduce the chances that an encounter will result in secondary infection and therefor reduce the chance of the disease spreading widely. We’ll see that it matters <em>how many</em> individuals’ susceptibility we modifgy, and often <em>which individuals</em>.</p>
+<p>(In a  later chapter we’ll look at an alternative approach which leaves individual susceptibilities alone but changes the topology of encounters at the population level.)</p>
+<p><strong>Vaccination</strong> changes susceptibility at a <strong>biological</strong> level, by changing an individual’s immune response, and in this chapter we’ll talk about the ways in which vaccines affect epidemic spreading in a population. But it’s important to remember that the same effect can be achieved at a <strong>physical</strong> level, with no biological interventions at all, as we’ll <a class="reference internal" href="#sec-vaccination-no-vaccine"><span class="std std-ref">see later</span></a>. From the perspective of epidemic spreading both biological and physical approaches behave in largely the same way.</p>
+<div class="section" id="vaccines">
+<h2>Vaccines<a class="headerlink" href="#vaccines" title="Permalink to this headline">¶</a></h2>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Edgar Allan Poe’s short story <em>The Masque of the Red Death</em> fictionalises the ineffectiveness of this strategy (especially when faced with a supernatural opponent).</p>
@@ -230,6 +240,7 @@
 <p>Vaccines work by priming a person’s immune system so that, if they are later infected, they already have the immunological machinery needed to fight it off. Critically, this reduces the time between infection happening and the immune response starting, meaning that there is less pathogen to fight off and therefore a better chance of preventing the infection taking hold in that individual. Sometimes this can be so effective that the individual is unaware they were even infected; more commonly they suffer a milder version of the disease, with less severe symptoms which they recover from more quickly.</p>
 <p>There are lots of ways to build a vaccine. One can do as Jenner did and use a <strong>variant</strong> of the disease one is interested in. One can take the actual disease and produce a <strong>denatured</strong> version that cannnot cause infection but does nevertheless prime the immune system. Modern vaccines are often even more specific than this, identifying some of the surface proteins that characterise the pathogen and introducing only them as a primer.</p>
 <p>Immunology is an immense subject, but fortunately we don’t need to understand its mechanics – how it works in <em>individuals</em> – to understand its epidemiology – how it works in <em>populations</em>. In fact, as we’ll see, in some cases we don’t need a vaccine to get the <em>effects</em> of vaccination.</p>
+</div>
 <div class="section" id="epidemics-on-human-contact-networks">
 <h2>Epidemics on human contact networks<a class="headerlink" href="#epidemics-on-human-contact-networks" title="Permalink to this headline">¶</a></h2>
 <p>Let’s revisit <a class="reference internal" href="hcn.html"><span class="doc">human contact networks</span></a> as a substrate for an epidemic. Such a network resembles a powerlaw-with-cutoff topology rather than the “normal” topology of an <a class="reference internal" href="er.html"><span class="doc">ER network</span></a>: there are nodes that have degrees (contacts) substantially larger than the mean of the network overall. We made the point that such networks are <a class="reference internal" href="hcn.html#sec-hcn-always-percolate"><span class="std std-ref">very good at spreading diseases</span></a>.</p>
@@ -311,7 +322,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vaccination_10_0.svg" src="_images/vaccination_10_0.svg" /></div>
+<img alt="_images/vaccination_12_0.svg" src="_images/vaccination_12_0.svg" /></div>
 </div>
 <p>This is telling us that networks with a small maximum number of contacts (<span class="math notranslate nohighlight">\(\kappa = 10\)</span>) have relative small epidemics that appear quite slowly: the “peak” of the infections occurs farther into the outbreak. As we increase <span class="math notranslate nohighlight">\(\kappa\)</span> we see larger epidemics happening faster (closer to the start of the outbreak), until the results seem to stabilise and not change much as we continue to increase <span class="math notranslate nohighlight">\(\kappa\)</span>: a maximum of about 30 contacts seems to be enough to infect about half the popuation at the peak.</p>
 </div>
@@ -413,7 +424,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vaccination_22_0.svg" src="_images/vaccination_22_0.svg" /></div>
+<img alt="_images/vaccination_24_0.svg" src="_images/vaccination_24_0.svg" /></div>
 </div>
 <p>Compariong this to the figure above shows quite a dramatic reduction in the outbreak size.</p>
 <p>But wait! – there’s a problem. Look at the y-axis in this graph. Notice that the maximum susceptible population is about 4000, even though the network has 10000 nodes. A moment’s thought shows why: we modelled vaccination as being  pre-emptively removed, leaving fewer susceptibles. Could it be that this result is what we’d <em>expect</em> on a smaller network? In other words, is there a size effect coming into play as we move from 10000 down to 4000 individuals?</p>
@@ -471,7 +482,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vaccination_25_0.svg" src="_images/vaccination_25_0.svg" /></div>
+<img alt="_images/vaccination_27_0.svg" src="_images/vaccination_27_0.svg" /></div>
 </div>
 <p>The first thing to see is that the two graphs are different: it’s not <em>just</em> the size of the network that affets things. In the small-but-unvaccinated network we see a very small epidemic; in the vaccinated network we see a much larger and faster outbreak.</p>
 <p>This seems strange: what’s different between the two cases, since we’ve eliminated network size as a variable?</p>
@@ -610,7 +621,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vaccination_38_0.svg" src="_images/vaccination_38_0.svg" /></div>
+<img alt="_images/vaccination_40_0.svg" src="_images/vaccination_40_0.svg" /></div>
 </div>
 <p>Letting a small fraction of the high-degree nodes – <em>i.e.</em>, the most connected individuals –  remain susceptible changes the epidemic again, making it much larger. It’s not only the <em>size</em> of the vaccinated population that counts: it’s <em>who we vaccinate</em> (or, in this case, don’t vaccinate) that really matters. Missing even a small fraction of the highly connected will radically reduce the effectiveness of a vaccination programme.</p>
 </div>
@@ -688,14 +699,14 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/vaccination_45_0.svg" src="_images/vaccination_45_0.svg" /></div>
+<img alt="_images/vaccination_47_0.svg" src="_images/vaccination_47_0.svg" /></div>
 </div>
 <p>That’s quite amazing! With almost no-one vaccinated – 200 in a network of 10000 – we both reduce and slow the epidemic. Both these effects are important. The total number of people infected is smaller, but so too is the “ramp-up” at the start of the epidemic, which means less stress is placed on health systems dealing with the influx of sick peoiple.</p>
 <p>When people talk of <strong>flattening the curve</strong>, this is the effect they’re aiming at – achieved in this case through targeted vaccination of a tiny fraction of the population.</p>
 <p>This reduction in vaccination effort makes it faster, cheaper, and more reliable – <em>if</em> we can identify and target the super-spreaders. But this might be possible, because we know that the super-spreaders are the highest-degree nodes, who are simply the ones with the most exposure to other people. In the modern world a person’s contact degree is often at least partially a function of their job, and so by targetiong those whose jobs bring them into contact with the most people – and epseically into contact with the most <em>infected</em> people – we can create a very effective vaccination strategy and roll it out quickly.</p>
 </div>
 <div class="section" id="vaccination-without-vaccines">
-<h2>“Vaccination” without vaccines<a class="headerlink" href="#vaccination-without-vaccines" title="Permalink to this headline">¶</a></h2>
+<span id="sec-vaccination-no-vaccine"></span><h2>“Vaccination” without vaccines<a class="headerlink" href="#vaccination-without-vaccines" title="Permalink to this headline">¶</a></h2>
 <p>We said at the beginning of this chapter that immunology was an enormously complicated topic but one whose details didn’t matter for population-level modelling. The experiments we conducted above have hopefully convinced you of this.</p>
 <p>But if this is the case, then it’s not vaccination that’s the important feature for our purposes. Any technology that behaves <em>like</em> a vaccine, preventing the infection of those we treat, will have the same effect.</p>
 <p>What technologies might these be? An obvious example is personal protective equipment such as face masks, surgical gloves, and the like, issued to those whom we identify as being in high-contact professions such as care workers, medical workers, bus drivers, and the like – anyone who, if they were to become infected, would have the potential to spread the disease to a disproportionate number of others. Most importantly this doesn’t require that we protect <em>everyone</em>, just that we protect <em>the most important</em> nodes in the contact network, whom we identify by their contact degree.</p>
