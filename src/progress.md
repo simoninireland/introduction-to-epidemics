@@ -1,4 +1,4 @@
-# The progession of a disease
+# Disease progression
 
 Everyone suffers from a disease at some point. The lucky amongst us
 avoid anything more serious that influenza, measles, or (in my case,
@@ -203,7 +203,7 @@ strategies can be extremely effective in reducing an epidemic. The
 number of infected contacts individuals have on average lets us
 estimate of $R$.
 
-But by definition test and trace is "counting in the rearview
+But by definition test and trace is "counting in the rear view
 mirror". It tells us how many people *were being* infected, not how
 many people *are* being infected. There will be a delay in identifying
 infected individuals, further delay in finding and testing their
@@ -232,12 +232,14 @@ surrounded by a collection of small villages &ndash; London in the
 Middle Ages might be a good example. Suppose the disease breaks out
 ferociously in the city but, because they are separated and take
 precautions, the villages see a much sparser rate of infection. If we
-were to take the net case reproduction rate over the city we'd capture
-all the ferocity of the epidemic's spread. But if we calculated the
-rate over the country, we'd see a far milder epidemic. Because the
-same disease is spreading in different circumstances, averaging may be
-misleading &ndash; too mild for the city, but too large for the
-countryside.
+were to take the net case reproduction rate *averaged over the city*
+we'd capture all the ferocity of the epidemic's spread. But if we
+calculated the rate *over the whole country*, we'd see a far milder
+epidemic. Because the same disease is spreading in different
+circumstances, averaging may be misleading &ndash; too mild for the
+city, but too large for the countryside. This makes it possible to
+manipulate the reported $R$ value accidentally, or deliberately by
+judicious choice of population over which to take the average. 
 
 For all these reasons it's important not to fixate on $R$. The fact
 that it's a number can sometimes give a false sense of security,
