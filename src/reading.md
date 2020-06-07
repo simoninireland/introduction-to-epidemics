@@ -1,5 +1,5 @@
-Further reading
-===============
+To find out more
+================
 
 To learn more about historical epidemics
 ----------------------------------------
@@ -16,9 +16,18 @@ a capital city {cite}`Slo11`. An accessible scientific treatment is still
 waiting to be written.
 
 
+To learn about epidemiology in practice
+---------------------------------------
 
-Popular treatments of network science
--------------------------------------
+The European Centre for Disease Prevention and Control's field
+epidemiology manual {cite}`ECDC` is an open-source collaboration
+intended as a field guide and training resource for epidemiologists in
+the midst of an epidemic. A dose of reality on top of theoretical
+treatments.
+
+
+To learn more about network science
+-----------------------------------
 
 As well as being one of the scientific pioneers, Albert-L\'aszl\'o
 Barab\'asi has written extensively and accessibly about complex
