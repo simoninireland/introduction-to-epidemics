@@ -1,263 +1,1147 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 14.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 43363)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="918px" height="577.28px" viewBox="0 0 918 577.28" enable-background="new 0 0 918 577.28" xml:space="preserve">
-<line fill="none" stroke="#000000" stroke-width="2" x1="36" y1="136.28" x2="396" y2="136.28"/>
-<text transform="matrix(1 0 0 1 18 82.2803)" font-family="'MyriadPro-Regular'" font-size="10">infection</text>
-<text transform="matrix(1 0 0 1 153 28.2803)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">onset of </tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">infectiousness</tspan></text>
-<text transform="matrix(1 0 0 1 234 73.2803)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">onset of</tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">symptoms</tspan></text>
-<text transform="matrix(1 0 0 1 297 28.2803)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">end of </tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">infectiousness</tspan></text>
-<text transform="matrix(1 0 0 1 369 82.2803)" font-family="'MyriadPro-Regular'" font-size="10">resolution</text>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="36" y1="91.28" x2="36" y2="118.28"/>
-		<polygon points="36,125.341 31.936,115.391 36,117.752 40.065,115.391 		"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)"
+   sodipodi:docname="disease-types.svg"
+   xml:space="preserve"
+   enable-background="new 0 0 918 577.28"
+   viewBox="0 0 918 577.28"
+   height="577.28px"
+   width="918px"
+   y="0px"
+   x="0px"
+   id="Layer_1"
+   version="1.1"><metadata
+   id="metadata1250"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs1248" /><sodipodi:namedview
+   inkscape:current-layer="Layer_1"
+   inkscape:window-maximized="0"
+   inkscape:window-y="23"
+   inkscape:window-x="0"
+   inkscape:cy="288.64001"
+   inkscape:cx="459"
+   inkscape:zoom="1.1459695"
+   showgrid="false"
+   id="namedview1246"
+   inkscape:window-height="480"
+   inkscape:window-width="746"
+   inkscape:pageshadow="2"
+   inkscape:pageopacity="0"
+   guidetolerance="10"
+   gridtolerance="10"
+   objecttolerance="10"
+   borderopacity="1"
+   bordercolor="#666666"
+   pagecolor="#ffffff" />
+<line
+   id="line791"
+   y2="136.28"
+   x2="396"
+   y1="136.28"
+   x1="36"
+   stroke-width="2"
+   stroke="#000000"
+   fill="none" />
+<text
+   id="text793"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 18 82.2803)">infection</text>
+<text
+   id="text799"
+   transform="matrix(1 0 0 1 153 28.2803)"><tspan
+     id="tspan795"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">onset of </tspan><tspan
+     id="tspan797"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">infectiousness</tspan></text>
+<text
+   id="text805"
+   transform="matrix(1 0 0 1 234 73.2803)"><tspan
+     id="tspan801"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">onset of</tspan><tspan
+     id="tspan803"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">symptoms</tspan></text>
+<text
+   id="text811"
+   transform="matrix(1 0 0 1 297 28.2803)"><tspan
+     id="tspan807"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">end of </tspan><tspan
+     id="tspan809"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">infectiousness</tspan></text>
+<text
+   id="text813"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 369 82.2803)">resolution</text>
+<g
+   id="g821">
+	<g
+   id="g819">
+		<line
+   id="line815"
+   y2="118.28"
+   x2="36"
+   y1="91.28"
+   x1="36"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon817"
+   points="36,125.341 31.936,115.391 36,117.752 40.065,115.391   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="180" y1="46.28" x2="180" y2="118.28"/>
-		<polygon points="180,125.341 175.935,115.391 180,117.752 184.064,115.391 		"/>
+<g
+   id="g829">
+	<g
+   id="g827">
+		<line
+   id="line823"
+   y2="118.28"
+   x2="180"
+   y1="46.28"
+   x1="180"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon825"
+   points="180,125.341 175.935,115.391 180,117.752 184.064,115.391   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="252" y1="91.28" x2="252" y2="118.28"/>
-		<polygon points="252,125.341 247.936,115.391 252,117.752 256.064,115.391 		"/>
+<g
+   id="g837">
+	<g
+   id="g835">
+		<line
+   id="line831"
+   y2="118.28"
+   x2="252"
+   y1="91.28"
+   x1="252"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon833"
+   points="252,125.341 247.936,115.391 252,117.752 256.064,115.391   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="324" y1="55.28" x2="324" y2="127.28"/>
-		<polygon points="324,134.341 319.936,124.391 324,126.752 328.064,124.391 		"/>
+<g
+   id="g845">
+	<g
+   id="g843">
+		<line
+   id="line839"
+   y2="127.28"
+   x2="324"
+   y1="55.28"
+   x1="324"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon841"
+   points="324,134.341 319.936,124.391 324,126.752 328.064,124.391   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="396" y1="91.28" x2="396" y2="118.28"/>
-		<polygon points="396,125.341 391.936,115.391 396,117.752 400.064,115.391 		"/>
+<g
+   id="g853">
+	<g
+   id="g851">
+		<line
+   id="line847"
+   y2="118.28"
+   x2="396"
+   y1="91.28"
+   x1="396"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon849"
+   points="396,125.341 391.936,115.391 396,117.752 400.064,115.391   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 81 172.2803)" font-family="'MyriadPro-Regular'" font-size="10">latent period</text>
-<line fill="none" stroke="#000000" x1="36" y1="145.28" x2="36" y2="163.28"/>
-<line fill="none" stroke="#000000" x1="180" y1="145.28" x2="180" y2="163.28"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="45" y1="154.28" x2="171" y2="154.28"/>
-		<polygon points="178.061,154.28 168.111,158.346 170.472,154.28 168.111,150.216 		"/>
-		<polygon points="37.939,154.28 47.889,150.215 45.528,154.28 47.889,158.345 		"/>
+<text
+   id="text855"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 81 172.2803)">latent period</text>
+<line
+   id="line857"
+   y2="163.28"
+   x2="36"
+   y1="145.28"
+   x1="36"
+   stroke="#000000"
+   fill="none" />
+<line
+   id="line859"
+   y2="163.28"
+   x2="180"
+   y1="145.28"
+   x1="180"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g869">
+	<g
+   id="g867">
+		<line
+   id="line861"
+   y2="154.28"
+   x2="171"
+   y1="154.28"
+   x1="45"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon863"
+   points="178.061,154.28 168.111,158.346 170.472,154.28 168.111,150.216   " />
+		<polygon
+   id="polygon865"
+   points="37.939,154.28 47.889,150.215 45.528,154.28 47.889,158.345   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 99 217.2803)" font-family="'MyriadPro-Regular'" font-size="10">incubation period</text>
-<line fill="none" stroke="#000000" x1="36" y1="190.28" x2="36" y2="208.28"/>
-<line fill="none" stroke="#000000" x1="252" y1="190.28" x2="252" y2="208.28"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="45" y1="199.28" x2="243" y2="199.28"/>
-		<polygon points="250.061,199.28 240.111,203.346 242.473,199.28 240.111,195.216 		"/>
-		<polygon points="37.939,199.28 47.889,195.215 45.528,199.28 47.889,203.345 		"/>
+<text
+   id="text871"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 99 217.2803)">incubation period</text>
+<line
+   id="line873"
+   y2="208.28"
+   x2="36"
+   y1="190.28"
+   x1="36"
+   stroke="#000000"
+   fill="none" />
+<line
+   id="line875"
+   y2="208.28"
+   x2="252"
+   y1="190.28"
+   x1="252"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g885">
+	<g
+   id="g883">
+		<line
+   id="line877"
+   y2="199.28"
+   x2="243"
+   y1="199.28"
+   x1="45"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon879"
+   points="250.061,199.28 240.111,203.346 242.473,199.28 240.111,195.216   " />
+		<polygon
+   id="polygon881"
+   points="37.939,199.28 47.889,195.215 45.528,199.28 47.889,203.345   " />
 	</g>
 </g>
-<line fill="none" stroke="#000000" x1="324" y1="145.28" x2="324" y2="163.28"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="189" y1="154.28" x2="315" y2="154.28"/>
-		<polygon points="322.061,154.28 312.11,158.346 314.472,154.28 312.11,150.216 		"/>
-		<polygon points="181.939,154.28 191.889,150.215 189.528,154.28 191.889,158.345 		"/>
+<line
+   id="line887"
+   y2="163.28"
+   x2="324"
+   y1="145.28"
+   x1="324"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g897">
+	<g
+   id="g895">
+		<line
+   id="line889"
+   y2="154.28"
+   x2="315"
+   y1="154.28"
+   x1="189"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon891"
+   points="322.061,154.28 312.11,158.346 314.472,154.28 312.11,150.216   " />
+		<polygon
+   id="polygon893"
+   points="181.939,154.28 191.889,150.215 189.528,154.28 191.889,158.345   " />
 	</g>
 </g>
-<line fill="none" stroke="#000000" stroke-width="2" x1="522.001" y1="136.281" x2="882" y2="136.281"/>
-<text transform="matrix(1 0 0 1 504 82.2803)" font-family="'MyriadPro-Regular'" font-size="10">infection</text>
-<text transform="matrix(1 0 0 1 639 28.2803)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">onset of </tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">infectiousness</tspan></text>
-<text transform="matrix(1 0 0 1 576 28.2812)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">onset of</tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">symptoms</tspan></text>
-<text transform="matrix(1 0 0 1 783 28.2803)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">end of </tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">infectiousness</tspan></text>
-<text transform="matrix(1 0 0 1 855 82.2803)" font-family="'MyriadPro-Regular'" font-size="10">resolution</text>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="522.001" y1="91.281" x2="522.001" y2="118.281"/>
-		<polygon points="522.001,125.341 517.937,115.391 522.001,117.752 526.065,115.391 		"/>
+<line
+   id="line899"
+   y2="136.281"
+   x2="882"
+   y1="136.281"
+   x1="522.001"
+   stroke-width="2"
+   stroke="#000000"
+   fill="none" />
+<text
+   id="text901"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 504 82.2803)">infection</text>
+<text
+   id="text907"
+   transform="matrix(1 0 0 1 639 28.2803)"><tspan
+     id="tspan903"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">onset of </tspan><tspan
+     id="tspan905"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">infectiousness</tspan></text>
+<text
+   id="text913"
+   transform="matrix(1 0 0 1 576 28.2812)"><tspan
+     id="tspan909"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">onset of</tspan><tspan
+     id="tspan911"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">symptoms</tspan></text>
+<text
+   id="text919"
+   transform="matrix(1 0 0 1 783 28.2803)"><tspan
+     id="tspan915"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">end of </tspan><tspan
+     id="tspan917"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">infectiousness</tspan></text>
+<text
+   id="text921"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 855 82.2803)">resolution</text>
+<g
+   id="g929">
+	<g
+   id="g927">
+		<line
+   id="line923"
+   y2="118.281"
+   x2="522.001"
+   y1="91.281"
+   x1="522.001"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon925"
+   points="522.001,125.341 517.937,115.391 522.001,117.752 526.065,115.391   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="666" y1="46.281" x2="666" y2="118.281"/>
-		<polygon points="666,125.341 661.936,115.391 666,117.752 670.064,115.391 		"/>
+<g
+   id="g937">
+	<g
+   id="g935">
+		<line
+   id="line931"
+   y2="118.281"
+   x2="666"
+   y1="46.281"
+   x1="666"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon933"
+   points="666,125.341 661.936,115.391 666,117.752 670.064,115.391   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="594.001" y1="46.282" x2="594.001" y2="118.284"/>
-		<polygon points="594.001,125.344 589.936,115.395 594.001,117.756 598.065,115.395 		"/>
+<g
+   id="g945">
+	<g
+   id="g943">
+		<line
+   id="line939"
+   y2="118.284"
+   x2="594.001"
+   y1="46.282"
+   x1="594.001"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon941"
+   points="594.001,125.344 589.936,115.395 594.001,117.756 598.065,115.395   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="810" y1="55.281" x2="810" y2="127.281"/>
-		<polygon points="810,134.341 805.936,124.391 810,126.752 814.064,124.391 		"/>
+<g
+   id="g953">
+	<g
+   id="g951">
+		<line
+   id="line947"
+   y2="127.281"
+   x2="810"
+   y1="55.281"
+   x1="810"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon949"
+   points="810,134.341 805.936,124.391 810,126.752 814.064,124.391   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="882" y1="91.281" x2="882" y2="118.281"/>
-		<polygon points="882,125.341 877.936,115.39 882,117.751 886.064,115.39 		"/>
+<g
+   id="g961">
+	<g
+   id="g959">
+		<line
+   id="line955"
+   y2="118.281"
+   x2="882"
+   y1="91.281"
+   x1="882"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon957"
+   points="882,125.341 877.936,115.39 882,117.751 886.064,115.39   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 567 172.2803)" font-family="'MyriadPro-Regular'" font-size="10">latent period</text>
-<line fill="none" stroke="#000000" x1="522" y1="145.281" x2="522" y2="163.281"/>
-<line fill="none" stroke="#000000" x1="666" y1="145.281" x2="666" y2="163.281"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="531" y1="154.281" x2="657" y2="154.281"/>
-		<polygon points="664.061,154.281 654.111,158.345 656.473,154.281 654.111,150.216 		"/>
-		<polygon points="523.939,154.281 533.89,150.214 531.528,154.281 533.89,158.345 		"/>
+<text
+   id="text963"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 567 172.2803)">latent period</text>
+<line
+   id="line965"
+   y2="163.281"
+   x2="522"
+   y1="145.281"
+   x1="522"
+   stroke="#000000"
+   fill="none" />
+<line
+   id="line967"
+   y2="163.281"
+   x2="666"
+   y1="145.281"
+   x1="666"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g977">
+	<g
+   id="g975">
+		<line
+   id="line969"
+   y2="154.281"
+   x2="657"
+   y1="154.281"
+   x1="531"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon971"
+   points="664.061,154.281 654.111,158.345 656.473,154.281 654.111,150.216   " />
+		<polygon
+   id="polygon973"
+   points="523.939,154.281 533.89,150.214 531.528,154.281 533.89,158.345   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 531 217.2803)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">incubation</tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">period</tspan></text>
-<line fill="none" stroke="#000000" x1="522" y1="190.281" x2="522" y2="208.281"/>
-<line fill="none" stroke="#000000" x1="594" y1="190.281" x2="594" y2="208.281"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="531" y1="199.281" x2="584.998" y2="199.281"/>
-		<polygon points="592.059,199.281 582.109,203.346 584.471,199.281 582.109,195.216 		"/>
-		<polygon points="523.939,199.281 533.89,195.215 531.528,199.281 533.89,203.345 		"/>
+<text
+   id="text983"
+   transform="matrix(1 0 0 1 531 217.2803)"><tspan
+     id="tspan979"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">incubation</tspan><tspan
+     id="tspan981"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">period</tspan></text>
+<line
+   id="line985"
+   y2="208.281"
+   x2="522"
+   y1="190.281"
+   x1="522"
+   stroke="#000000"
+   fill="none" />
+<line
+   id="line987"
+   y2="208.281"
+   x2="594"
+   y1="190.281"
+   x1="594"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g997">
+	<g
+   id="g995">
+		<line
+   id="line989"
+   y2="199.281"
+   x2="584.998"
+   y1="199.281"
+   x1="531"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon991"
+   points="592.059,199.281 582.109,203.346 584.471,199.281 582.109,195.216   " />
+		<polygon
+   id="polygon993"
+   points="523.939,199.281 533.89,195.215 531.528,199.281 533.89,203.345   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 693 172.2803)" font-family="'MyriadPro-Regular'" font-size="10">infectious period</text>
-<line fill="none" stroke="#000000" x1="810" y1="145.281" x2="810" y2="163.281"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="675" y1="154.281" x2="801" y2="154.281"/>
-		<polygon points="808.061,154.281 798.111,158.345 800.473,154.281 798.111,150.216 		"/>
-		<polygon points="667.939,154.281 677.889,150.214 675.527,154.281 677.889,158.345 		"/>
+<text
+   id="text999"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 693 172.2803)">infectious period</text>
+<line
+   id="line1001"
+   y2="163.281"
+   x2="810"
+   y1="145.281"
+   x1="810"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g1011">
+	<g
+   id="g1009">
+		<line
+   id="line1003"
+   y2="154.281"
+   x2="801"
+   y1="154.281"
+   x1="675"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1005"
+   points="808.061,154.281 798.111,158.345 800.473,154.281 798.111,150.216   " />
+		<polygon
+   id="polygon1007"
+   points="667.939,154.281 677.889,150.214 675.527,154.281 677.889,158.345   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 207 172.2803)" font-family="'MyriadPro-Regular'" font-size="10">infectious period</text>
-<line fill="none" stroke="#000000" stroke-width="2" x1="522.001" y1="442.281" x2="810" y2="442.281"/>
-<text transform="matrix(1 0 0 1 504 388.2812)" font-family="'MyriadPro-Regular'" font-size="10">infection</text>
-<text transform="matrix(1 0 0 1 567.002 379.2822)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">onset of symptoms </tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">&amp; infectiousness</tspan></text>
-<text transform="matrix(1 0 0 1 783 334.2812)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">end of infec</tspan><tspan x="49.15" y="0" font-family="'MyriadPro-Regular'" font-size="10">t</tspan><tspan x="52.859" y="0" font-family="'MyriadPro-Regular'" font-size="10">iousness</tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">&amp; resolution</tspan></text>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="522.001" y1="397.281" x2="522.001" y2="424.281"/>
-		<polygon points="522.001,431.342 517.937,421.393 522.001,423.754 526.065,421.393 		"/>
+<text
+   id="text1013"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 207 172.2803)">infectious period</text>
+<line
+   id="line1015"
+   y2="442.281"
+   x2="810"
+   y1="442.281"
+   x1="522.001"
+   stroke-width="2"
+   stroke="#000000"
+   fill="none" />
+<text
+   id="text1017"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 504 388.2812)">infection</text>
+<text
+   id="text1023"
+   transform="matrix(1 0 0 1 567.002 379.2822)"><tspan
+     id="tspan1019"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">onset of symptoms </tspan><tspan
+     id="tspan1021"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">&amp; infectiousness</tspan></text>
+<text
+   id="text1033"
+   transform="matrix(1 0 0 1 783 334.2812)"><tspan
+     id="tspan1025"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">end of infec</tspan><tspan
+     id="tspan1027"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="49.15">t</tspan><tspan
+     id="tspan1029"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="52.859">iousness</tspan><tspan
+     id="tspan1031"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">&amp; resolution</tspan></text>
+<g
+   id="g1041">
+	<g
+   id="g1039">
+		<line
+   id="line1035"
+   y2="424.281"
+   x2="522.001"
+   y1="397.281"
+   x1="522.001"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1037"
+   points="522.001,431.342 517.937,421.393 522.001,423.754 526.065,421.393   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="594.001" y1="397.281" x2="594.001" y2="424.285"/>
-		<polygon points="594.001,431.346 589.936,421.396 594.001,423.758 598.065,421.396 		"/>
+<g
+   id="g1049">
+	<g
+   id="g1047">
+		<line
+   id="line1043"
+   y2="424.285"
+   x2="594.001"
+   y1="397.281"
+   x1="594.001"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1045"
+   points="594.001,431.346 589.936,421.396 594.001,423.758 598.065,421.396   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="810" y1="352.281" x2="810" y2="424.281"/>
-		<polygon points="810,431.342 805.936,421.393 810,423.754 814.064,421.393 		"/>
+<g
+   id="g1057">
+	<g
+   id="g1055">
+		<line
+   id="line1051"
+   y2="424.281"
+   x2="810"
+   y1="352.281"
+   x1="810"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1053"
+   points="810,431.342 805.936,421.393 810,423.754 814.064,421.393   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 531 478.2803)" font-family="'MyriadPro-Regular'" font-size="10">latent period</text>
-<line fill="none" stroke="#000000" x1="522" y1="451.281" x2="522" y2="469.281"/>
-<line fill="none" stroke="#000000" x1="594" y1="451.282" x2="594" y2="469.282"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="531" y1="460.281" x2="585" y2="460.281"/>
-		<polygon points="592.061,460.281 582.111,464.346 584.473,460.281 582.111,456.217 		"/>
-		<polygon points="523.939,460.281 533.889,456.217 531.527,460.281 533.889,464.346 		"/>
+<text
+   id="text1059"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 531 478.2803)">latent period</text>
+<line
+   id="line1061"
+   y2="469.281"
+   x2="522"
+   y1="451.281"
+   x1="522"
+   stroke="#000000"
+   fill="none" />
+<line
+   id="line1063"
+   y2="469.282"
+   x2="594"
+   y1="451.282"
+   x1="594"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g1073">
+	<g
+   id="g1071">
+		<line
+   id="line1065"
+   y2="460.281"
+   x2="585"
+   y1="460.281"
+   x1="531"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1067"
+   points="592.061,460.281 582.111,464.346 584.473,460.281 582.111,456.217   " />
+		<polygon
+   id="polygon1069"
+   points="523.939,460.281 533.889,456.217 531.527,460.281 533.889,464.346   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 531 523.2812)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">incubation</tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">period</tspan></text>
-<line fill="none" stroke="#000000" x1="522" y1="496.281" x2="522" y2="514.281"/>
-<line fill="none" stroke="#000000" x1="594" y1="496.281" x2="594" y2="514.281"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="531" y1="505.281" x2="584.998" y2="505.281"/>
-		<polygon points="592.059,505.281 582.109,509.348 584.471,505.281 582.109,501.217 		"/>
-		<polygon points="523.939,505.281 533.89,501.217 531.528,505.281 533.89,509.346 		"/>
+<text
+   id="text1079"
+   transform="matrix(1 0 0 1 531 523.2812)"><tspan
+     id="tspan1075"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">incubation</tspan><tspan
+     id="tspan1077"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">period</tspan></text>
+<line
+   id="line1081"
+   y2="514.281"
+   x2="522"
+   y1="496.281"
+   x1="522"
+   stroke="#000000"
+   fill="none" />
+<line
+   id="line1083"
+   y2="514.281"
+   x2="594"
+   y1="496.281"
+   x1="594"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g1093">
+	<g
+   id="g1091">
+		<line
+   id="line1085"
+   y2="505.281"
+   x2="584.998"
+   y1="505.281"
+   x1="531"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1087"
+   points="592.059,505.281 582.109,509.348 584.471,505.281 582.109,501.217   " />
+		<polygon
+   id="polygon1089"
+   points="523.939,505.281 533.89,501.217 531.528,505.281 533.89,509.346   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 675 478.2803)" font-family="'MyriadPro-Regular'" font-size="10">infectious period</text>
-<line fill="none" stroke="#000000" x1="810" y1="451.281" x2="810" y2="469.281"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="603" y1="460.281" x2="801" y2="460.281"/>
-		<polygon points="808.061,460.281 798.111,464.346 800.473,460.281 798.111,456.217 		"/>
-		<polygon points="595.939,460.281 605.889,456.217 603.527,460.281 605.889,464.346 		"/>
+<text
+   id="text1095"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 675 478.2803)">infectious period</text>
+<line
+   id="line1097"
+   y2="469.281"
+   x2="810"
+   y1="451.281"
+   x1="810"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g1107">
+	<g
+   id="g1105">
+		<line
+   id="line1099"
+   y2="460.281"
+   x2="801"
+   y1="460.281"
+   x1="603"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1101"
+   points="808.061,460.281 798.111,464.346 800.473,460.281 798.111,456.217   " />
+		<polygon
+   id="polygon1103"
+   points="595.939,460.281 605.889,456.217 603.527,460.281 605.889,464.346   " />
 	</g>
 </g>
-<line fill="none" stroke="#000000" stroke-width="2" x1="36.001" y1="442.28" x2="369" y2="442.28"/>
-<text transform="matrix(1 0 0 1 18.0005 388.2793)" font-family="'MyriadPro-Regular'" font-size="10">infection</text>
-<text transform="matrix(1 0 0 1 153.0005 334.2793)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">onset of </tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">infectiousness</tspan></text>
-<text transform="matrix(1 0 0 1 90.0005 334.2812)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">onset of</tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">symptoms</tspan></text>
-<text transform="matrix(1 0 0 1 342.0005 379.2793)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">end of </tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">infectiousness</tspan></text>
-<text transform="matrix(1 0 0 1 297.0005 343.2793)" font-family="'MyriadPro-Regular'" font-size="10">resolution</text>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="36.001" y1="397.28" x2="36.001" y2="424.28"/>
-		<polygon points="36.001,431.341 31.937,421.391 36.001,423.752 40.065,421.391 		"/>
+<line
+   id="line1109"
+   y2="442.28"
+   x2="369"
+   y1="442.28"
+   x1="36.001"
+   stroke-width="2"
+   stroke="#000000"
+   fill="none" />
+<text
+   id="text1111"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 18.0005 388.2793)">infection</text>
+<text
+   id="text1117"
+   transform="matrix(1 0 0 1 153.0005 334.2793)"><tspan
+     id="tspan1113"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">onset of </tspan><tspan
+     id="tspan1115"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">infectiousness</tspan></text>
+<text
+   id="text1123"
+   transform="matrix(1 0 0 1 90.0005 334.2812)"><tspan
+     id="tspan1119"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">onset of</tspan><tspan
+     id="tspan1121"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">symptoms</tspan></text>
+<text
+   id="text1129"
+   transform="matrix(1 0 0 1 342.0005 379.2793)"><tspan
+     id="tspan1125"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">end of </tspan><tspan
+     id="tspan1127"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">infectiousness</tspan></text>
+<text
+   id="text1131"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 297.0005 343.2793)">resolution</text>
+<g
+   id="g1139">
+	<g
+   id="g1137">
+		<line
+   id="line1133"
+   y2="424.28"
+   x2="36.001"
+   y1="397.28"
+   x1="36.001"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1135"
+   points="36.001,431.341 31.937,421.391 36.001,423.752 40.065,421.391   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="180" y1="352.28" x2="180" y2="424.28"/>
-		<polygon points="180,431.341 175.936,421.391 180,423.752 184.064,421.391 		"/>
+<g
+   id="g1147">
+	<g
+   id="g1145">
+		<line
+   id="line1141"
+   y2="424.28"
+   x2="180"
+   y1="352.28"
+   x1="180"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1143"
+   points="180,431.341 175.936,421.391 180,423.752 184.064,421.391   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="108.001" y1="352.281" x2="108.001" y2="424.283"/>
-		<polygon points="108.001,431.344 103.936,421.395 108.001,423.756 112.065,421.395 		"/>
+<g
+   id="g1155">
+	<g
+   id="g1153">
+		<line
+   id="line1149"
+   y2="424.283"
+   x2="108.001"
+   y1="352.281"
+   x1="108.001"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1151"
+   points="108.001,431.344 103.936,421.395 108.001,423.756 112.065,421.395   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="324" y1="352.279" x2="324" y2="424.279"/>
-		<polygon points="324,431.34 319.936,421.39 324,423.751 328.064,421.39 		"/>
+<g
+   id="g1163">
+	<g
+   id="g1161">
+		<line
+   id="line1157"
+   y2="424.279"
+   x2="324"
+   y1="352.279"
+   x1="324"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1159"
+   points="324,431.34 319.936,421.39 324,423.751 328.064,421.39   " />
 	</g>
 </g>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" x1="369" y1="397.279" x2="369" y2="424.279"/>
-		<polygon points="369,431.34 364.936,421.389 369,423.75 373.064,421.389 		"/>
+<g
+   id="g1171">
+	<g
+   id="g1169">
+		<line
+   id="line1165"
+   y2="424.279"
+   x2="369"
+   y1="397.279"
+   x1="369"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1167"
+   points="369,431.34 364.936,421.389 369,423.75 373.064,421.389   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 81.0005 478.2793)" font-family="'MyriadPro-Regular'" font-size="10">latent period</text>
-<line fill="none" stroke="#000000" x1="36" y1="451.28" x2="36" y2="469.28"/>
-<line fill="none" stroke="#000000" x1="180" y1="451.28" x2="180" y2="469.28"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="45" y1="460.28" x2="171" y2="460.28"/>
-		<polygon points="178.061,460.28 168.111,464.345 170.473,460.28 168.111,456.216 		"/>
-		<polygon points="37.939,460.28 47.89,456.214 45.528,460.28 47.89,464.345 		"/>
+<text
+   id="text1173"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 81.0005 478.2793)">latent period</text>
+<line
+   id="line1175"
+   y2="469.28"
+   x2="36"
+   y1="451.28"
+   x1="36"
+   stroke="#000000"
+   fill="none" />
+<line
+   id="line1177"
+   y2="469.28"
+   x2="180"
+   y1="451.28"
+   x1="180"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g1187">
+	<g
+   id="g1185">
+		<line
+   id="line1179"
+   y2="460.28"
+   x2="171"
+   y1="460.28"
+   x1="45"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1181"
+   points="178.061,460.28 168.111,464.345 170.473,460.28 168.111,456.216   " />
+		<polygon
+   id="polygon1183"
+   points="37.939,460.28 47.89,456.214 45.528,460.28 47.89,464.345   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 44.9995 523.2793)"><tspan x="0" y="0" font-family="'MyriadPro-Regular'" font-size="10">incubation</tspan><tspan x="0" y="12" font-family="'MyriadPro-Regular'" font-size="10">period</tspan></text>
-<line fill="none" stroke="#000000" x1="36" y1="496.28" x2="36" y2="514.28"/>
-<line fill="none" stroke="#000000" x1="108" y1="496.28" x2="108" y2="514.28"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="45" y1="505.28" x2="98.998" y2="505.28"/>
-		<polygon points="106.059,505.28 96.109,509.346 98.471,505.28 96.109,501.216 		"/>
-		<polygon points="37.939,505.28 47.89,501.215 45.528,505.28 47.89,509.345 		"/>
+<text
+   id="text1193"
+   transform="matrix(1 0 0 1 44.9995 523.2793)"><tspan
+     id="tspan1189"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="0"
+     x="0">incubation</tspan><tspan
+     id="tspan1191"
+     font-size="10"
+     font-family="'MyriadPro-Regular'"
+     y="12"
+     x="0">period</tspan></text>
+<line
+   id="line1195"
+   y2="514.28"
+   x2="36"
+   y1="496.28"
+   x1="36"
+   stroke="#000000"
+   fill="none" />
+<line
+   id="line1197"
+   y2="514.28"
+   x2="108"
+   y1="496.28"
+   x1="108"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g1207">
+	<g
+   id="g1205">
+		<line
+   id="line1199"
+   y2="505.28"
+   x2="98.998"
+   y1="505.28"
+   x1="45"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1201"
+   points="106.059,505.28 96.109,509.346 98.471,505.28 96.109,501.216   " />
+		<polygon
+   id="polygon1203"
+   points="37.939,505.28 47.89,501.215 45.528,505.28 47.89,509.345   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 252.0005 478.2793)" font-family="'MyriadPro-Regular'" font-size="10">infectious period</text>
-<line fill="none" stroke="#000000" x1="360" y1="451.279" x2="360" y2="469.279"/>
-<g>
-	<g>
-		<line fill="none" stroke="#000000" stroke-dasharray="6,6" x1="189" y1="460.28" x2="360" y2="460.28"/>
-		<polygon points="367.061,460.28 357.111,464.345 359.473,460.28 357.111,456.216 		"/>
-		<polygon points="181.939,460.28 191.889,456.216 189.527,460.28 191.889,464.345 		"/>
+<text
+   id="text1209"
+   font-size="10"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 252.0005 478.2793)">infectious period</text>
+<line
+   id="line1211"
+   y2="469.279"
+   x2="360"
+   y1="451.279"
+   x1="360"
+   stroke="#000000"
+   fill="none" />
+<g
+   id="g1221">
+	<g
+   id="g1219">
+		<line
+   id="line1213"
+   y2="460.28"
+   x2="360"
+   y1="460.28"
+   x1="189"
+   stroke-dasharray="6,6"
+   stroke="#000000"
+   fill="none" />
+		<polygon
+   id="polygon1215"
+   points="367.061,460.28 357.111,464.345 359.473,460.28 357.111,456.216   " />
+		<polygon
+   id="polygon1217"
+   points="181.939,460.28 191.889,456.216 189.527,460.28 191.889,464.345   " />
 	</g>
 </g>
-<text transform="matrix(1 0 0 1 143.9995 253.2808)" font-family="'MyriadPro-Regular'" font-size="12">Measles (Type A)</text>
-<rect x="153" y="541.28" fill="none" width="126" height="27"/>
-<text transform="matrix(1 0 0 1 152.9995 549.7998)" font-family="'MyriadPro-Regular'" font-size="12">Ebola (Type B)</text>
-<rect x="621" y="541.28" fill="none" width="144" height="27"/>
-<text transform="matrix(1 0 0 1 621 549.7998)" font-family="'MyriadPro-Regular'" font-size="12">Zombie apocalype</text>
-<rect x="135" y="235.28" fill="none" stroke="#000000" width="99" height="27"/>
-<rect x="144" y="532.28" fill="none" stroke="#000000" width="90" height="27"/>
-<rect x="612" y="532.28" fill="none" stroke="#000000" width="117.001" height="27"/>
-<rect x="648" y="244.28" fill="none" width="126" height="27"/>
-<text transform="matrix(1 0 0 1 648 252.7998)" font-family="'MyriadPro-Regular'" font-size="12">SARS (Type B)</text>
-<rect x="639" y="235.28" fill="none" stroke="#000000" width="90" height="27"/>
+<text
+   id="text1223"
+   font-size="12"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 143.9995 253.2808)">Measles (Type A)</text>
+<rect
+   id="rect1225"
+   height="27"
+   width="126"
+   fill="none"
+   y="541.28"
+   x="153" />
+<text
+   id="text1227"
+   font-size="12"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 152.9995 549.7998)">Ebola (Type B)</text>
+<rect
+   id="rect1229"
+   height="27"
+   width="144"
+   fill="none"
+   y="541.28"
+   x="621" />
+<text
+   id="text1231"
+   font-size="12px"
+   font-family="MyriadPro-Regular"
+   transform="translate(621,549.7998)">Zombie apocalypse</text>
+<rect
+   style="stroke-width:1.09825"
+   id="rect1233"
+   height="26.901752"
+   width="119.84472"
+   stroke="#000000"
+   fill="none"
+   y="235.32912"
+   x="135.04912" />
+<rect
+   style="stroke-width:1.0817"
+   id="rect1235"
+   height="26.918304"
+   width="105.62553"
+   stroke="#000000"
+   fill="none"
+   y="532.32086"
+   x="144.04085" />
+<rect
+   style="stroke-width:1.06008"
+   id="rect1237"
+   height="26.939922"
+   width="131.77551"
+   stroke="#000000"
+   fill="none"
+   y="532.31006"
+   x="612.03003" />
+<rect
+   id="rect1239"
+   height="27"
+   width="126"
+   fill="none"
+   y="244.28"
+   x="648" />
+<text
+   id="text1241"
+   font-size="12"
+   font-family="'MyriadPro-Regular'"
+   transform="matrix(1 0 0 1 648 252.7998)">SARS (Type B)</text>
+<rect
+   style="stroke-width:1.09038"
+   id="rect1243"
+   height="26.909624"
+   width="107.3621"
+   stroke="#000000"
+   fill="none"
+   y="235.32518"
+   x="639.04517" />
 </svg>
