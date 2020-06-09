@@ -2,10 +2,10 @@
 
 Thanks to the students and collaborators who have helped me to get
 more and more interested in complex networks over the years, and whose
-knowledge and enthusiasm have been so motivating: Xue Guo, Peter Mann,
-John Mitchell, Stefan Nixon, Martynas Noreika, Aleksejs Sazonovs,
-Saray Shai, Anne Smith, Mike Pitcher. The fact that I still understand
-so poorly remains my fault.
+knowledge and enthusiasm have been so motivating: Davide Cellai, Xue
+Guo, Peter Mann, John Mitchell, Stefan Nixon, Martynas Noreika,
+Aleksejs Sazonovs, Saray Shai, Anne Smith, Mike Pitcher. The fact that
+I still understand so poorly remains my fault.
 
 Thanks to the friends and colleagues who asked about epidemic
 modelling and were then sucked into commenting, proof-reading, and

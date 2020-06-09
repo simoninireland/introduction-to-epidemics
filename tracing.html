@@ -74,7 +74,7 @@
     <a href="model.html">Models and modelling</a>
   </li>
   <li class="">
-    <a href="progress.html">The progession of a disease</a>
+    <a href="progress.html">Disease progression</a>
   </li>
   <li class="">
     <a href="continuous.html">Compartmented models and SIR</a>
@@ -101,7 +101,7 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
-    <a href="reading.html">Further reading</a>
+    <a href="reading.html">To find out more</a>
   </li>
   <li class="">
     <a href="zbibliography.html">References</a>
@@ -194,6 +194,10 @@
     
         <li class="nav-item toc-entry toc-h2">
             <a href="#case-reproduction-rate" class="nav-link">Case reproduction rate</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#why-one-needs-to-be-careful-about-r" class="nav-link">Why one needs to be careful about R</a>
         </li>
     
     </ul>
@@ -420,6 +424,11 @@
 <h2>Case reproduction rate<a class="headerlink" href="#case-reproduction-rate" title="Permalink to this headline">¶</a></h2>
 <p>The contact tree is important for other reasons too: it’s the data structure that lets us compute the case reproduction number <span class="math notranslate nohighlight">\(R_t\)</span> on a on-going basis.</p>
 <p>Remember that <span class="math notranslate nohighlight">\(R_t\)</span> is the average number of cases occurring per secondary case. Looking back at the figure above, the number of secondary cases for each individual is given by number of individuals in the next layer down that the original individual is connected to. Dividing the total number of infected people by the number of people who infected them, we arrive at <span class="math notranslate nohighlight">\(R_t\)</span>. It’s shown in the title of each sub-figure above.</p>
+<p>{sec:tracing-r-care)=</p>
+</div>
+<div class="section" id="why-one-needs-to-be-careful-about-r">
+<h2>Why one needs to be careful about R<a class="headerlink" href="#why-one-needs-to-be-careful-about-r" title="Permalink to this headline">¶</a></h2>
+<p>The value of <span class="math notranslate nohighlight">\(R_t\)</span></p>
 </div>
 </div>
 
@@ -453,6 +462,16 @@
     </div>
 
     <script src="_static/js/index.js"></script>
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-42241903-2', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>

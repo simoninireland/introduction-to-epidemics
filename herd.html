@@ -74,7 +74,7 @@
     <a href="model.html">Models and modelling</a>
   </li>
   <li class="">
-    <a href="progress.html">The progession of a disease</a>
+    <a href="progress.html">Disease progression</a>
   </li>
   <li class="">
     <a href="continuous.html">Compartmented models and SIR</a>
@@ -101,7 +101,7 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
-    <a href="reading.html">Further reading</a>
+    <a href="reading.html">To find out more</a>
   </li>
   <li class="">
     <a href="zbibliography.html">References</a>
@@ -232,10 +232,10 @@
 <div class="section" id="sec-herd-herd-immunity">
 <span id="id1"></span><h2>Herd immunity<a class="headerlink" href="#sec-herd-herd-immunity" title="Permalink to this headline">¶</a></h2>
 <p>If immunity is the inability of an individual to contract a disease, then <strong>herd immunity</strong> is the corresponding property for a population that can’t contract an epidemic of the disease. More precisely, in a herd-immune population any outbreak of the disease will tend to die out quickly without infecting a large proportion of the population.</p>
-<p>To understand herd immunity we need to return to the initial notions we had of how an epidemic persists in a population. We saw that <a class="reference internal" href="tracing.html#sec-tracing-contact-trees"><span class="std std-ref">contact trees</span></a> capture the case reproduction number <span class="math notranslate nohighlight">\(R_t\)</span> of an ongoing epidemic. We also <a class="reference internal" href="progress.html#sec-progress-control"><span class="std std-ref">saw</span></a> If  <span class="math notranslate nohighlight">\(R_t \ge 1\)</span> then the epidemic continues, as the next generation of cases is at least the same size as the previous one; if, however, <span class="math notranslate nohighlight">\(R_t\)</span> falls and remains below 1, then the size of the next generation is smaller than the previous one, and if this trend continues then the disease will die out.</p>
-<p>Herd immunity occurs when <span class="math notranslate nohighlight">\(R_t \ll 1\)</span> so that any epidemic never gets started. More importantly, it means that if an epidemic re-starts through the disease being re-introduced, it won’t get re-started.</p>
+<p>To understand herd immunity we need to return to the initial notions we had of how an epidemic persists in a population. We saw that <a class="reference internal" href="tracing.html#sec-tracing-contact-trees"><span class="std std-ref">contact trees</span></a> capture the case reproduction number <span class="math notranslate nohighlight">\(R\)</span> of an ongoing epidemic. We also <a class="reference internal" href="progress.html#sec-progress-r-care"><span class="std std-ref">saw</span></a> If  <span class="math notranslate nohighlight">\(R \ge 1\)</span> then the epidemic continues, as the next generation of cases is at least the same size as the previous one; if, however, <span class="math notranslate nohighlight">\(R\)</span> falls and remains below 1, then the size of the next generation is smaller than the previous one, and if this trend continues then the disease will die out.</p>
+<p>Herd immunity occurs when <span class="math notranslate nohighlight">\(R \ll 1\)</span> so that any epidemic never gets started. More importantly, it means that if an epidemic re-starts through the disease being re-introduced, it won’t get re-started.</p>
 <p>This doesn’t mean that no-one ever gets infected in a herd-immune population: it’s perfectly possible for people to come into contact with infected individuals from outside, and to become infected themselves if they aren’t personally immune. But the disease doesn’t spread from them into the rest of the population.</p>
-<p>How does this come about? When discussing <span class="math notranslate nohighlight">\(R_0\)</span> we <a class="reference internal" href="progress.html#sec-progress-r0"><span class="std std-ref">saw</span></a> that the case reproduction number is affected by three things: the duration of infectiousness, the probability of disease transmission per contact, and the rate of contacts between infected and susceptible individuals. The first two are properties of the disease, while the second is a property of the environment in which it finds itself. A herd-immune population is one in which the number of contacts between susceptible and infected individuals is too low to sustain an outbreak. Essentially herd immunity uses the topology of the contact network to reduce the <em>effective</em> value of <span class="math notranslate nohighlight">\(R_0\)</span> below the critical threshold of 1.</p>
+<p>How does this come about? When discussing <span class="math notranslate nohighlight">\(R\)</span> we <a class="reference internal" href="progress.html#sec-progress-r0"><span class="std std-ref">saw</span></a> that the case reproduction number is affected by three things: the duration of infectiousness, the probability of disease transmission per contact, and the rate of contacts between infected and susceptible individuals. The first two are properties of the disease, while the second is a property of the environment in which it finds itself. A herd-immune population is one in which the number of contacts between susceptible and infected individuals is too low to sustain an outbreak. Essentially herd immunity uses the topology of the contact network to reduce the value of <span class="math notranslate nohighlight">\(R\)</span> below the critical threshold of 1.</p>
 </div>
 <div class="section" id="epidemics-on-a-residual-network">
 <h2>Epidemics on a residual network<a class="headerlink" href="#epidemics-on-a-residual-network" title="Permalink to this headline">¶</a></h2>
@@ -499,6 +499,16 @@ Mean degree of residual network 4.538124452234881
     </div>
 
     <script src="_static/js/index.js"></script>
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-42241903-2', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>

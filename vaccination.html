@@ -33,7 +33,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="Further reading" href="reading.html" />
+    <link rel="next" title="To find out more" href="reading.html" />
     <link rel="prev" title="Herd immunity" href="herd.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -74,7 +74,7 @@
     <a href="model.html">Models and modelling</a>
   </li>
   <li class="">
-    <a href="progress.html">The progession of a disease</a>
+    <a href="progress.html">Disease progression</a>
   </li>
   <li class="">
     <a href="continuous.html">Compartmented models and SIR</a>
@@ -101,7 +101,7 @@
     <a href="">Changing individual susceptibility</a>
   </li>
   <li class="">
-    <a href="reading.html">Further reading</a>
+    <a href="reading.html">To find out more</a>
   </li>
   <li class="">
     <a href="zbibliography.html">References</a>
@@ -228,7 +228,7 @@
 <p>We now turn to countermeasures that we can take to reduce the size of an epidemic.</p>
 <p>There are several ways we can approach this. In this chapter we’ll look at ways in which we can change an individual’s response to potential infection. By making individuals less likely to be infected, we reduce the chances that an encounter will result in secondary infection and therefor reduce the chance of the disease spreading widely. We’ll see that it matters <em>how many</em> individuals’ susceptibility we modifgy, and often <em>which individuals</em>.</p>
 <p>(In a  later chapter we’ll look at an alternative approach which leaves individual susceptibilities alone but changes the topology of encounters at the population level.)</p>
-<p><strong>Vaccination</strong> changes susceptibility at a <strong>biological</strong> level, by changing an individual’s immune response, and in this chapter we’ll talk about the ways in which vaccines affect epidemic spreading in a population. But it’s important to remember that the same effect can be achieved at a <strong>physical</strong> level, with no biological interventions at all, as we’ll <a class="reference internal" href="#sec-vaccination-no-vaccine"><span class="std std-ref">see later</span></a>. From the perspective of epidemic spreading both biological and physical approaches behave in largely the same way.</p>
+<p><strong>Vaccination</strong> changes susceptibility at a <strong>biological</strong> level, by changing an individual’s immune response, and in this chapter we’ll talk about the ways in which vaccines affect epidemic spreading in a population. But it’s important to remember that the same effect can be achieved at a <strong>physical</strong> level, with no vaccine and in fact no biological interventions at all, as we’ll <a class="reference internal" href="#sec-vaccination-no-vaccine"><span class="std std-ref">see later</span></a>. From the perspective of epidemic spreading both biological and physical approaches behave in largely the same way.</p>
 <div class="section" id="vaccines">
 <h2>Vaccines<a class="headerlink" href="#vaccines" title="Permalink to this headline">¶</a></h2>
 <div class="margin sidebar">
@@ -332,7 +332,7 @@
 <p class="sidebar-title"></p>
 <p>We’ve obviously simplified this, as anyone who’s caught a disease for which they’ve been vaccinated will know. Vaccination doesn’t always give full immunity against infection.</p>
 </div>
-<p>What does vaccination look like in the <span class="xref std std-doc">SIR model</span>? A vaccinated individual is one who cannot catch the disease. In model terms it means that an individual who exhibits that characteristics of heving already had the disease, and having been “removed” into the <strong>R</strong> compartment. In fact thisis what’s happening biologically as well: a vaccinated individual has been exposed to a substance that renders them as same <em>as if</em> they’d had the disease, without actually requiring them to <em>have had</em> it. The effect we’re looking for is <a class="reference internal" href="herd.html"><span class="doc">herd immunity</span></a>, where there are insufficient susceptible individuals in a population to let the disease establish itelf. But critically we’re looking for her immunity <em>without</em> having the disease pass through the population first, with all the suffering and (possibly) death that this might entail.</p>
+<p>What does vaccination look like in the <a class="reference internal" href="continuous.html"><span class="doc">SIR model</span></a>? A vaccinated individual is one who cannot catch the disease. In model terms it means that an individual who exhibits that characteristics of heving already had the disease, and having been “removed” into the <strong>R</strong> compartment. In fact thisis what’s happening biologically as well: a vaccinated individual has been exposed to a substance that renders them as same <em>as if</em> they’d had the disease, without actually requiring them to <em>have had</em> it. The effect we’re looking for is <a class="reference internal" href="herd.html"><span class="doc">herd immunity</span></a>, where there are insufficient susceptible individuals in a population to let the disease establish itelf. But critically we’re looking for her immunity <em>without</em> having the disease pass through the population first, with all the suffering and (possibly) death that this might entail.</p>
 <p>We could model vaccination using a new compartment, leading to a model that might be called <strong>SIVR</strong> capturing the vaccinated individuals. But in conditions of total vaccinated immunity the <strong>V</strong> individuals will behave identically to the <strong>R</strong> individuals, so we may as well simply treat them identically too. (If we were wanting to explore partial immunity through vaccination then SIVR lets us have, for example, different values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> depending on whether it’s an <strong>S</strong> or a <strong>V</strong> individual being potentially infected: <strong>V</strong> becomes a halfway-house between <strong>S</strong> (fully susceptible) and <strong>R</strong> (fully removed).</p>
 </div>
 <div class="section" id="vaccinating-the-population-at-random">
@@ -723,7 +723,7 @@
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="herd.html" title="previous page">Herd immunity</a>
-    <a class='right-next' id="next-link" href="reading.html" title="next page">Further reading</a>
+    <a class='right-next' id="next-link" href="reading.html" title="next page">To find out more</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -743,6 +743,16 @@
     </div>
 
     <script src="_static/js/index.js"></script>
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-42241903-2', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>The progession of a disease &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
+    <title>Disease progression &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -74,7 +74,7 @@
     <a href="model.html">Models and modelling</a>
   </li>
   <li class="active">
-    <a href="">The progession of a disease</a>
+    <a href="">Disease progression</a>
   </li>
   <li class="">
     <a href="continuous.html">Compartmented models and SIR</a>
@@ -101,7 +101,7 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
-    <a href="reading.html">Further reading</a>
+    <a href="reading.html">To find out more</a>
   </li>
   <li class="">
     <a href="zbibliography.html">References</a>
@@ -174,7 +174,7 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#disease-progression" class="nav-link">Disease progression</a>
+            <a href="#sec-progress-periods" class="nav-link">Disease progression</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -182,7 +182,7 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#controlling-epidemics" class="nav-link">Controlling epidemics</a>
+            <a href="#why-we-need-to-care-and-be-careful-about-r" class="nav-link">Why we need to care – and be careful – about R</a>
         </li>
     
     </ul>
@@ -196,15 +196,15 @@
         
               <div>
                 
-  <div class="section" id="the-progession-of-a-disease">
-<h1>The progession of a disease<a class="headerlink" href="#the-progession-of-a-disease" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="disease-progression">
+<h1>Disease progression<a class="headerlink" href="#disease-progression" title="Permalink to this headline">¶</a></h1>
 <p>Everyone suffers from a disease at some point. The lucky amongst us
 avoid anything more serious that influenza, measles, or (in my case,
 long ago) whooping cough. But all diseases share some common
 characteristics: characteristics so common, in fact, that their
 mathematical properties are shared by other processes that aren’t
 actually diseases at all, including the spread of computer viruses
-<a class="bibtex reference internal" href="zbibliography.html#kw91" id="id1">[KW91]</a> and the spread of rumours and other information.</p>
+<a class="bibtex reference internal" href="zbibliography.html#kw91" id="id1">[10]</a> and the spread of rumours and other information.</p>
 <p>The diseases in which we are interested are caused by <em>pathogens</em>,
 typically viruses or bacteria: simple living organisms that make their
 homes in humans (or other living organisms) and cause some adverse
@@ -230,8 +230,8 @@ important; we will focus here on the epidemiology, but the pathology
 remains important because factors involved in how a disease
 progresses <em>in</em> individuals may have a profound effect on how it
 spreads <em>between</em> individuals.</p>
-<div class="section" id="disease-progression">
-<h2>Disease progression<a class="headerlink" href="#disease-progression" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sec-progress-periods">
+<span id="id2"></span><h2>Disease progression<a class="headerlink" href="#sec-progress-periods" title="Permalink to this headline">¶</a></h2>
 <p>A person’s infection goes through several periods, starting with their
 <strong>infection</strong>. Once infected, the disease resides <strong>latent</strong> in their
 system, developing its presence but not showing symptoms and not being
@@ -296,11 +296,11 @@ be measured directly in the field.</p>
 denoted <span class="math notranslate nohighlight">\(R_0\)</span>. <span class="math notranslate nohighlight">\(R_0\)</span> represents the total number of secondary
 infections expected for each primary infection in a totally
 susceptible population. The <span class="math notranslate nohighlight">\(0\)</span> in <span class="math notranslate nohighlight">\(R_0\)</span> stands for <span class="math notranslate nohighlight">\(t = 0\)</span>: the basic
-case reproduction number applies at the start of an epidemic. Over
-time, the number of people susceptible to infection will vary as they
-become infected, recover, die, and so forth. We can account for this
-by developing a <strong>net case reproduction number</strong> <span class="math notranslate nohighlight">\(R_t\)</span> by multiplying
-<span class="math notranslate nohighlight">\(R_0\)</span> by the susceptible fraction of the population at time <span class="math notranslate nohighlight">\(t\)</span>.</p>
+case reproduction number applies at the start of an epidemic. Over the
+course of an epidemic the value of <span class="math notranslate nohighlight">\(R\)</span> will change as people become
+immune post-infection, countermeasures take effect, and so forth, and
+give rise to a <strong>net case reproduction number</strong> indicating how the
+disease is reproducing at a given time..</p>
 <p><span class="math notranslate nohighlight">\(R_0\)</span> is affected by three factors:</p>
 <ol class="simple">
 <li><p>The <strong>duration of infectiousness</strong>. All other things being equal, a
@@ -319,62 +319,105 @@ its biology. The third is characteristic of the social conditions in
 which the epidemic takes place: it is this factor that social
 distancing, quarantine and so forth affect, by reducing (ideally to
 zero) the contacts an infected person has with uninfected individuals.</p>
-<p>As with disease periods, <span class="math notranslate nohighlight">\(R_0\)</span> is an average that is affected by
-various factors and is best treated as a mean value with some
-variance: some infected individuals will affect more people, some
-less, but <em>on average</em> they will generate <span class="math notranslate nohighlight">\(R_0\)</span> secondary infections.
-(This use of averaging means that <span class="math notranslate nohighlight">\(R_0\)</span> if often not a whole number,
-despite the number of secondary infections from a particular infected
-person necessarily being so.)</p>
 </div>
-<div class="section" id="controlling-epidemics">
-<span id="sec-progress-control"></span><h2>Controlling epidemics<a class="headerlink" href="#controlling-epidemics" title="Permalink to this headline">¶</a></h2>
-<p>The importance of <span class="math notranslate nohighlight">\(R_0\)</span> is that it indicates whether, and how fast, a
-disease can spread through a susceptible population. If <span class="math notranslate nohighlight">\(R_0 \lt 1\)</span> then
+<div class="section" id="why-we-need-to-care-and-be-careful-about-r">
+<span id="sec-progress-r-care"></span><h2>Why we need to care – and be careful – about <span class="math notranslate nohighlight">\(R\)</span><a class="headerlink" href="#why-we-need-to-care-and-be-careful-about-r" title="Permalink to this headline">¶</a></h2>
+<p>The importance of <span class="math notranslate nohighlight">\(R\)</span> is that it indicates whether, and how fast, a
+disease can spread through a susceptible population. If <span class="math notranslate nohighlight">\(R \lt 1\)</span> then
 we expect fewer than one secondary case per primary. This means that
-each “generation” of the disese will be smaller than the one that
-infected it, and the disease will die out. If <span class="math notranslate nohighlight">\(R_0 = 1\)</span> then the
+each “generation” of the disease will be smaller than the one that
+infected it, and the disease will die out. If <span class="math notranslate nohighlight">\(R = 1\)</span> then the
 disease will perpetuate itself in whatever size of population was
 originally infected. Nature is never so precise as to present us with
-a disease like this, of course. However, <span class="math notranslate nohighlight">\(R_0 = 1\)</span> is the <strong>threshold
-value</strong> at which diseases become epidemics. If <span class="math notranslate nohighlight">\(R_0 &gt; 1\)</span>, the
+a disease like this, of course. However, <span class="math notranslate nohighlight">\(R = 1\)</span> is the <strong>threshold
+value</strong> at which diseases become epidemics. If <span class="math notranslate nohighlight">\(R &gt; 1\)</span>, the
 disease will break-out and infect more and more people exponentially
 quickly.</p>
-<p>Exactly <em>how</em> quickly depends on how large <span class="math notranslate nohighlight">\(R_0\)</span> is. For measles, <span class="math notranslate nohighlight">\(R_0
+<p>Exactly <em>how</em> quickly depends on how large <span class="math notranslate nohighlight">\(R\)</span> is. For measles, <span class="math notranslate nohighlight">\(R
 \ge 15\)</span> – fifteen new infections for each case – which
 explains how measles spread so quickly in unvaccinated
 populations. Different strains of influenza have different ranges of
-<span class="math notranslate nohighlight">\(R_0\)</span>: for the<a class="reference external" href="https://en.wikipedia.org/wiki/1918_flu_pandemic">1918 “Spanish flu”
+<span class="math notranslate nohighlight">\(R\)</span>: for the<a class="reference external" href="https://en.wikipedia.org/wiki/1918_flu_pandemic">1918 “Spanish flu”
 epidemic</a> it has been
-estimated <a class="bibtex reference internal" href="zbibliography.html#vtm07" id="id2">[VTM07]</a> that <span class="math notranslate nohighlight">\(1.2 \le R_0 \le 3.0\)</span> in the community
+estimated <a class="bibtex reference internal" href="zbibliography.html#vtm07" id="id3">[23]</a> that <span class="math notranslate nohighlight">\(1.2 \le R \le 3.0\)</span> in the community
 (although substantially more in confined settings). If this sounds
 benign, remember that this epidemic killed more people than the First
 World War. Perhaps interesting in light of its media coverage, for
-ebola we have <span class="math notranslate nohighlight">\(1.5 \le R_0 \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id3">[Alt14]</a>, roughly the same as
+ebola we have <span class="math notranslate nohighlight">\(1.5 \le R \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id4">[2]</a>, roughly the same as
 a not-too-severe winter flu outbreak.</p>
+<p>This sounds like good news: if we know <span class="math notranslate nohighlight">\(R\)</span>, we can estimate the size
+of the epidemic we’re facing; if we calculate it on an on-going basis
+we can monitor how well any countermeasures we deploy are working, and
+decide when to relax those countermeasures.</p>
+<p>Well, not quite. There are at least four reasons that mean we need to
+be careful not to over-rely on <span class="math notranslate nohighlight">\(R\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>This will generally happen anyway through mutation and selection
-as the disease agent evolves. It’s important to remember that mutation
-is happening throughout an epidemic, meaning that a person infected
-towards the end of an outbreak often gets a disease that is
-<em>different</em> to so that experienced by someone infected earlier, and
-this can sometimes have significant consequences.</p>
+<p>This reason actually drives all the rest, because it acts as an
+amplifier for everything concerning <span class="math notranslate nohighlight">\(R\)</span>.</p>
 </div>
-<p>In order to bring an epidemic under control, then, we need to reduce
-the <strong>effective</strong> value of <span class="math notranslate nohighlight">\(R_0\)</span> over time.  We can quarantine
-infected individuals so that they do not cause further secondary
-infections. This is clearly more effective with Type B diseases than
-with Type A, since the latter will have already become infectious
-before they become symptomatic.</p>
-<p>A more effective approach is to reduce the susceptible fraction of the
-population. The approach is to make the value of <span class="math notranslate nohighlight">\(R_t\)</span> less than one
-(the epidemic threshold) so that the disease dies out naturally. This
-happens naturally in diseases to which individuals have natural or
-acquired immunity, for example by surviving a bout of the disease.</p>
-<p>An even more effective approach is to artificially give people
-immunity: vaccination. A vaccine, where it exists, confers full or
-partial immunity on its recipients, permanently or for some period.</p>
+<p>The first reason is mathematical. <span class="math notranslate nohighlight">\(R\)</span> is the exponent of the equation
+that controls the epidemic’s size. This is important, because it means
+that epidemics behave <strong>non-linearly</strong>. An <span class="math notranslate nohighlight">\(R\)</span> value of 4 is not twice
+as bad as an <span class="math notranslate nohighlight">\(R\)</span> value of 2: the epidemic isn’t twice as big, <strong>it
+doubles twice as many times</strong> in the same period. Small differences in
+the value of <span class="math notranslate nohighlight">\(R\)</span> therefore have huge effects.</p>
+<p>It’s true that <span class="math notranslate nohighlight">\(R = 1\)</span> is the critical value, below which an epidemic
+dies out. But it doesn’t follow from this that an R$ value slightly
+over 1 is “pretty much 1” and so not a worry. That non-linearity means
+that even a small excess in <span class="math notranslate nohighlight">\(R\)</span> can lead to a large outbreak. This has
+implications for epidemic control too: reducing the <span class="math notranslate nohighlight">\(R\)</span> value to just
+below 1 isn’t an indication that everything will then be fine, as a
+small increase may set things off again.</p>
+<p>The second reason concerns estimation. The most effective way of
+estimating <span class="math notranslate nohighlight">\(R\)</span> in the is <a class="reference internal" href="tracing.html"><span class="doc">contract tracing</span></a>, where
+infected individuals’ contacts are located and tested – and can
+then be treated or isolated if found to be infected
+themselves. Careful and widespread “test, trace and isolate”
+strategies can be extremely effective in reducing an epidemic. The
+number of infected contacts individuals have on average lets us
+estimate of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>But by definition test and trace is “counting in the rear view
+mirror”. It tells us how many people <em>were being</em> infected, not how
+many people <em>are</em> being infected. There will be a delay in identifying
+infected individuals, further delay in finding and testing their
+contacts, and so forth. If circumstances are changing, for example
+through pathogen evolution or it infecting different social settings,
+the estimate will be rendered out of date.</p>
+<p>The third reason concerns the consequences of errors. Finding,
+tracing, and counting of infected individuals is invariably
+error-prone. People will be missed; tests are never 100% accurate,
+especially for diseases with long incubation periods where there may
+be low pathogen loads in the early stages; individuals forget whom
+they were in contact with; tracing apps don’t work in all
+circumstances; and so forth. Each of these errors leads to
+under-counting secondary infections and therefore under-estimating
+<span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>Finally we must remember that <span class="math notranslate nohighlight">\(R\)</span> is the <em>average</em> number of secondary
+cases per primary. The use of averaging (and indeed other summary
+statistics) is essential when trying to get the “big picture” of an
+epidemic. But it means that the value of <span class="math notranslate nohighlight">\(R\)</span> reported depends not just
+on the disease but on the population being averaged over.</p>
+<p>To see what this might mean, consider a country consisting of one city
+surrounded by a collection of small villages – London in the
+Middle Ages might be a good example. Suppose the disease breaks out
+ferociously in the city but, because they are separated and take
+precautions, the villages see a much sparser rate of infection. If we
+were to take the net case reproduction rate <em>averaged over the city</em>
+we’d capture all the ferocity of the epidemic’s spread. But if we
+calculated the rate <em>over the whole country</em>, we’d see a far milder
+epidemic. Because the same disease is spreading in different
+circumstances, averaging may be misleading – too mild for the
+city, but too large for the countryside. This makes it possible to
+manipulate the reported <span class="math notranslate nohighlight">\(R\)</span> value accidentally, or deliberately by
+judicious choice of population over which to take the average.</p>
+<p>For all these reasons it’s important not to fixate on <span class="math notranslate nohighlight">\(R\)</span>. The fact
+that it’s a number can sometimes give a false sense of security,
+because numbers suggest certainty and precision – and measuring
+<span class="math notranslate nohighlight">\(R\)</span> in the midst of an on-going epidemic offers neither. A value of
+<span class="math notranslate nohighlight">\(R\)</span> that’s reducing over time is a good sign. But <span class="math notranslate nohighlight">\(R\)</span> falling –
+or <em>seeming</em> to fall – below 1 isn’t enough to prove that
+countermeasures are working and can be relaxed.</p>
 </div>
 </div>
 
@@ -408,6 +451,16 @@ partial immunity on its recipients, permanently or for some period.</p>
     </div>
 
     <script src="_static/js/index.js"></script>
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-42241903-2', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>

@@ -132,7 +132,7 @@ bug, it's a feature.
 ```{margin}
 One way to think about what's happening is that each run of the model
 is sampling the distribution of possible outcomes. You expect to
-seldome see "unlikely" outcomes and mainly see "likely" ones &ndash;
+seldom see "unlikely" outcomes and mainly see "likely" ones &ndash;
 but sometimes you'll see an "unlikely" outcome by chance.
 ```
 

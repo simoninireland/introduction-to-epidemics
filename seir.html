@@ -72,7 +72,7 @@
     <a href="model.html">Models and modelling</a>
   </li>
   <li class="">
-    <a href="progress.html">The progession of a disease</a>
+    <a href="progress.html">Disease progression</a>
   </li>
   <li class="">
     <a href="continuous.html">Compartmented models and SIR</a>
@@ -99,7 +99,7 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
-    <a href="reading.html">Further reading</a>
+    <a href="reading.html">To find out more</a>
   </li>
   <li class="">
     <a href="zbibliography.html">References</a>
@@ -175,9 +175,24 @@
         
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
 
 <nav id="bd-toc-nav">
     <ul class="nav section-nav flex-column">
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#adaptive-countermeasures-and-quarantine" class="nav-link">Adaptive countermeasures and quarantine</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#reducing-infection-through-partial-quarantine" class="nav-link">Reducing infection through partial quarantine</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#quarantining-people-before-they-re-symptomatic" class="nav-link">Quarantining people before they’re symptomatic</a>
+        </li>
     
     </ul>
 </nav>
@@ -213,8 +228,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;sif&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-er.json&#39;</span><span class="p">))</span>
-<span class="k">with</span> <span class="n">lab</span><span class="o">.</span><span class="n">sync_imports</span><span class="p">():</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-er.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">lab</span><span class="o">.</span><span class="n">sync_imports</span><span class="p">():</span>
     <span class="kn">import</span> <span class="nn">time</span>
     <span class="kn">import</span> <span class="nn">networkx</span>
     <span class="kn">import</span> <span class="nn">epyc</span>
@@ -230,7 +251,7 @@ importing networkx on engine(s)
 importing epyc on engine(s)
 importing epydemic on engine(s)
 importing numpy on engine(s)
-6 engines available
+78 engines available
 </pre></div>
 </div>
 </div>
@@ -275,7 +296,9 @@ importing numpy on engine(s)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MonitoredSIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
+
+<span class="k">class</span> <span class="nc">MonitoredSIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
  
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -295,7 +318,9 @@ importing numpy on engine(s)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MonitoredSEIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
+
+<span class="k">class</span> <span class="nc">MonitoredSEIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
  
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -345,20 +370,279 @@ importing numpy on engine(s)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="ne">ModuleNotFoundError</span>Traceback (most recent call last)~/covid-19/venv3/lib64/python3.6/site-packages/ipyparallel/serialize/serialize.py in unpack_apply_message(bufs, g, copy)
-<span class="g g-Whitespace">    </span><span class="mi">196</span>     <span class="n">bufs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">bufs</span><span class="p">)</span> <span class="c1"># allow us to pop</span>
-<span class="g g-Whitespace">    </span><span class="mi">197</span>     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">bufs</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;not enough buffers!&quot;</span>
-<span class="ne">--&gt; </span><span class="mi">198</span>     <span class="n">f</span><span class="p">,</span> <span class="n">bufs</span> <span class="o">=</span> <span class="n">deserialize_object</span><span class="p">(</span><span class="n">bufs</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">199</span>     <span class="n">pinfo</span> <span class="o">=</span> <span class="n">buffer_to_bytes_py2</span><span class="p">(</span><span class="n">bufs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span>     <span class="n">info</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">pinfo</span><span class="p">)</span>
-<span class="nn">~/covid-19/venv3/lib64/python3.6/site-packages/ipyparallel/serialize/serialize.py</span> in <span class="ni">deserialize_object</span><span class="nt">(buffers, g)</span>
-<span class="g g-Whitespace">    </span><span class="mi">143</span>     <span class="n">bufs</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">buffers</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">144</span>     <span class="n">pobj</span> <span class="o">=</span> <span class="n">buffer_to_bytes_py2</span><span class="p">(</span><span class="n">bufs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
-<span class="ne">--&gt; </span><span class="mi">145</span>     <span class="n">canned</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">pobj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">146</span>     <span class="k">if</span> <span class="n">istype</span><span class="p">(</span><span class="n">canned</span><span class="p">,</span> <span class="n">sequence_types</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">canned</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">MAX_ITEMS</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">147</span>         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">canned</span><span class="p">:</span>
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;epydemic.seir_model&#39;
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
 </pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-er.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="c1"># plot the size of the removed population</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Epidemic size vs $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/seir_12_0.svg" src="_images/seir_12_0.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="c1"># plot the size of the removed population</span>
+<span class="n">pInfectAs</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">pInfect</span> <span class="o">&gt;</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="n">pInfect</span> <span class="o">&lt;</span> <span class="mf">0.00003</span> <span class="k">for</span> <span class="n">pInfect</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">]]]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pInfectAs</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">],</span> <span class="n">pInfectAs</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Epidemic size vs $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/seir_13_0.svg" src="_images/seir_13_0.svg" /></div>
+</div>
+<div class="section" id="adaptive-countermeasures-and-quarantine">
+<span id="sec-seir-quarantine"></span><h2>Adaptive countermeasures and quarantine<a class="headerlink" href="#adaptive-countermeasures-and-quarantine" title="Permalink to this headline">¶</a></h2>
+<p>We <a class="reference internal" href="vaccination.html"><span class="doc">earlier</span></a> discussed an approach to epidemic control that involved targeting individual susceptibility, reducing the probability (or possibility) of particular individuals becoming infected. This was enough to fragment the contact network and so affect the bevahiour of the epidemic.</p>
+<p>We’ll now look at a completely different strategy for countermeasures. Instead of affecting individuals while leaving the network intact, we’ll instead leave the individuals as they are by change the network as the epidemic spreads. That is to say, we’ll change the structure of contacts – who’s connected to whom – in response to the spread ofthe disease through the population. This leads to a family of <strong>adaptive</strong> countermeasures, since we take action to change the network in response to the process (disease) flowing through it.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>The term “quarantine” comes from the Italian word for “forty” (<em>quaranta</em>). When Venice suffered an outbreak of the Black Death in the 14th century they established a system whereby ships arriving in port had to moor off remote islands in the lagoon for forty days until they were judged to be disease-free – probably the first example of effective disease control <a class="bibtex reference internal" href="zbibliography.html#stu20" id="id1">[22]</a>.</p>
+</div>
+<p>The simplest and best-known adaptive control measure is <strong>quarantine</strong> whereby we isolate individuals who are (or may be) infected to prevent them infecting others. A <strong>proactive quarantine</strong> isolates incoming individuals for as long as it takes to pass through the expected <a class="reference internal" href="progress.html#sec-progress-periods"><span class="std std-ref">infectious period</span></a> of whatevere disease they might be carrying. A <strong>reactive or adaptive quarantine</strong> waits until a person shows symptoms and then isolates them, which avoids detaining the uninfected but at the risk of allowing infected (and possibly infectious) people to circulate.</p>
+<p>In any event, the goal of quarantine is to reduce the effective <span class="math notranslate nohighlight">\(R\)</span> value of the disease such that any epidemic is contained, ideally failing to take hold or at least being smaller and less intense than would otherwise be the case.</p>
+</div>
+<div class="section" id="reducing-infection-through-partial-quarantine">
+<span id="sec-seir-adaptive-infected"></span><h2>Reducing infection through partial quarantine<a class="headerlink" href="#reducing-infection-through-partial-quarantine" title="Permalink to this headline">¶</a></h2>
+<p>Let’s introduce quarantine into our models.</p>
+<p>How does quarantine manifest itself in SIR? Infection in SIR happoens when the disease passes from an infected individual to a susceptible one. Quarantine is an adaptive strategy – it happens in parallel with infection – so we’ll be introducing a way of changing the network. When the disease passes to a formerly-susceptible person, we’ll changes that person’s connections in some way.</p>
+<p>If this strategy was performed perfectly and immediately it would immediately stamp-out an SIR infection. Every time someone became infected, that person would be immediately and completely isolated, and so would be unable to infect anyone else. The original “seeding” of infected individuals would infect some of their neighbours, but those neighbours would then <em>never affect anyone else</em> (because they’d have no connections through which to pass the disease), and so the disease would immediately come to an end.</p>
+<p>This clearly isn’t very interesting. Nor is it very possible, other than as a theoretical best-case: in practice one would either leave infected people connected for some time before identifying and isolating them; or would only manage to isolate them from a fraction of their susceptible neighbours; or both. For our purposes we’ll focus on the second option. When someone becomes infected, we immediately select some fraction of their susceptible neighbours and remove the connection to the newly-infected person. (Shai and Dobson explored this approach for endemic diseases in a slightly more complicated scenario <a class="bibtex reference internal" href="zbibliography.html#sd13" id="id2">[19]</a>.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-quarantine.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
+
+<span class="k">class</span> <span class="nc">AdaptiveSIR</span><span class="p">(</span><span class="n">MonitoredSIR</span><span class="p">):</span>
+    
+    <span class="n">P_REWIRE</span> <span class="o">=</span> <span class="s1">&#39;pRewire&#39;</span>   <span class="c1">#: Parameter for the probability of rewiring an SE or SI edge.</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        
+        <span class="c1"># store the parameters for later</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">quarantine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span><span class="p">:</span>
+                <span class="c1"># a susceptible neighbour, remove link to us</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">removeEdge</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+                
+                <span class="c1"># rewire to another random susceptible</span>
+                <span class="n">mprime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">locus</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">mprime</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">infect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+        <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">e</span>
+        
+        <span class="c1"># perform a normal infection event</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">infect</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        
+        <span class="c1"># quarantine ourselves</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">kmean</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="c1"># simulation time</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mi">5000</span>
+
+<span class="c1"># disease parameters</span>
+<span class="n">pInfected</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">pInfect</span> <span class="o">=</span> <span class="mf">0.0001</span>
+<span class="n">pRemove</span> <span class="o">=</span> <span class="mf">0.001</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+<span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfected</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>    <span class="c1"># take 50 samples</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">AdaptiveSIR</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">setMaximumTime</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">ERNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">params</span><span class="p">[</span><span class="n">AdaptiveSIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+<span class="n">rc</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">]</span>
+<span class="n">timeseries</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">TIMESERIES</span><span class="p">]</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">OBSERVATIONS</span><span class="p">]</span>
+<span class="n">sss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">]</span>
+<span class="n">iss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">INFECTED</span><span class="p">]</span>
+<span class="n">rss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">sss</span><span class="p">,</span> <span class="s1">&#39;r.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;suceptible&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">iss</span><span class="p">,</span> <span class="s1">&#39;g.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;infected&#39;</span><span class="p">)</span>
+<span class="c1">#ax.plot(ts, rss, &#39;ks&#39;, label=&#39;removed&#39;)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span>    
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SIR on ER ($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">$, no rewiiring)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/seir_23_0.svg" src="_images/seir_23_0.svg" /></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfected</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>    <span class="c1"># take 50 samples</span>
+
+<span class="c1"># adaptation</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="o">.</span><span class="n">readyFraction</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="quarantining-people-before-they-re-symptomatic">
+<span id="sec-seir-adaptive-seir"></span><h2>Quarantining people before they’re symptomatic<a class="headerlink" href="#quarantining-people-before-they-re-symptomatic" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AdaptiveSEIR</span><span class="p">(</span><span class="n">MonitoredSEIR</span><span class="p">):</span>
+    
+    <span class="n">P_DETECT</span> <span class="o">=</span> <span class="s1">&#39;pDetect&#39;</span>   <span class="c1">#: Parameter for the probability of detecting an exposed neighbour of an infected node.</span>
+    <span class="n">P_REWIRE</span> <span class="o">=</span> <span class="s1">&#39;pRewire&#39;</span>   <span class="c1">#: Parameter for the probability of rewiring an SE or SI edge.</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        
+        <span class="c1"># store the parameters for later</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pDetect</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span>
+        
+        <span class="c1"># track susceptibles (for rewiring)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">quarantine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span><span class="p">:</span>
+                <span class="c1"># a susceptible neighbour, remove link to us</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">removeEdge</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+                
+                <span class="c1"># rewire to another random susceptible</span>
+                <span class="n">mprime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">locus</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">mprime</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">symptoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="c1"># perform a normal becoming-symptomatic event</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">symptoms</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        
+        <span class="c1"># examine all neighbours and look for exposed nodes to quarantine</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">EXPOSED</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pDetect</span><span class="p">:</span>
+                <span class="c1"># detected an exposed neighbour</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+                
+        <span class="c1"># quarantine ourselves</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -392,6 +676,16 @@ importing numpy on engine(s)
     </div>
 
     <script src="_static/js/index.js"></script>
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-42241903-2', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>

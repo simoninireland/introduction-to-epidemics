@@ -3943,6 +3943,21 @@
     "\n",
     "Remember that $R_t$ is the average number of cases occurring per secondary case. Looking back at the figure above, the number of secondary cases for each individual is given by number of individuals in the next layer down that the original individual is connected to. Dividing the total number of infected people by the number of people who infected them, we arrive at $R_t$. It's shown in the title of each sub-figure above."
    ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "{sec:tracing-r-care)=\n",
+    "## Why one needs to be careful about R"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "The value of $R_t$ "
+   ]
   }
  ],
  "metadata": {

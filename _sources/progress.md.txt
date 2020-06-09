@@ -1,4 +1,4 @@
-# The progession of a disease
+# Disease progression
 
 Everyone suffers from a disease at some point. The lucky amongst us
 avoid anything more serious that influenza, measles, or (in my case,
@@ -36,6 +36,7 @@ progresses *in* individuals may have a profound effect on how it
 spreads *between* individuals.
 
 
+(sec:progress-periods)=
 ## Disease progression
 
 A person's infection goes through several periods, starting with their
@@ -111,11 +112,11 @@ The most important number is the **basic case reproduction number**,
 denoted $R_0$. $R_0$ represents the total number of secondary
 infections expected for each primary infection in a totally
 susceptible population. The $0$ in $R_0$ stands for $t = 0$: the basic
-case reproduction number applies at the start of an epidemic. Over
-time, the number of people susceptible to infection will vary as they
-become infected, recover, die, and so forth. We can account for this
-by developing a **net case reproduction number** $R_t$ by multiplying
-$R_0$ by the susceptible fraction of the population at time $t$.
+case reproduction number applies at the start of an epidemic. Over the
+course of an epidemic the value of $R$ will change as people become
+immune post-infection, countermeasures take effect, and so forth, and
+give rise to a **net case reproduction number** indicating how the
+disease is reproducing at a given time..
 
 $R_0$ is affected by three factors:
 
@@ -136,65 +137,116 @@ which the epidemic takes place: it is this factor that social
 distancing, quarantine and so forth affect, by reducing (ideally to
 zero) the contacts an infected person has with uninfected individuals.
 
-As with disease periods, $R_0$ is an average that is affected by
-various factors and is best treated as a mean value with some
-variance: some infected individuals will affect more people, some
-less, but *on average* they will generate $R_0$ secondary infections.
-(This use of averaging means that $R_0$ if often not a whole number,
-despite the number of secondary infections from a particular infected
-person necessarily being so.)
 
+(sec:progress-r-care)=
+## Why we need to care &ndash; and be careful &ndash; about $R$
 
-(sec:progress-control)=
-## Controlling epidemics
-
-The importance of $R_0$ is that it indicates whether, and how fast, a
-disease can spread through a susceptible population. If $R_0 \lt 1$ then
+The importance of $R$ is that it indicates whether, and how fast, a
+disease can spread through a susceptible population. If $R \lt 1$ then
 we expect fewer than one secondary case per primary. This means that
-each "generation" of the disese will be smaller than the one that
-infected it, and the disease will die out. If $R_0 = 1$ then the
+each "generation" of the disease will be smaller than the one that
+infected it, and the disease will die out. If $R = 1$ then the
 disease will perpetuate itself in whatever size of population was
 originally infected. Nature is never so precise as to present us with
-a disease like this, of course. However, $R_0 = 1$ is the **threshold
-value** at which diseases become epidemics. If $R_0 > 1$, the
+a disease like this, of course. However, $R = 1$ is the **threshold
+value** at which diseases become epidemics. If $R > 1$, the
 disease will break-out and infect more and more people exponentially
 quickly.
 
-Exactly *how* quickly depends on how large $R_0$ is. For measles, $R_0
+Exactly *how* quickly depends on how large $R$ is. For measles, $R
 \ge 15$ &ndash; fifteen new infections for each case &ndash; which
 explains how measles spread so quickly in unvaccinated
 populations. Different strains of influenza have different ranges of
-$R_0$: for the[1918 "Spanish flu"
+$R$: for the[1918 "Spanish flu"
 epidemic](https://en.wikipedia.org/wiki/1918_flu_pandemic) it has been
-estimated {cite}`VTM07` that $1.2 \le R_0 \le 3.0$ in the community
+estimated {cite}`VTM07` that $1.2 \le R \le 3.0$ in the community
 (although substantially more in confined settings). If this sounds
 benign, remember that this epidemic killed more people than the First
 World War. Perhaps interesting in light of its media coverage, for
-ebola we have $1.5 \le R_0 \le 2.7$ {cite}`Alt14`, roughly the same as
+ebola we have $1.5 \le R \le 2.7$ {cite}`Alt14`, roughly the same as
 a not-too-severe winter flu outbreak.
 
+This sounds like good news: if we know $R$, we can estimate the size
+of the epidemic we're facing; if we calculate it on an on-going basis
+we can monitor how well any countermeasures we deploy are working, and
+decide when to relax those countermeasures.
+
+Well, not quite. There are at least four reasons that mean we need to
+be careful not to over-rely on $R$.
+
 ```{margin}
-This will generally happen anyway through mutation and selection
-as the disease agent evolves. It's important to remember that mutation
-is happening throughout an epidemic, meaning that a person infected
-towards the end of an outbreak often gets a disease that is
-*different* to so that experienced by someone infected earlier, and
-this can sometimes have significant consequences. 
+
+This reason actually drives all the rest, because it acts as an
+amplifier for everything concerning $R$.
 ```
 
-In order to bring an epidemic under control, then, we need to reduce
-the **effective** value of $R_0$ over time.  We can quarantine
-infected individuals so that they do not cause further secondary
-infections. This is clearly more effective with Type B diseases than
-with Type A, since the latter will have already become infectious
-before they become symptomatic.
+The first reason is mathematical. $R$ is the exponent of the equation
+that controls the epidemic's size. This is important, because it means
+that epidemics behave **non-linearly**. An $R$ value of 4 is not twice
+as bad as an $R$ value of 2: the epidemic isn't twice as big, **it
+doubles twice as many times** in the same period. Small differences in
+the value of $R$ therefore have huge effects.
 
-A more effective approach is to reduce the susceptible fraction of the
-population. The approach is to make the value of $R_t$ less than one
-(the epidemic threshold) so that the disease dies out naturally. This
-happens naturally in diseases to which individuals have natural or
-acquired immunity, for example by surviving a bout of the disease.
+It's true that $R = 1$ is the critical value, below which an epidemic
+dies out. But it doesn't follow from this that an R$ value slightly
+over 1 is "pretty much 1" and so not a worry. That non-linearity means
+that even a small excess in $R$ can lead to a large outbreak. This has
+implications for epidemic control too: reducing the $R$ value to just
+below 1 isn't an indication that everything will then be fine, as a
+small increase may set things off again.
 
-An even more effective approach is to artificially give people
-immunity: vaccination. A vaccine, where it exists, confers full or
-partial immunity on its recipients, permanently or for some period.
+The second reason concerns estimation. The most effective way of
+estimating $R$ in the is {doc}`contract tracing <tracing>`, where
+infected individuals' contacts are located and tested &ndash; and can
+then be treated or isolated if found to be infected
+themselves. Careful and widespread "test, trace and isolate"
+strategies can be extremely effective in reducing an epidemic. The
+number of infected contacts individuals have on average lets us
+estimate of $R$.
+
+But by definition test and trace is "counting in the rear view
+mirror". It tells us how many people *were being* infected, not how
+many people *are* being infected. There will be a delay in identifying
+infected individuals, further delay in finding and testing their
+contacts, and so forth. If circumstances are changing, for example
+through pathogen evolution or it infecting different social settings,
+the estimate will be rendered out of date.
+
+The third reason concerns the consequences of errors. Finding,
+tracing, and counting of infected individuals is invariably
+error-prone. People will be missed; tests are never 100% accurate,
+especially for diseases with long incubation periods where there may
+be low pathogen loads in the early stages; individuals forget whom
+they were in contact with; tracing apps don't work in all
+circumstances; and so forth. Each of these errors leads to
+under-counting secondary infections and therefore under-estimating
+$R$.
+
+Finally we must remember that $R$ is the *average* number of secondary
+cases per primary. The use of averaging (and indeed other summary
+statistics) is essential when trying to get the "big picture" of an
+epidemic. But it means that the value of $R$ reported depends not just
+on the disease but on the population being averaged over.
+
+To see what this might mean, consider a country consisting of one city
+surrounded by a collection of small villages &ndash; London in the
+Middle Ages might be a good example. Suppose the disease breaks out
+ferociously in the city but, because they are separated and take
+precautions, the villages see a much sparser rate of infection. If we
+were to take the net case reproduction rate *averaged over the city*
+we'd capture all the ferocity of the epidemic's spread. But if we
+calculated the rate *over the whole country*, we'd see a far milder
+epidemic. Because the same disease is spreading in different
+circumstances, averaging may be misleading &ndash; too mild for the
+city, but too large for the countryside. This makes it possible to
+manipulate the reported $R$ value accidentally, or deliberately by
+judicious choice of population over which to take the average. 
+
+For all these reasons it's important not to fixate on $R$. The fact
+that it's a number can sometimes give a false sense of security,
+because numbers suggest certainty and precision &ndash; and measuring
+$R$ in the midst of an on-going epidemic offers neither. A value of
+$R$ that's reducing over time is a good sign. But $R$ falling &ndash;
+or *seeming* to fall &ndash; below 1 isn't enough to prove that
+countermeasures are working and can be relaxed.
+

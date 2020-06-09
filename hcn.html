@@ -74,7 +74,7 @@
     <a href="model.html">Models and modelling</a>
   </li>
   <li class="">
-    <a href="progress.html">The progession of a disease</a>
+    <a href="progress.html">Disease progression</a>
   </li>
   <li class="">
     <a href="continuous.html">Compartmented models and SIR</a>
@@ -101,7 +101,7 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
-    <a href="reading.html">Further reading</a>
+    <a href="reading.html">To find out more</a>
   </li>
   <li class="">
     <a href="zbibliography.html">References</a>
@@ -224,10 +224,10 @@
 <p>While the endpoint is not yet know, we can still make progress and follow the scientific method by making use of (what we claim is) a better model than the simple ER network, and explore what effects it has.</p>
 <div class="section" id="social-structures">
 <h2>Social structures<a class="headerlink" href="#social-structures" title="Permalink to this headline">¶</a></h2>
-<p>A human contact network has to model the structures we actually find in human social structures. These structures have been studied extensively <a class="bibtex reference internal" href="zbibliography.html#ws98" id="id1">[WS98]</a> <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id2">[Wat99]</a>. They exhibit huge variation – far more than we find in, for example the structure of networks in natural physical and biological systems. This is perhaps due to the diversity of cultural factors that drive social structures, or perhaps because a lot of such networks have been designed for specific purposes rather than simply evolving at random.</p>
-<p>One common factor is that the degree distribution of a contact network is not normal (in the mathematical sense) like that of an ER network. Instead of the number of contacts clustering around a mean, we tend to observe a small number of “hub” nodes who are very highly connected – far more connected than is possible in an ER network. These people are sometimes referred to as “hubs” <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id3">[Wat99]</a>. In disease modelling, “super-spreaders” might be a better term: individuals whjo, if they are infected, can potentially infect a huge number of others. This has implications for countermeasures and for vaccination, as we’ll see later.</p>
+<p>A human contact network has to model the structures we actually find in human social structures. These structures have been studied extensively <a class="bibtex reference internal" href="zbibliography.html#ws98" id="id1">[25]</a> <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id2">[24]</a>. They exhibit huge variation – far more than we find in, for example the structure of networks in natural physical and biological systems. This is perhaps due to the diversity of cultural factors that drive social structures, or perhaps because a lot of such networks have been designed for specific purposes rather than simply evolving at random.</p>
+<p>One common factor is that the degree distribution of a contact network is not normal (in the mathematical sense) like that of an ER network. Instead of the number of contacts clustering around a mean, we tend to observe a small number of “hub” nodes who are very highly connected – far more connected than is possible in an ER network. These people are sometimes referred to as “hubs” <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id3">[24]</a>. In disease modelling, “super-spreaders” might be a better term: individuals whjo, if they are infected, can potentially infect a huge number of others. This has implications for countermeasures and for vaccination, as we’ll see later.</p>
 <p>Contact networks often also exagerate factors that are present in the basic mathematics. Pick a node in the network at random, and look at its neighbours: what would you expect <em>their</em> degrees to be? It turns out that the degrees of the neighbours of a node chosen at random tend to be greater than that of the node itself. This is because there are more opportunities to connect to a node that has high degree than to one with low degree. In a social setting this means that your friends are typically more popular than you are: they on average have more friends, on average. This is true of any node chosen at random – and so, paradoxically, while your friends are on average more popular than you are, <em>their</em> friends are also on average more popular than <em>them</em>.</p>
-<p>The nature of human relationships then emphasises this phenomenon. One thing that’s obvious about friendship networks is that they tend not to be random. If you have two friends, they are likely to be friends of each other – although not necessarily, as people oftenm have disjoint sub-sets of friends. Mathematically this manifests itself as <strong>clusters</strong> in the network that are more highly connected that would be expected in a randomly-connected network: in fact it’s breathtakingly unlikely for such structures to appear in a randomly-constructed network. Handling this clustering is mathematically very challenging, and forms one of the frontiers of current research <a class="bibtex reference internal" href="zbibliography.html#mmsd20" id="id4">[MMSD20]</a>.</p>
+<p>The nature of human relationships then emphasises this phenomenon. One thing that’s obvious about friendship networks is that they tend not to be random. If you have two friends, they are likely to be friends of each other – although not necessarily, as people oftenm have disjoint sub-sets of friends. Mathematically this manifests itself as <strong>clusters</strong> in the network that are more highly connected that would be expected in a randomly-connected network: in fact it’s breathtakingly unlikely for such structures to appear in a randomly-constructed network. Handling this clustering is mathematically very challenging, and forms one of the frontiers of current research <a class="bibtex reference internal" href="zbibliography.html#mmsd20" id="id4">[12]</a>.</p>
 </div>
 <div class="section" id="powerlaw-networks">
 <span id="sec-hcn-powerlaw"></span><h2>Powerlaw networks<a class="headerlink" href="#powerlaw-networks" title="Permalink to this headline">¶</a></h2>
@@ -236,17 +236,17 @@
 <p class="sidebar-title"></p>
 <p>Powerlaw networks are also called <strong>BA networks</strong> after their discoverers, and <strong>scale-free</strong> networks because their large-scale and small-scale structures look the same.</p>
 </div>
-<p>What degree distributions do these networks have? They often follow a power law, where the probability of a node having a particular degree. <span class="math notranslate nohighlight">\(p_k \propto k^{-\alpha}\)</span> for some power <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>. These <strong>powerlaw</strong> networks were first studied by Albert and Barabási <a class="bibtex reference internal" href="zbibliography.html#ab02" id="id5">[ABarabasi02]</a>, and describe the structures of networks in a bewildering range of applications: most famously, they describe both the structure of the underlying engineering of the internet and numbers of links to web pages.</p>
+<p>What degree distributions do these networks have? They often follow a power law, where the probability of a node having a particular degree. <span class="math notranslate nohighlight">\(p_k \propto k^{-\alpha}\)</span> for some power <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>. These <strong>powerlaw</strong> networks were first studied by Albert and Barabási <a class="bibtex reference internal" href="zbibliography.html#ab02" id="id5">[1]</a>, and describe the structures of networks in a bewildering range of applications: most famously, they describe both the structure of the underlying engineering of the internet and numbers of links to web pages.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>In the literature the exponent of the distributiuon is usually denoted <span class="math notranslate nohighlight">\(\alpha\)</span>, whule the cutoff is denoted <span class="math notranslate nohighlight">\(\kappa\)</span>.</p>
 </div>
-<p>Power-law networks are not <em>quite</em> right for contact networks, though, because they can create nodes with really, <em>really</em> high degree: too high to appear in human situations. A variation on the idea was however studied by Newman, Watts, and Strogatz <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id6">[NWS02]</a>. In these networks the power-law degree is “cut off” before it can get too large, essentially setting a ceiling on the number of contacts an individual can have. Unsurprisingly, these networks are known as <strong>powerlaw with cutoff</strong> networks.</p>
+<p>Power-law networks are not <em>quite</em> right for contact networks, though, because they can create nodes with really, <em>really</em> high degree: too high to appear in human situations. A variation on the idea was however studied by Newman, Watts, and Strogatz <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id6">[15]</a>. In these networks the power-law degree is “cut off” before it can get too large, essentially setting a ceiling on the number of contacts an individual can have. Unsurprisingly, these networks are known as <strong>powerlaw with cutoff</strong> networks.</p>
 </div>
 <div class="section" id="building-a-contact-network">
 <span id="sec-hcn-building"></span><h2>Building a contact network<a class="headerlink" href="#building-a-contact-network" title="Permalink to this headline">¶</a></h2>
 <p>Building a contact network means constructing a network where the nodes have the right degree distribution. In other words, the nodes in the network having degree <span class="math notranslate nohighlight">\(%k\)</span> appear in the correct fraction as defined by the degree distribution.</p>
-<p>When we <a class="reference internal" href="er.html#sec-er-building"><span class="std std-ref">constructed an ER network</span></a> we described an algorithm that, when followed, produced a network with the desired distribution. We need a different algorithm to handle different topologies. It turns out that there is a very general algorithm, called the <strong>configuration model</strong>, that can construct a random network with <em>any</em> degree distribution simply from a function that defines that distribution <a class="bibtex reference internal" href="zbibliography.html#mr95" id="id7">[MR95]</a>.</p>
+<p>When we <a class="reference internal" href="er.html#sec-er-building"><span class="std std-ref">constructed an ER network</span></a> we described an algorithm that, when followed, produced a network with the desired distribution. We need a different algorithm to handle different topologies. It turns out that there is a very general algorithm, called the <strong>configuration model</strong>, that can construct a random network with <em>any</em> degree distribution simply from a function that defines that distribution <a class="bibtex reference internal" href="zbibliography.html#mr95" id="id7">[13]</a>.</p>
 <p>To build a network of size <span class="math notranslate nohighlight">\(N\)</span> the configuration model takes a list of <span class="math notranslate nohighlight">\(N\)</span> numbers, each describing the degree of a node. It then creates nodes with these degrees and wires them together randomly. If we can therefore create the degree sequence wa want from a degree distribution, we can use the configuration model to build a network with nodes of these degrees.</p>
 <p>We define a function <code class="docutils literal notranslate"><span class="pre">p</span></code> that, given a degree, returns the probability <span class="math notranslate nohighlight">\(p_k\)</span> of a node of that degree appearing in the network. We can then define another function to which we provide this function along with the number of nodes we want, and which creates the random network. It repeatedly picks a random degree and then picks a random number betwen 0 and 1. is this second number is less than the probability of a node with that degree occurring, it adds the degree to the sequence; otrherwise it repeats the process for another degree. This continues until we have <span class="math notranslate nohighlight">\(N\)</span> node degrees.</p>
 <div class="cell docutils container">
@@ -524,7 +524,7 @@
 </div>
 <div class="section" id="the-preponderance-of-epidemics">
 <span id="sec-hcn-always-percolate"></span><h2>The preponderance of epidemics<a class="headerlink" href="#the-preponderance-of-epidemics" title="Permalink to this headline">¶</a></h2>
-<p>If we were to explore this phenomenon systematically, we’d discover that it’s the value of the exponent and cutoff that control the size of the disease outbreak <em>not</em> the infectiousness of the disease. In fact there are two possible regimes for these networks, one in which epidemics <em>always</em> affect a large fraction of the population, and one in which they <em>never</em> take off <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id8">[NWS02]</a>.</p>
+<p>If we were to explore this phenomenon systematically, we’d discover that it’s the value of the exponent and cutoff that control the size of the disease outbreak <em>not</em> the infectiousness of the disease. In fact there are two possible regimes for these networks, one in which epidemics <em>always</em> affect a large fraction of the population, and one in which they <em>never</em> take off <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id8">[15]</a>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>The network science community captures this insight with the catchphrase “powerlaw networks always percolate”.</p>
@@ -565,6 +565,16 @@
     </div>
 
     <script src="_static/js/index.js"></script>
+    
+    <!-- Google Analytics -->
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-42241903-2', 'auto');
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+    <!-- End Google Analytics -->
     
   </body>
 </html>

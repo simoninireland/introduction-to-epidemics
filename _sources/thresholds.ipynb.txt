@@ -231,6 +231,7 @@
    "cell_type": "code",
    "execution_count": 3,
    "metadata": {
+    "scrolled": false,
     "tags": [
      "hide-input"
     ]
