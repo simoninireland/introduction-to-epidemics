@@ -47,12 +47,15 @@ asked of *any* disease, and answering them might tell us about how
 
 On the other hand, we might be interested in a specific disease, or
 even in a specific outbreak. How will *this* disease spread in a
-population? How about in another country to the one it's currently
-in? How will a *specific* countermeasure affect the spread? When will
-it be safe for the majority of people to return to work? These are all
+population? How about in another country to the one it's currently in?
+How will a *specific* countermeasure affect the spread? When will it
+be safe for the majority of people to return to work? These are all
 very concrete questions that depend on the exact details of the
 situation about which they're asked, and answering them may be
-massively useful in managing this situation.
+massively useful in managing this situation. (Taylor provides an
+accessible discussion of uses and interpretations of the well-known
+Imperial College model of covid-19's impact on UK NHS bed availability
+during the 2020 outbreak {cite}`Tay20`.)
 
 ```{margin}
 There's a saying among doctors who deal with outbreaks on the
@@ -172,7 +175,6 @@ the narrow sense of seeing whether the model produces the same results
 given the same inputs *and* the same "random" numbers, but it doesn't
 help in the wider sense of capturing the behaviour of a system with
 *inherent* randomness.
-
 
 
 ## Managing our expectations
