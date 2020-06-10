@@ -21,9 +21,13 @@ surfaces. Or it might be communicable only by **direct physical
 contact**, skin to skin, through sex, or a blood transfusion. It might
 be **foodborne**, transmitted through contaminated food that infects
 several people from a common source. It might be **vectored** through
-an animal, as is the case for malaria. And finally there is a class of
-**non-communicable** diseases such as cancer or heart disease, some of
-which are **hereditary**: not caused directly by pathogens but perhaps
+an animal, as is the case for malaria &ndash; and even disease that
+don't *require* a vector may still incubate in animal hosts ans well
+as humans (this is suspected in the case of the [1918 "Spanish flu"
+pandemic](https://en.wikipedia.org/wiki/1918_flu_pandemic)
+{cite}`OSJ02`). And finally there is a class of **non-communicable**
+diseases such as cancer or heart disease, some of which are
+**hereditary**: not caused directly by pathogens but perhaps
 influenced by their presence.
 
 Each different kind of disease will have its own characteristic
@@ -36,6 +40,7 @@ progresses *in* individuals may have a profound effect on how it
 spreads *between* individuals.
 
 
+(sec:progress-periods)=
 ## Disease progression
 
 A person's infection goes through several periods, starting with their
@@ -156,8 +161,7 @@ Exactly *how* quickly depends on how large $R$ is. For measles, $R
 \ge 15$ &ndash; fifteen new infections for each case &ndash; which
 explains how measles spread so quickly in unvaccinated
 populations. Different strains of influenza have different ranges of
-$R$: for the[1918 "Spanish flu"
-epidemic](https://en.wikipedia.org/wiki/1918_flu_pandemic) it has been
+$R$: for the 1918 "Spanish flu" it has been
 estimated {cite}`VTM07` that $1.2 \le R \le 3.0$ in the community
 (although substantially more in confined settings). If this sounds
 benign, remember that this epidemic killed more people than the First
@@ -187,9 +191,9 @@ doubles twice as many times** in the same period. Small differences in
 the value of $R$ therefore have huge effects.
 
 It's true that $R = 1$ is the critical value, below which an epidemic
-dies out. But it doesn't follow from this that an R$ value slightly
-over 1 is "pretty much 1" and so not a worry. That non-linearity means
-that even a small excess in $R$ can lead to a large outbreak. This has
+dies out. But it doesn't follow from this that an $R$ value slightly
+over 1 is "pretty much 1" and so not a worry. **That non-linearity means
+that even a small excess in $R$ can lead to a large outbreak**. This has
 implications for epidemic control too: reducing the $R$ value to just
 below 1 isn't an indication that everything will then be fine, as a
 small increase may set things off again.
@@ -203,17 +207,17 @@ strategies can be extremely effective in reducing an epidemic. The
 number of infected contacts individuals have on average lets us
 estimate of $R$.
 
-But by definition test and trace is "counting in the rear view
-mirror". It tells us how many people *were being* infected, not how
-many people *are* being infected. There will be a delay in identifying
+But by definition **test and trace is "counting in the rear view
+mirror"**. It tells us how many people *were being* infected, not how
+many people *are being* infected. There will be a delay in identifying
 infected individuals, further delay in finding and testing their
 contacts, and so forth. If circumstances are changing, for example
 through pathogen evolution or it infecting different social settings,
 the estimate will be rendered out of date.
 
-The third reason concerns the consequences of errors. Finding,
+The third reason concerns the consequences of errors. **Finding,
 tracing, and counting of infected individuals is invariably
-error-prone. People will be missed; tests are never 100% accurate,
+error-prone**. People will be missed; tests are never 100% accurate,
 especially for diseases with long incubation periods where there may
 be low pathogen loads in the early stages; individuals forget whom
 they were in contact with; tracing apps don't work in all
@@ -237,9 +241,10 @@ we'd capture all the ferocity of the epidemic's spread. But if we
 calculated the rate *over the whole country*, we'd see a far milder
 epidemic. Because the same disease is spreading in different
 circumstances, averaging may be misleading &ndash; too mild for the
-city, but too large for the countryside. This makes it possible to
-manipulate the reported $R$ value accidentally, or deliberately by
-judicious choice of population over which to take the average. 
+city, but too large for the countryside. **When interpreting an
+average, you always need to know what population has been averaged
+over**. It is possible to manipulate the reported $R$ value
+accidentally, or deliberately by judicious choice of population.
 
 For all these reasons it's important not to fixate on $R$. The fact
 that it's a number can sometimes give a false sense of security,
