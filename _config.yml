@@ -6,17 +6,16 @@ copyright: "2020"
 
 repository:
   url: https://github.com/simoninireland/introduction-to-epidemics
-  path_to_book: ""
-  branch: "master"
 
-google_analytics:
-  mytrackingcode: UA-42241903-2
-  
 launch_buttons:
   notebook_interface: "classic"
   
 execute:
   execute_notebooks: "off"
+
+html:
+  use_repository_button: true
+  google_analytics_id: UA-42241903-2
   
 latex:
   latex_documents:
