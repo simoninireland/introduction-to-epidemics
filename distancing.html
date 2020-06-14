@@ -195,6 +195,14 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
+            <a href="#making-some-choices" class="nav-link">Making some choices</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#disease-and-social-distancing" class="nav-link">Disease and social distancing</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
             <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
         </li>
     
@@ -266,12 +274,12 @@
     <span class="n">cid</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="n">clusters</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
-        <span class="c1"># build the graph</span>
+        <span class="c1"># build the cluster&#39;s graph with a random size</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">clusterSizeDistribution</span><span class="p">()</span>
         <span class="n">K_s</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">complete_graph</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
         
-        <span class="c1"># relabel the graph so all nodes in the social distance</span>
-        <span class="c1"># graph have unique integer labels</span>
+        <span class="c1"># relabel the cluster graph so all nodes in the final</span>
+        <span class="c1"># social distence graph have unique integer labels</span>
         <span class="n">networkx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">K_s</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">l</span><span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">l</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         
         <span class="c1"># add to the graph and list of clusters</span>
@@ -283,7 +291,8 @@
         <span class="n">n</span> <span class="o">+=</span> <span class="n">s</span>
         <span class="n">cid</span> <span class="o">+=</span> <span class="mi">1</span>
         
-    <span class="c1"># decide on how many contact nodes per cluster</span>
+    <span class="c1"># draw the number of contact nodes per cluster from</span>
+    <span class="c1"># from the distribution</span>
     <span class="n">contacts</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">order</span><span class="p">()</span>
@@ -327,7 +336,8 @@
             <span class="c1"># no swaps, we&#39;re finished</span>
             <span class="k">break</span>
 
-    <span class="c1"># connect the nodes by pulling pairs </span>
+    <span class="c1"># connect the nodes by pulling pairs of stubs and</span>
+    <span class="c1"># creating an edge between them</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">stubs</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
         <span class="c1"># label inter-bubble edges as cluster 0 of size 0</span>
         <span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">stubs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">stubs</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">cluster</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cluster_size</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -338,7 +348,18 @@
 </div>
 </div>
 </div>
-<p>This function takes four parameters – the size of network and three probability-distribution functions &amp;ndfash; and returns a network and a list of the bubble sizes. Within the network it creates the social bubbles and labels them uniquely, and then connects the bubbles together randomly.</p>
+<p>This function takes four parameters – the size of network and three probability-distribution functions – and returns a network and a list of the bubble sizes. Within the network it creates the social bubbles and labels them uniquely, and then connects the bubbles together randomly.</p>
+</div>
+<div class="section" id="making-some-choices">
+<h2>Making some choices<a class="headerlink" href="#making-some-choices" title="Permalink to this headline">¶</a></h2>
+<p>We can’t get away from making choices about the degrees of freedom indefinitely, though – and in fact that time has arrived.</p>
+<p>Since we’re interested in large-scale phenomena, let’s make some simple choices:</p>
+<ul class="simple">
+<li><p>Families whose sizes are normally-distributed integers with a mean of 4.5 and a standard deviation of 2</p></li>
+<li><p>A normal distribution of contacts in each family</p></li>
+<li><p>Exponentially-distributed links betyween connections, to allow for very connected individuals</p></li>
+</ul>
+<p>Since it makes no sense to allow entirely isolated families, those with no size, and “connected” individuals with no contacts, we cut off all the distributions with a minimum of 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">averageFamily</span><span class="p">():</span>
@@ -352,20 +373,21 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coupleOfContacts</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">s</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">s</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">s</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))),</span> <span class="mi">1</span><span class="p">)</span>    
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">normalInterBubble</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">expInterBubble</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">numpy</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">))),</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>These three functions, coupled with the network size, are enough to build our network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
@@ -375,11 +397,27 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span> <span class="o">=</span> <span class="n">social_distance_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">averageFamily</span><span class="p">,</span> <span class="n">coupleOfContacts</span><span class="p">,</span> <span class="n">normalInterBubble</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span> <span class="o">=</span> <span class="n">social_distance_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">averageFamily</span><span class="p">,</span> <span class="n">coupleOfContacts</span><span class="p">,</span> <span class="n">expInterBubble</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>We can check the various elements of this network. For example, we can check what range of family “bubble” sizes we have, and how connected the various contact individuals are.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean family size of </span><span class="si">{s:.2f}</span><span class="s1"> (range </span><span class="si">{minf}</span><span class="s1">-</span><span class="si">{maxf}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">clusters</span><span class="p">),</span> <span class="n">minf</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">clusters</span><span class="p">),</span> <span class="n">maxf</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">clusters</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Most connected individual has </span><span class="si">{k}</span><span class="s1"> contacts&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean family size of 4.12 (range 1-9)
+Most connected individual has 69 contacts
+</pre></div>
+</div>
+</div>
+</div>
+<p>We could also draw the network to inspect it, colouring the nodes with the size of cluster they belong to – although that turns out not to be especially revealing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_social_distance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cluster_size&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -417,27 +455,18 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/distancing_14_0.svg" src="_images/distancing_14_0.svg" /></div>
+<img alt="_images/distancing_20_0.svg" src="_images/distancing_20_0.svg" /></div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean cluster size </span><span class="si">{s:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">clusters</span><span class="p">)))</span>
-</pre></div>
+<p>This isn’t a useless plot, once we know that more highly-connected clusters sit in the centre with less-connected clusters pushed to the outside. We can see these less-connected clusters, and in particular see that they have a range of colours, indicating that they’re of different sizes – and therefore giving confidence that the algorithm hasn’t (for example) only made large clusters highly connected.</p>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean cluster size 3.98
-</pre></div>
-</div>
-</div>
-</div>
+<div class="section" id="disease-and-social-distancing">
+<h2>Disease and social distancing<a class="headerlink" href="#disease-and-social-distancing" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="questions-for-discussion">
 <h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>The case of Typhoid Mary raises some troubling questions. Is it right to loack someone up when they’re done nothing personally wrong, to protect the community?</p></li>
-<li><p>Social distancing doesn’t have to be uniform to everyone. Some people are in more need of protection (“shielding”) than others. How could we introduce this into our model?</p></li>
-<li></li>
+<li><p>The case of Typhoid Mary raises some troubling questions. Is it right to lock someone up when they’re done nothing personally wrong, to protect the community? What alternatives were there, before treatments like antibiotics were available? What might we do today?</p></li>
+<li><p>Social distancing doesn’t have to be uniform for everyone. Some people are in more need of protection (“shielding”) than others. How could we introduce this into our model?</p></li>
 </ul>
 </div>
 </div>
