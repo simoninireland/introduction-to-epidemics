@@ -1,8 +1,6 @@
-To find out more
-================
+# To find out more
 
-To learn more about historical epidemics
-----------------------------------------
+## To learn more about historical epidemics
 
 The 1918 or "Spanish" flu is very much in the news at close to its
 centenary. Spinney's treatment is definitive {cite}`Spi18`.
@@ -17,8 +15,7 @@ village {cite}`Hat09`; while Sloane deals with a capital city
 still waiting to be written.
 
 
-To learn about epidemiology in practice
----------------------------------------
+## To learn about epidemiology in practice
 
 The European Centre for Disease Prevention and Control's field
 epidemiology manual {cite}`ECDC` is an open-source collaboration
@@ -27,8 +24,7 @@ the midst of an epidemic. A dose of reality on top of theoretical
 treatments.
 
 
-To learn more about network science
------------------------------------
+## To learn more about network science
 
 As well as being one of the scientific pioneers, Albert-L&aacute;szl\'o
 Barab&aacute;si has written extensively and accessibly about complex
@@ -42,8 +38,19 @@ For a more social science perspective, Watts' book on small worlds
 which different social structures can be understood mathematically.
 
 
-Textbooks and reference works on network science
-------------------------------------------------
+## To do your own experiments
+
+All the simulations done in this book use code that's either contained
+in the book itself or available in public-domain libraries.
+
+There's nothing exclusive about science, so please feel free to
+download the code and run your own experiments &ndash; and then please
+share them, and your results, with the community! You're then
+essentially engaging in the same processes of modelling, simulation,
+and experimentation as professional researchers.
+
+
+## Textbooks and reference works on network science
 
 The absolute best textbook on the mathematics of networks is that by
 Newman, another pioneer of the field {cite}`New10`. Sayama deals with

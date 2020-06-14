@@ -21,14 +21,15 @@ surfaces. Or it might be communicable only by **direct physical
 contact**, skin to skin, through sex, or a blood transfusion. It might
 be **foodborne**, transmitted through contaminated food that infects
 several people from a common source. It might be **vectored** through
-an animal, as is the case for malaria &ndash; and even disease that
-don't *require* a vector may still incubate in animal hosts ans well
-as humans (this is suspected in the case of the [1918 "Spanish flu"
+an animal, as is the case for malaria which has to be sporead by
+mosquitoes and can't spread person-to-person. Even diseases that
+don't *require* a vector may still incubate in animal hosts *as well*
+as in humans (this is suspected in the case of the [1918 "Spanish flu"
 pandemic](https://en.wikipedia.org/wiki/1918_flu_pandemic)
 {cite}`OSJ02`). And finally there is a class of **non-communicable**
 diseases such as cancer or heart disease, some of which are
 **hereditary**: not caused directly by pathogens but perhaps
-influenced by their presence.
+influenced by their presence, and perhaps made worse by infections.
 
 Each different kind of disease will have its own characteristic
 **pathology**, how it affects the body of a person infected. It will
@@ -254,3 +255,14 @@ $R$ that's reducing over time is a good sign. But $R$ falling &ndash;
 or *seeming* to fall &ndash; below 1 isn't enough to prove that
 countermeasures are working and can be relaxed.
 
+
+## Questions for discussion
+
+- Think of a disease you've had. How did you catch it? Could you have
+  done anything to *avoid* catching it? Was it made worse by where you
+  lived at the time?
+- What can be done to cope with "Type A" diseases, where people can
+  transmit the disease without showing symptoms of it?
+- Do you think the $R$ number is a useful thing to keep track of
+  during an epidemic? Why? (Or why not?)
+  
