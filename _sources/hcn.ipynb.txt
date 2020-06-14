@@ -19,7 +19,7 @@
     "\n",
     "Suffice it to say that the study of contact networks is still an active field of research, being conducted experimentally by the study of real-world social networks as exposed by social media, and theoretically by the study of networks with topological structures that reflect how people interact.\n",
     "\n",
-    "While the endpoint is not yet know, we can still make progress and follow the scientific method by making use of (what we claim is) a better model than the simple ER network, and explore what effects it has. "
+    "While the \"right\" model is not yet known, we can still make progress and follow the scientific method by making use of (what we claim is) a better model than the simple ER network, and explore what effects it has. "
    ]
   },
   {
@@ -33,7 +33,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "A human contact network has to model the structures we actually find in human social structures. These structures have been studied extensively {cite}`WS98` {cite}`Wat99`. They exhibit huge variation &ndash; far more than we find in, for example the structure of networks in natural physical and biological systems. This is perhaps due to the diversity of cultural factors that drive social structures, or perhaps because a lot of such networks have been designed for specific purposes rather than simply evolving at random.\n",
+    "A human contact network has to model the structures we actually find in human social structures. These structures have been studied extensively  {cite}`Wat99`{cite}`WS98`. They exhibit huge variation &ndash; far more than we find in, for example the structure of networks in natural physical and biological systems. This is perhaps due to the diversity of cultural factors that drive social structures, or perhaps because a lot of such networks have been designed for specific purposes rather than simply evolving at random.\n",
     "\n",
     "One common factor is that the degree distribution of a contact network is not normal (in the mathematical sense) like that of an ER network. Instead of the number of contacts clustering around a mean, we tend to observe a small number of \"hub\" nodes who are very highly connected &ndash; far more connected than is possible in an ER network. These people are sometimes referred to as \"hubs\" {cite}`Wat99`. In disease modelling, \"super-spreaders\" might be a better term: individuals whjo, if they are infected, can potentially infect a huge number of others. This has implications for countermeasures and for vaccination, as we'll see later.\n",
     "\n",
@@ -63,7 +63,7 @@
     "What degree distributions do these networks have? They often follow a power law, where the probability of a node having a particular degree. $p_k \\propto k^{-\\alpha}$ for some power $\\alpha > 0$. These **powerlaw** networks were first studied by Albert and Barab&aacute;si {cite}`AB02`, and describe the structures of networks in a bewildering range of applications: most famously, they describe both the structure of the underlying engineering of the internet and numbers of links to web pages.\n",
     "\n",
     "```{margin}\n",
-    "In the literature the exponent of the distributiuon is usually denoted $\\alpha$, whule the cutoff is denoted $\\kappa$.\n",
+    "In the literature the exponent of the distribution is usually denoted $\\alpha$, whule the cutoff is denoted $\\kappa$.\n",
     "```\n",
     "\n",
     "Power-law networks are not *quite* right for contact networks, though, because they can create nodes with really, *really* high degree: too high to appear in human situations. A variation on the idea was however studied by Newman, Watts, and Strogatz {cite}`NWS02`. In these networks the power-law degree is \"cut off\" before it can get too large, essentially setting a ceiling on the number of contacts an individual can have. Unsurprisingly, these networks are known as **powerlaw with cutoff** networks. "
@@ -25089,6 +25089,21 @@
     "This is a significant result.\n",
     "\n",
     "On the one hand, it's bad news: even minor diseases will be spread, driven by the characterics of the contact network itself. However, on the other hand, it suggests strategies for containment if we reduce the mean degree sufficiently, *or* if we tackle the issue of the hubs acting as super-spreaders. These ideas are the basis of both vaccination and social distancing."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Questions for discussion"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- Think about your friends and neighbours. Who are the \"hubs? What makes them so?\n",
+    "- Rumours also spread through social networks: people pass information between each other. Could we model rumour-spreading (or \"fake news\") as a process over the network? Would it behave like a disease? Why? (Or why not?)"
    ]
   }
  ],

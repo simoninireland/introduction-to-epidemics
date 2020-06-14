@@ -7,25 +7,24 @@ advantages and limitations.
 
 ## Models
 
-By **model** we mean a mathematical and/or computational model of a
-system of interest that we can explore in order to gain insight into
-the behaviour of the real system.
+By **model** we mean a mathematical and/or computational description
+of some aspects of a system of interest that we can explore in order
+to gain insight into the behaviour of the real system.
 
-A **mathematical model** consists of one or more equations expressing the
-relationships between different quantities. There are often some
-**parameters** involved, assumptions about some quantities whose values
-are known or assumed.
+A **mathematical model** consists of one or more equations expressing
+the relationships between different quantities. There are often some
+**parameters** involved, quantities whose values are known or assumed.
 
 A **computational model** is a program written to simulate the
 behaviour of the system. Such simulations are almost always based on
 underlying mathematical models and include parameters. What do
-computers provide? If the equations of the mathematical model can be
-solved then all is well, but often a system of equations can't be
-solved "analytically" (that is, by mathematical means) and instead
-needs to be solved "numerically", by starting with specific values
-(numbers) and showing how they evolve under the equations. Even for
-equations that *can* be solved analytically, computers are often useful
-tools for helping to explore the system, or for visualising the results. 
+computers provide? Sets of equations can often be understood (or
+"solved analytically") by purely symbolic means, but many system of
+equations *can't* be solved this way and instead needs to be solved
+numerically, by starting with specific values (numbers) and showing
+how they evolve under the equations. Even for equations that *can* be
+solved analytically, computers are often useful tools for helping to
+explore the system, or for visualising the results.
 
 
 ## Uses of models
@@ -35,7 +34,7 @@ these can often give rise to different models drawing on different
 styles and approaches to modelling. For definiteness, let's
 discuss some of the questions we might ask about epidemics.
 
-We might be interested in epidemics "in general". How do changes in
+We might be interested in **epidemics in general**. How do changes in
 infectiousness affect the spread of the disease? What are the
 relationships between infectiousness and recovery? How do different
 topologies of contacts in a population affect how it spreads? What are
@@ -45,14 +44,17 @@ like multiple phases? These are quite abstract questions that could be
 asked of *any* disease, and answering them might tell us about how
 *all* diseases behave.
 
-On the other hand, we might be interested in a specific disease, or
-even in a specific outbreak. How will *this* disease spread in a
-population? How about in another country to the one it's currently
-in? How will a *specific* countermeasure affect the spread? When will
-it be safe for the majority of people to return to work? These are all
+On the other hand, we might be interested in **a specific disease**, or
+even in **a specific outbreak**. How will *this* disease spread in a
+population? How about in another country to the one it's currently in?
+How will a *particular* countermeasure affect the spread? When will it
+be safe for the majority of people to return to work? These are all
 very concrete questions that depend on the exact details of the
 situation about which they're asked, and answering them may be
-massively useful in managing this situation.
+massively useful in managing this situation. (Taylor provides an
+accessible discussion of the uses and interpretations of the well-known
+Imperial College model of covid-19's impact on UK NHS bed availability
+during the 2020 outbreak {cite}`Tay20`.)
 
 ```{margin}
 There's a saying among doctors who deal with outbreaks on the
@@ -61,19 +63,31 @@ The lessons learned often don't translate to new situations.
 ```
 
 The interplay between these two kinds of questions is quite
-complicated. In concrete case we presumably measure the specifics of
+complicated. In concrete cases we presumably measure the specifics of
 the outbreak and work with them. We only have partial control, for
 example on enforcing social distancing. It's often hard to then make
 more general predictions about diseases more widely, to draw
 conclusions that can be used in other cases.
 
-So should we be more abstract? We then get more control: we can
-explore a whole range of modes of transmission, for example rather
-than just the one we happen to have for this disease. We can explore
-different countermeasures in the model without committing to one,
-which means there are no consequences for being wrong. We get to
-observe some general patterns and draw general conclusions &ndash;
-which then don't *exactly* apply to *any* real disease.
+So should we be more abstract? Abstraction typically brings control
+over the model: we can explore a whole range of modes of transmission,
+for example rather than just the one we happen to have for this
+disease. We can explore different countermeasures in the model without
+committing to one, which means there are no consequences for being
+wrong. We get to observe some general patterns and draw general
+conclusions &ndash; which then don't *exactly* apply to *any* real
+disease.
+
+On the other hand, the conclusions we draw from these abstract models
+can't be applied blindly to particular situations on the ground. A
+good example (which we'll come to {doc}`later <thresholds>`) concerns
+the conditions under which an epidemic can get established in a
+population. One would want to be *very* careful in taking the results
+of an abstract investigation of this phenomenon and then concluding
+that an epidemic can't occur in a specific population &ndash; very
+careful that the model's assumptions were respected, very careful that
+the parameters were known, and so forth. Mistakes in situations like
+this can mean that outbreaks get out of control, and people may die.
 
 
 ## Correctness
@@ -106,7 +120,7 @@ results that came out of the model match what happened on the ground?
 We may not be able to measure exactly what *did* happen on the ground:
 did we count all the fatalities, or were some missed, or
 mis-diagnosed? For a more abstract model, how happy are we that our
-simplifications don't divorce is entirely from reality?
+simplifications don't entirely divorce us from reality?
 
 
 ## Stochastic processes
@@ -174,7 +188,6 @@ help in the wider sense of capturing the behaviour of a system with
 *inherent* randomness.
 
 
-
 ## Managing our expectations
 
 ```{margin}
@@ -233,3 +246,13 @@ subject to it: both a tool and an object of study, to be approached
 sceptically and refined through time. The study of epidemics is an
 excellent example of this process, and we can progressively refine our
 models better to reflect our improving understanding.
+
+
+## Questions for discussion
+
+- What can models tell us about real-world disease epidemics?
+
+- Suppose you were asked to advise political leaders on the basis of
+  what a model predicts. Would you? What would you want them to know
+  about the process of modelling?
+

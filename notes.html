@@ -101,6 +101,12 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
+    <a href="seir.html">Asymptomatic transmission</a>
+  </li>
+  <li class="">
+    <a href="distancing.html">Social distancing</a>
+  </li>
+  <li class="">
     <a href="reading.html">To find out more</a>
   </li>
   <li class="">
@@ -190,7 +196,8 @@ Book</a>, and hosted on <a class="reference external" href="https://pages.github
 Pages</a>.  All text, code, diagrams, and
 generated datasets are available for download from <a class="reference external" href="https://github.com/simoninireland/introduction-to-epidemics">the project’s
 GitHub repo</a>.</p>
-<p>Simulations are all expressed using the
+<p>Simulations are all written in <a class="reference external" href="https://www.python.org">Python 3</a> and
+expressed using the
 <a class="reference external" href="https://pyepydemic.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">epydemic</span></code></a> library for
 network simulation, which is itself built on top of the
 <a class="reference external" href="https://networkx.github.io/"><code class="docutils literal notranslate"><span class="pre">networkx</span></code></a> library for representing and
@@ -205,9 +212,11 @@ built into <code class="docutils literal notranslate"><span class="pre">networkx
 <a class="reference external" href="https://epyc.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">epyc</span></code></a> computational
 experiment management library and
 <a class="reference external" href="https://pandas.pydata.org/"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> to handle the resulting
-datasets. The experiments used our local compute cluster (“<code class="docutils literal notranslate"><span class="pre">hogun</span></code>”):
-11 machines each with 16Gb of memory and dual 4-core Intel Xeon
-E3-1240&#64;3.4MHz processors.</p>
+datasets. The large experiments used a compute cluster (“<code class="docutils literal notranslate"><span class="pre">hogun</span></code>”)
+with 11 machines each with 16Gb of memory and two 4-core Intel Xeon
+E3-1240&#64;3.4MHz processors; all other experiments were performed on a
+2017-vintage MacBook Pro with 16Gb of memory and a dual-core Intel
+i5&#64;3.1GHz processor.</p>
 </div>
 
 

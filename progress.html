@@ -101,6 +101,12 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
+    <a href="seir.html">Asymptomatic transmission</a>
+  </li>
+  <li class="">
+    <a href="distancing.html">Social distancing</a>
+  </li>
+  <li class="">
     <a href="reading.html">To find out more</a>
   </li>
   <li class="">
@@ -185,6 +191,10 @@
             <a href="#why-we-need-to-care-and-be-careful-about-r" class="nav-link">Why we need to care – and be careful – about R</a>
         </li>
     
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
+        </li>
+    
     </ul>
 </nav>
 
@@ -218,10 +228,15 @@ surfaces. Or it might be communicable only by <strong>direct physical
 contact</strong>, skin to skin, through sex, or a blood transfusion. It might
 be <strong>foodborne</strong>, transmitted through contaminated food that infects
 several people from a common source. It might be <strong>vectored</strong> through
-an animal, as is the case for malaria. And finally there is a class of
-<strong>non-communicable</strong> diseases such as cancer or heart disease, some of
-which are <strong>hereditary</strong>: not caused directly by pathogens but perhaps
-influenced by their presence.</p>
+an animal, as is the case for malaria which has to be sporead by
+mosquitoes and can’t spread person-to-person. Even diseases that
+don’t <em>require</em> a vector may still incubate in animal hosts <em>as well</em>
+as in humans (this is suspected in the case of the <a class="reference external" href="https://en.wikipedia.org/wiki/1918_flu_pandemic">1918 “Spanish flu”
+pandemic</a>
+<a class="bibtex reference internal" href="zbibliography.html#osj02" id="id2">[17]</a>). And finally there is a class of <strong>non-communicable</strong>
+diseases such as cancer or heart disease, some of which are
+<strong>hereditary</strong>: not caused directly by pathogens but perhaps
+influenced by their presence, and perhaps made worse by infections.</p>
 <p>Each different kind of disease will have its own characteristic
 <strong>pathology</strong>, how it affects the body of a person infected. It will
 also have its own <strong>epidemiology</strong> that controls how it
@@ -231,7 +246,7 @@ remains important because factors involved in how a disease
 progresses <em>in</em> individuals may have a profound effect on how it
 spreads <em>between</em> individuals.</p>
 <div class="section" id="sec-progress-periods">
-<span id="id2"></span><h2>Disease progression<a class="headerlink" href="#sec-progress-periods" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2>Disease progression<a class="headerlink" href="#sec-progress-periods" title="Permalink to this headline">¶</a></h2>
 <p>A person’s infection goes through several periods, starting with their
 <strong>infection</strong>. Once infected, the disease resides <strong>latent</strong> in their
 system, developing its presence but not showing symptoms and not being
@@ -337,13 +352,12 @@ quickly.</p>
 \ge 15\)</span> – fifteen new infections for each case – which
 explains how measles spread so quickly in unvaccinated
 populations. Different strains of influenza have different ranges of
-<span class="math notranslate nohighlight">\(R\)</span>: for the<a class="reference external" href="https://en.wikipedia.org/wiki/1918_flu_pandemic">1918 “Spanish flu”
-epidemic</a> it has been
-estimated <a class="bibtex reference internal" href="zbibliography.html#vtm07" id="id3">[23]</a> that <span class="math notranslate nohighlight">\(1.2 \le R \le 3.0\)</span> in the community
+<span class="math notranslate nohighlight">\(R\)</span>: for the 1918 “Spanish flu” it has been
+estimated <a class="bibtex reference internal" href="zbibliography.html#vtm07" id="id4">[26]</a> that <span class="math notranslate nohighlight">\(1.2 \le R \le 3.0\)</span> in the community
 (although substantially more in confined settings). If this sounds
 benign, remember that this epidemic killed more people than the First
 World War. Perhaps interesting in light of its media coverage, for
-ebola we have <span class="math notranslate nohighlight">\(1.5 \le R \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id4">[2]</a>, roughly the same as
+ebola we have <span class="math notranslate nohighlight">\(1.5 \le R \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id5">[2]</a>, roughly the same as
 a not-too-severe winter flu outbreak.</p>
 <p>This sounds like good news: if we know <span class="math notranslate nohighlight">\(R\)</span>, we can estimate the size
 of the epidemic we’re facing; if we calculate it on an on-going basis
@@ -363,9 +377,9 @@ as bad as an <span class="math notranslate nohighlight">\(R\)</span> value of 2:
 doubles twice as many times</strong> in the same period. Small differences in
 the value of <span class="math notranslate nohighlight">\(R\)</span> therefore have huge effects.</p>
 <p>It’s true that <span class="math notranslate nohighlight">\(R = 1\)</span> is the critical value, below which an epidemic
-dies out. But it doesn’t follow from this that an R$ value slightly
-over 1 is “pretty much 1” and so not a worry. That non-linearity means
-that even a small excess in <span class="math notranslate nohighlight">\(R\)</span> can lead to a large outbreak. This has
+dies out. But it doesn’t follow from this that an <span class="math notranslate nohighlight">\(R\)</span> value slightly
+over 1 is “pretty much 1” and so not a worry. <strong>That non-linearity means
+that even a small excess in <span class="math notranslate nohighlight">\(R\)</span> can lead to a large outbreak</strong>. This has
 implications for epidemic control too: reducing the <span class="math notranslate nohighlight">\(R\)</span> value to just
 below 1 isn’t an indication that everything will then be fine, as a
 small increase may set things off again.</p>
@@ -377,16 +391,16 @@ themselves. Careful and widespread “test, trace and isolate”
 strategies can be extremely effective in reducing an epidemic. The
 number of infected contacts individuals have on average lets us
 estimate of <span class="math notranslate nohighlight">\(R\)</span>.</p>
-<p>But by definition test and trace is “counting in the rear view
-mirror”. It tells us how many people <em>were being</em> infected, not how
-many people <em>are</em> being infected. There will be a delay in identifying
+<p>But by definition <strong>test and trace is “counting in the rear view
+mirror”</strong>. It tells us how many people <em>were being</em> infected, not how
+many people <em>are being</em> infected. There will be a delay in identifying
 infected individuals, further delay in finding and testing their
 contacts, and so forth. If circumstances are changing, for example
 through pathogen evolution or it infecting different social settings,
 the estimate will be rendered out of date.</p>
-<p>The third reason concerns the consequences of errors. Finding,
+<p>The third reason concerns the consequences of errors. <strong>Finding,
 tracing, and counting of infected individuals is invariably
-error-prone. People will be missed; tests are never 100% accurate,
+error-prone</strong>. People will be missed; tests are never 100% accurate,
 especially for diseases with long incubation periods where there may
 be low pathogen loads in the early stages; individuals forget whom
 they were in contact with; tracing apps don’t work in all
@@ -408,9 +422,10 @@ we’d capture all the ferocity of the epidemic’s spread. But if we
 calculated the rate <em>over the whole country</em>, we’d see a far milder
 epidemic. Because the same disease is spreading in different
 circumstances, averaging may be misleading – too mild for the
-city, but too large for the countryside. This makes it possible to
-manipulate the reported <span class="math notranslate nohighlight">\(R\)</span> value accidentally, or deliberately by
-judicious choice of population over which to take the average.</p>
+city, but too large for the countryside. <strong>When interpreting an
+average, you always need to know what population has been averaged
+over</strong>. It is possible to manipulate the reported <span class="math notranslate nohighlight">\(R\)</span> value
+accidentally, or deliberately by judicious choice of population.</p>
 <p>For all these reasons it’s important not to fixate on <span class="math notranslate nohighlight">\(R\)</span>. The fact
 that it’s a number can sometimes give a false sense of security,
 because numbers suggest certainty and precision – and measuring
@@ -418,6 +433,18 @@ because numbers suggest certainty and precision – and measuring
 <span class="math notranslate nohighlight">\(R\)</span> that’s reducing over time is a good sign. But <span class="math notranslate nohighlight">\(R\)</span> falling –
 or <em>seeming</em> to fall – below 1 isn’t enough to prove that
 countermeasures are working and can be relaxed.</p>
+</div>
+<div class="section" id="questions-for-discussion">
+<h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Think of a disease you’ve had. How did you catch it? Could you have
+done anything to <em>avoid</em> catching it? Was it made worse by where you
+lived at the time?</p></li>
+<li><p>What can be done to cope with “Type A” diseases, where people can
+transmit the disease without showing symptoms of it?</p></li>
+<li><p>Do you think the <span class="math notranslate nohighlight">\(R\)</span> number is a useful thing to keep track of
+during an epidemic? Why? (Or why not?)</p></li>
+</ul>
 </div>
 </div>
 

@@ -101,6 +101,12 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
+    <a href="seir.html">Asymptomatic transmission</a>
+  </li>
+  <li class="">
+    <a href="distancing.html">Social distancing</a>
+  </li>
+  <li class="">
     <a href="reading.html">To find out more</a>
   </li>
   <li class="">
@@ -204,6 +210,10 @@
             <a href="#the-preponderance-of-epidemics" class="nav-link">The preponderance of epidemics</a>
         </li>
     
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
+        </li>
+    
     </ul>
 </nav>
 
@@ -221,11 +231,11 @@
 <p>Unsurprisingly, modelling human contact networks is quite hard. Indeed, there is as yet no scientific consensus on what sorts of networks are the “best” model – not least because there are lots of different social structures to account for.</p>
 <p>A city is not just a large village: the ways in which people mix change fundamentally as the geographic and population scales increase, when you no longer know your neighbours and mix over a wider area. Even such a simple sentence implies a lot of mathematical complexity. There is less mixing on a small scale with neighbours, but more mixing at longer distances with non-neighbours – and this is before we consider how friendship networks interrelate, and the effects of disease countermeasures such as social distancing that suddenly became a feature of modern life.</p>
 <p>Suffice it to say that the study of contact networks is still an active field of research, being conducted experimentally by the study of real-world social networks as exposed by social media, and theoretically by the study of networks with topological structures that reflect how people interact.</p>
-<p>While the endpoint is not yet know, we can still make progress and follow the scientific method by making use of (what we claim is) a better model than the simple ER network, and explore what effects it has.</p>
+<p>While the “right” model is not yet known, we can still make progress and follow the scientific method by making use of (what we claim is) a better model than the simple ER network, and explore what effects it has.</p>
 <div class="section" id="social-structures">
 <h2>Social structures<a class="headerlink" href="#social-structures" title="Permalink to this headline">¶</a></h2>
-<p>A human contact network has to model the structures we actually find in human social structures. These structures have been studied extensively <a class="bibtex reference internal" href="zbibliography.html#ws98" id="id1">[25]</a> <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id2">[24]</a>. They exhibit huge variation – far more than we find in, for example the structure of networks in natural physical and biological systems. This is perhaps due to the diversity of cultural factors that drive social structures, or perhaps because a lot of such networks have been designed for specific purposes rather than simply evolving at random.</p>
-<p>One common factor is that the degree distribution of a contact network is not normal (in the mathematical sense) like that of an ER network. Instead of the number of contacts clustering around a mean, we tend to observe a small number of “hub” nodes who are very highly connected – far more connected than is possible in an ER network. These people are sometimes referred to as “hubs” <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id3">[24]</a>. In disease modelling, “super-spreaders” might be a better term: individuals whjo, if they are infected, can potentially infect a huge number of others. This has implications for countermeasures and for vaccination, as we’ll see later.</p>
+<p>A human contact network has to model the structures we actually find in human social structures. These structures have been studied extensively  <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id1">[27]</a><a class="bibtex reference internal" href="zbibliography.html#ws98" id="id2">[28]</a>. They exhibit huge variation – far more than we find in, for example the structure of networks in natural physical and biological systems. This is perhaps due to the diversity of cultural factors that drive social structures, or perhaps because a lot of such networks have been designed for specific purposes rather than simply evolving at random.</p>
+<p>One common factor is that the degree distribution of a contact network is not normal (in the mathematical sense) like that of an ER network. Instead of the number of contacts clustering around a mean, we tend to observe a small number of “hub” nodes who are very highly connected – far more connected than is possible in an ER network. These people are sometimes referred to as “hubs” <a class="bibtex reference internal" href="zbibliography.html#wat99" id="id3">[27]</a>. In disease modelling, “super-spreaders” might be a better term: individuals whjo, if they are infected, can potentially infect a huge number of others. This has implications for countermeasures and for vaccination, as we’ll see later.</p>
 <p>Contact networks often also exagerate factors that are present in the basic mathematics. Pick a node in the network at random, and look at its neighbours: what would you expect <em>their</em> degrees to be? It turns out that the degrees of the neighbours of a node chosen at random tend to be greater than that of the node itself. This is because there are more opportunities to connect to a node that has high degree than to one with low degree. In a social setting this means that your friends are typically more popular than you are: they on average have more friends, on average. This is true of any node chosen at random – and so, paradoxically, while your friends are on average more popular than you are, <em>their</em> friends are also on average more popular than <em>them</em>.</p>
 <p>The nature of human relationships then emphasises this phenomenon. One thing that’s obvious about friendship networks is that they tend not to be random. If you have two friends, they are likely to be friends of each other – although not necessarily, as people oftenm have disjoint sub-sets of friends. Mathematically this manifests itself as <strong>clusters</strong> in the network that are more highly connected that would be expected in a randomly-connected network: in fact it’s breathtakingly unlikely for such structures to appear in a randomly-constructed network. Handling this clustering is mathematically very challenging, and forms one of the frontiers of current research <a class="bibtex reference internal" href="zbibliography.html#mmsd20" id="id4">[12]</a>.</p>
 </div>
@@ -239,14 +249,14 @@
 <p>What degree distributions do these networks have? They often follow a power law, where the probability of a node having a particular degree. <span class="math notranslate nohighlight">\(p_k \propto k^{-\alpha}\)</span> for some power <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>. These <strong>powerlaw</strong> networks were first studied by Albert and Barabási <a class="bibtex reference internal" href="zbibliography.html#ab02" id="id5">[1]</a>, and describe the structures of networks in a bewildering range of applications: most famously, they describe both the structure of the underlying engineering of the internet and numbers of links to web pages.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>In the literature the exponent of the distributiuon is usually denoted <span class="math notranslate nohighlight">\(\alpha\)</span>, whule the cutoff is denoted <span class="math notranslate nohighlight">\(\kappa\)</span>.</p>
+<p>In the literature the exponent of the distribution is usually denoted <span class="math notranslate nohighlight">\(\alpha\)</span>, whule the cutoff is denoted <span class="math notranslate nohighlight">\(\kappa\)</span>.</p>
 </div>
-<p>Power-law networks are not <em>quite</em> right for contact networks, though, because they can create nodes with really, <em>really</em> high degree: too high to appear in human situations. A variation on the idea was however studied by Newman, Watts, and Strogatz <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id6">[15]</a>. In these networks the power-law degree is “cut off” before it can get too large, essentially setting a ceiling on the number of contacts an individual can have. Unsurprisingly, these networks are known as <strong>powerlaw with cutoff</strong> networks.</p>
+<p>Power-law networks are not <em>quite</em> right for contact networks, though, because they can create nodes with really, <em>really</em> high degree: too high to appear in human situations. A variation on the idea was however studied by Newman, Watts, and Strogatz <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id6">[16]</a>. In these networks the power-law degree is “cut off” before it can get too large, essentially setting a ceiling on the number of contacts an individual can have. Unsurprisingly, these networks are known as <strong>powerlaw with cutoff</strong> networks.</p>
 </div>
 <div class="section" id="building-a-contact-network">
 <span id="sec-hcn-building"></span><h2>Building a contact network<a class="headerlink" href="#building-a-contact-network" title="Permalink to this headline">¶</a></h2>
 <p>Building a contact network means constructing a network where the nodes have the right degree distribution. In other words, the nodes in the network having degree <span class="math notranslate nohighlight">\(%k\)</span> appear in the correct fraction as defined by the degree distribution.</p>
-<p>When we <a class="reference internal" href="er.html#sec-er-building"><span class="std std-ref">constructed an ER network</span></a> we described an algorithm that, when followed, produced a network with the desired distribution. We need a different algorithm to handle different topologies. It turns out that there is a very general algorithm, called the <strong>configuration model</strong>, that can construct a random network with <em>any</em> degree distribution simply from a function that defines that distribution <a class="bibtex reference internal" href="zbibliography.html#mr95" id="id7">[13]</a>.</p>
+<p>When we <a class="reference internal" href="er.html#sec-er-building"><span class="std std-ref">constructed an ER network</span></a> we described an algorithm that, when followed, produced a network with the desired distribution. We need a different algorithm to handle different topologies. It turns out that there is a very general algorithm, called the <strong>configuration model</strong>, that can construct a random network with <em>any</em> degree distribution simply from a function that defines that distribution <a class="bibtex reference internal" href="zbibliography.html#mr95" id="id7">[14]</a>.</p>
 <p>To build a network of size <span class="math notranslate nohighlight">\(N\)</span> the configuration model takes a list of <span class="math notranslate nohighlight">\(N\)</span> numbers, each describing the degree of a node. It then creates nodes with these degrees and wires them together randomly. If we can therefore create the degree sequence wa want from a degree distribution, we can use the configuration model to build a network with nodes of these degrees.</p>
 <p>We define a function <code class="docutils literal notranslate"><span class="pre">p</span></code> that, given a degree, returns the probability <span class="math notranslate nohighlight">\(p_k\)</span> of a node of that degree appearing in the network. We can then define another function to which we provide this function along with the number of nodes we want, and which creates the random network. It repeatedly picks a random degree and then picks a random number betwen 0 and 1. is this second number is less than the probability of a node with that degree occurring, it adds the degree to the sequence; otrherwise it repeats the process for another degree. This continues until we have <span class="math notranslate nohighlight">\(N\)</span> node degrees.</p>
 <div class="cell docutils container">
@@ -524,7 +534,7 @@
 </div>
 <div class="section" id="the-preponderance-of-epidemics">
 <span id="sec-hcn-always-percolate"></span><h2>The preponderance of epidemics<a class="headerlink" href="#the-preponderance-of-epidemics" title="Permalink to this headline">¶</a></h2>
-<p>If we were to explore this phenomenon systematically, we’d discover that it’s the value of the exponent and cutoff that control the size of the disease outbreak <em>not</em> the infectiousness of the disease. In fact there are two possible regimes for these networks, one in which epidemics <em>always</em> affect a large fraction of the population, and one in which they <em>never</em> take off <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id8">[15]</a>.</p>
+<p>If we were to explore this phenomenon systematically, we’d discover that it’s the value of the exponent and cutoff that control the size of the disease outbreak <em>not</em> the infectiousness of the disease. In fact there are two possible regimes for these networks, one in which epidemics <em>always</em> affect a large fraction of the population, and one in which they <em>never</em> take off <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id8">[16]</a>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>The network science community captures this insight with the catchphrase “powerlaw networks always percolate”.</p>
@@ -532,6 +542,13 @@
 <p>From empirical studies it turns out that human contact networks tend to have an exponent of about 2, and for such networks an epidemic will break out for almost <em>any</em> value of the cutoff above 2 – and will <em>always</em> break out for powerlaw networks that don;t have a cutoff. Put another way, even a small mean number of contacts won’t stop an epidemic from spreading through a population, pretty much regardless of the disease’s infectiousness. The reason is that the “hubs” of highly connected individuals, if they are infected, become “super-spreaders” who disseminate the epidemic widely.</p>
 <p>This is a significant result.</p>
 <p>On the one hand, it’s bad news: even minor diseases will be spread, driven by the characterics of the contact network itself. However, on the other hand, it suggests strategies for containment if we reduce the mean degree sufficiently, <em>or</em> if we tackle the issue of the hubs acting as super-spreaders. These ideas are the basis of both vaccination and social distancing.</p>
+</div>
+<div class="section" id="questions-for-discussion">
+<h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Think about your friends and neighbours. Who are the “hubs? What makes them so?</p></li>
+<li><p>Rumours also spread through social networks: people pass information between each other. Could we model rumour-spreading (or “fake news”) as a process over the network? Would it behave like a disease? Why? (Or why not?)</p></li>
+</ul>
 </div>
 </div>
 

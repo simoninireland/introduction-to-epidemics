@@ -33,6 +33,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Social distancing" href="distancing.html" />
+    <link rel="prev" title="Changing individual susceptibility" href="vaccination.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -97,6 +99,12 @@
   </li>
   <li class="">
     <a href="vaccination.html">Changing individual susceptibility</a>
+  </li>
+  <li class="active">
+    <a href="">Asymptomatic transmission</a>
+  </li>
+  <li class="">
+    <a href="distancing.html">Social distancing</a>
   </li>
   <li class="">
     <a href="reading.html">To find out more</a>
@@ -183,6 +191,18 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
+            <a href="#seir" class="nav-link">SEIR</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#the-pros-and-cons-of-a-richer-model" class="nav-link">The pros and cons of a richer model</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#simulating-seir" class="nav-link">Simulating SEIR</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
             <a href="#adaptive-countermeasures-and-quarantine" class="nav-link">Adaptive countermeasures and quarantine</a>
         </li>
     
@@ -192,6 +212,10 @@
     
         <li class="nav-item toc-entry toc-h2">
             <a href="#quarantining-people-before-they-re-symptomatic" class="nav-link">Quarantining people before they’re symptomatic</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
         </li>
     
     </ul>
@@ -207,25 +231,50 @@
                 
   <div class="section" id="asymptomatic-transmission">
 <h1>Asymptomatic transmission<a class="headerlink" href="#asymptomatic-transmission" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">networkx</span>
-<span class="kn">import</span> <span class="nn">epyc</span>
-<span class="kn">import</span> <span class="nn">epydemic</span>
-<span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">import</span> <span class="nn">mpmath</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;svg&#39;</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn&#39;</span><span class="p">)</span>
-</pre></div>
+<p>Since we <a class="reference internal" href="continuous.html"><span class="doc">first introduced the SIR model</span></a> you may have had the niggling suspicion that – while it’s obviously a <em>simple</em> model of a disease – maybe it’s <em>too</em> simple. We know from <a class="reference internal" href="progress.html"><span class="doc">looking at diseases’ progression</span></a> (and from experience) that diseases are more more complicated than SIR suggests. In particular, many of them (the Type A diseases) have incubation periods longer than their latent periods, meaning that an individual can infect others while not showing any outward symptoms. This <strong>asymptomatic transmission</strong> is a problem for disease control, since it means that infectious people aren’t immediately identifiable, either by people noticing their symptoms or by them noticing their own symptoms themselves.</p>
+<p>There is of course nothing sacrosanct about SIR. It’s a model: a generally useful one for studying disease phenomena, but one that we can (and should) either ditch or enrich whenever we see deficiencies or want to explore some new phenomena. One possible extension to SIR is to allow asymptomatic transmission, leading to a model that includes individuals who have been “exposed” to the disease, and who are infectious but not yet visibly symptomatic.</p>
+<p>{sec:seir-seir)=</p>
+<div class="section" id="seir">
+<h2>SEIR<a class="headerlink" href="#seir" title="Permalink to this headline">¶</a></h2>
+<p>SEIR is another <a class="reference internal" href="continuous.html#sec-continuous-compartmented-model"><span class="std std-ref">compartmented model of disease</span></a>. Like SIR, it includes compartments for individuals who are susceptible to infection, infected (and infectious), and removed from the disease by recovery or death. However, it adds a fourth compartment:</p>
+<ul class="simple">
+<li><p><em>Exposed (E)</em>, representing those people who have caught the disease and can pass it on but who are not yet showing symptoms</p></li>
+</ul>
+<p>Exposed individuals, like infected individuals, can transmit the disease to neighbouring (if we are using a networked model) susceptibles. They also transition from exposed to infected at some rate, capturing how their symptoms develop.</p>
+<p>In the same way as we developed a <a class="reference internal" href="continuous.html#sec-continuous-sir-model"><span class="std std-ref">mathematical model of SIR</span></a> in terms of how the populations of the different compartments changed over time, we can do the same thing for SEIR. We expect to see another equation showing how the population of E changes, and indeed we do:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+    \Delta S &amp;= -p_{\mathit{infect}} \, SI - p_{\mathit{infectA}} \, SE \\
+    \Delta E &amp;= p_{\mathit{infect}} \, SI + p_{\mathit{infectA}} \, SE - p_{symptoms} \, E \\
+    \Delta I &amp;= p_{symptoms} \, E - p_{remove} I \\
+    \Delta R &amp;= p_{remove} I
+\end{align}
+\end{split}\]</div>
+<p>What this says is that <span class="math notranslate nohighlight">\(\Delta S\)</span>, the change in population of <span class="math notranslate nohighlight">\(S\)</span>, reduces <span class="math notranslate nohighlight">\(S\)</span> in two ways: infections coming from infected individuals at a rate that depends on the number of susceptible-infected interactions in the population – exactly as happens in SIR – but also additionally from exposed (asymptomatic) individuals at a rate (which may be different) that depends on the number of susceptible-exposed interactions. The number of exposed individuals grows at this rate, and decreases as exposed individuals develop symptoms and become infected.</p>
+<p>Notice that we now have four compartments and four parameters:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, the probability that a susceptible-infected interaction results in infection;</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{\mathit{infectA}}\)</span>, the probability that a susceptible-exposed interaction results in infection;</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{symptoms}\)</span>, the probability that an exposed individual will show symptoms; and</p></li>
+<li><p><span class="math notranslate nohighlight">\(p_{remove}\)</span>, the probability that an infected individual will be removed.</p></li>
+</ul>
 </div>
+<div class="section" id="the-pros-and-cons-of-a-richer-model">
+<span id="sec-seir-degrees-of-freedom"></span><h2>The pros and cons of a richer model<a class="headerlink" href="#the-pros-and-cons-of-a-richer-model" title="Permalink to this headline">¶</a></h2>
+<p>It’s reasonable to ask at this point why we don’t <em>always</em> use SEIR instead of SIR, since it’s clearly closer to the way a lot of real-world diseases behave. Isn’t SIR <em>too</em> simple, when an only slightly more complex model is readily available in SEIR?</p>
+<p>There are two basic arguments to make here. Firstly, SEIR has twice as many parameters as SIR: four instead of two, each of which controls some aspect of how the process works. An alternative, and very suggestive, name for the number of parameters is the number of <strong>degrees of freedom</strong> a model has. A model with more degrees of freedom has more “knobs you can turn” to change its behaviour. And this is both good and bad. It’s good because it lets us fine-tune the model, possibly produce additional effects that a simpler model (with fewer degrees of freedom) wouldn’t show. But it’s bad because that means there’s more work to do to fully explore all the things a model might do. If we’re modelling a “real” disease, we have to collect twice as manay parameters about it. Some of these might be hard to collect: how would you go about funding <span class="math notranslate nohighlight">\(p_{\mathit{infectA}}\)</span>, the rate of asymptopmatic infection, when by definition asymptomatic people are hard to find?</p>
+<p>The second argument cuts to the heart of scientific model-making. As we’ve seen, SIR lets us demonstrate a lot of interesting phenomena. It varies depending on the infection rate, depending on the network topology, depending on the way we apply individual countermeasures, and so forth – and we haven’t finished yet! We can say a lot about diseases <em>in general</em> from SIR, even though there are lots of diseases that it can’t robustly capture and for which <em>in detail</em>  SEIR is better. So whether a given model is “correct” depends to a large extent on the questions we’re asking.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>This is related to the principle of <a class="reference external" href="https://en.wikipedia.org/wiki/Occam%27s_razor">Occam’s razor</a>, which may be paraphrased as “keep things as simple as possible (but no simpler)”.</p>
 </div>
+<p><strong>Scientists generally prefer the simplest model that’s complex enough to answer the questions they’re asking</strong>. That often means minimising the number of degrees of freedom in a model, to simplify exploration and to avoid any risk that it might be “steered” in a particular direction by unfounded assumptions. It also means that a lot of detail is elided, with the danger that some of this detail may turn out to be important. This is what makes science itself into a process of continuous error and correction.</p>
 </div>
+<div class="section" id="simulating-seir">
+<h2>Simulating SEIR<a class="headerlink" href="#simulating-seir" title="Permalink to this headline">¶</a></h2>
+<p>We can of course build simulations of SEIR running over a network – so let’s do so.</p>
+<p>We now have four parameters to specify instead of SIR’s two: the rate <span class="math notranslate nohighlight">\(p_{\\mathit{infectA}}\)</span> of asymptomatic transmission (from exposed individuals to susceptibles), and the rate <span class="math notranslate nohighlight">\(p_{symptoms}\)</span> at which symptoms show themselves. We’ll explore the way in which asymptomatic transmission affects the size of the eventual outbreak.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-er.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
@@ -233,89 +282,7 @@
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">lab</span><span class="o">.</span><span class="n">sync_imports</span><span class="p">():</span>
-    <span class="kn">import</span> <span class="nn">time</span>
-    <span class="kn">import</span> <span class="nn">networkx</span>
-    <span class="kn">import</span> <span class="nn">epyc</span>
-    <span class="kn">import</span> <span class="nn">epydemic</span>
-    <span class="kn">import</span> <span class="nn">numpy</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{n}</span><span class="s1"> engines available&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">numberOfEngines</span><span class="p">()))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>importing time on engine(s)
-importing networkx on engine(s)
-importing epyc on engine(s)
-importing epydemic on engine(s)
-importing numpy on engine(s)
-78 engines available
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from https://nbviewer.jupyter.org/gist/minrk/4470122</span>
-<span class="k">def</span> <span class="nf">pxlocal</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
-    <span class="n">ip</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span>
-    <span class="n">ip</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s2">&quot;px&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-    <span class="n">ip</span><span class="o">.</span><span class="n">run_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
-<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">register_magic_function</span><span class="p">(</span><span class="n">pxlocal</span><span class="p">,</span> <span class="s2">&quot;cell&quot;</span><span class="p">)</span>    
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
-
-<span class="k">class</span> <span class="nc">ERNetworkDynamics</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">StochasticDynamics</span><span class="p">):</span>
-    
-    <span class="c1"># Experimental parameters</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
-    <span class="n">KMEAN</span> <span class="o">=</span> <span class="s1">&#39;kmean&#39;</span>
-    
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ERNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-        
-    <span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">ERNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-        
-        <span class="c1"># build a random ER network with the given parameters</span>
-        <span class="n">N</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">]</span>
-        <span class="n">kmean</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span>
-        <span class="n">pEdge</span> <span class="o">=</span> <span class="p">(</span><span class="n">kmean</span> <span class="o">+</span> <span class="mf">0.09</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">gnp_random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">pEdge</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setNetworkPrototype</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
-
-<span class="k">class</span> <span class="nc">MonitoredSIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
- 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        
-    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Build the observation process.</span>
-<span class="sd">        </span>
-<span class="sd">        :param params: the experimental parameters&#39;&#39;&#39;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-
-        <span class="c1"># also monitor other compartments</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>Monitoring an SIR epidemic is essentially the same as the way we monitored SIR: we record the sizes of the compartments as the epidemic progresses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
@@ -332,24 +299,37 @@ importing numpy on engine(s)
         <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
         <span class="c1"># also monitor other compartments</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let’s explore the outbreak on an ER network again, choosing some vbalues for the different disease parameters and then exploring how the results vary with the value of <span class="math notranslate nohighlight">\(p_{\mathit{infectA}}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">kmean</span> <span class="o">=</span> <span class="mi">40</span>
+
+<span class="c1"># SEIR disease parameters</span>
+<span class="n">pExposed</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">pSymptoms</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">pRemove</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">pInfect</span> <span class="o">=</span> <span class="mf">0.000075</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># test network</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="mi">40</span>
-
-<span class="c1"># disease parameters</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_EXPOSED</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.002</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_EXPOSED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pExposed</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_SYMPTOMS</span><span class="p">]</span> <span class="o">=</span> <span class="n">pSymptoms</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_SYMPTOMATIC</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_SYMPTOMATIC</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.000075</span>   <span class="c1"># middle of the phase transition</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_SYMPTOMS</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.002</span>
 </pre></div>
 </div>
 </div>
@@ -363,18 +343,7 @@ importing numpy on engine(s)
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="o">.</span><span class="n">readyFraction</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
-</pre></div>
-</div>
-</div>
-</div>
+<p>After much computation, we can plot the results. We’ll also show the value of “normal” infection (by symptomatic individuals) for comparison.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-er.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
@@ -382,13 +351,14 @@ importing numpy on engine(s)
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
-<span class="c1"># plot the size of the removed population</span>
+<span class="c1"># plot the size of the removed population and the value of symptomatic infection</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">pInfect</span><span class="p">,</span> <span class="n">pInfect</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">],</span> <span class="s1">&#39;b:&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Epidemic size vs $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
@@ -398,9 +368,10 @@ importing numpy on engine(s)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_12_0.svg" src="_images/seir_12_0.svg" /></div>
+<img alt="_images/seir_23_0.svg" src="_images/seir_23_0.svg" /></div>
 </div>
-<div class="cell docutils container">
+<p>Compare this with the diagram we drew for the <a class="reference internal" href="thresholds.html#sec-thresholds-er"><span class="std std-ref">epidemic threshold</span></a>, and you’ll see that thew epidemic takes off a lot earlier – which is probably what we expected, since there’s more infection going on. In fact even a very small amout of early infection is enough to cause an outbreak.</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -417,32 +388,33 @@ importing numpy on engine(s)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_13_0.svg" src="_images/seir_13_0.svg" /></div>
+<img alt="_images/seir_25_0.svg" src="_images/seir_25_0.svg" /></div>
+</div>
+<p>How sensitive <em>is</em> the model to asymptomatic infection? To what extent can asymptomatic infection make a less infectious disease behave like a more infectious disease that <em>doesn’t</em> have asymptomatic transmission? And perhaps most importantly, can we do anything about it? It’s this last question that we’ll turn to now.</p>
 </div>
 <div class="section" id="adaptive-countermeasures-and-quarantine">
 <span id="sec-seir-quarantine"></span><h2>Adaptive countermeasures and quarantine<a class="headerlink" href="#adaptive-countermeasures-and-quarantine" title="Permalink to this headline">¶</a></h2>
-<p>We <a class="reference internal" href="vaccination.html"><span class="doc">earlier</span></a> discussed an approach to epidemic control that involved targeting individual susceptibility, reducing the probability (or possibility) of particular individuals becoming infected. This was enough to fragment the contact network and so affect the bevahiour of the epidemic.</p>
-<p>We’ll now look at a completely different strategy for countermeasures. Instead of affecting individuals while leaving the network intact, we’ll instead leave the individuals as they are by change the network as the epidemic spreads. That is to say, we’ll change the structure of contacts – who’s connected to whom – in response to the spread ofthe disease through the population. This leads to a family of <strong>adaptive</strong> countermeasures, since we take action to change the network in response to the process (disease) flowing through it.</p>
+<p>We <a class="reference internal" href="vaccination.html"><span class="doc">earlier</span></a> discussed an approach to epidemic control that involved targeting individual susceptibility, eliminating the possibility of particular individuals becoming infected. This was enough to fragment the contact network and so affect the behaviour of the epidemic.</p>
+<p>We’ll now look at a completely different strategy for countermeasures. Instead of affecting individuals while leaving the network intact, we’ll instead leave the individuals as they are but change the network as the epidemic spreads. That is to say, we’ll change the structure of contacts – who’s connected to whom – in response to the spread ofthe disease through the population. This leads to a family of <strong>adaptive</strong> countermeasures, since we take action to change the network in response to (adapting to) the process (disease) flowing through it.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>The term “quarantine” comes from the Italian word for “forty” (<em>quaranta</em>). When Venice suffered an outbreak of the Black Death in the 14th century they established a system whereby ships arriving in port had to moor off remote islands in the lagoon for forty days until they were judged to be disease-free – probably the first example of effective disease control <a class="bibtex reference internal" href="zbibliography.html#stu20" id="id1">[22]</a>.</p>
+<p>The term “quarantine” comes from the Italian phrase for “forty days” (<em>quaranta giorni</em>). When Venice suffered an outbreak of the Black Death in the 14th century, the Venetians established a system whereby ships arriving in port had to moor off remote islands in the lagoon for forty days until they were judged to be disease-free – possibly the first modern example of effective disease control <a class="bibtex reference internal" href="zbibliography.html#stu20" id="id1">[24]</a>.</p>
 </div>
-<p>The simplest and best-known adaptive control measure is <strong>quarantine</strong> whereby we isolate individuals who are (or may be) infected to prevent them infecting others. A <strong>proactive quarantine</strong> isolates incoming individuals for as long as it takes to pass through the expected <a class="reference internal" href="progress.html#sec-progress-periods"><span class="std std-ref">infectious period</span></a> of whatevere disease they might be carrying. A <strong>reactive or adaptive quarantine</strong> waits until a person shows symptoms and then isolates them, which avoids detaining the uninfected but at the risk of allowing infected (and possibly infectious) people to circulate.</p>
-<p>In any event, the goal of quarantine is to reduce the effective <span class="math notranslate nohighlight">\(R\)</span> value of the disease such that any epidemic is contained, ideally failing to take hold or at least being smaller and less intense than would otherwise be the case.</p>
+<p>The simplest and best-known adaptive control measure is <strong>quarantine</strong>, whereby we isolate individuals who are (or may be) infected to prevent them infecting others. A <strong>proactive quarantine</strong> isolates all incoming individuals for as long as it takes to pass through the expected <a class="reference internal" href="progress.html#sec-progress-periods"><span class="std std-ref">infectious period</span></a> of whatevere disease they might be carrying. A <strong>reactive or adaptive quarantine</strong> waits until a person shows symptoms and then isolates them, which avoids detaining the uninfected but at the risk of allowing infected (and possibly infectious) people to circulate.</p>
+<p>However it’s done, the goal of quarantine is to reduce the effective <span class="math notranslate nohighlight">\(R\)</span> value of the disease such that any epidemic is contained, ideally failing to take hold or at least being smaller and less intense than would otherwise be the case.</p>
 </div>
 <div class="section" id="reducing-infection-through-partial-quarantine">
 <span id="sec-seir-adaptive-infected"></span><h2>Reducing infection through partial quarantine<a class="headerlink" href="#reducing-infection-through-partial-quarantine" title="Permalink to this headline">¶</a></h2>
-<p>Let’s introduce quarantine into our models.</p>
+<p>Let’s introduce quarantine into our models. In the spirit of simplicity, we’ll look first at SIR.</p>
 <p>How does quarantine manifest itself in SIR? Infection in SIR happoens when the disease passes from an infected individual to a susceptible one. Quarantine is an adaptive strategy – it happens in parallel with infection – so we’ll be introducing a way of changing the network. When the disease passes to a formerly-susceptible person, we’ll changes that person’s connections in some way.</p>
 <p>If this strategy was performed perfectly and immediately it would immediately stamp-out an SIR infection. Every time someone became infected, that person would be immediately and completely isolated, and so would be unable to infect anyone else. The original “seeding” of infected individuals would infect some of their neighbours, but those neighbours would then <em>never affect anyone else</em> (because they’d have no connections through which to pass the disease), and so the disease would immediately come to an end.</p>
-<p>This clearly isn’t very interesting. Nor is it very possible, other than as a theoretical best-case: in practice one would either leave infected people connected for some time before identifying and isolating them; or would only manage to isolate them from a fraction of their susceptible neighbours; or both. For our purposes we’ll focus on the second option. When someone becomes infected, we immediately select some fraction of their susceptible neighbours and remove the connection to the newly-infected person. (Shai and Dobson explored this approach for endemic diseases in a slightly more complicated scenario <a class="bibtex reference internal" href="zbibliography.html#sd13" id="id2">[19]</a>.)</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-quarantine.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-</pre></div>
+<p>This clearly isn’t very interesting. Nor is it very possible, other than as a theoretical best-case: in practice one would either leave infected people connected for some time before identifying and isolating them; or would only manage to isolate them from a fraction of their susceptible neighbours; or both. For our purposes we’ll focus on the second option. When someone becomes infected, we immediately select some fraction of their susceptible neighbours and remove the connection to the newly-infected person. (Shai and Dobson explored this approach in a slightly more complicated scenario <a class="bibtex reference internal" href="zbibliography.html#sd13" id="id2">[21]</a>, for endemic diseases travelling through semi-isolated populations.)</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p><span class="math notranslate nohighlight">\(p_{quarantine}\)</span> would be an alternative (and possibly better) name for this parameter.</p>
 </div>
-</div>
-</div>
+<p>Quarantine manifests itself as <strong>network rewiring</strong>: when a node becomes infected, we change the nodes to which it is connected, removing some fraction <span class="math notranslate nohighlight">\(P_{rewire}\)</span> of its adjacent susceptible neighbours. This naturally means that there are then fewer nodes that the newly-infected node can infect in its turn.</p>
+<p>We introduce this into our model in two ways. Firstly, we change the behaviour of infection to include the quarantine step. Second, we define the rewiring operation over all the node’s neighbours.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
@@ -463,9 +435,12 @@ importing numpy on engine(s)
     <span class="k">def</span> <span class="nf">quarantine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span><span class="p">:</span>
-                <span class="c1"># a susceptible neighbour, remove link to us</span>
+        
+        <span class="c1"># run through all the neighbours of the infected node </span>
+        <span class="n">ms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ms</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span><span class="p">:</span>
+                <span class="c1"># selected a susceptible neighbour to rewire, remove its link to us</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">removeEdge</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
                 
                 <span class="c1"># rewire to another random susceptible</span>
@@ -478,18 +453,24 @@ importing numpy on engine(s)
         <span class="c1"># perform a normal infection event</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">infect</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
         
-        <span class="c1"># quarantine ourselves</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-        
+        <span class="c1"># quarantine the newly-infected node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  
 </pre></div>
 </div>
 </div>
 </div>
+<p>This is quite a subtle operation, so we should test that we have it coded correctly. A simple “unit” test we can perform is to check the progress of the same epidemic in two different cases for which we know what the answer should be:</p>
+<ul class="simple">
+<li><p>when the probability that a susceptible neighbour will be rewired, <span class="math notranslate nohighlight">\(p_{rewire} = 0\)</span>, so that no rewiring occurs (which should behave identically to normal SIR); and</p></li>
+<li><p>when <span class="math notranslate nohighlight">\(p_{rewire} = 1\)</span> and all susceptible neighbours are immediately rewired, which should extinguish the epidemic with almost no infection beyond the initial “seeds”.</p></li>
+</ul>
+<p>(To explain the second point slightly, we will see the initially infected nodes infect some of their neighbours before they are removed. But those secondary infections wil be immediately and perfectly quarantined and so will have no opportunity to infect any other nodes. We’ll therefore see one “generation” of secondary infections, and no more.)</p>
+<p>We’ll run the same disease for these two scenarios.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
-<span class="n">kmean</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">kmean</span> <span class="o">=</span> <span class="mi">40</span>
 
 <span class="c1"># simulation time</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mi">5000</span>
@@ -504,58 +485,72 @@ importing numpy on engine(s)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># experimental parameters common to both experiments</span>
+<span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 <span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
 <span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
 <span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfected</span>
 <span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
 <span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
 <span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>    <span class="c1"># take 50 samples</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">AdaptiveSIR</span><span class="p">()</span>
+
+<span class="c1"># create model and experiment over ER network</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">AdaptiveSIR</span><span class="p">()</span>
 <span class="n">m</span><span class="o">.</span><span class="n">setMaximumTime</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">ERNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
+<span class="c1"># no rewiring</span>
 <span class="n">params</span><span class="p">[</span><span class="n">AdaptiveSIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">rc_0</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 
-<span class="n">rc</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<span class="c1"># perfect rewiring</span>
+<span class="n">params</span><span class="p">[</span><span class="n">AdaptiveSIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">rc_1</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
-<span class="n">results</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">]</span>
-<span class="n">timeseries</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">TIMESERIES</span><span class="p">]</span>
-<span class="n">ts</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">OBSERVATIONS</span><span class="p">]</span>
-<span class="n">sss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">]</span>
-<span class="n">iss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">INFECTED</span><span class="p">]</span>
-<span class="n">rss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">sss</span><span class="p">,</span> <span class="s1">&#39;r.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;suceptible&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">iss</span><span class="p">,</span> <span class="s1">&#39;g.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;infected&#39;</span><span class="p">)</span>
-<span class="c1">#ax.plot(ts, rss, &#39;ks&#39;, label=&#39;removed&#39;)</span>
-
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span>    
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">])</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SIR on ER ($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">$, no rewiiring)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="c1"># plot the two cases side by side</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">caption</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span> <span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rc_0</span><span class="p">,</span> <span class="s1">&#39;No rewiring ($p_</span><span class="si">{rewire}</span><span class="s1"> = 0.0$)&#39;</span><span class="p">),</span>
+                           <span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rc_1</span><span class="p">,</span> <span class="s1">&#39;Perfect rewiring ($p_</span><span class="si">{rewire}</span><span class="s1"> = 1.0$)&#39;</span><span class="p">)</span> <span class="p">]:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">]</span>
+    <span class="n">timeseries</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">TIMESERIES</span><span class="p">]</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">OBSERVATIONS</span><span class="p">]</span>
+    <span class="n">sss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">]</span>
+    <span class="n">iss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">INFECTED</span><span class="p">]</span>
+    <span class="n">rss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">sss</span><span class="p">,</span> <span class="s1">&#39;r.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;suceptible&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">iss</span><span class="p">,</span> <span class="s1">&#39;g.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;infected&#39;</span><span class="p">)</span>
+    <span class="c1">#ax.plot(ts, rss, &#39;ks&#39;, label=&#39;removed&#39;)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span>    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center right&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">caption</span><span class="p">)</span>
+    
+<span class="c1"># fine-tune figure</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;SIR on ER for different rewirings ($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_23_0.svg" src="_images/seir_23_0.svg" /></div>
+<img alt="_images/seir_35_0.svg" src="_images/seir_35_0.svg" /></div>
+</div>
+<p>Compare the left-hand plot with those we created <a class="reference internal" href="er.html#sec-er-spreading"><span class="std std-ref">earlier</span></a>. The right-hand plot clearly shows very minimal infection.</p>
+<p>Having acquired some confidence in the correctness of the code, we can explore the effect of different values of <span class="math notranslate nohighlight">\(p_{rewire}\)</span> on the size of epidemic. We’ll do this by performing experiments across the parameter range, with 100 repetitions of each to see what the variance is like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-quarantine.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -567,36 +562,59 @@ importing numpy on engine(s)
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>    <span class="c1"># take 50 samples</span>
 
 <span class="c1"># adaptation</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
+<p>Again this requires quite a lot of computation, but then we can plot the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="o">.</span><span class="n">readyFraction</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-quarantine.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="c1"># plot the size of the removed population</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">AdaptiveSIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_</span><span class="si">{rewire}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SIR epidemic size vs $p_</span><span class="si">{rewire}</span><span class="s1">}$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">} = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pInfect</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;sir-er-rewiring.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>0.0
-</pre></div>
+<img alt="_images/seir_43_0.svg" src="_images/seir_43_0.svg" /></div>
 </div>
-</div>
-</div>
+<p>That perhaps isn’t what we might have expected! At low rates of rewiring the epidemic still infects a lot of the network. But around <span class="math notranslate nohighlight">\(p_{rewire} = 0.5\)</span> there’s an abrupt change, and the size of the epidemic collapses to near zero, albeit with a lot of variance between different experiments. This suggests that there’s a critical region within which rewiring (quarantine, remember) interact with detailed features of the network, so the effect is more or less dramatic depending on the exact details of how the rewiring happens.</p>
 </div>
 <div class="section" id="quarantining-people-before-they-re-symptomatic">
 <span id="sec-seir-adaptive-seir"></span><h2>Quarantining people before they’re symptomatic<a class="headerlink" href="#quarantining-people-before-they-re-symptomatic" title="Permalink to this headline">¶</a></h2>
+<p>That’s about all we can say about quarantine in SIR – but in SEIR have have more options. Specifically we can explore <strong>test, trace, and isolate</strong> by looking to quarantine people who are exposed but currently asymptomatic: in other words, whn we encounter a symptomatic (infected) person, we trace their contacts, test them, and isolate any that we find to be infected.</p>
+<p>This is the importance of SEIR as a model. It lets us explore additional countermeasures, specifically those that rely  on detecting asymptomatic individuals.</p>
+<p>Of course no such programme will be 100% effective, so alongside our probability <span class="math notranslate nohighlight">\(p_{rewire}\)</span> of rewiring susceptible neighbours away from infected (and now also exposed) nodes, we’ll have a probability <span class="math notranslate nohighlight">\(p_{detect}\)</span> determining the probability that an exposed neighbour of an infected individual will be detected by the test and trace process. To be clear: <span class="math notranslate nohighlight">\(p_{rewire}\)</span> says how effective quarantine is, while <span class="math notranslate nohighlight">\(p_{detect}\)</span> says how effective testing is.</p>
+<p>(You’ll notice we just introduced two new degrees of freedom into our SEIR model: that’s six parameters now, a lot to be working with.)</p>
+<p>Again, we can add our wcheme to the standard SEIR model. We;ll use the same quarantine function since that process hasn’t changed, but we now perform it when an exposed node develops symptoms, and quarantine some fraction of its neighbouring exposed nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">AdaptiveSEIR</span><span class="p">(</span><span class="n">MonitoredSEIR</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
+
+<span class="k">class</span> <span class="nc">AdaptiveSEIR</span><span class="p">(</span><span class="n">MonitoredSEIR</span><span class="p">):</span>
     
     <span class="n">P_DETECT</span> <span class="o">=</span> <span class="s1">&#39;pDetect&#39;</span>   <span class="c1">#: Parameter for the probability of detecting an exposed neighbour of an infected node.</span>
     <span class="n">P_REWIRE</span> <span class="o">=</span> <span class="s1">&#39;pRewire&#39;</span>   <span class="c1">#: Parameter for the probability of rewiring an SE or SI edge.</span>
@@ -610,15 +628,13 @@ importing numpy on engine(s)
         <span class="c1"># store the parameters for later</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pDetect</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span>
-        
-        <span class="c1"># track susceptibles (for rewiring)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">quarantine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span><span class="p">:</span>
+        <span class="n">ms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ms</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span><span class="p">:</span>
                 <span class="c1"># a susceptible neighbour, remove link to us</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">removeEdge</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
                 
@@ -630,21 +646,221 @@ importing numpy on engine(s)
         <span class="c1"># perform a normal becoming-symptomatic event</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">symptoms</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
         
-        <span class="c1"># examine all neighbours and look for exposed nodes to quarantine</span>
         <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">EXPOSED</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pDetect</span><span class="p">:</span>
-                <span class="c1"># detected an exposed neighbour</span>
+
+        <span class="c1"># examine all neighbours and look for exposed nodes to quarantine</span>
+        <span class="n">ms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ms</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">EXPOSED</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pDetect</span><span class="p">:</span>
+                <span class="c1"># detected an exposed individual, quarantine them</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
                 
-        <span class="c1"># quarantine ourselves</span>
+        <span class="c1"># quarantine the newly symptomatic node</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-        
 </pre></div>
 </div>
 </div>
 </div>
+<p>Notice that we’ve got two places where we look at the neighbours of a node and decided what what to do with them. in <code class="docutils literal notranslate"><span class="pre">symptoms()</span></code> we look for exposed neighbours, detect them with probability <span class="math notranslate nohighlight">\(p_{detect}\)</span>, and quarantine them if we do; in <code class="docutils literal notranslate"><span class="pre">quarantine()</span></code> we look for susceptible neighbours are rewire them with probability <span class="math notranslate nohighlight">\(p_{rewire}\)</span>. If we set <span class="math notranslate nohighlight">\(p_{detect} = 1\)</span>, our test-and-trace regime is perfect; if we set <span class="math notranslate nohighlight">\(p_{rewire} = 1\)</span>, then our isolation regime is perfect.</p>
+<p>Again, let’s unit-test the code by looking at two extreme cases, where <span class="math notranslate nohighlight">\(p_{detect} = 0\)</span> and <span class="math notranslate nohighlight">\(p_{detect} = 1\)</span>, keeping the value of <span class="math notranslate nohighlight">\(p_{rewire}\)</span> the same.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">kmean</span> <span class="o">=</span> <span class="mi">40</span>
+
+<span class="c1"># SEIR disease parameters</span>
+<span class="n">pExposed</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">pSymptoms</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">pRemove</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">pInfect</span> <span class="o">=</span> <span class="mf">0.000075</span>
+
+<span class="c1"># adaptation</span>
+<span class="n">pRewire</span> <span class="o">=</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># experimental parameters common to both experiments</span>
+<span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+<span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_EXPOSED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pExposed</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_SYMPTOMS</span><span class="p">]</span> <span class="o">=</span> <span class="n">pSymptoms</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_SYMPTOMATIC</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
+<span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>    <span class="c1"># take 50 samples</span>
+<span class="n">params</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRewire</span>
+
+<span class="c1"># create model and experiment over ER network</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">AdaptiveSEIR</span><span class="p">()</span>
+<span class="n">m</span><span class="o">.</span><span class="n">setMaximumTime</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">ERNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+
+<span class="c1"># no detection</span>
+<span class="n">params</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">rc_0</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+<span class="c1"># perfect detection</span>
+<span class="n">params</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">rc_1</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># plot the two cases side by side</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">caption</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span> <span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rc_0</span><span class="p">,</span> <span class="s1">&#39;No detection ($p_</span><span class="si">{detect}</span><span class="s1"> = 0.0$)&#39;</span><span class="p">),</span>
+                           <span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">rc_1</span><span class="p">,</span> <span class="s1">&#39;Perfect detection ($p_</span><span class="si">{detect}</span><span class="s1"> = 1.0$)&#39;</span><span class="p">)</span> <span class="p">]:</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">]</span>
+    <span class="n">timeseries</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">TIMESERIES</span><span class="p">]</span>
+    <span class="n">ts</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">OBSERVATIONS</span><span class="p">]</span>
+    <span class="n">sss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">]</span>
+    <span class="n">ess</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">EXPOSED</span><span class="p">]</span>
+    <span class="n">iss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">INFECTED</span><span class="p">]</span>
+    <span class="n">rss</span> <span class="o">=</span> <span class="n">timeseries</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">]</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">sss</span><span class="p">,</span> <span class="s1">&#39;r.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;suceptible&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">ess</span><span class="p">,</span> <span class="s1">&#39;b.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;exposed&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">iss</span><span class="p">,</span> <span class="s1">&#39;g.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;infected&#39;</span><span class="p">)</span>
+    <span class="c1">#ax.plot(ts, rss, &#39;ks&#39;, label=&#39;removed&#39;)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span>    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center left&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">caption</span><span class="p">)</span>
+    
+<span class="c1"># fine-tune figure</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;SEIR on ER for different detection of exposed individuals ($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, p_</span><span class="si">{rewire}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pRewire</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/seir_51_0.svg" src="_images/seir_51_0.svg" /></div>
+</div>
+<p>With no detection (in the left-hand plot) of exposed nodes we see an epidemic break out, albeit quite a small one. The exposed nodes start spreading infection silently, but since they’re never detected the only countermeasures that happen are a 50%-effective quarantine of infected nodes. In the right-hand plot the perfect detection means that the countermeausres are very effective, even when the quarantine is only 50% effective.</p>
+<p>Let’s see what effect detection efficiency has. Remember, <span class="math notranslate nohighlight">\(p_{detect}\)</span> is the probability that an exposed neighbour of an infected individual will be detected and then quarantined: you can think of it as a measure of how effectively we’re doing the “test” and “trace” parts of “test, trace, and isolate”. We probably expect that a more effective detection regime – where more exposed individuals are detected earlier – will have the effect of reducing the size of the epidemic.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-quarantine.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We need to pick values for the other parameters in the model, so let’s rather arbitrarily say that asymptomatic and symptomatic infection happen with the same probability, and that we have a quarantine regime that’s 50%-effective both for infected people and for those we uncover through testing.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
+
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_EXPOSED</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.000075</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_SYMPTOMATIC</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.000075</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_SYMPTOMS</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.002</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>    <span class="c1"># take 50 samples</span>
+
+<span class="c1"># adaptation</span>
+<span class="n">pRewire</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRewire</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">AdaptiveSEIR</span><span class="p">()</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">ERNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>More simulation results in the following.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-quarantine.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="c1"># plot the size of the removed population</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">==</span> <span class="n">pRewire</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_</span><span class="si">{detect}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SEIR epidemic size vs $p_</span><span class="si">{detect}</span><span class="s1">}$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_</span><span class="si">{rewire}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pRewire</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/seir_60_0.svg" src="_images/seir_60_0.svg" /></div>
+</div>
+<p>Perhaps a little disappointing: it seems that detection doesn’t have much effect in this case. You’ll notice that it’s not <em>no</em> effect: there are cases right across the graph in which the size of the outbreak is around zero, but in the majority of cases there is a large epidemic.</p>
+<p>Might this be to do with the effectiveness of quarantine? If we adopt an 80%-effective regime, what then happens?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pRewire</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRewire</span>
+<span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+
+<span class="c1"># plot the size of the removed population</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">==</span> <span class="n">pRewire</span><span class="p">]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_</span><span class="si">{detect}</span><span class="s1">$&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SEIR epidemic size vs $p_</span><span class="si">{detect}</span><span class="s1">}$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_</span><span class="si">{rewire}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pRewire</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/seir_65_0.svg" src="_images/seir_65_0.svg" /></div>
+</div>
+<p><em>Very</em> different! What are we seeing?</p>
+<p>Firstly, notice that in almost all cases we have some examples of epidemics with very small outbreaks, suggesting that even low detection rates <em>can</em> make a difference. But at low values of <span class="math notranslate nohighlight">\(p_{detect}\)</span> that difference is really rather sparse: it doesn’t happen often.</p>
+<p>As <span class="math notranslate nohighlight">\(p_{detect}\)</span> increases – that it, as testing and tracing becomes more effective, we start to see a strange effect: a “waterfall” of results. Remember that each point on the graph represents a single experimental epidemic.  Within the waterfall, some of these experiments have huge outbreaks, some have none, and some fall in between. This may suggest that the really detailed structuire of the network makes a difference: some small thing is enough to change the way the stochastic process evolves and so swing the results.</p>
+<p>Then as we continue to increase <span class="math notranslate nohighlight">\(p_{detect}\)</span> we see something else. The “waterfall” continues, but suddenly there are no really large outbreaks. Detection and quarantine aren’t stopping epidemics from happening, but they <em>are</em> limiting their size. Finally we see very effective control when we have perfect detection – although still <em>imperfect</em> control, because of the imperfect quarantine.</p>
+</div>
+<div class="section" id="questions-for-discussion">
+<h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>What sort of detection activities might you impose in an epidemic? How effective would it be? What could you do to make it <em>more</em> effective?</p></li>
+<li><p>What would happen if you had vaccination <em>and</em> text, trace, and isolate in place at the same time? Would one compensate for weaknesses in the other?</p></li>
+</ul>
 </div>
 </div>
 
@@ -657,6 +873,8 @@ importing numpy on engine(s)
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="vaccination.html" title="previous page">Changing individual susceptibility</a>
+    <a class='right-next' id="next-link" href="distancing.html" title="next page">Social distancing</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

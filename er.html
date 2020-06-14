@@ -101,6 +101,12 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
+    <a href="seir.html">Asymptomatic transmission</a>
+  </li>
+  <li class="">
+    <a href="distancing.html">Social distancing</a>
+  </li>
+  <li class="">
     <a href="reading.html">To find out more</a>
   </li>
   <li class="">
@@ -202,6 +208,10 @@
             <a href="#epidemic-spreading-on-er-networks" class="nav-link">Epidemic spreading on ER networks</a>
         </li>
     
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
+        </li>
+    
     </ul>
 </nav>
 
@@ -235,7 +245,7 @@
 <p class="sidebar-title"></p>
 <p>If this use of the word “distribution” sounds like it should be connected to probability theory – it is. The degree histogram is a shows the relative numbers of nodes with each different degree, and so defines the probability of randomly choosing a node with degree <span class="math notranslate nohighlight">\(k\)</span>. <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> is then the expected value of the degree.</p>
 </div>
-<p>In general things will be more complicated. The degrees of nodes in a network form a <strong>degree distribution</strong>, which we can plot as a histogram to show the number of nodes with each degree. (we do this below.) If we use <span class="math notranslate nohighlight">\(N\)</span> to represent the number of nodes in the network, we’ll use <span class="math notranslate nohighlight">\(N_k\)</span> to represent the number of nodes with degree <span class="math notranslate nohighlight">\(k\)</span>. Then we can compute <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> very easily from this distibution, by summing up the numbers of ndoes with each degree and then dividing by the number of nodes.</p>
+<p>In general things will be more complicated. The degrees of nodes in a network form a <strong>degree distribution</strong>, which we can plot as a histogram to show the number of nodes with each degree (we do this below). If we use <span class="math notranslate nohighlight">\(N\)</span> to represent the number of nodes in the network, we’ll use <span class="math notranslate nohighlight">\(N_k\)</span> to represent the number of nodes with degree <span class="math notranslate nohighlight">\(k\)</span>. Then we can compute <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> very easily from this distibution, by summing up the numbers of ndoes with each degree and then dividing by the number of nodes.</p>
 <div class="math notranslate nohighlight">
 \[
     \langle k \rangle = \frac{\sum_k N_k}{N}
@@ -248,7 +258,7 @@
 <p class="sidebar-title"></p>
 <p>Paul Erdős (pronounced “AIR-dish”) was the most prolific mathematician of the 20th
 century. A peripatetic genius, he owned essentially nothing and
-travelled between the university mathematics schools seeking problems to work on.
+travelled between university mathematics schools seeking problems to work on.
 His biography <a class="bibtex reference internal" href="zbibliography.html#hof98" id="id1">[9]</a> provides a fascinating insight into mathematical life.
 Alfred Rényi was a noted mathematician whose other work has been
 rather overshadowed by his wonderfully productive association with
@@ -263,7 +273,7 @@ Erdős. He was also responsible for the definition of a mathematician as
 <p class="sidebar-title"></p>
 <p>Again, in the literature <span class="math notranslate nohighlight">\(p_{edge}\)</span> is usually denoted <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
-<p>From this simple description of the degree distributiuon, an ER network is also very simple to build. Pick a number of nodes <span class="math notranslate nohighlight">\(N\)</span>, and build the complete graph <span class="math notranslate nohighlight">\(K_N\)</span>. Remember that the complete graph has an edge between every pair of nodes. Now pick a parameter <span class="math notranslate nohighlight">\(p_{edge}\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. Work through all the edges, and for each edge pick a random number <span class="math notranslate nohighlight">\(s\)</span> between <span class="math notranslate nohighlight">\(0\)</span> ands <span class="math notranslate nohighlight">\(1\)</span>. If <span class="math notranslate nohighlight">\(s \le p_{edge}\)</span> then keep the edge; if <span class="math notranslate nohighlight">\(s \gt p_{edge}\)</span>, remove it. You’ll end up with a network in which there’s an edge between each pair of nodes with a probability <span class="math notranslate nohighlight">\(p_{edge}\)</span>. If <span class="math notranslate nohighlight">\(p_{edge} = 1\)</span> we have the complete graph (we <em>always</em> keep an edge); if <span class="math notranslate nohighlight">\(p_{edge} = 0\)</span> we have the empty graph (we <em>never</em> keep an edge); and for values in between we have a more or less sparse collection of edges.</p>
+<p>From this simple description of the degree distribution, an ER network is also very simple to build. Pick a number of nodes <span class="math notranslate nohighlight">\(N\)</span>, and build the complete graph <span class="math notranslate nohighlight">\(K_N\)</span>. Remember that the complete graph has an edge between every pair of nodes. Now pick a parameter <span class="math notranslate nohighlight">\(p_{edge}\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. Work through all the edges, and for each edge pick a random number <span class="math notranslate nohighlight">\(s\)</span> between <span class="math notranslate nohighlight">\(0\)</span> ands <span class="math notranslate nohighlight">\(1\)</span>. If <span class="math notranslate nohighlight">\(s \le p_{edge}\)</span> then keep the edge; if <span class="math notranslate nohighlight">\(s \gt p_{edge}\)</span>, remove it. You’ll end up with a network in which there’s an edge between each pair of nodes with a probability <span class="math notranslate nohighlight">\(p_{edge}\)</span>. If <span class="math notranslate nohighlight">\(p_{edge} = 1\)</span> we have the complete graph (we <em>always</em> keep an edge); if <span class="math notranslate nohighlight">\(p_{edge} = 0\)</span> we have the empty graph (we <em>never</em> keep an edge); and for values in between we have a more or less sparse collection of edges.</p>
 <p>Drawing the result can help get the idea straight.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -371,8 +381,8 @@ Erdős. He was also responsible for the definition of a mathematician as
     
     <span class="c1"># run the corresponding simulation</span>
     <span class="p">(</span><span class="n">sim_ts</span><span class="p">,</span> <span class="n">sim_sss</span><span class="p">,</span> <span class="n">sim_iss</span><span class="p">,</span> <span class="n">sim_rss</span><span class="p">)</span> <span class="o">=</span> <span class="n">network_sir</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">pInfected</span><span class="p">,</span> <span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim_ts</span><span class="p">,</span> <span class="n">sim_sss</span><span class="p">,</span> <span class="s1">&#39;rs&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;suceptible&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim_ts</span><span class="p">,</span> <span class="n">sim_iss</span><span class="p">,</span> <span class="s1">&#39;gs&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;infected&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim_ts</span><span class="p">,</span> <span class="n">sim_sss</span><span class="p">,</span> <span class="s1">&#39;r.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;suceptible&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sim_ts</span><span class="p">,</span> <span class="n">sim_iss</span><span class="p">,</span> <span class="s1">&#39;g.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;infected&#39;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$</span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">])</span>
@@ -391,7 +401,14 @@ Erdős. He was also responsible for the definition of a mathematician as
 <div class="cell_output docutils container">
 <img alt="_images/er_20_0.svg" src="_images/er_20_0.svg" /></div>
 </div>
-<p>Compare these graphs to the ones earlier, and you’ll see the same shapes: changing <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> has the same effect as changing <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> in terms of moving the peak of infections.</p>
+<p>Compare these graphs to the ones <a class="reference internal" href="network.html#sec-network-complete"><span class="std std-ref">earlier</span></a> and you’ll see the same shapes: changing <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> has the same effect as changing <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> in terms of moving the peak of infections.</p>
+</div>
+<div class="section" id="questions-for-discussion">
+<h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>In a network model two people are either connected, or they aren’t. Is that realistic? Could we change our model to make it reflect different “strengths of connection”? What might that let us do?</p></li>
+<li><p>We say above that “changing <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> has the same effect as changing <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>”. Can you put that in less mathematical terms? What does it mean?</p></li>
+</ul>
 </div>
 </div>
 

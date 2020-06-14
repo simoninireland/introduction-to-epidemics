@@ -101,6 +101,12 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
+    <a href="seir.html">Asymptomatic transmission</a>
+  </li>
+  <li class="">
+    <a href="distancing.html">Social distancing</a>
+  </li>
+  <li class="">
     <a href="reading.html">To find out more</a>
   </li>
   <li class="">
@@ -197,7 +203,7 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#why-one-needs-to-be-careful-about-r" class="nav-link">Why one needs to be careful about R</a>
+            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
         </li>
     
     </ul>
@@ -390,7 +396,7 @@
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$t = </span><span class="si">{t}</span><span class="s1">, R_</span><span class="si">{t}</span><span class="s1"> = </span><span class="si">{rt}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">layers</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rt</span><span class="o">=</span><span class="n">Rt</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;$t = </span><span class="si">{t}</span><span class="s1">, R = </span><span class="si">{rt:.2f}</span><span class="s1">$&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">t</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">layers</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rt</span><span class="o">=</span><span class="n">Rt</span><span class="p">))</span>
     
 <span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="c1">#fig = plt.figure(figsize=(4, 4))</span>
@@ -422,13 +428,15 @@
 </div>
 <div class="section" id="case-reproduction-rate">
 <h2>Case reproduction rate<a class="headerlink" href="#case-reproduction-rate" title="Permalink to this headline">¶</a></h2>
-<p>The contact tree is important for other reasons too: it’s the data structure that lets us compute the case reproduction number <span class="math notranslate nohighlight">\(R_t\)</span> on a on-going basis.</p>
-<p>Remember that <span class="math notranslate nohighlight">\(R_t\)</span> is the average number of cases occurring per secondary case. Looking back at the figure above, the number of secondary cases for each individual is given by number of individuals in the next layer down that the original individual is connected to. Dividing the total number of infected people by the number of people who infected them, we arrive at <span class="math notranslate nohighlight">\(R_t\)</span>. It’s shown in the title of each sub-figure above.</p>
-<p>{sec:tracing-r-care)=</p>
+<p>The contact tree is important for other reasons too: it’s the data structure that lets us compute the case reproduction number <span class="math notranslate nohighlight">\(R\)</span> on a on-going basis.</p>
+<p>Remember that <span class="math notranslate nohighlight">\(R\)</span> is the average number of cases occurring per secondary case. Looking back at the figure above, the number of secondary cases for each individual is given by number of individuals in the next layer down that the original individual is connected to. Dividing the total number of infected people by the number of people who infected them, we arrive at <span class="math notranslate nohighlight">\(R\)</span>. It’s shown in the title of each sub-figure above.</p>
 </div>
-<div class="section" id="why-one-needs-to-be-careful-about-r">
-<h2>Why one needs to be careful about R<a class="headerlink" href="#why-one-needs-to-be-careful-about-r" title="Permalink to this headline">¶</a></h2>
-<p>The value of <span class="math notranslate nohighlight">\(R_t\)</span></p>
+<div class="section" id="questions-for-discussion">
+<h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Suppose you’re been put in charge of tracking and tracing people’s contacts. How would you do it? Is there any technology that wouild make the job easier?</p></li>
+<li><p>Tracing contacts is quite invasive of people’s privacy. Is it justified when there’s an epidemic happening? How about in “normal” circumstances?</p></li>
+</ul>
 </div>
 </div>
 

@@ -101,6 +101,12 @@
     <a href="vaccination.html">Changing individual susceptibility</a>
   </li>
   <li class="">
+    <a href="seir.html">Asymptomatic transmission</a>
+  </li>
+  <li class="">
+    <a href="distancing.html">Social distancing</a>
+  </li>
+  <li class="">
     <a href="reading.html">To find out more</a>
   </li>
   <li class="">
@@ -218,7 +224,7 @@ child – is latent for 7–10 days after exposure, but only
 infectious for about 24 hours before the symptoms (an itchy rash)
 appear.</p>
 </div>
-<p>This phenomenon can be used constructively, and when I was a child it was commonplace for parents to hold “chickpox parties” and bring all the neighbouring children together to play so they could be exposed – and then subsequently be immune from further infection, since chickenpox is quite well-modelled by SIR.</p>
+<p>This phenomenon can be used constructively. When I was a child it was commonplace for parents to hold “chickenpox parties” and bring all the neighbouring children together to play so they could be exposed – and then subsequently be immune from further infection, since chickenpox confers very strong immunity.</p>
 <p>But in other cases the assumption of complete mixing is going to break down. And since we know that even a small change in infectivity can have a dramatic effect on the progress of an epidemic, can we change SIR to accommodate the social realities in which there are substantially fewer connections between individuals that we might expect?</p>
 <div class="section" id="networks">
 <h2>Networks<a class="headerlink" href="#networks" title="Permalink to this headline">¶</a></h2>
@@ -232,10 +238,10 @@ appear.</p>
 <p>Do the same thing for everyone in the population, and you have a social network for that population. The nodes are the individuals; the edges are the potentially infection-carrying social contacts.</p>
 </div>
 <div class="section" id="complete-networks">
-<h2>Complete networks<a class="headerlink" href="#complete-networks" title="Permalink to this headline">¶</a></h2>
-<p>Suppose that, on your travels, you <em>did</em> actually happen to come into contact with everyone in the population, so that your social network had edges connecting you to everyone else. And suppose that everyone else did the same, so that everyone was connected to everyone. This is still a social network – a very dense one to be sure, but perhaps like that of a crowd at a rugby match. It also matches the assumptions we made earlier about complete mixing. So if we  ran a simulation of diosease spreading over this network, we’d presumably expect to see the same results as we did before.</p>
+<span id="sec-network-complete"></span><h2>Complete networks<a class="headerlink" href="#complete-networks" title="Permalink to this headline">¶</a></h2>
+<p>Suppose that, on your travels, you <em>did</em> actually happen to come into contact with everyone in the population, so that your social network had edges connecting you to everyone else. And suppose that everyone else did the same, so that everyone was connected to everyone. This is still a social network – a very dense one to be sure, perhaps like what happens on a nightclub dance floor. It also matches the assumptions we made earlier about complete mixing. So if we  ran a simulation of disease spreading over this network, we’d presumably expect to see the same results as we did before.</p>
 <p>Wouldn’t we?</p>
-<p>In the previous chapter we “pushed” an initial population of nodes through the equations. For a network we can do something slightly different. Each node represents an individual, so we have a colleciton of people whose evolution we can track through the SIR disease (rather than simply counting them). That will be useful later. But clearly there’s more “book-keeping” to do in keeping track of everyone. It’s harder, from a programming perspective, to model the disease on a network – but in doing so we gain a lot of flexibility,a s we’ll see later.</p>
+<p>In the previous chapter we “pushed” an initial population of nodes through the equations. For a network we can do something slightly different. Each node represents an individual, so we have a colleciton of people whose evolution we can track through the SIR disease (rather than simply counting them). That will be useful later. But clearly there’s more “book-keeping” to do in keeping track of everyone. It’s harder, from a programming perspective, to model the disease on a network – but in doing so we gain a lot of flexibility, as we’ll see later.</p>
 <p>For the moment, we need to set up a computational simulation of the people and their connections. Fortunately there we have software than can help us do this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -349,9 +355,14 @@ appear.</p>
 </div>
 <div class="section" id="the-story-so-far">
 <h2>The story so far<a class="headerlink" href="#the-story-so-far" title="Permalink to this headline">¶</a></h2>
-<p>To recap, we defined SIR as a process and explored what happened it in a scenario of complete mixing. We then reproduced these results in a different framework, with the same process running over a network, also with complete mixing. But clearly complete mixing isn’t a good model of a social network: you don’t meet everyone all the time, and therefore don’t get exposed to all possible infected people.</p>
-<p>Real social networks are very different: more “clumpy”, more uneven, some people with more contacts than others. Everyone experiences this, and one wouold think that the differences (in the social contact structure) will make a difference to the epidemic (in the way it spreads). This is indeed the case, and we can explore it.</p>
+<p>To recap, we defined SIR as a process and explored what happened in a scenario of complete mixing. We then reproduced these results in a different framework, with the same process running over a network, also with complete mixing. But clearly complete mixing isn’t a good model of a social network: you don’t meet everyone all the time, and therefore don’t get exposed to all possible infected people.</p>
+<p>Real social networks are very different: more “clumpy”, more uneven, some people with more contacts than others. Everyone experiences this, and one would think that the differences (in the social contact structure) will make a difference to the epidemic (in the way it spreads). This is indeed the case, and we can explore it.</p>
 <p>The simulation we ran above has two parts: the SIR process, and the network we ran it over – which in this case was a complete graph. We can of course change the network, and as we do we can explore how the disease behaves for different kinds of network. In the spirit of good science, we’ll keep the disease the same, and only change the context in which it occurs, so that any changes we observe will be due to change in the network.</p>
+<p>## Questions for discussion</p>
+<ul class="simple">
+<li><p>We’ve now done two simulations of the same disease model: with equations, and with simulation. Which do you trust the results of more? Why?</p></li>
+<li><p>(For programmers.) How would you go about building a simulator for SIR?</p></li>
+</ul>
 </div>
 </div>
 

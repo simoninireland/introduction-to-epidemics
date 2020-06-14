@@ -10512,7 +10512,27 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
+    "```{margin}\n",
+    "\n",
+    "The \"variance of the variance\" is also called the *skewness*.\n",
+    "```\n",
+    "\n",
     "So there's still a lot of variance in the results: we could see that by plotting them \"raw\". the error bars just present the same information in a statistical manner. We can also see that the variance changes quite considerably: there's variance in the variance. Both of these suggest that we should do more experiments to see whether the values converge more closely to cluster around their mean. One advantage of simulation is that we can easily do exactly this, simply by crunching more numbers &ndash; a luxury not present in real-world epidemiology."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "## Questions for discussion"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "- Where is all this variance coming from? &ndash; aren't we gett9ing exact answers by running simulations in a computer?\n",
+    "- The existence of an epidemic threshold suggests that some diseases never become epidemics. Is that right?"
    ]
   }
  ],
