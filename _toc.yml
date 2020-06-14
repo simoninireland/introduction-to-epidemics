@@ -10,6 +10,8 @@
 - file: hcn
 - file: herd
 - file: vaccination
+- file: seir
+- file: distancing
 
 - file: reading
 - file: zbibliography

@@ -30,7 +30,8 @@ NOTEBOOKS =  \
 	src/hcn.ipynb \
 	src/herd.ipynb \
 	src/vaccination.ipynb \
-	src/seir.ipynb
+	src/seir.ipynb \
+	src/distancing.ipynb
 
 # Image files
 RAW_IMAGES = \
@@ -47,7 +48,10 @@ GENERATED_IMAGES = \
 # Generated datasets
 GENERATED_DATASETS = \
 	src/datasets/threshold-er.json \
-	src/datasets/threshold-plc.json
+	src/datasets/threshold-plc.json \
+	src/datasets/sier-er.json \
+	src/datasets/sir-quarantine.json \
+	src/datasets/seir-quarantine.json
 
 # Bibliography
 BIBLIOGRAPHY = src/bibliography.bib
@@ -65,11 +69,13 @@ CONTENT = \
 	$(NOTEBOOKS) \
 	$(RAW_IMAGES) \
 	$(BIBLIOGRAPHY) \
-	$(LICENSE) \
 	$(BOOK_CONFIG) $(BOOK_TOC)
 
 
 # ----- Tools -----
+
+# Root directory
+ROOT = $(shell pwd)
 
 # Base commands
 PYTHON = python3.6            # specific sub-version for use with compute cluster
@@ -90,9 +96,6 @@ CHDIR = cd
 ZIP = zip -r
 ECHO = echo
 
-# Root directory
-ROOT = $(shell pwd)
-
 # Datestamp
 DATE = `date`
 
@@ -110,6 +113,7 @@ MAKE_DATESTAMP = $(ECHO) "(This version built $(DATE))" >>$(BOOK_DIR)/index.md
 CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
 BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
 UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_DIR)/_build/html
+BUILD_PRINT_BOOK = $(BUILD_BOOK) --builder pdfhtml
 
 
 # ----- Top-level targets -----
@@ -122,20 +126,27 @@ help:
 live: env
 	$(ACTIVATE)  && $(RUN_SERVER)
 
-# Book building
-book: $(BOOK_DIR)
+# Copy content
+content: $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(MAKE_DATESTAMP)
-	$(ACTIVATE) && $(BUILD_BOOK)
 
 $(BOOK_DIR): Makefile $(BOOK_CONFIG)
 	$(RM) $(BOOK_DIR)
 	$(ACTIVATE) && $(CREATE_BOOK)
 	$(RM) $(BOOK_DIR)/*.ipynb $(BOOK_DIR)/*.md
 
+# Book building
+book: content
+	$(ACTIVATE) && $(BUILD_BOOK)
+
 # Upload book to public web site
-upload:
+upload: book
 	$(ACTIVATE) && $(UPLOAD_BOOK)
+
+# Build a printed copy
+print: content
+	$(ACTIVATE) && $(BUILD_PRINT_BOOK)
 
 # Build a development venv
 .PHONY: env
@@ -164,6 +175,7 @@ Editing:
 Production:
    make book         build the book using Jupyter Book
    make upload       upload book to public web site
+   make print        build a PDF of the book
 
 Maintenance:
    make env          create a virtual environment
