@@ -191,7 +191,7 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#a-socially-distanced-social-network" class="nav-link">A socially distanced social network</a>
+            <a href="#a-socially-distanced-contact-network" class="nav-link">A socially distanced contact network</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -226,28 +226,9 @@
 </div>
 <p>Let’s go back to basics. In SEIR-style diseases we have the possibility of individuals walking around and spreading the disease without showing any symptoms. There is by definition no way (absent testing) to spot these individuals until (and unless) they show symptoms. So the challenge is to stop these infectious-but-asymptomatic individuals from coming into contact with susceptible individuals.</p>
 <p>What is we re-structure the contact network so that people only have contact with a small group of people, and reduce the amount of mixing between those groups? If someone is infected in spite of everything then they’ll probably infect their own group, but they’ll be less opportunity to infect other groups. This strategy is referred to as <strong>social distancing</strong>, reducing and re-structuring the connections within a population.</p>
-<div class="section" id="a-socially-distanced-social-network">
-<h2>A socially distanced social network<a class="headerlink" href="#a-socially-distanced-social-network" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-socially-distanced-contact-network">
+<h2>A socially distanced contact network<a class="headerlink" href="#a-socially-distanced-contact-network" title="Permalink to this headline">¶</a></h2>
 <p>Social distancing is another topological approach to epidemic control. It works by changing the network over which the disease operates, rather than addressing the disease itself. s such it’s well-suited to new diseases and those for which there are few effective therapies.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>
-<span class="kn">import</span> <span class="nn">networkx</span>
-<span class="kn">import</span> <span class="nn">epyc</span>
-<span class="kn">import</span> <span class="nn">epydemic</span>
-<span class="kn">import</span> <span class="nn">pandas</span>
-<span class="kn">import</span> <span class="nn">mpmath</span>
-
-<span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_formats</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;svg&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">}</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span>
-<span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 <p>What does “social distancing” mean in network terms? We can understand it best by thinking about the actual conditions of socially-distant lockdown, and then re-creating this structure as a network.</p>
 <p>The idea of social distancing is to place individuals in small “bubbles” of contact – typically just their own immediate family – with whom they interact strongly, and weaken the connections that any family member has with individuals in other bubbles. Within a bubble, infection of one person will probably transfer quickly to most or all all of the other members. But the ability of the disease to pass between bubbles is substantially reduced, since there is relatively little contact between them. One can reduce the inter-bubble transmission even further using quarantine when someone realises they are infected.</p>
 <p>In network terms, the bubbles are <a class="reference internal" href="network.html#sec-network-complete"><span class="std std-ref">complete graphs</span></a> (everyone in a bubble meets everyone else) whose size depends on the size of the family. We could set all families to the same size, say 4; alternatively we could draw family sizes from some probability distribution where the average size of a family is 4.5 (2 adults with the proverbial 2.5 children) but we allow larger and smaller families to occur. Larger families risk more infections if a member is infected.</p>
@@ -418,7 +399,7 @@ Most connected individual has 45 contacts
 </div>
 </div>
 <p>We could also draw the network to inspect it, colouring the nodes with the size of cluster they belong to – although that turns out not to be especially revealing.</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_social_distance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cluster_size&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># fill in defaults</span>
@@ -438,13 +419,8 @@ Most connected individual has 45 contacts
                          <span class="n">node_size</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
                          <span class="n">node_color</span><span class="o">=</span><span class="n">ncs</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="n">ecs</span><span class="p">,</span>
                          <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">edge_cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="n">draw_social_distance</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
@@ -455,7 +431,7 @@ Most connected individual has 45 contacts
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/distancing_20_0.svg" src="_images/distancing_20_0.svg" /></div>
+<img alt="_images/distancing_19_0.svg" src="_images/distancing_19_0.svg" /></div>
 </div>
 <p>This isn’t a useless plot, once we know that more highly-connected clusters sit in the centre with less-connected clusters pushed to the outside. We can see these less-connected clusters, and in particular see that they have a range of colours, indicating that they’re of different sizes – and therefore giving confidence that the algorithm hasn’t (for example) only made large clusters highly connected.</p>
 </div>
@@ -471,66 +447,8 @@ Most connected individual has 45 contacts
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">lab</span><span class="o">.</span><span class="n">sync_imports</span><span class="p">():</span>
-    <span class="kn">import</span> <span class="nn">time</span>
-    <span class="kn">import</span> <span class="nn">networkx</span>
-    <span class="kn">import</span> <span class="nn">epyc</span>
-    <span class="kn">import</span> <span class="nn">epydemic</span>
-    <span class="kn">import</span> <span class="nn">numpy</span>
-    <span class="kn">import</span> <span class="nn">mpmath</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{n}</span><span class="s1"> engines available&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">numberOfEngines</span><span class="p">()))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>importing time on engine(s)
-importing networkx on engine(s)
-importing epyc on engine(s)
-importing epydemic on engine(s)
-importing numpy on engine(s)
-importing mpmath on engine(s)
-78 engines available
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># from https://nbviewer.jupyter.org/gist/minrk/4470122</span>
-<span class="k">def</span> <span class="nf">pxlocal</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">):</span>
-    <span class="n">ip</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span>
-    <span class="n">ip</span><span class="o">.</span><span class="n">run_cell_magic</span><span class="p">(</span><span class="s2">&quot;px&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
-    <span class="n">ip</span><span class="o">.</span><span class="n">run_cell</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
-<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">register_magic_function</span><span class="p">(</span><span class="n">pxlocal</span><span class="p">,</span> <span class="s2">&quot;cell&quot;</span><span class="p">)</span>    
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
-
-<span class="k">class</span> <span class="nc">MonitoredSIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
- 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        
-    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Build the observation process.</span>
-<span class="sd">        </span>
-<span class="sd">        :param params: the experimental parameters&#39;&#39;&#39;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
-
-        <span class="c1"># also monitor other compartments</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
+<p>If we cast the above code into a format suitable for running as an experiment, we can then look at how an epidemic proceeds for a sample point in the parameter space.</p>
+<div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
 
@@ -663,7 +581,7 @@ importing mpmath on engine(s)
 </div>
 </div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
@@ -721,24 +639,12 @@ importing mpmath on engine(s)
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="o">.</span><span class="n">readyFraction</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>1.0
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-socdist.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
