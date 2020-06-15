@@ -90,6 +90,24 @@ the parameters were known, and so forth. Mistakes in situations like
 this can mean that outbreaks get out of control, and people may die.
 
 
+## Assumptions
+
+The accuracy of a model depends on its **assumptions**, and how well
+these match reality. This issue appears in several guises. The model's
+"mechanics" &ndash; the ways it fits its various elements together
+&ndash; need to match the disease it's (purporting to be) a model
+of. It needs to identify the parameters that control its evolution.
+These parameters need to match those of the real disease.
+
+All these are problematic at the best of times, but especially when
+dealing with a new disease that's not been well-studied. How
+infectious is a disease? How long is a person sick for? Does the
+disease confer immunity on an individual who's had it? &ndash; and is
+that immunity total or partial, permanent or time-limited?  All these
+factors introduce uncertainties into any conclusions we draw from
+modelling.
+
+
 ## Correctness
 
 Whether we're interested in concrete or abstract questions, we still
