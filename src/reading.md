@@ -11,7 +11,10 @@ and not a state, is still generating new works that encourage us to
 revisit both the sociology and the science. Ziegler addresses the full
 sweep {cite}`Zie03`; Hatcher explores it from the perspective of a
 village {cite}`Hat09`; while Sloane deals with a capital city
-{cite}`Slo11`. An accessible yet detailed scientific treatment is
+{cite}`Slo11`. The plague also had an extensive and unique effect on
+literature, being observed by many writers including the poet
+Petrarch, who wrote extensively of its effects on Florence {cite}`Fin20`.
+An accessible yet detailed scientific treatment is
 still waiting to be written.
 
 
