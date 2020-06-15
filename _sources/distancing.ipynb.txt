@@ -27644,7 +27644,7 @@
    "metadata": {},
    "source": [
     "- The case of Typhoid Mary raises some troubling questions. Is it right to lock someone up when they're done nothing personally wrong, to protect the community? What alternatives were there, before treatments like antibiotics were available? What might we do today?  \n",
-    "- Social distancing doesn't have to be uniform for everyone. Some people are in more need of protection (\"shielding\") than others. How could we introduce this into our model?"
+    "- Social distancing doesn't have to be uniform for everyone. Some people are in more need of protection (\"shielding\") than others. How could we introduce this into a model?"
    ]
   }
  ],

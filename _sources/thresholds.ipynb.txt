@@ -10531,7 +10531,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "- Where is all this variance coming from? &ndash; aren't we gett9ing exact answers by running simulations in a computer?\n",
+    "- Where is all this variance coming from? &ndash; aren't we getting exact answers by running simulations in a computer?\n",
     "- The existence of an epidemic threshold suggests that some diseases never become epidemics. Is that right?"
    ]
   }

@@ -363,7 +363,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Epidemic size vs $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -383,7 +383,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Epidemic size vs $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -398,7 +398,7 @@
 <p>We’ll now look at a completely different strategy for countermeasures. Instead of affecting individuals while leaving the network intact, we’ll instead leave the individuals as they are but change the network as the epidemic spreads. That is to say, we’ll change the structure of contacts – who’s connected to whom – in response to the spread ofthe disease through the population. This leads to a family of <strong>adaptive</strong> countermeasures, since we take action to change the network in response to (adapting to) the process (disease) flowing through it.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>The term “quarantine” comes from the Italian phrase for “forty days” (<em>quaranta giorni</em>). When Venice suffered an outbreak of the Black Death in the 14th century, the Venetians established a system whereby ships arriving in port had to moor off remote islands in the lagoon for forty days until they were judged to be disease-free – possibly the first modern example of effective disease control <a class="bibtex reference internal" href="zbibliography.html#stu20" id="id1">[24]</a>.</p>
+<p>The term “quarantine” comes from the Italian phrase for “forty days” (<em>quaranta giorni</em>). When Venice suffered an outbreak of the Black Death in the 14th century, the Venetians established a system whereby ships arriving in port had to moor off remote islands in the lagoon for forty days until they were judged to be disease-free – possibly the first modern example of effective disease control <a class="bibtex reference internal" href="zbibliography.html#stu20" id="id1">[25]</a>.</p>
 </div>
 <p>The simplest and best-known adaptive control measure is <strong>quarantine</strong>, whereby we isolate individuals who are (or may be) infected to prevent them infecting others. A <strong>proactive quarantine</strong> isolates all incoming individuals for as long as it takes to pass through the expected <a class="reference internal" href="progress.html#sec-progress-periods"><span class="std std-ref">infectious period</span></a> of whatevere disease they might be carrying. A <strong>reactive or adaptive quarantine</strong> waits until a person shows symptoms and then isolates them, which avoids detaining the uninfected but at the risk of allowing infected (and possibly infectious) people to circulate.</p>
 <p>However it’s done, the goal of quarantine is to reduce the effective <span class="math notranslate nohighlight">\(R\)</span> value of the disease such that any epidemic is contained, ideally failing to take hold or at least being smaller and less intense than would otherwise be the case.</p>
@@ -408,7 +408,7 @@
 <p>Let’s introduce quarantine into our models. In the spirit of simplicity, we’ll look first at SIR.</p>
 <p>How does quarantine manifest itself in SIR? Infection in SIR happoens when the disease passes from an infected individual to a susceptible one. Quarantine is an adaptive strategy – it happens in parallel with infection – so we’ll be introducing a way of changing the network. When the disease passes to a formerly-susceptible person, we’ll changes that person’s connections in some way.</p>
 <p>If this strategy was performed perfectly and immediately it would immediately stamp-out an SIR infection. Every time someone became infected, that person would be immediately and completely isolated, and so would be unable to infect anyone else. The original “seeding” of infected individuals would infect some of their neighbours, but those neighbours would then <em>never affect anyone else</em> (because they’d have no connections through which to pass the disease), and so the disease would immediately come to an end.</p>
-<p>This clearly isn’t very interesting. Nor is it very possible, other than as a theoretical best-case: in practice one would either leave infected people connected for some time before identifying and isolating them; or would only manage to isolate them from a fraction of their susceptible neighbours; or both. For our purposes we’ll focus on the second option. When someone becomes infected, we immediately select some fraction of their susceptible neighbours and remove the connection to the newly-infected person. (Shai and Dobson explored this approach in a slightly more complicated scenario <a class="bibtex reference internal" href="zbibliography.html#sd13" id="id2">[21]</a>, for endemic diseases travelling through semi-isolated populations.)</p>
+<p>This clearly isn’t very interesting. Nor is it very possible, other than as a theoretical best-case: in practice one would either leave infected people connected for some time before identifying and isolating them; or would only manage to isolate them from a fraction of their susceptible neighbours; or both. For our purposes we’ll focus on the second option. When someone becomes infected, we immediately select some fraction of their susceptible neighbours and remove the connection to the newly-infected person. (Shai and Dobson explored this approach in a slightly more complicated scenario <a class="bibtex reference internal" href="zbibliography.html#sd13" id="id2">[22]</a>, for endemic diseases travelling through semi-isolated populations.)</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p><span class="math notranslate nohighlight">\(p_{quarantine}\)</span> would be an alternative (and possibly better) name for this parameter.</p>
@@ -536,7 +536,7 @@
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;SIR on ER for different rewirings ($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -594,7 +594,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SIR epidemic size vs $p_</span><span class="si">{rewire}</span><span class="s1">}$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">} = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pInfect</span><span class="p">))</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;sir-er-rewiring.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -740,7 +740,7 @@
 <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;SEIR on ER for different detection of exposed individuals ($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;, p_</span><span class="si">{rewire}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pRewire</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -806,7 +806,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SEIR epidemic size vs $p_</span><span class="si">{detect}</span><span class="s1">}$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_</span><span class="si">{rewire}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pRewire</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -826,7 +826,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-quarantine.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -843,7 +843,7 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SEIR epidemic size vs $p_</span><span class="si">{detect}</span><span class="s1">}$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_</span><span class="si">{rewire}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pRewire</span><span class="p">))</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -859,7 +859,7 @@
 <h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>What sort of detection activities might you impose in an epidemic? How effective would it be? What could you do to make it <em>more</em> effective?</p></li>
-<li><p>What would happen if you had vaccination <em>and</em> text, trace, and isolate in place at the same time? Would one compensate for weaknesses in the other?</p></li>
+<li><p>What would happen if you had vaccination <em>and</em> test, trace, and isolate in place at the same time? Would one compensate for weaknesses in the other?</p></li>
 </ul>
 </div>
 </div>
