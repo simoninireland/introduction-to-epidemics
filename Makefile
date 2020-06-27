@@ -113,7 +113,7 @@ MAKE_DATESTAMP = $(ECHO) "(This version built $(DATE))" >>$(BOOK_DIR)/index.md
 CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
 BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
 UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_DIR)/_build/html
-BUILD_PRINT_BOOK = $(BUILD_BOOK) --builder pdfhtml
+BUILD_PRINT_BOOK = $(BUILD_BOOK) --builder latex
 
 
 # ----- Top-level targets -----
