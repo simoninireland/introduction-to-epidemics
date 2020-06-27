@@ -302,7 +302,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remining susceptible 1141, removed 3859
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1339, removed 3661
 </pre></div>
 </div>
 </div>
@@ -325,7 +325,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Order of residual network 1141
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Order of residual network 1339
 </pre></div>
 </div>
 </div>
@@ -343,7 +343,7 @@
 <p>What is the result? We can plot the progress of the two epidemics side by side: the “main” epidemic and the secondary infection on the residual network.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># plot the first epidemic</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -381,7 +381,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/herd_24_0.svg" src="_images/herd_24_0.svg" /></div>
+<img alt="_images/herd_24_0.png" src="_images/herd_24_0.png" />
+</div>
 </div>
 <p>The first epidemic happens as we would expect: a burst of infections followed by a dying-away. But the second epidemic looks as though nothing happens. We can check by looking at the final compartment sizes.</p>
 <div class="cell docutils container">
@@ -391,7 +392,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1119, removed 22
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1313, removed 26
 </pre></div>
 </div>
 </div>
@@ -401,13 +402,13 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean degree of initial network </span><span class="si">{kmean}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kmean</span><span class="o">=</span><span class="n">kmean</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean degree of residual network </span><span class="si">{kmean}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kmean</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()))))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean degree of residual network </span><span class="si">{kmean:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kmean</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean degree of initial network 20
-Mean degree of residual network 4.538124452234881
+Mean degree of residual network 5.19
 </pre></div>
 </div>
 </div>
@@ -415,7 +416,7 @@ Mean degree of residual network 4.538124452234881
 <p>We can show this graphically – if less scientifically usefully – by plotting the progress of the disease through the network.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># colours fgor compartments</span>
 <span class="n">colours</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -442,7 +443,7 @@ Mean degree of residual network 4.538124452234881
 
 <span class="c1"># plot the final network of the second epidemic</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-<span class="n">ncs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">colours</span><span class="p">[</span><span class="n">m2</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">final2</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> <span class="p">]</span>
+<span class="n">ncs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">colours</span><span class="p">[</span><span class="n">m2</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">final</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> <span class="p">]</span>
 <span class="n">networkx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">ncs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="p">[])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;After second epidemic&#39;</span><span class="p">)</span>

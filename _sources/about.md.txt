@@ -2,7 +2,7 @@
 
 ![Simon Dobson](sd.png)
 
-[Simon Dobson](mailto:simon.dobson@st-andrews.ac.uk) is Professor of
+[Simon Dobson](http://www.simondobson.org) is Professor of
 [Computer Science](https://www.st-andrews.ac.uk/computer-science) at
 the [University of St Andrews](https://www.st-andrews.ac.uk), Scotland
 UK, and a Fellow of the [Royal Society of

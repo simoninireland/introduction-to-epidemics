@@ -353,11 +353,11 @@
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population and the value of symptomatic infection</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">pInfect</span><span class="p">,</span> <span class="n">pInfect</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">N</span><span class="p">],</span> <span class="s1">&#39;b:&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
@@ -368,17 +368,18 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_23_0.svg" src="_images/seir_23_0.svg" /></div>
+<img alt="_images/seir_23_0.png" src="_images/seir_23_0.png" />
+</div>
 </div>
 <p>Compare this with the diagram we drew for the <a class="reference internal" href="thresholds.html#sec-thresholds-er"><span class="std std-ref">epidemic threshold</span></a>, and you’ll see that thew epidemic takes off a lot earlier – which is probably what we expected, since there’s more infection going on. In fact even a very small amout of early infection is enough to cause an outbreak.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
 <span class="n">pInfectAs</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">pInfect</span> <span class="o">&gt;</span> <span class="mf">0.0</span> <span class="ow">and</span> <span class="n">pInfect</span> <span class="o">&lt;</span> <span class="mf">0.00003</span> <span class="k">for</span> <span class="n">pInfect</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">]]]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pInfectAs</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">],</span> <span class="n">pInfectAs</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pInfectAs</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_INFECT_ASYMPTOMATIC</span><span class="p">],</span> <span class="n">pInfectAs</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Epidemic size vs $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infectA}</span><span class="s1">}$&#39;</span><span class="p">)</span>
@@ -388,7 +389,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_25_0.svg" src="_images/seir_25_0.svg" /></div>
+<img alt="_images/seir_25_0.png" src="_images/seir_25_0.png" />
+</div>
 </div>
 <p>How sensitive <em>is</em> the model to asymptomatic infection? To what extent can asymptomatic infection make a less infectious disease behave like a more infectious disease that <em>doesn’t</em> have asymptomatic transmission? And perhaps most importantly, can we do anything about it? It’s this last question that we’ll turn to now.</p>
 </div>
@@ -541,7 +543,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_35_0.svg" src="_images/seir_35_0.svg" /></div>
+<img alt="_images/seir_35_0.png" src="_images/seir_35_0.png" />
+</div>
 </div>
 <p>Compare the left-hand plot with those we created <a class="reference internal" href="er.html#sec-er-spreading"><span class="std std-ref">earlier</span></a>. The right-hand plot clearly shows very minimal infection.</p>
 <p>Having acquired some confidence in the correctness of the code, we can explore the effect of different values of <span class="math notranslate nohighlight">\(p_{rewire}\)</span> on the size of epidemic. We’ll do this by performing experiments across the parameter range, with 100 repetitions of each to see what the variance is like.</p>
@@ -584,11 +587,11 @@
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">AdaptiveSIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">AdaptiveSIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_</span><span class="si">{rewire}</span><span class="s1">$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SIR epidemic size vs $p_</span><span class="si">{rewire}</span><span class="s1">}$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">} = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pInfect</span><span class="p">))</span>
@@ -599,7 +602,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_43_0.svg" src="_images/seir_43_0.svg" /></div>
+<img alt="_images/seir_43_0.png" src="_images/seir_43_0.png" />
+</div>
 </div>
 <p>That perhaps isn’t what we might have expected! At low rates of rewiring the epidemic still infects a lot of the network. But around <span class="math notranslate nohighlight">\(p_{rewire} = 0.5\)</span> there’s an abrupt change, and the size of the epidemic collapses to near zero, albeit with a lot of variance between different experiments. This suggests that there’s a critical region within which rewiring (quarantine, remember) interact with detailed features of the network, so the effect is more or less dramatic depending on the exact details of how the rewiring happens.</p>
 </div>
@@ -745,7 +749,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_51_0.svg" src="_images/seir_51_0.svg" /></div>
+<img alt="_images/seir_51_0.png" src="_images/seir_51_0.png" />
+</div>
 </div>
 <p>With no detection (in the left-hand plot) of exposed nodes we see an epidemic break out, albeit quite a small one. The exposed nodes start spreading infection silently, but since they’re never detected the only countermeasures that happen are a 50%-effective quarantine of infected nodes. In the right-hand plot the perfect detection means that the countermeausres are very effective, even when the quarantine is only 50% effective.</p>
 <p>Let’s see what effect detection efficiency has. Remember, <span class="math notranslate nohighlight">\(p_{detect}\)</span> is the probability that an exposed neighbour of an infected individual will be detected and then quarantined: you can think of it as a measure of how effectively we’re doing the “test” and “trace” parts of “test, trace, and isolate”. We probably expect that a more effective detection regime – where more exposed individuals are detected earlier – will have the effect of reducing the size of the epidemic.</p>
@@ -796,12 +801,12 @@
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">==</span> <span class="n">pRewire</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_</span><span class="si">{detect}</span><span class="s1">$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SEIR epidemic size vs $p_</span><span class="si">{detect}</span><span class="s1">}$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_</span><span class="si">{rewire}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pRewire</span><span class="p">))</span>
@@ -811,14 +816,21 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_60_0.svg" src="_images/seir_60_0.svg" /></div>
+<img alt="_images/seir_60_0.png" src="_images/seir_60_0.png" />
+</div>
 </div>
 <p>Perhaps a little disappointing: it seems that detection doesn’t have much effect in this case. You’ll notice that it’s not <em>no</em> effect: there are cases right across the graph in which the size of the outbreak is around zero, but in the majority of cases there is a large epidemic.</p>
 <p>Might this be to do with the effectiveness of quarantine? If we adopt an 80%-effective regime, what then happens?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pRewire</span> <span class="o">=</span> <span class="mf">0.8</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRewire</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRewire</span>
 <span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -833,12 +845,12 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">==</span> <span class="n">pRewire</span><span class="p">]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">],</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_</span><span class="si">{detect}</span><span class="s1">$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SEIR epidemic size vs $p_</span><span class="si">{detect}</span><span class="s1">}$ &#39;</span> <span class="o">+</span> <span class="s1">&#39;($N = </span><span class="si">{n}</span><span class="s1">, </span><span class="se">\\</span><span class="s1">langle k </span><span class="se">\\</span><span class="s1">rangle = </span><span class="si">{k}</span><span class="s1">, &#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">kmean</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;p_</span><span class="si">{rewire}</span><span class="s1"> = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pRewire</span><span class="p">))</span>
@@ -848,7 +860,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/seir_65_0.svg" src="_images/seir_65_0.svg" /></div>
+<img alt="_images/seir_66_0.png" src="_images/seir_66_0.png" />
+</div>
 </div>
 <p><em>Very</em> different! What are we seeing?</p>
 <p>Firstly, notice that in almost all cases we have some examples of epidemics with very small outbreaks, suggesting that even low detection rates <em>can</em> make a difference. But at low values of <span class="math notranslate nohighlight">\(p_{detect}\)</span> that difference is really rather sparse: it doesn’t happen often.</p>

@@ -392,8 +392,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean family size of 4.24 (range 1-9)
-Most connected individual has 45 contacts
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean family size of 4.17 (range 1-11)
+Most connected individual has 55 contacts
 </pre></div>
 </div>
 </div>
@@ -402,6 +402,14 @@ Most connected individual has 45 contacts
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_social_distance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cluster_size&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Draw the social-distancing network, using the inter-cluster degree</span>
+<span class="sd">    to control the spring layout.</span>
+<span class="sd">    </span>
+<span class="sd">    </span>
+<span class="sd">    :param g: the network</span>
+<span class="sd">    :param cmap: (optional) colourmap (defaults to viridis)</span>
+<span class="sd">    :param color: (optional) attribute used for colour (defaults to &quot;cluster_size&quot;)</span>
+<span class="sd">    :param ax: (optional) axes to draw in (defaults to whole figure)&#39;&#39;&#39;</span>
     <span class="c1"># fill in defaults</span>
     <span class="k">if</span> <span class="n">cmap</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
@@ -420,10 +428,23 @@ Most connected individual has 45 contacts
                          <span class="n">node_color</span><span class="o">=</span><span class="n">ncs</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="n">ecs</span><span class="p">,</span>
                          <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span> <span class="n">edge_cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
 
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
-<span class="n">draw_social_distance</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="c1"># draw network</span>
+<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="n">draw_social_distance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+
+<span class="c1"># add key (see https://matplotlib.org/examples/api/colorbar_only.html)</span>
+<span class="n">bounds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">clusters</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">clusters</span><span class="p">)))</span>
+<span class="n">norm</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">BoundaryNorm</span><span class="p">(</span><span class="n">bounds</span><span class="p">,</span> <span class="n">cmap</span><span class="o">.</span><span class="n">N</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.95</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+<span class="n">cb2</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">colorbar</span><span class="o">.</span><span class="n">ColorbarBase</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">,</span>
+                                    <span class="n">norm</span><span class="o">=</span><span class="n">norm</span><span class="p">,</span>
+                                    <span class="n">boundaries</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+                                    <span class="n">ticks</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+                                    <span class="n">spacing</span><span class="o">=</span><span class="s1">&#39;proportional&#39;</span><span class="p">,</span>
+                                    <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;social-distancing.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -431,7 +452,8 @@ Most connected individual has 45 contacts
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/distancing_19_0.svg" src="_images/distancing_19_0.svg" /></div>
+<img alt="_images/distancing_19_0.png" src="_images/distancing_19_0.png" />
+</div>
 </div>
 <p>This isn’t a useless plot, once we know that more highly-connected clusters sit in the centre with less-connected clusters pushed to the outside. We can see these less-connected clusters, and in particular see that they have a range of colours, indicating that they’re of different sizes – and therefore giving confidence that the algorithm hasn’t (for example) only made large clusters highly connected.</p>
 </div>
@@ -583,7 +605,7 @@ Most connected individual has 45 contacts
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="n">timeseries</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">TIMESERIES</span><span class="p">]</span>
@@ -606,7 +628,8 @@ Most connected individual has 45 contacts
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/distancing_31_0.svg" src="_images/distancing_31_0.svg" /></div>
+<img alt="_images/distancing_31_0.png" src="_images/distancing_31_0.png" />
+</div>
 </div>
 <p>Compare this to the <a class="reference internal" href="thresholds.html#sec-thresholds-er"><span class="std std-ref">same disease on an ER network</span></a>. The epidemic doesn’t really get started in the network, even for a value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> that previous experience would suggest would be sufficient. We can explore this by checking the size of the epidemic across a range of infectiousness values.</p>
 <div class="cell docutils container">
@@ -661,7 +684,8 @@ Most connected individual has 45 contacts
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/distancing_37_0.svg" src="_images/distancing_37_0.svg" /></div>
+<img alt="_images/distancing_37_0.png" src="_images/distancing_37_0.png" />
+</div>
 </div>
 <p>Comparing this with the <a class="reference internal" href="thresholds.html#sec-thresholds-er"><span class="std std-ref">same disease on ER networks</span></a> we see that the epidemic takes off similarly. Why is this? – it would need more exploration, but the way we set up the socially distanced model did include powerlaw-distributed contacts between bubbles. It could be that these superspreaders are responsible for  spreading the disease between bubles, at which point is spreds easily within them.</p>
 <p>This brings up an important point about social distancing, and in particular about how to weaken such a lockdown. The size of bubbles, and their interconnection doesn’t matter <strong>as long as there is no infection present in the bubble</strong> – but it matters critically when there <em>is</em> infection, and especially if one of the bubble’s contact points is highly connected. This makes the issue of acceptable behaviour very important, since smaller, more isolated, bubbles will both incur less infection within themselves (since there are fewer people) and potentially transmit less (by having fewer outside contacts).</p>
