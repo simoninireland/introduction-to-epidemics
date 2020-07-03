@@ -9,8 +9,9 @@
 # ----- Sources -----
 
 # Text
+INDEX = src/index.md
 TEXT = \
-	src/index.md \
+	src/preface.md \
 	src/model.md \
 	src/progress.md \
 	src/notes.md \
@@ -65,6 +66,7 @@ BOOK_TOC = _toc.yml
 
 # All content
 CONTENT = \
+	$(INDEX) \
 	$(TEXT) \
 	$(NOTEBOOKS) \
 	$(RAW_IMAGES) \
@@ -109,7 +111,6 @@ BOOK_CONTENT = src
 
 # Constructed commands
 RUN_SERVER = PYTHONPATH=. $(JUPYTER) notebook
-MAKE_DATESTAMP = $(ECHO) "(This version built $(DATE))" >>$(BOOK_DIR)/index.md
 CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
 BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
 UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_DIR)/_build/html
@@ -129,7 +130,6 @@ live: env
 # Copy content
 content: $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
-	$(MAKE_DATESTAMP)
 
 $(BOOK_DIR): Makefile $(BOOK_CONFIG)
 	$(RM) $(BOOK_DIR)
