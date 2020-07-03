@@ -130,6 +130,7 @@ live: env
 # Copy content
 content: $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
+	$(SED) '1,2d' src/preface.md >>$(INDEX:src/%=$(BOOK_DIR)/%)
 
 $(BOOK_DIR): Makefile $(BOOK_CONFIG)
 	$(RM) $(BOOK_DIR)
