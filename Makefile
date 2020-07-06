@@ -39,10 +39,6 @@ NOTEBOOKS =  \
 LATEX_EXTRAS = \
 	latex/conf.py \
 	latex/master.rst \
-	latex/first-page.rst \
-	latex/frontmatter.rst \
-	latex/mainmatter.rst \
-	latex/backmatter.rst \
 	latex/rawbibliography.rst \
 	latex/style.tex
 
@@ -56,7 +52,7 @@ RAW_IMAGES = \
 # Generated plots
 GENERATED_IMAGES = \
 	src/degree-distribution-er.png \
-	src/networks-same-beta-alpha.svg \
+	src/network-same-beta-alpha.png \
 	src/herd-finals.png \
 	src/sir-er-rewiring.png \
 	src/sir-socdist.png \
@@ -89,7 +85,7 @@ CONTENT = \
 	$(INDEX) \
 	$(TEXT) \
 	$(NOTEBOOKS) \
-	$(RAW_IMAGES) \
+	$(RAW_IMAGES) $(GENERATED_IMAGES) \
 	$(BIBLIOGRAPHY) \
 	$(BOOK_CONFIG) $(BOOK_TOC)
 
@@ -171,6 +167,7 @@ $(BOOK_DIR): Makefile $(BOOK_CONFIG)
 
 # Book building
 book: content
+	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(ACTIVATE) && $(BUILD_BOOK)
 
 # Upload book to public web site
