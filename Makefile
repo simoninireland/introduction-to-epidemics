@@ -11,6 +11,7 @@
 # Text
 INDEX = src/index.md
 TEXT = \
+	src/dedication.rst \
 	src/preface.md \
 	src/model.md \
 	src/progress.md \
@@ -34,6 +35,17 @@ NOTEBOOKS =  \
 	src/seir.ipynb \
 	src/distancing.ipynb
 
+# Extra print files
+LATEX_EXTRAS = \
+	latex/conf.py \
+	latex/master.rst \
+	latex/first-page.rst \
+	latex/frontmatter.rst \
+	latex/mainmatter.rst \
+	latex/backmatter.rst \
+	latex/rawbibliography.rst \
+	latex/style.tex
+
 # Image files
 RAW_IMAGES = \
 	src/sd.png \
@@ -43,8 +55,12 @@ RAW_IMAGES = \
 
 # Generated plots
 GENERATED_IMAGES = \
+	src/degree-distribution-er.png \
 	src/networks-same-beta-alpha.svg \
-	src/herd-finals.png
+	src/herd-finals.png \
+	src/sir-er-rewiring.png \
+	src/sir-socdist.png \
+	src/social-distancing.png
 
 # Generated datasets
 GENERATED_DATASETS = \
@@ -63,6 +79,10 @@ LICENSE = LICENSE
 # Structure
 BOOK_CONFIG = _config.yml
 BOOK_TOC = _toc.yml
+
+# LaTeX Tufte template URL
+LATEX_CLASS_ZIP_URL = http://www.latextemplates.com/templates/books/1/book_1.zip
+LATEX_CLASS_ZIP = book_1.zip
 
 # All content
 CONTENT = \
@@ -84,6 +104,9 @@ PYTHON = python3.6            # specific sub-version for use with compute cluste
 IPYTHON = ipython
 JUPYTER = jupyter
 JUPYTER_BOOK = jupyter-book
+LATEX = pdflatex
+BIBTEX = bibtex
+SPHINX = sphinx-build
 GHP_IMPORT = ghp-import
 PIP = pip
 VIRTUALENV = $(PYTHON) -m venv
@@ -95,7 +118,10 @@ SED = sed
 RM = rm -fr
 CP = cp
 CHDIR = cd
+MKDIR = mkdir -p
 ZIP = zip -r
+UNZIP = unzip
+WGET = wget
 ECHO = echo
 
 # Datestamp
@@ -106,15 +132,21 @@ VENV = venv3
 REQUIREMENTS = requirements.txt
 
 # Book construction
+BUILD_DIR = _build
+SRC_DIR = src
 BOOK_DIR = bookdir
-BOOK_CONTENT = src
+BOOK_BUILD_DIR = $(BOOK_DIR)/$(BUILD_DIR)
+LATEX_BOOK_STEM = em-book
+LATEX_BOOK = $(LATEX_BOOK_STEM).tex
+LATEX_BUILD_DIR = $(BOOK_BUILD_DIR)/latex
+LATEX_CLASS_DIR = $(LATEX_BUILD_DIR)/book_1
 
 # Constructed commands
 RUN_SERVER = PYTHONPATH=. $(JUPYTER) notebook
 CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
 BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
-UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_DIR)/_build/html
-BUILD_PRINT_BOOK = $(BUILD_BOOK) --builder latex
+UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_BUILD_DIR)/html
+BUILD_PRINT_BOOK = $(SPHINX) -b latex . _build/latex
 
 
 # ----- Top-level targets -----
@@ -130,7 +162,7 @@ live: env
 # Copy content
 content: $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
-	$(SED) '1,2d' src/preface.md >>$(INDEX:src/%=$(BOOK_DIR)/%)
+	$(SED) '1,2d' src/preface.md >>$(INDEX:$(SRC_DIR)/%=$(BOOK_DIR)/%)
 
 $(BOOK_DIR): Makefile $(BOOK_CONFIG)
 	$(RM) $(BOOK_DIR)
@@ -145,9 +177,33 @@ book: content
 upload: book
 	$(ACTIVATE) && $(UPLOAD_BOOK)
 
-# Build a printed copy
-print: content
-	$(ACTIVATE) && $(BUILD_PRINT_BOOK)
+# Build a PDF for printed copy
+print: $(LATEX_BUILD_DIR)
+	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
+	$(RSYNC) $(CONTENT) $(BOOK_DIR)
+	$(RSYNC) $(LATEX_EXTRAS) $(BOOK_DIR)
+	$(ACTIVATE) && $(CHDIR) $(BOOK_DIR) && $(BUILD_PRINT_BOOK)
+	$(CP) $(LATEX_BUILD_DIR)/$(LATEX_BOOK) /tmp
+	$(SED) -e 's/zbibliography://g' /tmp/$(LATEX_BOOK) >$(LATEX_BUILD_DIR)/$(LATEX_BOOK)
+	$(RM) /tmp/$(LATEX_BOOK)
+	-make latex
+	-make bibtex
+	-make latex
+	-make latex
+
+.PHONY: latex
+latex:
+	$(CHDIR) $(LATEX_BUILD_DIR) && $(LATEX) <<EOF \
+	\\nonstopmode\\input{$(LATEX_BOOK_STEM)} \
+	EOF
+
+.PHONY: bibtex
+bibtex:
+	$(CHDIR) $(LATEX_BUILD_DIR) && $(BIBTEX) $(LATEX_BOOK_STEM)
+
+$(LATEX_BUILD_DIR):
+	$(MKDIR) $(LATEX_BUILD_DIR) $(LATEX_CLASS_DIR)
+	$(CHDIR) $(LATEX_CLASS_DIR) && $(WGET) $(LATEX_CLASS_ZIP_URL) && $(UNZIP) $(LATEX_CLASS_ZIP)
 
 # Build a development venv
 .PHONY: env
@@ -160,7 +216,7 @@ $(VENV):
 
 # Clean up the build
 clean:
-	$(RM) $(BOOK_DIR)
+	$(RM) $(BOOK_DIR) $(LATEX_BUILD_DIR)
 
 # Clean up everything, including the venv (which is quite expensive to rebuild)
 reallyclean: clean
@@ -176,7 +232,7 @@ Editing:
 Production:
    make book         build the book using Jupyter Book
    make upload       upload book to public web site
-   make print        build a PDF of the book
+   make print        build a PDF of the book for printing
 
 Maintenance:
    make env          create a virtual environment
