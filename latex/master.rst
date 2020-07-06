@@ -18,5 +18,4 @@
    backmatter
    reading
    notes
-   about
    rawbibliography   

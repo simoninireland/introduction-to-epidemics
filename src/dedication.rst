@@ -5,6 +5,7 @@ Dedication
 .. raw:: latex
 
    \newpage
+   \thispagestyle{empty}
    ~\vfill
    \noindent
    \textit{To everyone trying to understand, control, or treat epidemic
