@@ -10,8 +10,8 @@ I still understand so poorly remains my fault.
 Thanks to the friends and colleagues who asked about epidemic
 modelling and were then sucked into commenting, proof-reading, and
 listening to half-formed explanations: Diego Arenas Contreras, Muffy
-Calder, Lisa Dow, Lei Fang, Ian Gent, Fenella Hayes, Julie McCann,
-Riccardo Romano, Juan Ye. No good deed goes unpunished.
+Calder, Simone Conte, Lisa Dow, Lei Fang, Ian Gent, Fenella Hayes,
+Julie McCann, Riccardo Romano, Juan Ye. No good deed goes unpunished.
 
 Thanks to the University of St Andrews for providing both a
 stimulating academic home and access to the computing resources needed
