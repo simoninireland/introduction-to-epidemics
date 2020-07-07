@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Social distancing &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
+    <title>Physical distancing &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -77,7 +77,7 @@
     <a href="progress.html">Disease progression</a>
   </li>
   <li class="">
-    <a href="continuous.html">Compartmented models and SIR</a>
+    <a href="continuous.html">Compartmented models</a>
   </li>
   <li class="">
     <a href="network.html">Network models</a>
@@ -104,7 +104,7 @@
     <a href="seir.html">Asymptomatic transmission</a>
   </li>
   <li class="active">
-    <a href="">Social distancing</a>
+    <a href="">Physical distancing</a>
   </li>
   <li class="">
     <a href="reading.html">To find out more</a>
@@ -191,7 +191,7 @@
     <ul class="nav section-nav flex-column">
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#a-socially-distanced-contact-network" class="nav-link">A socially distanced contact network</a>
+            <a href="#a-physically-distanced-contact-network" class="nav-link">A physically-distanced contact network</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -199,7 +199,7 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#disease-and-social-distancing" class="nav-link">Disease and social distancing</a>
+            <a href="#disease-and-distancing" class="nav-link">Disease and distancing</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -217,8 +217,8 @@
         
               <div>
                 
-  <div class="section" id="social-distancing">
-<h1>Social distancing<a class="headerlink" href="#social-distancing" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="physical-distancing">
+<h1>Physical distancing<a class="headerlink" href="#physical-distancing" title="Permalink to this headline">¶</a></h1>
 <p>Quarantine seems to be very effective, especially when carried out strongly enough and when combined with effective detection of exposed individuals. But you need to get a lot right for it to work. Maybe there’s another way?</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -226,11 +226,16 @@
 </div>
 <p>Let’s go back to basics. In SEIR-style diseases we have the possibility of individuals walking around and spreading the disease without showing any symptoms. There is by definition no way (absent testing) to spot these individuals until (and unless) they show symptoms. So the challenge is to stop these infectious-but-asymptomatic individuals from coming into contact with susceptible individuals.</p>
 <p>What is we re-structure the contact network so that people only have contact with a small group of people, and reduce the amount of mixing between those groups? If someone is infected in spite of everything then they’ll probably infect their own group, but they’ll be less opportunity to infect other groups. This strategy is referred to as <strong>social distancing</strong>, reducing and re-structuring the connections within a population.</p>
-<div class="section" id="a-socially-distanced-contact-network">
-<h2>A socially distanced contact network<a class="headerlink" href="#a-socially-distanced-contact-network" title="Permalink to this headline">¶</a></h2>
-<p>Social distancing is another topological approach to epidemic control. It works by changing the network over which the disease operates, rather than addressing the disease itself. s such it’s well-suited to new diseases and those for which there are few effective therapies.</p>
-<p>What does “social distancing” mean in network terms? We can understand it best by thinking about the actual conditions of socially-distant lockdown, and then re-creating this structure as a network.</p>
-<p>The idea of social distancing is to place individuals in small “bubbles” of contact – typically just their own immediate family – with whom they interact strongly, and weaken the connections that any family member has with individuals in other bubbles. Within a bubble, infection of one person will probably transfer quickly to most or all all of the other members. But the ability of the disease to pass between bubbles is substantially reduced, since there is relatively little contact between them. One can reduce the inter-bubble transmission even further using quarantine when someone realises they are infected.</p>
+<div class="section" id="a-physically-distanced-contact-network">
+<h2>A physically-distanced contact network<a class="headerlink" href="#a-physically-distanced-contact-network" title="Permalink to this headline">¶</a></h2>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Sometimes referred to as <strong>social distancing</strong>, although that feels like an oxymoron: it also sounds
+uncomfortably close to “social isolatio”, which indeed is one of its major diangers as a technique.</p>
+</div>
+<p>Physical distancing is another topological approach to epidemic control. It works by changing the network over which the disease operates, rather than addressing the disease itself. Such approach is well-suited to new diseases and those for which there are few effective therapies.</p>
+<p>What does “physical distancing” mean in network terms? We can understand it best by thinking about the actual conditions of socially-distant lockdown, and then re-creating this structure as a network.</p>
+<p>The idea of physical distancing is to place individuals in small “bubbles” of contact – typically just their own immediate family – with whom they interact strongly, and weaken the connections that any family member has with individuals in other bubbles. Within a bubble, infection of one person will probably transfer quickly to most or all all of the other members. But the ability of the disease to pass between bubbles is substantially reduced, since there is relatively little contact between them. One can reduce the inter-bubble transmission even further using quarantine when someone realises they are infected.</p>
 <p>In network terms, the bubbles are <a class="reference internal" href="network.html#sec-network-complete"><span class="std std-ref">complete graphs</span></a> (everyone in a bubble meets everyone else) whose size depends on the size of the family. We could set all families to the same size, say 4; alternatively we could draw family sizes from some probability distribution where the average size of a family is 4.5 (2 adults with the proverbial 2.5 children) but we allow larger and smaller families to occur. Larger families risk more infections if a member is infected.</p>
 <p>We now need to link the bubbles. In each bubble, some person or people meet with the outside world: perhaps they’re the designated shopper, or someone in a key role whose work brings them into contact with others. We then need to connect these people to other bubbles.</p>
 <p>This description still leaves quite a lot to be decided:</p>
@@ -244,7 +249,7 @@
 <p>Building the network involves a complicated piece of code – the most complicated we’ve seen so far.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">social_distance_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">clusterSizeDistribution</span><span class="p">,</span> <span class="n">contactDistribution</span><span class="p">,</span> <span class="n">clusterContactDistribution</span><span class="p">):</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distanced_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">clusterSizeDistribution</span><span class="p">,</span> <span class="n">contactDistribution</span><span class="p">,</span> <span class="n">clusterContactDistribution</span><span class="p">):</span>
     <span class="c1"># build the initial graph</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
     
@@ -378,7 +383,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span> <span class="o">=</span> <span class="n">social_distance_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">averageFamily</span><span class="p">,</span> <span class="n">coupleOfContacts</span><span class="p">,</span> <span class="n">expInterBubble</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span> <span class="o">=</span> <span class="n">distanced_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">averageFamily</span><span class="p">,</span> <span class="n">coupleOfContacts</span><span class="p">,</span> <span class="n">expInterBubble</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -392,7 +397,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean family size of 4.17 (range 1-11)
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean family size of 4.00 (range 1-10)
 Most connected individual has 55 contacts
 </pre></div>
 </div>
@@ -401,8 +406,8 @@ Most connected individual has 55 contacts
 <p>We could also draw the network to inspect it, colouring the nodes with the size of cluster they belong to – although that turns out not to be especially revealing.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_social_distance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cluster_size&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Draw the social-distancing network, using the inter-cluster degree</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_distanced</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cluster_size&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Draw the physical-distancing network, using the inter-cluster degree</span>
 <span class="sd">    to control the spring layout.</span>
 <span class="sd">    </span>
 <span class="sd">    </span>
@@ -433,7 +438,7 @@ Most connected individual has 55 contacts
 
 <span class="c1"># draw network</span>
 <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">get_cmap</span><span class="p">(</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
-<span class="n">draw_social_distance</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+<span class="n">draw_distanced</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
 
 <span class="c1"># add key (see https://matplotlib.org/examples/api/colorbar_only.html)</span>
 <span class="n">bounds</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">clusters</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">clusters</span><span class="p">)))</span>
@@ -446,7 +451,7 @@ Most connected individual has 55 contacts
                                     <span class="n">spacing</span><span class="o">=</span><span class="s1">&#39;proportional&#39;</span><span class="p">,</span>
                                     <span class="n">orientation</span><span class="o">=</span><span class="s1">&#39;vertical&#39;</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;social-distancing.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;physical-distancing.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -457,14 +462,14 @@ Most connected individual has 55 contacts
 </div>
 <p>This isn’t a useless plot, once we know that more highly-connected clusters sit in the centre with less-connected clusters pushed to the outside. We can see these less-connected clusters, and in particular see that they have a range of colours, indicating that they’re of different sizes – and therefore giving confidence that the algorithm hasn’t (for example) only made large clusters highly connected.</p>
 </div>
-<div class="section" id="disease-and-social-distancing">
-<h2>Disease and social distancing<a class="headerlink" href="#disease-and-social-distancing" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="disease-and-distancing">
+<h2>Disease and distancing<a class="headerlink" href="#disease-and-distancing" title="Permalink to this headline">¶</a></h2>
 <p>Now we can run a disease process over our network. We’ll stick to SIR to reduce the number of degrees of freedom we have to deal with: running with SEIR would be easy to do too, of course, but presents us with more choices.</p>
-<p>What do we expect from a disease in these circumstances? The purpose of social distancing is to reduce the connectivity of people, which (all things being equal) should reduce the disease’s spread. But it does so by building tight clusters of individuals within bubbles, meaning that infecting one person is likely to infect everyone. And we’ve used an exponential distribution of contacts to allow the creation of high-degree hubs, meaning that infecting one of these will potentially infect a lot of others.</p>
-<p>The best we can probably say at this stage, then, is that … it’s complicated. Which is ust the sort of situation simulation is intended for.</p>
+<p>What do we expect from a disease in these circumstances? The purpose of physical distancing is to reduce the connectivity of people, which (all things being equal) should reduce the disease’s spread. But it does so by building tight clusters of individuals within bubbles, meaning that infecting one person is likely to infect everyone. And we’ve used an exponential distribution of contacts to allow the creation of high-degree hubs, meaning that infecting one of these will potentially infect a lot of others.</p>
+<p>The best we can probably say at this stage, then, is that … it’s complicated. Which is just the sort of situation simulation is intended for.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-socdist.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-phydist.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -474,7 +479,7 @@ Most connected individual has 55 contacts
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
 
-<span class="k">class</span> <span class="nc">SocDistNetworkDynamics</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">StochasticDynamics</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">PhyDistNetworkDynamics</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">StochasticDynamics</span><span class="p">):</span>
     
     <span class="c1"># Experimental parameters</span>
     <span class="n">N</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
@@ -483,7 +488,7 @@ Most connected individual has 55 contacts
     <span class="n">INTERBUBBLE_EXP</span><span class="o">=</span> <span class="s1">&#39;interBubbleExp&#39;</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SocDistNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PhyDistNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">bubbleSize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
@@ -497,7 +502,7 @@ Most connected individual has 55 contacts
         <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
         <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_interBubbleExponent</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
         
-    <span class="k">def</span> <span class="nf">social_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">distanced</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
     
         <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
@@ -552,13 +557,13 @@ Most connected individual has 55 contacts
         <span class="k">return</span> <span class="n">g</span>
 
     <span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SocDistNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">PhyDistNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
         
         <span class="n">N</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_bubbleMean</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BUBBLE_MEAN</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_bubbleStddev</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BUBBLE_STDDEV</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_interBubbleExponent</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">INTERBUBBLE_EXP</span><span class="p">]</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">social_distance</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">distanced</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setNetworkPrototype</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -584,10 +589,10 @@ Most connected individual has 55 contacts
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># experimental parameters common to both experiments</span>
 <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
-<span class="n">params</span><span class="p">[</span><span class="n">SocDistNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">params</span><span class="p">[</span><span class="n">SocDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_MEAN</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.5</span>
-<span class="n">params</span><span class="p">[</span><span class="n">SocDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_STDDEV</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span>
-<span class="n">params</span><span class="p">[</span><span class="n">SocDistNetworkDynamics</span><span class="o">.</span><span class="n">INTERBUBBLE_EXP</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">params</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">params</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_MEAN</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.5</span>
+<span class="n">params</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_STDDEV</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">params</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">INTERBUBBLE_EXP</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span>
 <span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfected</span>
 <span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
 <span class="n">params</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
@@ -596,7 +601,7 @@ Most connected individual has 55 contacts
 <span class="c1"># create model and experiment over social-distance network</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
 <span class="n">m</span><span class="o">.</span><span class="n">setMaximumTime</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">SocDistNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">PhyDistNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 
 <span class="n">rc</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
@@ -621,7 +626,7 @@ Most connected individual has 55 contacts
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;center right&#39;</span><span class="p">)</span>
 
 <span class="c1"># fine-time the figure</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SIR on a socially distant network ($p_{\mathit</span><span class="si">{infect}</span><span class="s1">} = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pInfect</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SIR on a physically distant network ($p_{\mathit</span><span class="si">{infect}</span><span class="s1">} = &#39;</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="si">{p}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">=</span><span class="n">pInfect</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
 
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
@@ -635,10 +640,10 @@ Most connected individual has 55 contacts
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">SocDistNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">SocDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_MEAN</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.5</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">SocDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_STDDEV</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">SocDistNetworkDynamics</span><span class="o">.</span><span class="n">INTERBUBBLE_EXP</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_MEAN</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.5</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_STDDEV</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">INTERBUBBLE_EXP</span><span class="p">]</span> <span class="o">=</span> <span class="mf">10.0</span>
 
 <span class="c1"># disease parameters</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfected</span>
@@ -654,7 +659,7 @@ Most connected individual has 55 contacts
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
 <span class="n">m</span><span class="o">.</span><span class="n">setMaximumTime</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-<span class="n">e</span> <span class="o">=</span> <span class="n">SocDistNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">e</span> <span class="o">=</span> <span class="n">PhyDistNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -662,7 +667,7 @@ Most connected individual has 55 contacts
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-socdist.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-phydist.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -676,9 +681,9 @@ Most connected individual has 55 contacts
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r,&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">}$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SIR with social distancing ($N = </span><span class="si">{n}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;SIR with physical distancing ($N = </span><span class="si">{n}</span><span class="s1">$)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">N</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;sir-socdist.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;sir-phydist.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -694,7 +699,7 @@ Most connected individual has 55 contacts
 <h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The case of Typhoid Mary raises some troubling questions. Is it right to lock someone up when they’re done nothing personally wrong, to protect the community? What alternatives were there, before treatments like antibiotics were available? What might we do today?</p></li>
-<li><p>Social distancing doesn’t have to be uniform for everyone. Some people are in more need of protection (“shielding”) than others. How could we introduce this into a model?</p></li>
+<li><p>Physical distancing doesn’t have to be uniform for everyone. Some people are in more need of protection (“shielding”) than others. How could we introduce this into a model?</p></li>
 </ul>
 </div>
 </div>

@@ -15,13 +15,13 @@
     "\n",
     "The point of contact tracing is three-fold:\n",
     "\n",
-    "1. It provides **data**: how many people have been infected in the population?, how many were not infected even though they were in contact with an infected individual?, and so forth.\n",
+    "1. It provides **data**: how many people have been infected in the population? how many were not infected even though they were in contact with an infected individual? and so forth.\n",
     "2. It allows **treatment** of the infected individuals, possibly before they are symptomatic.\n",
     "3. It allows **countermeasures** to be deployed to reduce the spread of the diseaase.\n",
     "\n",
     "In a real epidemic the data-collection aspect is vital, since we will often now know how contagious a new disease is. The treatment aspect is also vitally important for the individuals concerned, since early treatment is often more effective. And for many diseases there will be effective countermeasures such as quarantine that can be imposed to reduce the disease's spread even further. (We should really consider treatment to be a countermeasure at the population level, since treated individuals will probably spread the disease less than the untreated.) \n",
     "\n",
-    "However, contact tracing in a real epidemic is a laborious process. We need to identify infected people, either by testing them or by observation of their symptoms of thesae are sufficiently distimnct to permit definitive identification. Then we need to identify all those with whom they have been in contact (their contact network) and test (or observe) *them* to determine if they are infected &ndash; and then repeat the process with *their* contact network, and so forth.\n",
+    "However, contact tracing in a real epidemic is a laborious process. We need to identify infected people, either by testing them or by observation of their symptoms, if these are sufficiently distinct to permit definitive identification. Then we need to identify all those with whom they have been in contact (their contact network) and test (or observe) *them* to determine if they are infected &ndash; and then repeat the process with *their* contact network, and so forth.\n",
     "\n",
     "Fortunately, in a simulated epidemic, all the information we need is directly available. We know the contact network *a priori*, and can instrument our simulation to determine the ways in which individuals were infected. We can then use this instrumented model as a basis for studying disease dynamics, treatment strategies, and other countermeasures. "
    ]
@@ -47,7 +47,7 @@
     "\n",
     "What, then, does the spread of the disease through the population look like?\n",
     "\n",
-    "Let's simplify a little more and assume we have a single infected person within a wholly susceptible population. How does the infection spread? Let's trace the infection as it progresses. We'll do this a little more \"manually\" than we have done previously, jjust to make the mechanism more explicit."
+    "Let's simplify a little more and assume we have a single infected person within a wholly susceptible population. How does the infection spread? Let's trace the infection as it progresses. We'll do this a little more \"manually\" than we have done previously, just to make the mechanism more explicit."
    ]
   },
   {
@@ -224,9 +224,9 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "We can make this clearer by drawing the process slightly differently. Instead of drawing the network as a whole and showing the way the infection spreads, we'll focus on the infected nodes only and show how they relate &ndash; in other words, who affected whom.\n",
+    "We can make this clearer by drawing the process slightly differently. Instead of drawing the network as a whole and showing the way the infection spreads, we'll focus on the infected nodes only and show how they relate -- in other words, who affected whom.\n",
     "\n",
-    "We start at $t = 0$ with one infected node. At the next timestep we'll draw a second line of nodes that were infected by this node, connected to it byb edges. In the next timestep we'll draw a third line of those who were infected by *those* nodes, and so on as time progresses."
+    "We start at $t = 0$ with one infected node. At the next timestep we'll draw a second line of nodes that were infected by this node, connected to it by edges. In the next timestep we'll draw a third line of those who were infected by *those* nodes, and so on as time progresses."
    ]
   },
   {
@@ -327,25 +327,9 @@
     "Computer scientists refer to the top-most node of a tree as the **root**, and always draw the root at the top of a tree diagram. Don't ask me why.\n",
     "```\n",
     "\n",
-    "This layered structure is a **contact tree**. The topmost node is **patient zero**, the first person infected in the epidemic. Thopse in the next layer down are the first set of secondary cases, the individuals infected by patient zero. And so on. Notice that because a node stays infected (in this very simple model) it may continue to infect nodes, so the layers can grow over time as more secondary cases occuir from each infected.\n",
+    "This layered structure is a **contact tree**. The topmost node is **patient zero**, the first person infected in the epidemic. Those in the next layer down are the first set of secondary cases, the individuals infected by patient zero. And so on. Notice that because a node stays infected (in this very simple model) it may continue to infect nodes, so the layers can grow over time as more secondary cases occuir from each infected.\n",
     "\n",
-    "You'll notice that in the above diagram $R_t$ goes *down* over time. Why is that? It's because each individual can only be infected once and, once infected, can't be infected again. Later infected individuals are therefore increasingly likely to have neighbours who are already infected, and so have less opportunity to pass on the disease to new people. This phenomenon of the network \"filling up\" with infected individuals &ndash; and later, in SIR, with those who've been removed &ndash; is why epidemics die out naturally without necessarily infecting the entire population. It's also the basis for vaccination, which is a topic we'll return to later.  "
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "## Case reproduction rate"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "The contact tree is important for other reasons too: it's the data structure that lets us compute the case reproduction number $R$ on a on-going basis.\n",
-    "\n",
-    "Remember that $R$ is the average number of cases occurring per secondary case. Looking back at the figure above, the number of secondary cases for each individual is given by number of individuals in the next layer down that the original individual is connected to. Dividing the total number of infected people by the number of people who infected them, we arrive at $R$. It's shown in the title of each sub-figure above."
+    "You'll notice that in the above diagram $\\mathcal{R}$ goes *down* over time. Why is that? It's because each individual can only be infected once and, once infected, can't be infected again. Later infected individuals are therefore increasingly likely to have neighbours who are already infected, and so have less opportunity to pass on the disease to new people. This phenomenon of the network \"filling up\" with infected individuals &ndash; and later, in SIR, with those who've been removed &ndash; is why epidemics die out naturally without necessarily infecting the entire population. It's also the basis for vaccination, which is a topic we'll return to later.  "
    ]
   },
   {

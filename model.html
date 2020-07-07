@@ -77,7 +77,7 @@
     <a href="progress.html">Disease progression</a>
   </li>
   <li class="">
-    <a href="continuous.html">Compartmented models and SIR</a>
+    <a href="continuous.html">Compartmented models</a>
   </li>
   <li class="">
     <a href="network.html">Network models</a>
@@ -104,7 +104,7 @@
     <a href="seir.html">Asymptomatic transmission</a>
   </li>
   <li class="">
-    <a href="distancing.html">Social distancing</a>
+    <a href="distancing.html">Physical distancing</a>
   </li>
   <li class="">
     <a href="reading.html">To find out more</a>
@@ -231,16 +231,23 @@ to gain insight into the behaviour of the real system.</p>
 <p>A <strong>mathematical model</strong> consists of one or more equations expressing
 the relationships between different quantities. There are often some
 <strong>parameters</strong> involved, quantities whose values are known or assumed.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>One can also have mechanical models, of course, such as the orreries
+the model the motions of planets. In some senses machines are just
+computation models that happen to use analogue components rather than
+digital.</p>
+</div>
 <p>A <strong>computational model</strong> is a program written to simulate the
 behaviour of the system. Such simulations are almost always based on
 underlying mathematical models and include parameters. What do
 computers provide? Sets of equations can often be understood (or
-“solved analytically”) by purely symbolic means, but many system of
-equations <em>can’t</em> be solved this way and instead needs to be solved
+“solved analytically”) by purely symbolic means, but many systems of
+equations <em>can’t</em> be solved this way and instead need to be solved
 numerically, by starting with specific values (numbers) and showing
 how they evolve under the equations. Even for equations that <em>can</em> be
 solved analytically, computers are often useful tools for helping to
-explore the system, or for visualising the results.</p>
+explore large systems, or for visualising the results.</p>
 </div>
 <div class="section" id="uses-of-models">
 <h2>Uses of models<a class="headerlink" href="#uses-of-models" title="Permalink to this headline">¶</a></h2>
@@ -251,12 +258,12 @@ discuss some of the questions we might ask about epidemics.</p>
 <p>We might be interested in <strong>epidemics in general</strong>. How do changes in
 infectiousness affect the spread of the disease? What are the
 relationships between infectiousness and recovery? How do different
-topologies of contacts in a population affect how it spreads? What are
-the effects of different countermeasures, like social distancing,
+patterns of contacts in a population affect how it spreads? What are
+the effects of different countermeasures, like physical distancing,
 vaccination, or quarantine? Are there any patterns in the epidemic,
-like multiple phases? These are quite abstract questions that could be
-asked of <em>any</em> disease, and answering them might tell us about how
-<em>all</em> diseases behave.</p>
+like multiple waves? These are quite abstract questions that could be
+asked of <em>any</em> disease, and answering them might tell us something
+about how <em>all</em> diseases behave – including those we encountered yet.</p>
 <p>On the other hand, we might be interested in <strong>a specific disease</strong>, or
 even in <strong>a specific outbreak</strong>. How will <em>this</em> disease spread in a
 population? How about in another country to the one it’s currently in?

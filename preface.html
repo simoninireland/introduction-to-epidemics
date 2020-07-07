@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Notes on production &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
+    <title>Preface &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -33,8 +33,6 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="Acknowledgements" href="acknowledgements.html" />
-    <link rel="prev" title="References" href="zbibliography.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -112,8 +110,8 @@
   <li class="">
     <a href="zbibliography.html">References</a>
   </li>
-  <li class="active">
-    <a href="">Notes on production</a>
+  <li class="">
+    <a href="notes.html">Notes on production</a>
   </li>
   <li class="">
     <a href="acknowledgements.html">Acknowledgements</a>
@@ -155,7 +153,7 @@
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/notes.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <a class="dropdown-buttons" href="_sources/preface.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
                 <!-- Download PDF via print -->
                 <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
@@ -187,42 +185,29 @@
         
               <div>
                 
-  <div class="section" id="notes-on-production">
-<h1>Notes on production<a class="headerlink" href="#notes-on-production" title="Permalink to this headline">¶</a></h1>
-<p>Writing this book has meant bringing together text, mathematics, and
-code, using a large array of open-source tools. It’s amazing what you
-can get your hands on these days, and I’m grateful to the contributors
-to the various projects for their creativity and generosity.</p>
-<p>The book is written with a combination of “markdown” text and
-<a class="reference external" href="https://www.jjupyter.org">Jupyter</a> notebooks to allow executable
-content. It was then assembled using <a class="reference external" href="https://jupyterbook.org">Jupyter
-Book</a> to drive the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> documentation generator,
-and hosted on <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>.</p>
-<p>Simulations are all written in <a class="reference external" href="https://www.python.org">Python 3</a> and
-expressed using the
-<a class="reference external" href="https://pyepydemic.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">epydemic</span></code></a> library for
-network simulation, which itself is built on top of the
-<a class="reference external" href="https://networkx.github.io/"><code class="docutils literal notranslate"><span class="pre">networkx</span></code></a> library for representing and
-manipulating networks in Python.</p>
-<p>The mathematics makes heavy use of the <a class="reference external" href="https://numpy.org/"><code class="docutils literal notranslate"><span class="pre">numpy</span></code></a>.
-The diagrams are all generated using
-<a class="reference external" href="https://matplotlib.org/"><code class="docutils literal notranslate"><span class="pre">matplotlib</span></code></a> together with
-<a class="reference external" href="https://seaborn.pydata.org/"><code class="docutils literal notranslate"><span class="pre">seaborn</span></code></a> to improve the graphical
-presentation, as well as some of the network visualisation functions
-built into <code class="docutils literal notranslate"><span class="pre">networkx</span></code>.</p>
-<p>For the experiments where a lot of numbers are being crunched we use
-the <a class="reference external" href="https://epyc.readthedocs.io/en/latest/"><code class="docutils literal notranslate"><span class="pre">epyc</span></code></a> computational
-experiment management library and
-<a class="reference external" href="https://pandas.pydata.org/"><code class="docutils literal notranslate"><span class="pre">pandas</span></code></a> to handle the resulting
-datasets. The large experiments use a compute cluster (“<code class="docutils literal notranslate"><span class="pre">hogun</span></code>”)
-with 11 machines each with 16Gb of memory and two 4-core Intel Xeon
-E3-1240&#64;3.4MHz processors; all other experiments are performed on a
-2017-vintage MacBook Pro with 16Gb of memory and a dual-core Intel
-i5&#64;3.1GHz processor.</p>
-<p>All text, code, and diagrams are available for download from <a class="reference external" href="https://github.com/simoninireland/introduction-to-epidemics">the
-project’s GitHub
-repo</a>.</p>
+  <div class="section" id="preface">
+<h1>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h1>
+<p>We’ve unexpectedly found ourselves in a situation in which the science
+of diseases is of critical importance to us all. On an individual
+level, we want to know what to expect of lockdowns, vaccines or other
+therapies. At a population level, we want to know how diseases become
+epidemics and then pandemics, and how the different strategies might
+influence their course. Above all, we want certainty that the disease
+will be conquered and the future will be better.</p>
+<p>Scientists don’t really <em>do</em> certainty, though. All of science is
+based around the <em>models</em> that we construct to tell us about the
+things we’re interested in, and the <em>experiments</em> that we conduct to
+see whether the models match the reality on the ground. It’s
+this combination of model and experiment, trial and error and
+correction, that help us understand the world.</p>
+<p>But what <em>is</em> a model of a disease? How do they work, and what can
+they tell us about what we can expect from epidemics and other events?
+I’m writing this book as an attempt to explain the one small corner of
+this vast field that I know something about: how to model epidemics
+using network science and computer simulations. It isn’t in any way
+comprehensive, leaving  huge areas unexplored and a huge number of
+questions unanswered. I make it available as a work in progress in the
+hope that it may be useful and may encourage an interest in science.</p>
 </div>
 
 
@@ -234,8 +219,6 @@ repo</a>.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="zbibliography.html" title="previous page">References</a>
-    <a class='right-next' id="next-link" href="acknowledgements.html" title="next page">Acknowledgements</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">

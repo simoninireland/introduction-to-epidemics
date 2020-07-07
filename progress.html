@@ -33,7 +33,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="next" title="Compartmented models and SIR" href="continuous.html" />
+    <link rel="next" title="Compartmented models" href="continuous.html" />
     <link rel="prev" title="Models and modelling" href="model.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -77,7 +77,7 @@
     <a href="">Disease progression</a>
   </li>
   <li class="">
-    <a href="continuous.html">Compartmented models and SIR</a>
+    <a href="continuous.html">Compartmented models</a>
   </li>
   <li class="">
     <a href="network.html">Network models</a>
@@ -104,7 +104,7 @@
     <a href="seir.html">Asymptomatic transmission</a>
   </li>
   <li class="">
-    <a href="distancing.html">Social distancing</a>
+    <a href="distancing.html">Physical distancing</a>
   </li>
   <li class="">
     <a href="reading.html">To find out more</a>
@@ -188,7 +188,15 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#why-we-need-to-care-and-be-careful-about-r" class="nav-link">Why we need to care – and be careful – about R</a>
+            <a href="#the-importance-of-mathcal-r" class="nav-link">The importance of \mathcal{R}</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#why-we-need-to-be-careful-about-mathcal-r" class="nav-link">Why we need to be careful about \mathcal{R}</a>
+        </li>
+    
+        <li class="nav-item toc-entry toc-h2">
+            <a href="#growth-rates" class="nav-link">Growth rates</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -308,15 +316,15 @@ their different, often characteristics, periods and variances. We need
 some other numbers as well, however, and it turns out that these can
 be measured directly in the field.</p>
 <p>The most important number is the <strong>basic case reproduction number</strong>,
-denoted <span class="math notranslate nohighlight">\(R_0\)</span>. <span class="math notranslate nohighlight">\(R_0\)</span> represents the total number of secondary
+denoted <span class="math notranslate nohighlight">\(\mathcal{R}_0\)</span>. <span class="math notranslate nohighlight">\(\mathcal{R}_0\)</span> represents the total number of secondary
 infections expected for each primary infection in a totally
-susceptible population. The <span class="math notranslate nohighlight">\(0\)</span> in <span class="math notranslate nohighlight">\(R_0\)</span> stands for <span class="math notranslate nohighlight">\(t = 0\)</span>: the basic
+susceptible population. The <span class="math notranslate nohighlight">\(0\)</span> in <span class="math notranslate nohighlight">\(\mathcal{R}_0\)</span> stands for <span class="math notranslate nohighlight">\(t = 0\)</span>: the basic
 case reproduction number applies at the start of an epidemic. Over the
-course of an epidemic the value of <span class="math notranslate nohighlight">\(R\)</span> will change as people become
+course of an epidemic the value of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> will change as people become
 immune post-infection, countermeasures take effect, and so forth, and
 give rise to a <strong>net case reproduction number</strong> indicating how the
 disease is reproducing at a given time..</p>
-<p><span class="math notranslate nohighlight">\(R_0\)</span> is affected by three factors:</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{R}_0\)</span> is affected by three factors:</p>
 <ol class="simple">
 <li><p>The <strong>duration of infectiousness</strong>. All other things being equal, a
 disease with a longer period of infectiousness has more time in which
@@ -335,62 +343,70 @@ which the epidemic takes place: it is this factor that social
 distancing, quarantine and so forth affect, by reducing (ideally to
 zero) the contacts an infected person has with uninfected individuals.</p>
 </div>
-<div class="section" id="why-we-need-to-care-and-be-careful-about-r">
-<span id="sec-progress-r-care"></span><h2>Why we need to care – and be careful – about <span class="math notranslate nohighlight">\(R\)</span><a class="headerlink" href="#why-we-need-to-care-and-be-careful-about-r" title="Permalink to this headline">¶</a></h2>
-<p>The importance of <span class="math notranslate nohighlight">\(R\)</span> is that it indicates whether, and how fast, a
-disease can spread through a susceptible population. If <span class="math notranslate nohighlight">\(R \lt 1\)</span> then
+<div class="section" id="the-importance-of-mathcal-r">
+<span id="sec-progress-r"></span><h2>The importance of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span><a class="headerlink" href="#the-importance-of-mathcal-r" title="Permalink to this headline">¶</a></h2>
+<p>The importance of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is that it indicates whether, and how fast, a
+disease can spread through a susceptible population. If <span class="math notranslate nohighlight">\(\mathcal{R} \lt 1\)</span> then
 we expect fewer than one secondary case per primary. This means that
 each “generation” of the disease will be smaller than the one that
-infected it, and the disease will die out. If <span class="math notranslate nohighlight">\(R = 1\)</span> then the
+infected it, and the disease will die out. If <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> then the
 disease will perpetuate itself in whatever size of population was
 originally infected. Nature is never so precise as to present us with
-a disease like this, of course. However, <span class="math notranslate nohighlight">\(R = 1\)</span> is the <strong>threshold
-value</strong> at which diseases become epidemics. If <span class="math notranslate nohighlight">\(R &gt; 1\)</span>, the
+a disease like this, of course. However, <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> is the <strong>threshold
+value</strong> at which diseases become epidemics. If <span class="math notranslate nohighlight">\(\mathcal{R} &gt; 1\)</span>, the
 disease will break-out and infect more and more people exponentially
 quickly.</p>
-<p>Exactly <em>how</em> quickly depends on how large <span class="math notranslate nohighlight">\(R\)</span> is. For measles, <span class="math notranslate nohighlight">\(R
+<p>Exactly <em>how</em> quickly depends on how large <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is. For measles, <span class="math notranslate nohighlight">\(\mathcal{R}
 \ge 15\)</span> – fifteen new infections for each case – which
 explains how measles spread so quickly in unvaccinated
 populations. Different strains of influenza have different ranges of
 <span class="math notranslate nohighlight">\(R\)</span>: for the 1918 “Spanish flu” it has been
-estimated <a class="bibtex reference internal" href="zbibliography.html#vtm07" id="id4">[27]</a> that <span class="math notranslate nohighlight">\(1.2 \le R \le 3.0\)</span> in the community
+estimated <a class="bibtex reference internal" href="zbibliography.html#vtm07" id="id4">[27]</a> that <span class="math notranslate nohighlight">\(1.2 \le \mathcal{R} \le 3.0\)</span> in the community
 (although substantially more in confined settings). If this sounds
 benign, remember that this epidemic killed more people than the First
 World War. Perhaps interesting in light of its media coverage, for
-ebola we have <span class="math notranslate nohighlight">\(1.5 \le R \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id5">[2]</a>, roughly the same as
+ebola we have <span class="math notranslate nohighlight">\(1.5 \le \mathcal{R} \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id5">[2]</a>, roughly the same as
 a not-too-severe winter flu outbreak.</p>
-<p>This sounds like good news: if we know <span class="math notranslate nohighlight">\(R\)</span>, we can estimate the size
+<p>In a typical epidemic the number of people infected grows very
+quickly. If <span class="math notranslate nohighlight">\(\mathcal{R} = 2\)</span> then one person infects two others, who
+each infect two others, who each … and so on – so each generation
+is twice as big as the last). If you plot the size of the epidemic
+against time on a graph, it’ll draw out an <strong>exponential curve</strong>.</p>
+</div>
+<div class="section" id="why-we-need-to-be-careful-about-mathcal-r">
+<span id="sec-progress-r-care"></span><h2>Why we need to be careful about <span class="math notranslate nohighlight">\(\mathcal{R}\)</span><a class="headerlink" href="#why-we-need-to-be-careful-about-mathcal-r" title="Permalink to this headline">¶</a></h2>
+<p>This sounds like good news: if we know <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, we can estimate the size
 of the epidemic we’re facing; if we calculate it on an on-going basis
 we can monitor how well any countermeasures we deploy are working, and
 decide when to relax those countermeasures.</p>
 <p>Well, not quite. There are at least four reasons that mean we need to
-be careful not to over-rely on <span class="math notranslate nohighlight">\(R\)</span>.</p>
+be careful not to over-rely on <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>This reason actually drives all the rest, because it acts as an
-amplifier for everything concerning <span class="math notranslate nohighlight">\(R\)</span>.</p>
+amplifier for everything concerning <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>.</p>
 </div>
-<p>The first reason is mathematical. <span class="math notranslate nohighlight">\(R\)</span> is the exponent of the equation
+<p>The first reason is mathematical. <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is the exponent of the equation
 that controls the epidemic’s size. This is important, because it means
-that epidemics behave <strong>non-linearly</strong>. An <span class="math notranslate nohighlight">\(R\)</span> value of 4 is not twice
-as bad as an <span class="math notranslate nohighlight">\(R\)</span> value of 2: the epidemic isn’t twice as big, <strong>it
+that epidemics behave <strong>non-linearly</strong>. An <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value of 4 is not twice
+as bad as an <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value of 2: the epidemic isn’t twice as big, <strong>it
 doubles twice as many times</strong> in the same period. Small differences in
-the value of <span class="math notranslate nohighlight">\(R\)</span> therefore have huge effects.</p>
-<p>It’s true that <span class="math notranslate nohighlight">\(R = 1\)</span> is the critical value, below which an epidemic
-dies out. But it doesn’t follow from this that an <span class="math notranslate nohighlight">\(R\)</span> value slightly
+the value of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> therefore have huge effects.</p>
+<p>It’s true that <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> is the critical value, below which an epidemic
+dies out. But it doesn’t follow from this that an <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value slightly
 over 1 is “pretty much 1” and so not a worry. <strong>That non-linearity means
-that even a small excess in <span class="math notranslate nohighlight">\(R\)</span> can lead to a large outbreak</strong>. This has
-implications for epidemic control too: reducing the <span class="math notranslate nohighlight">\(R\)</span> value to just
+that even a small excess in <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> can lead to a large outbreak</strong>. This has
+implications for epidemic control too: reducing the <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value to just
 below 1 isn’t an indication that everything will then be fine, as a
 small increase may set things off again.</p>
 <p>The second reason concerns estimation. The most effective way of
-estimating <span class="math notranslate nohighlight">\(R\)</span> in the is <a class="reference internal" href="tracing.html"><span class="doc">contract tracing</span></a>, where
+estimating <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> in the is <a class="reference internal" href="tracing.html"><span class="doc">contract tracing</span></a>, where
 infected individuals’ contacts are located and tested – and can
 then be treated or isolated if found to be infected
 themselves. Careful and widespread “test, trace and isolate”
 strategies can be extremely effective in reducing an epidemic. The
 number of infected contacts individuals have on average lets us
-estimate of <span class="math notranslate nohighlight">\(R\)</span>.</p>
+estimate of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>.</p>
 <p>But by definition <strong>test and trace is “counting in the rear view
 mirror”</strong>. It tells us how many people <em>were being</em> infected, not how
 many people <em>are being</em> infected. There will be a delay in identifying
@@ -406,11 +422,11 @@ be low pathogen loads in the early stages; individuals forget whom
 they were in contact with; tracing apps don’t work in all
 circumstances; and so forth. Each of these errors leads to
 under-counting secondary infections and therefore under-estimating
-<span class="math notranslate nohighlight">\(R\)</span>.</p>
-<p>Finally we must remember that <span class="math notranslate nohighlight">\(R\)</span> is the <em>average</em> number of secondary
+<span class="math notranslate nohighlight">\(\mathcal{R}\)</span>.</p>
+<p>Finally we must remember that <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is the <em>average</em> number of secondary
 cases per primary. The use of averaging (and indeed other summary
 statistics) is essential when trying to get the “big picture” of an
-epidemic. But it means that the value of <span class="math notranslate nohighlight">\(R\)</span> reported depends not just
+epidemic. But it means that the value of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> reported depends not just
 on the disease but on the population being averaged over.</p>
 <p>To see what this might mean, consider a country consisting of one city
 surrounded by a collection of small villages – London in the
@@ -424,15 +440,69 @@ epidemic. Because the same disease is spreading in different
 circumstances, averaging may be misleading – too mild for the
 city, but too large for the countryside. <strong>When interpreting an
 average, you always need to know what population has been averaged
-over</strong>. It is possible to manipulate the reported <span class="math notranslate nohighlight">\(R\)</span> value
+over</strong>. It is possible to manipulate the reported <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value
 accidentally, or deliberately by judicious choice of population.</p>
-<p>For all these reasons it’s important not to fixate on <span class="math notranslate nohighlight">\(R\)</span>. The fact
+<p>For all these reasons it’s important not to fixate on <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>. The fact
 that it’s a number can sometimes give a false sense of security,
 because numbers suggest certainty and precision – and measuring
-<span class="math notranslate nohighlight">\(R\)</span> in the midst of an on-going epidemic offers neither. A value of
-<span class="math notranslate nohighlight">\(R\)</span> that’s reducing over time is a good sign. But <span class="math notranslate nohighlight">\(R\)</span> falling –
+<span class="math notranslate nohighlight">\(\mathcal{R}\)</span> in the midst of an on-going epidemic offers neither. A value of
+<span class="math notranslate nohighlight">\(\mathcal{R}\)</span> that’s reducing over time is a good sign. But <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> falling –
 or <em>seeming</em> to fall – below 1 isn’t enough to prove that
 countermeasures are working and can be relaxed.</p>
+</div>
+<div class="section" id="growth-rates">
+<span id="sec-progress-rate"></span><h2>Growth rates<a class="headerlink" href="#growth-rates" title="Permalink to this headline">¶</a></h2>
+<p>You may have noticed that the definition of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> doesn’t
+include time. It’s essentially the ratio of the different sizes of two
+“generations” of infection, and so tells us about the way the disease
+reproduces itself in a population. But it <em>doesn’t</em> tell us <em>how fast</em>
+that reproduction happens: how long does it take for the “next
+generation” to come along?</p>
+<p>Obviously the answer is something to do with the
+<a class="reference internal" href="#sec-progress-periods"><span class="std std-ref">latent period</span></a> we looked at earlier. The shorter the latent
+period, the faster an infected person becomes infectious, and the
+faster the epidemic will grow. <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> tells us nothing useful
+about this rate of growth.</p>
+<p>Clearly this rate matters for tackling an outbreak, as well as for
+modelling the progress of a disease in time. For this reason it’s
+common to use another, complementary measure of epidemic behaviour.</p>
+<p>When we talked about the <a class="reference internal" href="#sec-progress-r"><span class="std std-ref">exponential growth</span></a> in
+epidemic size, we were still thinking in terms of generations of
+disease. We can think in “real” time instead.</p>
+<p>Mathematically, the size of an epidemic can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+	N(t) \propto e^{\lambda t} 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(N(t)\)</span> is the number of cases at time <span class="math notranslate nohighlight">\(t\)</span> (measured in some
+units) and <span class="math notranslate nohighlight">\(\lambda\)</span> is the <strong>growth rate</strong>, the number of new cases
+that appear per unit of time. The utility of this is that if we know
+the growth rate per day <em>and</em> we know how many disease cases we have
+<em>now</em>, we can predict how many diseases cases we’ll have <em>later</em>,
+tomorrow (or even farther into the future) – and more importantly
+we’ll know the answer in terms of days, not in terms of disease
+generations. Even more importantly, we can get <span class="math notranslate nohighlight">\(\lambda\)</span> directly from
+time series such as the number of diagnoses cases by <strong>fitting</strong> a
+theoretical curve to the collected data.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>A threshold value is an example of what mathematicians call a
+<em>seperatrix</em>, a value that divides two regimes of qualitatively
+different behaviour – growing or shrinking, in this case.</p>
+</div>
+<p>Just as <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> had a threshold at <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> that
+determined whether the epidemic was growing or shrinking, so <span class="math notranslate nohighlight">\(\lambda
+= 0\)</span> divides growing (<span class="math notranslate nohighlight">\(\lambda \gt 1\)</span>) from shrinking (<span class="math notranslate nohighlight">\(\lambda \lt
+0\)</span>) conditions. And just like <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, we need to be careful
+about reading too much into that: mistakes or omissions in reporting
+the ongoing cases can easily cause and over- or under-estimate of
+<span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
+<p>The values of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are mathematically related,
+of course, with the former being found by integrating the latter
+<a class="bibtex reference internal" href="zbibliography.html#wl07" id="id6">[28]</a>. In fact we can make <span class="math notranslate nohighlight">\(\lambda\)</span> capture just the
+biological part of the disease’s spread, while capturing things like
+social issues and countermeasures separately as a probability
+distribution of infections over time.</p>
 </div>
 <div class="section" id="questions-for-discussion">
 <h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
@@ -442,7 +512,7 @@ done anything to <em>avoid</em> catching it? Was it made worse by where you
 lived at the time?</p></li>
 <li><p>What can be done to cope with “Type A” diseases, where people can
 transmit the disease without showing symptoms of it?</p></li>
-<li><p>Do you think the <span class="math notranslate nohighlight">\(R\)</span> number is a useful thing to keep track of
+<li><p>Do you think the <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> number is a useful thing to keep track of
 during an epidemic? Why? (Or why not?)</p></li>
 </ul>
 </div>
@@ -458,7 +528,7 @@ during an epidemic? Why? (Or why not?)</p></li>
     <div class='prev-next-bottom'>
         
     <a class='left-prev' id="prev-link" href="model.html" title="previous page">Models and modelling</a>
-    <a class='right-next' id="next-link" href="continuous.html" title="next page">Compartmented models and SIR</a>
+    <a class='right-next' id="next-link" href="continuous.html" title="next page">Compartmented models</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
