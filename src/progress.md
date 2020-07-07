@@ -79,7 +79,17 @@ of victims of ebola, which is transmitted *via* bodily fluids, can be
 extremely infectious for some time after death, meaning that funerals
 become very dangerous loci of potential infection for mourners.
 
+```{raw} latex
+
+  \begin{fullwidth}
+```
+
 ![Disease types](disease-types.png)
+
+```{raw} latex
+
+  \end{fullwidth}
+```
 
 How long do the different periods last? For each disease there will be
 typical durations, often with substantial variance. In the case of

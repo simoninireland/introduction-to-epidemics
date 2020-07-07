@@ -1,6 +1,4 @@
-# Epidemic modelling -- Some notes, maths, and code
-
-[Simon Dobson](mailto:simon.dobson@st-andrews.ac.uk)
+# Preface
 
 We've unexpectedly found ourselves in a situation in which the science
 of diseases is of critical importance to us all. On an individual
@@ -25,4 +23,8 @@ using network science and computer simulations. It isn't in any way
 comprehensive, leaving  huge areas unexplored and a huge number of
 questions unanswered. I make it available as a work in progress in the
 hope that it may be useful and may encourage an interest in science. 
+
+
+
+
 

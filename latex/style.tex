@@ -1,0 +1,37 @@
+\makeatletter
+
+% lay out shadow boxes in the margin, as per Tufte guidelines
+\renewenvironment{sphinxShadowBox}[1][-1.2ex]{%
+  \renewcommand{\sphinxstylesidebartitle}[1]{\relax}
+  \begin{@tufte@margin@float}[#1]{figure}
+    \begingroup
+    \setlength{\parindent}{0pt}
+  }{%
+    \endgroup
+  \end{@tufte@margin@float}
+}
+
+% copyright page
+\newcommand{\backoftitlepage}[0]{%
+  \setlength{\parindent}{0pt}
+  
+  ~\vfill
+  Copyright (c) 2020, Simon Dobson
+
+  \textsc{Self-published by the author}
+
+  \url{https://github.com/simoninireland/introduction-to-epidemics}
+
+  \begin{fullwidth}
+    Licensed under the Creative Commons
+    Attribution-NonCommercial-ShareAlike 4.0 International license.
+    You may not use this book except under the terms of this license, a
+    copy of which can be obtained from the Creative Commons Corporation
+    at \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}
+  \end{fullwidth}
+
+  \textsc{First printing July 2020}
+  \newpage
+}
+
+\makeatother
