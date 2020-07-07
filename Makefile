@@ -55,8 +55,8 @@ GENERATED_IMAGES = \
 	src/network-same-beta-alpha.png \
 	src/herd-finals.png \
 	src/sir-er-rewiring.png \
-	src/sir-socdist.png \
-	src/social-distancing.png
+	src/sir-phydist.png \
+	src/physical-distancing.png
 
 # Generated datasets
 GENERATED_DATASETS = \
@@ -64,7 +64,8 @@ GENERATED_DATASETS = \
 	src/datasets/threshold-plc.json \
 	src/datasets/sier-er.json \
 	src/datasets/sir-quarantine.json \
-	src/datasets/seir-quarantine.json
+	src/datasets/seir-quarantine.json \
+	src/datasets/sir-phydist.json
 
 # Bibliography
 BIBLIOGRAPHY = src/bibliography.bib
@@ -136,6 +137,7 @@ LATEX_BOOK_STEM = em-book
 LATEX_BOOK = $(LATEX_BOOK_STEM).tex
 LATEX_BUILD_DIR = $(BOOK_BUILD_DIR)/latex
 LATEX_CLASS_DIR = $(LATEX_BUILD_DIR)/book_1
+EPUB_BUILD_DIR = $(BOOK_BUILD_DIR)/epub
 
 # Constructed commands
 RUN_SERVER = PYTHONPATH=. $(JUPYTER) notebook
@@ -143,6 +145,7 @@ CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
 BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
 UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_BUILD_DIR)/html
 BUILD_PRINT_BOOK = $(SPHINX) -b latex . _build/latex
+BUILD_EPUB_BOOK = $(SPHINX) -b epub . _build/epub
 
 
 # ----- Top-level targets -----
@@ -151,31 +154,33 @@ BUILD_PRINT_BOOK = $(SPHINX) -b latex . _build/latex
 help:
 	@make usage
 
+
 # Run the notebook server
 live: env
 	$(ACTIVATE)  && $(RUN_SERVER)
 
-# Copy content
-content: $(CONTENT) $(BOOK_DIR)
+
+# Build HTML
+book: env bookdir $(CONTENT)
+	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
-	$(SED) '1,2d' src/preface.md >>$(INDEX:$(SRC_DIR)/%=$(BOOK_DIR)/%)
+	$(ACTIVATE) && $(BUILD_BOOK)
+
+bookdir: $(BOOK_DIR)
 
 $(BOOK_DIR): Makefile $(BOOK_CONFIG)
 	$(RM) $(BOOK_DIR)
 	$(ACTIVATE) && $(CREATE_BOOK)
 	$(RM) $(BOOK_DIR)/*.ipynb $(BOOK_DIR)/*.md
 
-# Book building
-book: content
-	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
-	$(ACTIVATE) && $(BUILD_BOOK)
 
 # Upload book to public web site
 upload: book
 	$(ACTIVATE) && $(UPLOAD_BOOK)
 
+
 # Build a PDF for printed copy
-print: $(LATEX_BUILD_DIR)
+print: env bookdir $(LATEX_BUILD_DIR)
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(LATEX_EXTRAS) $(BOOK_DIR)
@@ -202,6 +207,15 @@ $(LATEX_BUILD_DIR):
 	$(MKDIR) $(LATEX_BUILD_DIR) $(LATEX_CLASS_DIR)
 	$(CHDIR) $(LATEX_CLASS_DIR) && $(WGET) $(LATEX_CLASS_ZIP_URL) && $(UNZIP) $(LATEX_CLASS_ZIP)
 
+
+# Build an Epub
+epub: env bookdir
+	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
+	$(RSYNC) $(CONTENT) $(BOOK_DIR)
+	$(RSYNC) $(LATEX_EXTRAS) $(BOOK_DIR)
+	$(ACTIVATE) && $(CHDIR) $(BOOK_DIR) && $(BUILD_EPUB_BOOK)
+
+
 # Build a development venv
 .PHONY: env
 env: $(VENV)
@@ -210,6 +224,7 @@ $(VENV):
 	$(VIRTUALENV) $(VENV)
 	$(CP) $(REQUIREMENTS) $(VENV)/requirements.txt
 	$(ACTIVATE) && $(CHDIR) $(VENV) && $(PIP) install -r requirements.txt
+
 
 # Clean up the build
 clean:
