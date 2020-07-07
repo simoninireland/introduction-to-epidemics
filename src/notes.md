@@ -44,7 +44,7 @@ E3-1240@3.4MHz processors; all other experiments are performed on a
 2017-vintage MacBook Pro with 16Gb of memory and a dual-core Intel
 i5@3.1GHz processor.
 
-All text, code, diagrams, and generated datasets are available for
-download from [the project's GitHub
+All text, code, and diagrams are available for download from [the
+project's GitHub
 repo](https://github.com/simoninireland/introduction-to-epidemics).
 
