@@ -38,7 +38,7 @@ NOTEBOOKS =  \
 # Extra print files
 LATEX_EXTRAS = \
 	latex/conf.py \
-	latex/master.rst \
+	latex/latex.rst \
 	latex/rawbibliography.rst \
 	latex/style.tex
 

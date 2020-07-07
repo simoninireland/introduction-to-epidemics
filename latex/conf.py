@@ -38,7 +38,7 @@ latex_elements = {
 latex_additional_files = [ 'bibliography.bib', 'style.tex' ]
 
 latex_documents = [
-  ('master', 'em-book.tex', project, author, 'tufte-book'),
+  ('latex', 'em-book.tex', project, author, 'tufte-book'),
 ]
 
 latex_show_pagerefs = False
