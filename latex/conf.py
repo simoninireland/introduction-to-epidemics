@@ -18,13 +18,13 @@ jupyter_execute_notebooks = 'off'
 # Latex
 
 latex_elements = {
-     'papersize': '',
+     'papersize': 'b5paper',
      'fontpkg': '',
      'fncychap': '',
      'maketitle': '\\maketitle\\backoftitlepage',
      'pointsize': '',
      'preamble': '\\include{style}',
-     'passoptionstopackages': '\\PassOptionsToPackage{paperwidth=6in,paperheight=9in}{geometry}',
+     'passoptionstopackages': '',
      'releasename': "",
      'babel': '',
      'printindex': '',
