@@ -15,6 +15,15 @@ A **mathematical model** consists of one or more equations expressing
 the relationships between different quantities. There are often some
 **parameters** involved, quantities whose values are known or assumed.
 
+```{margin}
+
+One can also have mechanical models, of course, such as the orreries
+the model the motions of planets. In some senses machines are just
+computation models that happen to use analogue components rather than
+digital.
+```
+
+
 A **computational model** is a program written to simulate the
 behaviour of the system. Such simulations are almost always based on
 underlying mathematical models and include parameters. What do
@@ -24,7 +33,7 @@ equations *can't* be solved this way and instead need to be solved
 numerically, by starting with specific values (numbers) and showing
 how they evolve under the equations. Even for equations that *can* be
 solved analytically, computers are often useful tools for helping to
-explore the system, or for visualising the results.
+explore large systems, or for visualising the results.
 
 
 ## Uses of models
@@ -37,12 +46,12 @@ discuss some of the questions we might ask about epidemics.
 We might be interested in **epidemics in general**. How do changes in
 infectiousness affect the spread of the disease? What are the
 relationships between infectiousness and recovery? How do different
-topologies of contacts in a population affect how it spreads? What are
-the effects of different countermeasures, like social distancing,
+patterns of contacts in a population affect how it spreads? What are
+the effects of different countermeasures, like physical distancing,
 vaccination, or quarantine? Are there any patterns in the epidemic,
-like multiple phases? These are quite abstract questions that could be
-asked of *any* disease, and answering them might tell us about how
-*all* diseases behave.
+like multiple waves? These are quite abstract questions that could be
+asked of *any* disease, and answering them might tell us something
+about how *all* diseases behave -- including those we encountered yet.
 
 On the other hand, we might be interested in **a specific disease**, or
 even in **a specific outbreak**. How will *this* disease spread in a
