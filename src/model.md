@@ -19,8 +19,8 @@ A **computational model** is a program written to simulate the
 behaviour of the system. Such simulations are almost always based on
 underlying mathematical models and include parameters. What do
 computers provide? Sets of equations can often be understood (or
-"solved analytically") by purely symbolic means, but many system of
-equations *can't* be solved this way and instead needs to be solved
+"solved analytically") by purely symbolic means, but many systems of
+equations *can't* be solved this way and instead need to be solved
 numerically, by starting with specific values (numbers) and showing
 how they evolve under the equations. Even for equations that *can* be
 solved analytically, computers are often useful tools for helping to
