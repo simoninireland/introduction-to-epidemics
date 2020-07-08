@@ -21,7 +21,7 @@ latex_elements = {
      'papersize': 'b5paper',
      'fontpkg': '',
      'fncychap': '',
-     'maketitle': '\\maketitle\\backoftitlepage',
+     'maketitle': '\\maketitlepage\\backoftitlepage',
      'pointsize': '',
      'preamble': '\\include{style}',
      'passoptionstopackages': '',

@@ -1,13 +1,15 @@
 \makeatletter
 
 \usepackage{environ}
+\usepackage[none]{hyphenat}
+
 
 % lay out shadow boxes in the margin, as per Tufte guidelines
 \renewenvironment{sphinxShadowBox}[1][0pt]{%
   \Collect@Body\marginnote
 }{}
 
-
+  
 % copyright page
 \newcommand{\backoftitlepage}[0]{%
   \setlength{\parindent}{0pt}
@@ -27,6 +29,8 @@
     at \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}
   \end{fullwidth}
 
+  \textsc{Independent Publishing Network} \\ \url{https://bookisbn.org.uk}
+  
   \textsc{First printing July 2020}
   \newpage
 }
