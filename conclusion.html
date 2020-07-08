@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Copyright &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
+    <title>Conclusion &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
     <link rel="stylesheet" href="_static/sphinx-book-theme.css" type="text/css" />
@@ -32,8 +32,9 @@
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="copyright" title="Copyright" href="#" />
-    <link rel="prev" title="About the author" href="about.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="To find out more" href="reading.html" />
+    <link rel="prev" title="Physical distancing" href="distancing.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="docsearch:language" content="en">
@@ -105,8 +106,8 @@
   <li class="">
     <a href="distancing.html">Physical distancing</a>
   </li>
-  <li class="">
-    <a href="conclusion.html">Conclusion</a>
+  <li class="active">
+    <a href="">Conclusion</a>
   </li>
   <li class="">
     <a href="reading.html">To find out more</a>
@@ -123,8 +124,8 @@
   <li class="">
     <a href="about.html">About the author</a>
   </li>
-  <li class="active">
-    <a href="">Copyright</a>
+  <li class="">
+    <a href="copyright.html">Copyright</a>
   </li>
 </ul>
 </nav>
@@ -157,7 +158,7 @@
                 <!-- ipynb file if we had a myst markdown file -->
                 
                 <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/copyright.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
+                <a class="dropdown-buttons" href="_sources/conclusion.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
                 <!-- Download PDF via print -->
                 <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
             </div>
@@ -189,13 +190,97 @@
         
               <div>
                 
-  <div class="section" id="copyright">
-<h1>Copyright<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h1>
-<p>This book is Copyright (c) 2020, Simon Dobson.</p>
-<p><img alt="CC BY-NC-SA-4.0" src="_images/cc-by-nc-sa.png" /></p>
-<p>Licensed under the <a class="reference external" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons
-Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
-License</a>.</p>
+  <div class="section" id="conclusion">
+<h1>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h1>
+<blockquote class="epigraph">
+<div><p>Many are fleeing, everyone is fearful, you are neither – splendid,
+magnificent! For what is more foolish than to fear what you cannot
+avoid by any strategy, and what you aggravate by fearing? What is more
+useless than to flee what will always confront you wherever you may
+flee?</p>
+<p class="attribution">—Petrarch, <em>Letters of Old Age</em>.</p>
+</div></blockquote>
+<p>What, then, can we conclude from this brief and superficial look at
+epidemic modelling on networks? I would like to think that there are
+several broad take-away messages.</p>
+<p>The most important message by far is that – despite using advanced
+mathematics, detailed sets of parameters, and extensive computer
+simulation – modelling remains an inexact science. It’s important to
+qualify that word “inexact”: while models and simulations can generate
+results in extraordinary volume and with great precision, the
+<em>interpretation</em> of those results inevitably involves judgement
+calls. Many details remain unknown, and in many cases unknowable,
+perhaps because they cannot be properly measured, or perhaps because
+they change so fast that measurement is quickly outdated by
+events. Whatever the reason, no model <em>in itself</em> tells us anything;
+rather, they provide evidence to guide our thinking.</p>
+<p>A corollary to this is that the policy responses to an epidemic can
+only partially be driven by, determined by, or justified by, the
+results of modelling. Policy remains an essentially political
+activity, and while it may be “driven by” or “informed by” science,
+there will always be other factors needing to be included that may
+skew a final decision away from what a scientist may view as
+“correct”. Many real-world problems are
+<a class="reference external" href="https://en.wikipedia.org/wiki/Wicked_problem"><em>wicked</em></a>, impossible
+to solve because of inherent contradictions and the compromises they
+imply, but mandating an immediate response nonetheless.</p>
+<p>In many ways this makes modelling <em>more</em> important, not less. A model
+provides only a limited view onto any problem. But the fact that it
+can provide a view onto <em>any</em> problem means that we can explore
+problems we haven’t yet faced, explore techniques we couldn’t yet
+deploy in reality, and so forth. It is at least important to
+understand things that <em>can’t</em> happen as it is to understand those
+that <em>can</em>, if only to cut down the space of possibilities that need
+further consideration.</p>
+<p>The second take-away message is the scientific underpinnings of many
+policies with which we’re familiar – so much so that they sometimes
+feel almost part of the world’s folklore. Vaccination, quarantine,
+physical isolation, herd immunity, and so forth are all susceptible to
+exploration and variation. And the science can expose commonalities
+that are not initially obvious: that the provision of protective
+equipment behaves like vaccination, for example, in the way it can be
+used to reduce the dangers of super-spreading. This can lead to
+alternative approaches.</p>
+<p>The third message concerns countermeasures. We saw when we discussed
+<a class="reference internal" href="seir.html#sec-seir-adaptive-seir"><span class="std std-ref">adaptive countermeasures</span></a> that
+variations in the efficacy with which the processes were carried out
+made a huge difference to the results. In the real world, of course,
+one may be <em>stuck</em> with ineffective processes: an imprecise test, a
+limited number of testers-and-tracers, and so forth. This may defeat
+even a well-thought-through strategy.</p>
+<p>The implication of this is that any countermeasure is an <em>experiment</em>
+– and the same is true of any attempt to unwind a countermeasure,
+such as for example when coming our of a physical distancing
+lockdown. It’s possible that the strategy will fail, and that measures
+will need to be re-imposed. This may be difficult for people to take,
+especially if they’ve not be warned of the possibility beforehand.</p>
+<p>The final message is the most important for me as an academic: the
+<em>democracy</em> of science. People sometimes feel that science is something
+alien, requiring endless qualifications, state or corporate
+sponsorship, and access to techniques and tools that are out of reach
+of the amateur. Nothing could be further from the truth.</p>
+<p>Science, as practiced by real scientists, is largely just an exercise
+of their curiosity that’s conducted within a framework – the
+<em>scientific method</em> – that has evolved over the years to help stop us
+misleading ourselves. The framework isn’t a barrier to entry into
+science; rather, it’s a guide to help identify simple truth within a
+complex reality.</p>
+<p>The <a class="reference internal" href="model.html#sec-model-expectations"><span class="std std-ref">quotation from Rovelli</span></a> with which
+we opened this book highlights that the conclusions drawn by science
+are always tentative and open to question, refutation, and
+overthrow. It’s working within this framework that makes a practice
+into science, not the letters after the practitioner’s name. And while
+we hope that well-qualified people are right sufficiently often to be
+trusted, that’s an authority that has to be earned and justified by a
+willingness to accept correction as part of the process of
+truth-finding.</p>
+<p>If this book shows anything, I hope it’s that computational science is
+within the reach of everyone. It’s not the preserve of academics,
+although academic scientists have developed many of the ideas and
+tools; it doesn’t need supercomputers, although they’re often useful;
+and no-one should be afraid of posing any question: any question,
+sincerely asked, is worth asking, and worth working to find an answer
+to.</p>
 </div>
 
 
@@ -207,7 +292,8 @@ License</a>.</p>
     
     <div class='prev-next-bottom'>
         
-    <a class='left-prev' id="prev-link" href="about.html" title="previous page">About the author</a>
+    <a class='left-prev' id="prev-link" href="distancing.html" title="previous page">Physical distancing</a>
+    <a class='right-next' id="next-link" href="reading.html" title="next page">To find out more</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
@@ -216,7 +302,7 @@ License</a>.</p>
         
           By Simon Dobson<br/>
         
-            &copy; <a href="#">Copyright</a> 2020.<br/>
+            &copy; <a href="copyright.html">Copyright</a> 2020.<br/>
       </p>
     </div>
   </footer>

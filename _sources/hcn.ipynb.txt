@@ -649,15 +649,13 @@
    "source": [
     "If we were to explore this phenomenon systematically, we'd discover that it's the value of the exponent and cutoff that control the size of the disease outbreak *not* the infectiousness of the disease. In fact there are two possible regimes for these networks, one in which epidemics *always* affect a large fraction of the population, and one in which they *never* take off {cite}`NWS02`.\n",
     "\n",
+    "From empirical studies it turns out that human contact networks tend to have an exponent of about 2, and for such networks an epidemic will break out for almost *any* value of the cutoff above 2 &ndash; and will *always* break out for powerlaw networks that don't have a cutoff. Put another way, even a small mean number of contacts won't stop an epidemic from spreading through a population, pretty much regardless of the disease's infectiousness. The reason is that the \"hubs\" of highly connected individuals, if they are infected, become \"super-spreaders\" who disseminate the epidemic widely.\n",
+    "\n",
     "```{margin}\n",
     "The network science community captures this insight with the catchphrase \"powerlaw networks always percolate\".\n",
     "```\n",
     "\n",
-    "From empirical studies it turns out that human contact networks tend to have an exponent of about 2, and for such networks an epidemic will break out for almost *any* value of the cutoff above 2 &ndash; and will *always* break out for powerlaw networks that don't have a cutoff. Put another way, even a small mean number of contacts won't stop an epidemic from spreading through a population, pretty much regardless of the disease's infectiousness. The reason is that the \"hubs\" of highly connected individuals, if they are infected, become \"super-spreaders\" who disseminate the epidemic widely.\n",
-    "\n",
-    "This is a significant result.\n",
-    "\n",
-    "On the one hand, it's bad news: even minor diseases will be spread, driven by the characterics of the contact network itself. However, on the other hand, it suggests strategies for containment if we reduce the mean degree sufficiently, *or* if we tackle the issue of the hubs acting as super-spreaders. These ideas are the basis of both vaccination and social distancing."
+    "This is a significant result. On the one hand, it's bad news: even minor diseases will be spread, driven by the characterics of the contact network itself. However, on the other hand, it suggests strategies for containment if we reduce the mean degree sufficiently, *or* if we tackle the issue of the hubs acting as super-spreaders. These ideas are the basis of both vaccination and social distancing."
    ]
   },
   {
