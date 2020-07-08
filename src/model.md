@@ -215,6 +215,7 @@ help in the wider sense of capturing the behaviour of a system with
 *inherent* randomness.
 
 
+(sec:model-expectations)=
 ## Managing our expectations
 
 ```{margin}
