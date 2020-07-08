@@ -1,15 +1,12 @@
 \makeatletter
 
+\usepackage{environ}
+
 % lay out shadow boxes in the margin, as per Tufte guidelines
-\renewenvironment{sphinxShadowBox}[1][-1.2ex]{%
-  \renewcommand{\sphinxstylesidebartitle}[1]{\relax}
-  \begin{@tufte@margin@float}[#1]{figure}
-    \begingroup
-    \setlength{\parindent}{0pt}
-  }{%
-    \endgroup
-  \end{@tufte@margin@float}
-}
+\renewenvironment{sphinxShadowBox}[1][0pt]{%
+  \Collect@Body\marginnote
+}{}
+
 
 % copyright page
 \newcommand{\backoftitlepage}[0]{%
