@@ -15,6 +15,7 @@ TEXT = \
 	src/preface.md \
 	src/model.md \
 	src/progress.md \
+	src/conclusion.md \
 	src/notes.md \
 	src/reading.md \
 	src/zbibliography.md \
