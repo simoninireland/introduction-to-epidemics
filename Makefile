@@ -19,6 +19,7 @@ TEXT = \
 	src/notes.md \
 	src/reading.md \
 	src/zbibliography.md \
+	src/genindex.md \
 	src/acknowledgements.md \
 	src/about.md \
 	src/copyright.md
@@ -104,6 +105,7 @@ JUPYTER = jupyter
 JUPYTER_BOOK = jupyter-book
 LATEX = pdflatex
 BIBTEX = bibtex
+MAKEINDEX = makeindex
 SPHINX = sphinx-build
 GHP_IMPORT = ghp-import
 PIP = pip
@@ -147,6 +149,8 @@ BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
 UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_BUILD_DIR)/html
 BUILD_PRINT_BOOK = $(SPHINX) -b latex . _build/latex
 BUILD_EPUB_BOOK = $(SPHINX) -b epub . _build/epub
+BUILD_BIBLIOGRAPHY = $(BIBTEX) $(LATEX_BOOK_STEM)
+BUILD_INDEX  = $(MAKEINDEX) $(LATEX_BOOK_STEM)
 
 
 # ----- Top-level targets -----
@@ -190,8 +194,9 @@ print: env bookdir $(LATEX_BUILD_DIR)
 	$(SED) -e 's/zbibliography://g' /tmp/$(LATEX_BOOK) >$(LATEX_BUILD_DIR)/$(LATEX_BOOK)
 	$(RM) /tmp/$(LATEX_BOOK)
 	-make latex
-	-make bibtex
+	$(CHDIR) $(LATEX_BUILD_DIR) && $(BUILD_BIBLIOGRAPHY)
 	-make latex
+	$(CHDIR) $(LATEX_BUILD_DIR) && $(BUILD_INDEX)
 	-make latex
 
 .PHONY: latex
@@ -199,10 +204,6 @@ latex:
 	$(CHDIR) $(LATEX_BUILD_DIR) && $(LATEX) <<EOF \
 	\\nonstopmode\\input{$(LATEX_BOOK_STEM)} \
 	EOF
-
-.PHONY: bibtex
-bibtex:
-	$(CHDIR) $(LATEX_BUILD_DIR) && $(BIBTEX) $(LATEX_BOOK_STEM)
 
 $(LATEX_BUILD_DIR):
 	$(MKDIR) $(LATEX_BUILD_DIR) $(LATEX_CLASS_DIR)

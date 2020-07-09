@@ -1,7 +1,6 @@
 # Conclusion
 
 ```{epigraph}
-
 Many are fleeing, everyone is fearful, you are neither – splendid,
 magnificent! For what is more foolish than to fear what you cannot
 avoid by any strategy, and what you aggravate by fearing? What is more
@@ -34,7 +33,8 @@ activity, and while it may be "driven by" or "informed by" science,
 there will always be other factors needing to be included that may
 skew a final decision away from what a scientist may view as
 "correct". Many real-world problems are
-[*wicked*](https://en.wikipedia.org/wiki/Wicked_problem), impossible
+[*wicked*](https://en.wikipedia.org/wiki/Wicked_problem),
+{index}`impossible <wicked problems>`
 to solve because of inherent contradictions and the compromises they
 imply, but mandating an immediate response nonetheless.
 
@@ -49,8 +49,8 @@ further consideration.
 
 The second take-away message is the scientific underpinnings of many
 policies with which we're familiar -- so much so that they sometimes
-feel almost part of the world's folklore. Vaccination, quarantine,
-physical isolation, herd immunity, and so forth are all susceptible to
+feel almost part of the world's folklore. {index}`Vaccination <vaccine>`, {index}`quarantine`,
+{index}`physical distancing`, {index}`herd immunity`, and so forth are all susceptible to
 exploration and variation. And the science can expose commonalities
 that are not initially obvious: that the provision of protective
 equipment behaves like vaccination, for example, in the way it can be
@@ -65,12 +65,13 @@ one may be *stuck* with ineffective processes: an imprecise test, a
 limited number of testers-and-tracers, and so forth. This may defeat
 even a well-thought-through strategy.
 
-The implication of this is that any countermeasure is an *experiment*
--- and the same is true of any attempt to unwind a countermeasure,
-such as for example when coming our of a physical distancing
-lockdown. It's possible that the strategy will fail, and that measures
-will need to be re-imposed. This may be difficult for people to take,
-especially if they've not been warned of the possibility beforehand.
+The implication of this is that to impose any set of
+{index}`countermeasures` is to **conduct an experiment** -- and the same
+is true of any attempt to unwind a countermeasure, such as for example
+when coming our of a physical distancing lockdown. It's possible that
+the strategy will fail, and that measures will need to be
+re-imposed. This may be difficult for people to take, especially if
+they've not been warned of the possibility beforehand.
 
 The final message is the most important for me as an academic: the
 *democracy* of science. People sometimes feel that science is something
@@ -78,8 +79,7 @@ alien, requiring endless qualifications, state or corporate
 sponsorship, and access to techniques and tools that are out of reach
 of the amateur. Nothing could be further from the truth.
 
-Science, as practiced by real scientists, is largely just an exercise
-of their curiosity that's conducted within a framework -- the
+Science, as practiced by real scientists, is largely just an exerciseb
 *scientific method* -- that has evolved over the years to help stop us
 misleading ourselves. The framework isn't a barrier to entry into
 science; rather, it's a guide to help identify simple truth within a
@@ -99,9 +99,9 @@ If this book shows anything, I hope it's that computational science is
 within the reach of everyone. It's not the preserve of academics,
 although academic scientists have developed many of the ideas and
 tools; it doesn't need supercomputers, although they're often useful;
-and no-one should be afraid of posing any question: any question,
-sincerely asked, is worth asking, and worth working to find an answer
-to.
+and no-one should be afraid of posing questions: any question,
+sincerely asked, is worth asking, and worth the cost of working
+towards an answer.
 
 
 
