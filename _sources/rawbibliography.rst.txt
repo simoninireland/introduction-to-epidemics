@@ -3,4 +3,5 @@
    \bibliographystyle{plain}
    \bibliography{bibliography}
 
+   \printindex
 

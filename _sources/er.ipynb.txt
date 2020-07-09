@@ -15,7 +15,7 @@
     "\n",
     "Of course while there can only be one complete graph with a given number of nodes, once we start talking about incomplete graphs we have a huge number of options. We could have a network with *no* edges. (How would an epidemic spread over this network?) Or we could have a network that had a very uneven distribution of edges. Perhaps we could even extract a \"real\" social network from facebook or Twitter data.\n",
     "\n",
-    "The structure of a network is referred to mathematically as its **topology**. You can think of this as being \"the way it's connected\" What we're talking about, then, is exploring how the SIR process spreads over networks with different topologies."
+    "The structure of a network is referred to mathematically as its **{index}`topology`**. You can think of this as being \"the way it's connected\" What we're talking about, then, is exploring how the {index}`SIR` process spreads over networks with different topologies."
    ]
   },
   {
@@ -33,27 +33,27 @@
     "In the networks we'll be considering for now the degree of a node is fixed when the network is created. Later on when we encounter adaptive networks degree itself becomes a process that changes with time.\n",
     "```\n",
     "\n",
-    "Since we have a range of different topologies, we'll need some way of describing their properties so thhat we can tell them apart. There are a huge number of such **graph metrics** that have been developed, and we'll encounter a few them in the course of this book. For the time being, we'll start with the most influential number, the **degree** of a node, which is simply the number of edges intersecting each node. Each node has its own degree. In your social network, the degree of the node that represents you is simply the number of people you're connected to. The degree of a node is usually denoted $k$, for no particular reason.\n",
+    "Since we have a range of different topologies, we'll need some way of describing their properties so thhat we can tell them apart. There are a huge number of such **{index}`graph metrics`** that have been developed, and we'll encounter a few them in the course of this book. For the time being, we'll start with the most influential number, the **{index}`degree`** of a node, which is simply the number of edges intersecting each node. Each node has its own degree. In your social network, the degree of the node that represents you is simply the number of people you're connected to. The degree of a node is usually denoted $k$, for no particular reason.\n",
     "\n",
     "```{margin}\n",
     "$\\langle k \\rangle$ is usually pronounced \"k mean\".\n",
     "```\n",
     "\n",
-    "For a given network we can enumerate the degrees of every node, but that's clearly not going to be very useful for a large network: you wouldn't be able to extract any useful information from the large list of numbers. But we can derive statistics from such lists. The most important is the **mean degree**, the \"average\" degree of a node, denoted $\\langle k \\rangle$. While the degree of every node has to be an integer (you can't have half a friend), the mean degree of the population overall will typically be a real number.\n",
+    "For a given network we can enumerate the degrees of every node, but that's clearly not going to be very useful for a large network: you wouldn't be able to extract any useful information from the large list of numbers. But we can derive statistics from such lists. The most important is the **{index}`mean degree`**, the \"average\" degree of a node, denoted $\\langle k \\rangle$. While the degree of every node has to be an integer (you can't have half a friend), the mean degree of the population overall will typically be a real number.\n",
     "\n",
-    "For the complete graph every node has exactly the same degree, being one less that the number of nodes in the network, since there's an edge between every node and every other (except itself). This means that $k$ is always $(N - 1)$ for every node, and therefore so is $\\langle k \\rangle$.\n",
+    "For the {index}`complete graph` every node has exactly the same degree, being one less that the number of nodes in the network, since there's an edge between every node and every other (except itself). This means that $k$ is always $(N - 1)$ for every node, and therefore so is $\\langle k \\rangle$.\n",
     "\n",
     "```{margin}\n",
     "If this use of the word \"distribution\" sounds like it should be connected to probability theory -- it is. The degree histogram is a shows the relative numbers of nodes with each different degree, and so defines the probability of randomly choosing a node with degree $k$. $\\langle k \\rangle$ is then the expected value of the degree.\n",
     "```\n",
     "\n",
-    "In general things will be more complicated. The degrees of nodes in a network form a **degree distribution**, which we can plot as a histogram to show the number of nodes with each degree (we do this below). If we use $N$ to represent the number of nodes in the network, we'll use $N_k$ to represent the number of nodes with degree $k$. Then we can compute $\\langle k \\rangle$ very easily from this distibution, by summing up the numbers of ndoes with each degree and then dividing by the number of nodes.\n",
+    "In general things will be more complicated. The degrees of nodes in a network form a **{index}`degree distribution <distribution;degree>`**, which we can plot as a histogram to show the number of nodes with each degree (we do this below). If we use $N$ to represent the number of nodes in the network, we'll use $N_k$ to represent the number of nodes with degree $k$. Then we can compute $\\langle k \\rangle$ very easily from this distibution, by summing up the numbers of ndoes with each degree and then dividing by the number of nodes.\n",
     "\n",
     "$$\n",
     "    \\langle k \\rangle = \\frac{\\sum_k N_k}{N}\n",
     "$$\n",
     "\n",
-    "There are a lot of other metrics that we could consider, but the degree distribution is the most important and well-studied. It's not the whole story, however, because there are will be a *lot* of different networks with the *same* degree distribution and mean degree, depending on exactly how the edges trhat intersect each node connect to other nodes. So while one side of network toppology is captured by statistics, there's another side that concerns the details of which nodes are **adjacent** to each other by having an edge between them: it matters who your friends are, not just how many you have. We sometimes call the set of nodes adjacent to a node its **neighbours**."
+    "There are a lot of other metrics that we could consider, but the degree distribution is the most important and well-studied. It's not the whole story, however, because there are will be a *lot* of different networks with the *same* degree distribution and mean degree, depending on exactly how the edges trhat intersect each node connect to other nodes. So while one side of network toppology is captured by statistics, there's another side that concerns the details of which nodes are **{index}`adjacent <adjacency>`** to each other by having an edge between them: it matters who your friends are, not just how many you have. We sometimes call the set of nodes adjacent to a node its **{index}`neighbours`**."
    ]
   },
   {
@@ -67,10 +67,10 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "Let's start with one of the simplest non-complete topologies. This topology was initially explored in depth in the late 1950's by Paul Erd&#337;s and Alfred R&eacute;nyi {cite}`ER59`. They called their approach \"random graphs\", but that's a slightly misleading name: we can produce \"random\" networks with *any* topology as we saw above. Fortunately the influence of Erd&#337;s and R&eacute;nyi has been so profound that networks of this type are now referred to as **Erd&#337;s-R&eacute;nyi** or **ER networks**.\n",
+    "Let's start with one of the simplest non-complete topologies. This topology was initially explored in depth in the late 1950's by Paul Erd&#337;s and Alfred R&eacute;nyi {cite}`ER59`. They called their approach \"random graphs\", but that's a slightly misleading name: we can produce \"random\" networks with *any* topology as we saw above. Fortunately the influence of Erd&#337;s and R&eacute;nyi has been so profound that networks of this type are now referred to as **Erd&#337;s-R&eacute;nyi** or **{index}`ER networks <ER network>`**.\n",
     "\n",
     "```{margin}\n",
-    "Alfred R&eacute;nyi, the other half of the partnership, was a noted mathematician whose other work has been\n",
+    "Alfred R&eacute;nyi`, the other half of the partnership, was a noted mathematician whose other work has been\n",
     "rather overshadowed by his wonderfully productive association with Erd&#337;s. He was also responsible for the definition of a mathematician as \"a machine for turning coffee into theorems\".\n",
     "```\n",
     "\n",
@@ -178,7 +178,7 @@
     "\n",
     "At the top left where $p_{edge}$ is small, we have very few edges: 5% of the possible total, in fact. As we progress towards the bottom right the network gets more and more dense, until at 99% of the possible edges it's quite hard to spot that any are actually missing at all.\n",
     "\n",
-    "What is $\\langle k \\rangle$ for this topology? The answer turns out to be quite simple. An ER network has $\\langle k \\rangle = \\frac{p_{edge}}{N}$. Moreover the degree distribution &ndash; the number of nodes with more, or less, edges than the mean, is a **normal** distribution, the \"bell curve\" we see in many phenomena."
+    "What is $\\langle k \\rangle$ for this topology? The answer turns out to be quite simple. An ER network has $\\langle k \\rangle = \\frac{p_{edge}}{N}$. Moreover the degree distribution &ndash; the number of nodes with more, or less, edges than the mean, is a **normal** distribution, the \"{index}`bell curve <distribution;normal>`\" we see in many phenomena."
    ]
   },
   {
@@ -229,7 +229,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "So about one-third of the nodes (about 675) have a degree around the mean (40), with the number of nodes having more (or less) neighbours dropping off on either side of the mean. There are very few nodes with degrees in single figures, and very few with degrees of twice the mean &ndash; and none with really large degree. In fact for any network there will be a **minimum degree** $k_{min}$ and a **maximum degree** $k_{max}$. The ER network's degree distribution says that the maximum degree is never \"too far\" from the mean. "
+    "So about one-third of the nodes (about 675) have a {index}`degree` around the {index}`mean <mean degree>` (40), with the number of nodes having more (or less) neighbours dropping off on either side of the mean. There are very few nodes with degrees in single figures, and very few with degrees of twice the mean &ndash; and none with really large degree. In fact for any network there will be a **minimum degree** $k_{min}$ and a **maximum degree** $k_{max}$. The ER network's degree distribution says that the maximum degree is never \"too far\" from the mean. "
    ]
   },
   {

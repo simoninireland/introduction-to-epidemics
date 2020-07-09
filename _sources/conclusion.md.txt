@@ -70,7 +70,7 @@ The implication of this is that any countermeasure is an *experiment*
 such as for example when coming our of a physical distancing
 lockdown. It's possible that the strategy will fail, and that measures
 will need to be re-imposed. This may be difficult for people to take,
-especially if they've not be warned of the possibility beforehand.
+especially if they've not been warned of the possibility beforehand.
 
 The final message is the most important for me as an academic: the
 *democracy* of science. People sometimes feel that science is something

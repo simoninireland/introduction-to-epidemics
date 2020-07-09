@@ -7,24 +7,22 @@ advantages and limitations.
 
 ## Models
 
-By **model** we mean a mathematical and/or computational description
-of some aspects of a system of interest that we can explore in order
-to gain insight into the behaviour of the real system.
+By **{index}`model`** we mean a formal description of some aspects of
+a system of interest that we can explore in order to gain insight into
+the behaviour of the real system.
 
-A **mathematical model** consists of one or more equations expressing
-the relationships between different quantities. There are often some
-**parameters** involved, quantities whose values are known or assumed.
+A **{index}`mathematical model <model;mathematical>`** consists of
+one or more equations expressing the relationships between different
+quantities. There are often some **parameters** involved, quantities
+whose values are known or assumed.
 
 ```{margin}
-
 One can also have mechanical models, of course, such as the orreries
 the model the motions of planets. In some senses machines are just
 computation models that happen to use analogue components rather than
 digital.
 ```
-
-
-A **computational model** is a program written to simulate the
+A **{index}`computational model <model;computational>`**, by contrast, is a program written to simulate the
 behaviour of the system. Such simulations are almost always based on
 underlying mathematical models and include parameters. What do
 computers provide? Sets of equations can often be understood (or
@@ -62,7 +60,7 @@ very concrete questions that depend on the exact details of the
 situation about which they're asked, and answering them may be
 massively useful in managing this situation. (Taylor provides an
 accessible discussion of the uses and interpretations of the well-known
-Imperial College model of covid-19's impact on UK NHS bed availability
+Imperial College model of {index}`covid-19`'s impact on UK NHS bed availability
 during the 2020 outbreak {cite}`Tay20`.)
 
 ```{margin}
@@ -70,7 +68,6 @@ There's a saying among doctors who deal with outbreaks on the
 ground: "When you've seen one pandemic, you've ... seen one pandemic."
 The lessons learned often don't translate to new situations.
 ```
-
 The interplay between these two kinds of questions is quite
 complicated. In concrete cases we presumably measure the specifics of
 the outbreak and work with them. We only have partial control, for
@@ -101,12 +98,13 @@ this can mean that outbreaks get out of control, and people may die.
 
 ## Assumptions
 
-The accuracy of a model depends on its **assumptions**, and how well
-these match reality. This issue appears in several guises. The model's
-"mechanics" &ndash; the ways it fits its various elements together
-&ndash; need to match the disease it's (purporting to be) a model
-of. It needs to identify the parameters that control its evolution.
-These parameters need to match those of the real disease.
+The accuracy of a model depends on its **{index}`assumptions <model;assumptions>`**,
+and how well these match reality. This issue appears
+in several guises. The model's "mechanics" &ndash; the ways it fits
+its various elements together &ndash; need to match the disease it's
+(purporting to be) a model of. It needs to identify the parameters
+that control its evolution.  These parameters need to match those of
+the real disease.
 
 All these are problematic at the best of times, but especially when
 dealing with a new disease that's not been well-studied. How
@@ -120,7 +118,7 @@ modelling.
 ## Correctness
 
 Whether we're interested in concrete or abstract questions, we still
-have the problem of **correctness**: does our model produce the
+have the problem of **{index}`correctness`**: does our model produce the
 "right" answers? It might not, either because it has been built
 incorrectly (has "bugs" in computer terms &ndash; but mathematical
 equations have them too), or because we don't know the values of some
@@ -130,17 +128,16 @@ because there are aspects of the real world that we haven't considered
 but that affect the result (often the case for more abstract models).
 
 We know quite a lot about building software, much of which applies to
-the building of computer models: unit testing, integration testing,
-clear documentation, source version control, and so on. With modelling
+the building of computer models: unit {index}`testing`, integration testing,
+clear documentation, source {index}`version control`, and so on. With modelling
 we then face the additional problem of deciding whether the code we've
-built is appropriate for its purpose. 
+built is appropriate  its purpose. 
 
 ```{margin}
 Computer scientists often split the question of assuring
 correctness into two parts: **verification** ("did we build the thing
 right?") and **validation** ("did we build the right thing?").
 ```
-
 Deciding what "appropriate" means is an interesting question in its own
 right. It's something we may only know retrospectively: did the
 results that came out of the model match what happened on the ground?
@@ -148,7 +145,6 @@ We may not be able to measure exactly what *did* happen on the ground:
 did we count all the fatalities, or were some missed, or
 mis-diagnosed? For a more abstract model, how happy are we that our
 simplifications don't entirely divorce us from reality?
-
 
 ## Stochastic processes
 
@@ -166,7 +162,7 @@ who's a noted party animal and goes on to spread the illness
 widely. So even if we know the general pattern of a disease, the exact
 way in spreads is affected by chance factors.
 
-Systems like this are referred to as **stochastic** processes. They
+Systems like this are referred to as **{index}`stochastic processes`**. They
 include an element of randomness in their very nature: it's *not* a
 bug, it's a feature.
 
@@ -176,7 +172,6 @@ is sampling the distribution of possible outcomes. You expect to
 seldom see "unlikely" outcomes and mainly see "likely" ones &ndash;
 but sometimes you'll see an "unlikely" outcome by chance.
 ```
-
 Now consider what this means for modelling. We can take exactly the
 same situation &ndash; the same disease, the same population &ndash;
 run the model twice, get two different answers &ndash; and them *both*
@@ -205,9 +200,8 @@ least because computer scientists have expended a lot of ingenuity in
 making their pseudo-random number sequences less pseudo and more
 random.
 ```
-
 In a computer model, it's often possible to actually reproduce exactly
-even a stochastic process, because the "random" numbers we use are
+even a stochastic process, because the "{index}`random numbers`" we use are
 actually only pseudo-random and so can be re-created. That can help in
 the narrow sense of seeing whether the model produces the same results
 given the same inputs *and* the same "random" numbers, but it doesn't
@@ -226,7 +220,6 @@ statistician George Box, that "all models are wrong, but some are
 useful ... the approximate nature of the model must always be
 borne in mind".
 ```
-
 This all sounds like modelling is a horrible mess. But the situation
 isn't hopeless. 
 

@@ -116,6 +116,9 @@
     <a href="zbibliography.html">References</a>
   </li>
   <li class="">
+    <a href="genindex.html">Index</a>
+  </li>
+  <li class="">
     <a href="notes.html">Notes on production</a>
   </li>
   <li class="">
@@ -228,12 +231,13 @@ develop a model: what models are, what we expect from them, their
 advantages and limitations.</p>
 <div class="section" id="models">
 <h2>Models<a class="headerlink" href="#models" title="Permalink to this headline">¶</a></h2>
-<p>By <strong>model</strong> we mean a mathematical and/or computational description
-of some aspects of a system of interest that we can explore in order
-to gain insight into the behaviour of the real system.</p>
-<p>A <strong>mathematical model</strong> consists of one or more equations expressing
-the relationships between different quantities. There are often some
-<strong>parameters</strong> involved, quantities whose values are known or assumed.</p>
+<p>By <strong><span class="target" id="index-0"></span>model</strong> we mean a formal description of some aspects of
+a system of interest that we can explore in order to gain insight into
+the behaviour of the real system.</p>
+<p>A <strong><span class="target" id="index-1"></span>mathematical model</strong> consists of
+one or more equations expressing the relationships between different
+quantities. There are often some <strong>parameters</strong> involved, quantities
+whose values are known or assumed.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>One can also have mechanical models, of course, such as the orreries
@@ -241,7 +245,7 @@ the model the motions of planets. In some senses machines are just
 computation models that happen to use analogue components rather than
 digital.</p>
 </div>
-<p>A <strong>computational model</strong> is a program written to simulate the
+<p>A <strong><span class="target" id="index-2"></span>computational model</strong>, by contrast, is a program written to simulate the
 behaviour of the system. Such simulations are almost always based on
 underlying mathematical models and include parameters. What do
 computers provide? Sets of equations can often be understood (or
@@ -276,7 +280,7 @@ very concrete questions that depend on the exact details of the
 situation about which they’re asked, and answering them may be
 massively useful in managing this situation. (Taylor provides an
 accessible discussion of the uses and interpretations of the well-known
-Imperial College model of covid-19’s impact on UK NHS bed availability
+Imperial College model of <span class="target" id="index-3"></span>covid-19’s impact on UK NHS bed availability
 during the 2020 outbreak <a class="bibtex reference internal" href="zbibliography.html#tay20" id="id1">[26]</a>.)</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -311,12 +315,13 @@ this can mean that outbreaks get out of control, and people may die.</p>
 </div>
 <div class="section" id="assumptions">
 <h2>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this headline">¶</a></h2>
-<p>The accuracy of a model depends on its <strong>assumptions</strong>, and how well
-these match reality. This issue appears in several guises. The model’s
-“mechanics” – the ways it fits its various elements together
-– need to match the disease it’s (purporting to be) a model
-of. It needs to identify the parameters that control its evolution.
-These parameters need to match those of the real disease.</p>
+<p>The accuracy of a model depends on its <strong><span class="target" id="index-4"></span>assumptions</strong>,
+and how well these match reality. This issue appears
+in several guises. The model’s “mechanics” – the ways it fits
+its various elements together – need to match the disease it’s
+(purporting to be) a model of. It needs to identify the parameters
+that control its evolution.  These parameters need to match those of
+the real disease.</p>
 <p>All these are problematic at the best of times, but especially when
 dealing with a new disease that’s not been well-studied. How
 infectious is a disease? How long is a person sick for? Does the
@@ -328,7 +333,7 @@ modelling.</p>
 <div class="section" id="correctness">
 <h2>Correctness<a class="headerlink" href="#correctness" title="Permalink to this headline">¶</a></h2>
 <p>Whether we’re interested in concrete or abstract questions, we still
-have the problem of <strong>correctness</strong>: does our model produce the
+have the problem of <strong><span class="target" id="index-5"></span>correctness</strong>: does our model produce the
 “right” answers? It might not, either because it has been built
 incorrectly (has “bugs” in computer terms – but mathematical
 equations have them too), or because we don’t know the values of some
@@ -337,10 +342,10 @@ outbreak, when measurement often takes a back seat to treatment), or
 because there are aspects of the real world that we haven’t considered
 but that affect the result (often the case for more abstract models).</p>
 <p>We know quite a lot about building software, much of which applies to
-the building of computer models: unit testing, integration testing,
-clear documentation, source version control, and so on. With modelling
+the building of computer models: unit <span class="target" id="index-6"></span>testing, integration testing,
+clear documentation, source <span class="target" id="index-7"></span>version control, and so on. With modelling
 we then face the additional problem of deciding whether the code we’ve
-built is appropriate for its purpose.</p>
+built is appropriate  its purpose.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Computer scientists often split the question of assuring
@@ -369,7 +374,7 @@ infect anyone else, you instead happen to infect Cousin Charlotte
 who’s a noted party animal and goes on to spread the illness
 widely. So even if we know the general pattern of a disease, the exact
 way in spreads is affected by chance factors.</p>
-<p>Systems like this are referred to as <strong>stochastic</strong> processes. They
+<p>Systems like this are referred to as <strong><span class="target" id="index-8"></span>stochastic processes</strong>. They
 include an element of randomness in their very nature: it’s <em>not</em> a
 bug, it’s a feature.</p>
 <div class="margin sidebar">
@@ -406,7 +411,7 @@ making their pseudo-random number sequences less pseudo and more
 random.</p>
 </div>
 <p>In a computer model, it’s often possible to actually reproduce exactly
-even a stochastic process, because the “random” numbers we use are
+even a stochastic process, because the “<span class="target" id="index-9"></span>random numbers” we use are
 actually only pseudo-random and so can be re-created. That can help in
 the narrow sense of seeing whether the model produces the same results
 given the same inputs <em>and</em> the same “random” numbers, but it doesn’t

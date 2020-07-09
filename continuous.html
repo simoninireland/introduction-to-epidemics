@@ -116,6 +116,9 @@
     <a href="zbibliography.html">References</a>
   </li>
   <li class="">
+    <a href="genindex.html">Index</a>
+  </li>
+  <li class="">
     <a href="notes.html">Notes on production</a>
   </li>
   <li class="">
@@ -231,12 +234,12 @@
 <p>Let’s start with what is perhaps the simplest model of an epidemic, the <em>SIR model</em>.</p>
 <div class="section" id="sir-a-compartmented-model-of-disease">
 <span id="sec-continuous-compartmented-model"></span><h2>SIR: A compartmented model of disease<a class="headerlink" href="#sir-a-compartmented-model-of-disease" title="Permalink to this headline">¶</a></h2>
-<p>SIR is referred to as a <em>compartmented model</em> of disease. It represents the progress of the disease by specifying a number of states or <em>compartments</em>, with everyone in the population being assigned to exactly one compartment at anytime. The disease progresses by having people move between compartments according to some process.</p>
+<p><span class="target" id="index-0"></span>SIR is referred to as a <em><span class="target" id="index-1"></span>compartmented model</em> of disease. It represents the progress of the disease by specifying a number of states or <em><span class="target" id="index-2"></span>compartments</em>, with everyone in the population being assigned to exactly one compartment at anytime. The disease progresses by having people move between compartments according to some process.</p>
 <p>SIR, as its name suggests, uses three compartments:</p>
 <ul class="simple">
-<li><p><em>Susceptible (S)</em>, representing those people who can catch the disease;</p></li>
-<li><p><em>Infected (I)</em>, representing those people who have caught the disease and can pass it on; and</p></li>
-<li><p><em>Removed (R)</em>, representing those people whose infection has resolved itself and have been “removed” from progressing the disease any further.</p></li>
+<li><p><strong><span class="target" id="index-3"></span>Susceptible (S)</strong>, representing those people who can catch the disease;</p></li>
+<li><p><strong><span class="target" id="index-4"></span>Infected (I)</strong>, representing those people who have caught the disease and can pass it on; and</p></li>
+<li><p><strong><span class="target" id="index-5"></span>Removed (R)</strong>, representing those people whose infection has resolved itself and have been “removed” from progressing the disease any further.</p></li>
 </ul>
 <p>Notice how simple this is. A person is either infected, or they’re not. If they <em>are</em> infected, they are infectious: there’s no latency. And they’re “removed” when their infection resolves, without us noting whether they recovered or died.</p>
 <p>You might ask whether something this simple can tell us anything: does any real disease work like this? But the simplicity of the model makes it tractable and easy to study, and once we’ve got a feel for how these things work we can, if desired, move onto more detailed models. SIR is just one of the possible compartmented models: the others include SIS (for diseases where you can be re-infected once recovered), MSEIR (for diseases with maternally-conferred temporary immunity), so so on in dizzying array (see Hethcote<a class="bibtex reference internal" href="zbibliography.html#heth00" id="id1">[9]</a> for a more detailed discussion). We’ll look at another model, SEIR, <a class="reference internal" href="seir.html"><span class="doc">later</span></a>.</p>
@@ -247,7 +250,7 @@
 <p>Suppose we have a population of size <span class="math notranslate nohighlight">\(N\)</span>. Let’s represent the number of people in each compartment by <span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(I\)</span>, and <span class="math notranslate nohighlight">\(R\)</span> respectively. Everyone in the population is assigned to exactly one compartment at any time, so we must always have <span class="math notranslate nohighlight">\(S + I + R = N\)</span> as the sub-populations <span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(I\)</span>, and <span class="math notranslate nohighlight">\(R\)</span> change.</p>
 <p>How does someone become infected? – that is to say, how does someone move between compartment <span class="math notranslate nohighlight">\(S\)</span> and compartment <span class="math notranslate nohighlight">\(I\)</span>? In SIR we assume that the infection passes through contact between a susceptible individual and an infected one. If we further assume that everyone in the population meets everyone else equally often, then there will be <span class="math notranslate nohighlight">\(S \times I = SI\)</span> encounters between susceptible and infected individuals in each time period. Think of the population as crowd milling around, some of whom are infected.</p>
 <p>Clearly not all of these interactions will result in an infection, but some fraction will, and the result will be that an individual moves from <span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\(I\)</span>: remember that in SIR we assume that the disease passes on instantly. Let’s refer to this as <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, the probability that an <span class="math notranslate nohighlight">\(I\)</span> will infect an <span class="math notranslate nohighlight">\(S\)</span> in a single contact. There are <span class="math notranslate nohighlight">\(SI\)</span> contacts in each timestep, of which a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> will result in an infection. Putting this all together, the size of <span class="math notranslate nohighlight">\(S\)</span> will <em>reduce</em> by <span class="math notranslate nohighlight">\(p_{\mathit{infect}} \, SI\)</span> (because the disease causes people to leave <span class="math notranslate nohighlight">\(S\)</span> by becoming infected).</p>
-<p>If <span class="math notranslate nohighlight">\(S\)</span> is the number of susceptible people, we can denote the <em>change</em> in <span class="math notranslate nohighlight">\(S\)</span> by <span class="math notranslate nohighlight">\(\Delta S\)</span>, the difference in <span class="math notranslate nohighlight">\(S\)</span> at each timestep. As the disease progresses we expect <span class="math notranslate nohighlight">\(S\)</span> to decrease: unless people enter the population from outside, the number of susceptible people only goes down since once someone has been infected they don’t return to being susceptible again (having the disease makes you immune in this model). Mathematically we can say that</p>
+<p>If <span class="math notranslate nohighlight">\(S\)</span> is the number of susceptible people, we can denote the <em>change</em> in <span class="math notranslate nohighlight">\(S\)</span> by <span class="math notranslate nohighlight">\(\Delta S\)</span>, the <span class="target" id="index-6"></span>difference in <span class="math notranslate nohighlight">\(S\)</span> at each timestep. As the disease progresses we expect <span class="math notranslate nohighlight">\(S\)</span> to decrease: unless people enter the population from outside, the number of susceptible people only goes down since once someone has been infected they don’t return to being susceptible again (having the disease makes you immune in this model). Mathematically we can say that</p>
 <div class="math notranslate nohighlight">
 \[
     \Delta S = -p_{\mathit{infect}} \, SI
@@ -280,7 +283,7 @@ understand what’s going on if we spell the meaning of the symbols out.</p>
 </div>
 <div class="section" id="the-computational-model">
 <h2>The computational model<a class="headerlink" href="#the-computational-model" title="Permalink to this headline">¶</a></h2>
-<p>To explore SIR, let’s turn the mathematical model of three equations into a computational model that “runs the numbers” to show how the epidemic progresses.</p>
+<p>To explore SIR, let’s turn the mathematical model of three equations into a <span class="target" id="index-7"></span>computational model that “runs the numbers” to show how the epidemic progresses.</p>
 <p>We can represent each of the three chanmges in population directly as Python functions. Since they share the parameters <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> and <span class="math notranslate nohighlight">\(p_{remove}\)</span>, we’ll define them together using another function to which we pass the parameters and get back the change functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -307,7 +310,7 @@ understand what’s going on if we spell the meaning of the symbols out.</p>
 foul of numerical instability in the equations. There are several more
 robust solutions for the more complex cases.</p>
 </div>
-<p>How do we “run” the epidemic? We’ve defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time. The result will be a time series for each sub-population tracking its size over time.</p>
+<p>How do we “run” the epidemic? We’ve defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and <span class="target" id="index-8"></span>add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time. The result will be a time series for each sub-population tracking its size over time.</p>
 <p>What should the initial sizes of the sub-populations be? Since we’re interested only in their sizes, we could say that given <span class="math notranslate nohighlight">\(N\)</span> individuals a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infected}}\)</span> are initially infected, while everyone else is susceptible: no-one starts off removed.</p>
 <p>We can code this behaviour up as a single function.</p>
 <div class="cell docutils container">
@@ -430,7 +433,7 @@ sense. The results obtained are the same in both cases, however.</p>
 <div class="section" id="consequences">
 <h2>Consequences<a class="headerlink" href="#consequences" title="Permalink to this headline">¶</a></h2>
 <p>Let those figures sink in for a moment.</p>
-<p>The SIR model is telling us that changing the rate of infection from one in a million to eight in a million is enough to change the total proportion of infected people in a population from about 1% to about 60%! To put it another way, anything that changes the infection rate by even a miniscule amount can have an enormous, outsized, effect on the outbreak.</p>
+<p>The SIR model is telling us that changing the rate of infection from one in a million to eight in a million is enough to change the total proportion of infected people in a population from about 1% to about 60%! To put it another way, the process is very <span class="target" id="index-9"></span>sensitive, and anything that changes the infection rate by even a miniscule amount can have an enormous, outsized, effect on the outbreak.</p>
 <p>We have to be careful what we conclude, though. While we’ve got  a “population” and some “contacts”, we haven’t said anything about the timescale over which we’re talking: it’s all been abstracted. So the “infection rate” is a somewhat notional concept that doesn’t directly relate to <em>any</em> particular rate or disease in the real world. It’s important to remember this and not draw any unsupported conclusions.</p>
 <p>There <em>are</em> some conclusions that are supported, though. Firstly, we can see that the epidemic grows exponentially once it gets started. We can also see that it dies away exponentially after its peak. And we know that the population of infected people is a dynamic thing, with people recovering and new people being infected across the outbreak.</p>
 </div>
