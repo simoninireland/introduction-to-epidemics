@@ -16,14 +16,11 @@ the relationships between different quantities. There are often some
 **parameters** involved, quantities whose values are known or assumed.
 
 ```{margin}
-
 One can also have mechanical models, of course, such as the orreries
 the model the motions of planets. In some senses machines are just
 computation models that happen to use analogue components rather than
 digital.
 ```
-
-
 A **computational model** is a program written to simulate the
 behaviour of the system. Such simulations are almost always based on
 underlying mathematical models and include parameters. What do
@@ -70,7 +67,6 @@ There's a saying among doctors who deal with outbreaks on the
 ground: "When you've seen one pandemic, you've ... seen one pandemic."
 The lessons learned often don't translate to new situations.
 ```
-
 The interplay between these two kinds of questions is quite
 complicated. In concrete cases we presumably measure the specifics of
 the outbreak and work with them. We only have partial control, for
@@ -140,7 +136,6 @@ Computer scientists often split the question of assuring
 correctness into two parts: **verification** ("did we build the thing
 right?") and **validation** ("did we build the right thing?").
 ```
-
 Deciding what "appropriate" means is an interesting question in its own
 right. It's something we may only know retrospectively: did the
 results that came out of the model match what happened on the ground?
@@ -176,7 +171,6 @@ is sampling the distribution of possible outcomes. You expect to
 seldom see "unlikely" outcomes and mainly see "likely" ones &ndash;
 but sometimes you'll see an "unlikely" outcome by chance.
 ```
-
 Now consider what this means for modelling. We can take exactly the
 same situation &ndash; the same disease, the same population &ndash;
 run the model twice, get two different answers &ndash; and them *both*
@@ -205,7 +199,6 @@ least because computer scientists have expended a lot of ingenuity in
 making their pseudo-random number sequences less pseudo and more
 random.
 ```
-
 In a computer model, it's often possible to actually reproduce exactly
 even a stochastic process, because the "random" numbers we use are
 actually only pseudo-random and so can be re-created. That can help in
@@ -226,7 +219,6 @@ statistician George Box, that "all models are wrong, but some are
 useful ... the approximate nature of the model must always be
 borne in mind".
 ```
-
 This all sounds like modelling is a horrible mess. But the situation
 isn't hopeless. 
 
