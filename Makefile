@@ -194,6 +194,7 @@ print: env bookdir # $(LATEX_BUILD_DIR)
 	$(SED) -e 's/zbibliography://g' /tmp/$(LATEX_BOOK) >$(LATEX_BUILD_DIR)/$(LATEX_BOOK)
 	-make latex
 	$(CHDIR) $(LATEX_BUILD_DIR) && $(BUILD_BIBLIOGRAPHY)
+	-make latex
 	$(CP) $(LATEX_BUILD_DIR)/$(LATEX_BOOK_STEM).idx /tmp
 	$(SED) -e 's/spxentry /spxentry/g' /tmp/$(LATEX_BOOK_STEM).idx >$(LATEX_BUILD_DIR)/$(LATEX_BOOK_STEM).idx
 	$(CHDIR) $(LATEX_BUILD_DIR) && $(BUILD_INDEX)
