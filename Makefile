@@ -150,7 +150,7 @@ UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_BUILD_DIR)/html
 BUILD_PRINT_BOOK = $(SPHINX) -b latex . _build/latex
 BUILD_EPUB_BOOK = $(SPHINX) -b epub . _build/epub
 BUILD_BIBLIOGRAPHY = $(BIBTEX) $(LATEX_BOOK_STEM)
-BUILD_INDEX  = $(MAKEINDEX) $(LATEX_BOOK_STEM)
+BUILD_INDEX = $(MAKEINDEX) $(LATEX_BOOK_STEM)
 
 
 # ----- Top-level targets -----
@@ -185,19 +185,21 @@ upload: book
 
 
 # Build a PDF for printed copy
-print: env bookdir $(LATEX_BUILD_DIR)
+print: env bookdir # $(LATEX_BUILD_DIR)
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(LATEX_EXTRAS) $(BOOK_DIR)
 	$(ACTIVATE) && $(CHDIR) $(BOOK_DIR) && $(BUILD_PRINT_BOOK)
 	$(CP) $(LATEX_BUILD_DIR)/$(LATEX_BOOK) /tmp
 	$(SED) -e 's/zbibliography://g' /tmp/$(LATEX_BOOK) >$(LATEX_BUILD_DIR)/$(LATEX_BOOK)
-	$(RM) /tmp/$(LATEX_BOOK)
 	-make latex
 	$(CHDIR) $(LATEX_BUILD_DIR) && $(BUILD_BIBLIOGRAPHY)
-	-make latex
+	$(CP) $(LATEX_BUILD_DIR)/$(LATEX_BOOK_STEM).idx /tmp
+	$(SED) -e 's/spxentry /spxentry/g' /tmp/$(LATEX_BOOK_STEM).idx >$(LATEX_BUILD_DIR)/$(LATEX_BOOK_STEM).idx
 	$(CHDIR) $(LATEX_BUILD_DIR) && $(BUILD_INDEX)
 	-make latex
+	-make latex
+	$(RM) /tmp/$(LATEX_BOOK) /tmp/$(LATEX_BOOK_STEM).idx
 
 .PHONY: latex
 latex:

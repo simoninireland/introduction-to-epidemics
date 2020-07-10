@@ -347,7 +347,7 @@ distribution of infections over time.
   done anything to *avoid* catching it? Was it made worse by where you
   lived at the time?
 - What can be done to cope with "Type A" diseases, where people can
-  transmit the disease without showing symptoms of it?
+  {index}`transmit <transmission>` the disease without showing symptoms of it?
 - Do you think the $\mathcal{R}$ number is a useful thing to keep track of
   during an epidemic? Why? (Or why not?)
   

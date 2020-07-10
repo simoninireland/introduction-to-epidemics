@@ -18,7 +18,7 @@ jupyter_execute_notebooks = 'off'
 # Latex
 
 latex_elements = {
-     'papersize': 'b5paper',
+     'papersize': 'b5paper,twoside',
      'fontpkg': '',
      'fncychap': '',
      'maketitle': '\\maketitlepage\\backoftitlepage',
