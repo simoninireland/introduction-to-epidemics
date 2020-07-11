@@ -46,16 +46,3 @@ latex_domain_indices = False
 latex_use_modindex = False
 latex_logo = None
 latex_show_urls = False
-
-
-# Epub
-
-epub_basename = 'em-book'
-epub_title = project
-epub_author = author
-epub_copyright = "Copyright (c) 2020, Simon Dobson"
-epub_publisher = "https://simoninireland.github.io/introduction-to-epidemics"
-epub_scheme = 'URL'
-epub_tocdepth = 2
-
-
