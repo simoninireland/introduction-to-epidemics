@@ -39,10 +39,15 @@ NOTEBOOKS =  \
 
 # Extra print files
 LATEX_EXTRAS = \
-	latex/conf.py \
 	latex/latex.rst \
 	latex/rawbibliography.rst \
 	latex/style.tex
+LATEX_CONFIG = 	latex/conf.py
+
+# Extra e-book files
+EPUB_EXTRAS = \
+	epub/epub.rst
+EPUB_CONFIG = 	epub/conf.py
 
 # Image files
 RAW_IMAGES = \
@@ -147,10 +152,10 @@ RUN_SERVER = PYTHONPATH=. $(JUPYTER) notebook
 CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
 BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
 UPLOAD_BOOK = $(GHP_IMPORT) -n -p -f $(BOOK_BUILD_DIR)/html
-BUILD_PRINT_BOOK = $(SPHINX) -b latex . _build/latex
-BUILD_EPUB_BOOK = $(SPHINX) -b epub . _build/epub
+BUILD_PRINT_BOOK = $(SPHINX) -b latex -c $(ROOT)/latex . $(BUILD_DIR)/latex
 BUILD_BIBLIOGRAPHY = $(BIBTEX) $(LATEX_BOOK_STEM)
 BUILD_INDEX = $(MAKEINDEX) $(LATEX_BOOK_STEM)
+BUILD_EPUB_BOOK = $(SPHINX) -b epub -c $(ROOT)/epub . $(BUILD_DIR)/epub
 
 
 # ----- Top-level targets -----
@@ -217,7 +222,7 @@ $(LATEX_BUILD_DIR):
 epub: env bookdir
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
-	$(RSYNC) $(LATEX_EXTRAS) $(BOOK_DIR)
+	$(RSYNC) $(EPUB_EXTRAS) $(BOOK_DIR)
 	$(ACTIVATE) && $(CHDIR) $(BOOK_DIR) && $(BUILD_EPUB_BOOK)
 
 
