@@ -46,8 +46,9 @@ LATEX_CONFIG = 	latex/conf.py
 
 # Extra e-book files
 EPUB_EXTRAS = \
-	epub/epub.rst
-EPUB_CONFIG = 	epub/conf.py
+	epub/epub.rst \
+	epub/epublication.md
+EPUB_CONFIG = epub/conf.py
 
 # Image files
 RAW_IMAGES = \
@@ -190,7 +191,7 @@ upload: book
 
 
 # Build a PDF for printed copy
-print: env bookdir # $(LATEX_BUILD_DIR)
+print: env # bookdir $(LATEX_BUILD_DIR)
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(LATEX_EXTRAS) $(BOOK_DIR)
@@ -219,12 +220,11 @@ $(LATEX_BUILD_DIR):
 
 
 # Build an Epub
-epub: env bookdir
+epub: env # bookdir
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(EPUB_EXTRAS) $(BOOK_DIR)
 	$(ACTIVATE) && $(CHDIR) $(BOOK_DIR) && $(BUILD_EPUB_BOOK)
-
 
 # Build a development venv
 .PHONY: env
