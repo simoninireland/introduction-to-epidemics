@@ -57,7 +57,7 @@ before the end of the disease progression.
 ![Disease stages](disease-periods.png)
 
 These two periods &ndash; latent and infectious &ndash; control the
-**{index}`transmission`** of infection. After initial infection there
+**{index}`transamission`** of infection. After initial infection there
 will be an **{index}`incubation period`** before the person shows
 symptoms of the disease. After the onset of symptoms, the disease
 progresses and ends in some **{index}`resolution`**: the patient gets better,
@@ -137,7 +137,7 @@ immune post-infection, countermeasures take effect, and so forth, and
 give rise to a **net case reproduction number** indicating how the
 disease is reproducing at a given time..
 
-$\mathcal{R}_0$ is affected by three factors:
+$\mathcal{R0$ is affected by three factors:
 
 1. The **duration of infectiousness**. All other things being equal, a
 disease with a longer period of infectiousness has more time in which
@@ -161,7 +161,7 @@ zero) the contacts an infected person has with uninfected individuals.
 ## The importance of $\mathcal{R}$
 
 The importance of $\mathcal{R}$ is that it indicates whether, and how fast, a
-disease can spread through a susceptible population. If $\mathcal{R} \lt 1$ then
+disease can spread through a susceptible population. If $\mathcal{R} < 1$ then
 we expect fewer than one secondary case per primary. This means that
 each "generation" of the disease will be smaller than the one that
 infected it, and the disease will die out. If $\mathcal{R} = 1$ then the
@@ -327,7 +327,7 @@ different behaviour -- growing or shrinking, in this case.
 ```
 Just as $\mathcal{R}$ had a threshold at $\mathcal{R} = 1$ that
 determined whether the epidemic was growing or shrinking, so $\lambda
-= 0$ divides growing ($\lambda \gt 1$) from shrinking ($\lambda \lt
+= 0$ divides growing ($\lambda > 1$) from shrinking ($\lambda <
 0$) conditions. And just like $\mathcal{R}$, we need to be careful
 about reading too much into that: mistakes or omissions in reporting
 the ongoing cases can easily cause an over- or under-estimate of
