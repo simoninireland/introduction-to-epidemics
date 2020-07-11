@@ -5,8 +5,9 @@ avoid anything more serious than {index}`influenza`, {index}`measles`,
 or (in my case, long ago) {index}`whooping cough`. But all diseases
 share some common characteristics: characteristics so common, in fact,
 that their mathematical properties are shared by other processes that
-aren't actually diseases at all, including the spread of {index}`computer
-viruses` {cite}`KW91` and the spread of rumours and other information.
+aren't actually diseases at all, including the spread of
+{index}`computer viruses` {cite}`KW91` and the spread of rumours and
+other information.
 
 The diseases in which we are interested are caused by *pathogens*,
 typically {index}`viruses <virus>` or {index}`bacteria`: simple living
@@ -135,9 +136,9 @@ case reproduction number applies at the start of an epidemic. Over the
 course of an epidemic the value of $\mathcal{R}$ will change as people become
 immune post-infection, countermeasures take effect, and so forth, and
 give rise to a **net case reproduction number** indicating how the
-disease is reproducing at a given time..
+disease is reproducing at a given time.
 
-$\mathcal{R0$ is affected by three factors:
+$\mathcal{R}$ is affected by three factors:
 
 1. The **duration of infectiousness**. All other things being equal, a
 disease with a longer period of infectiousness has more time in which
