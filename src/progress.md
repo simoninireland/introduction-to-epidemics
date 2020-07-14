@@ -85,7 +85,7 @@ overlap vary. For **Type A** diseases, the incubation period is longer
 than the latent period. This means that a patient can start to
 transmit the disease before the disease becomes manifest in
 themselves. This happens in cases of {index}`measles` and
-{item}`covid-19`. In **Type B** diseases such as {index}`SARS` or
+{index}`covid-19`. In **Type B** diseases such as {index}`SARS` or
 {index}`ebola`, by contrast, the incubation period is shorter than the
 latent period, meaning that asymptomatic patients cannot infect
 others. So despite ebola being a more feared disease than measles, it
@@ -206,7 +206,7 @@ In a typical epidemic the number of people infected grows very
 quickly. If $\mathcal{R} = 2$ then one person infects two others, who
 each infect two others, who each ... and so on -- so each generation
 is twice as big as the last). If you plot the size of the epidemic
-against time on a graph, it'll draw out an **{index>`exponential curve <exponential growth>`**.
+against time on a graph, it'll draw out an **{index}`exponential curve <exponential growth>`**.
 
 
 (sec:progress-r-care)=
