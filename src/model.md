@@ -11,7 +11,7 @@ By **{index}`model`** we mean a formal description of some aspects of
 a system of interest that we can explore in order to gain insight into
 the behaviour of the real system.
 
-A **{index}`mathematical model <model;mathematical>`** consists of
+A **{index}`mathematical model <models;mathematical>`** consists of
 one or more equations expressing the relationships between different
 quantities. There are often some **parameters** involved, quantities
 whose values are known or assumed.
@@ -22,7 +22,8 @@ that model the motions of planets. In some senses machines are just
 computation models that happen to use analogue components rather than
 digital.
 ```
-A **{index}`computational model <model;computational>`**, by contrast, is a program written to simulate the
+A **{index}`computational model <models;computational>`**,
+by contrast, is a program written to {index}`simulate <simulation>` the
 behaviour of the system. Such simulations are almost always based on
 underlying mathematical models and include parameters. What do
 computers provide? Sets of equations can often be understood (or
@@ -75,14 +76,14 @@ example on enforcing social distancing. It's often hard to then make
 more general predictions about diseases more widely, to draw
 conclusions that can be used in other cases.
 
-So should we be more abstract? Abstraction typically brings control
-over the model: we can explore a whole range of modes of transmission,
-for example rather than just the one we happen to have for this
-disease. We can explore different countermeasures in the model without
-committing to one, which means there are no consequences for being
-wrong. We get to observe some general patterns and draw general
-conclusions &ndash; which then don't *exactly* apply to *any* real
-disease.
+So should we be more {index}`abstract <models;abstract>`? Abstraction
+typically brings control over the model: we can explore a whole range
+of modes of transmission, for example rather than just the one we
+happen to have for this disease. We can explore different
+countermeasures in the model without committing to one, which means
+there are no consequences for being wrong. We get to observe some
+general patterns and draw general conclusions &ndash; which then don't
+*exactly* apply to *any* real disease.
 
 On the other hand, the conclusions we draw from these abstract models
 can't be applied blindly to particular situations on the ground. A
@@ -98,7 +99,7 @@ this can mean that outbreaks get out of control, and people may die.
 
 ## Assumptions
 
-The accuracy of a model depends on its **{index}`assumptions <model;assumptions>`**,
+The accuracy of a model depends on its **{index}`assumptions <models;assumptions>`**,
 and how well these match reality. This issue appears
 in several guises. The model's "mechanics" &ndash; the ways it fits
 its various elements together &ndash; need to match the disease it's
@@ -146,6 +147,7 @@ did we count all the fatalities, or were some missed, or
 mis-diagnosed? For a more abstract model, how happy are we that our
 simplifications don't entirely divorce us from reality?
 
+
 ## Stochastic processes
 
 There's another problem.
@@ -168,7 +170,7 @@ bug, it's a feature.
 
 ```{margin}
 One way to think about what's happening is that each run of the model
-is sampling the distribution of possible outcomes. You expect to
+is sampling the {index}`distribution` of possible outcomes. You expect to
 seldom see "unlikely" outcomes and mainly see "likely" ones &ndash;
 but sometimes you'll see an "unlikely" outcome by chance.
 ```
@@ -188,11 +190,11 @@ engineer away.
 
 What to do? Actually, computer science is unusual in "normally" having
 single answers. If you ask a biologist how long butterflies live for,
-you don't expect her to go out and observed the lifespan of
-*every single butterfly* before answering. Instead you get a
-statistical answer: an average and some variance. It's the same for
-stochastic models: we run the model several times (possibly hundreds
-of times) for the same inputs and collate the results. 
+you don't expect her to go out and observed the lifespan of *every
+single butterfly* before answering. Instead you get a statistical
+answer: an average and some variance. It's the same for stochastic
+processes (or models): we run the model several times (possibly
+hundreds of times) for the same inputs, and collate the results.
 
 ```{margin}
 At least in principle. It can be tricky to accomplish in practice, not
@@ -204,8 +206,8 @@ In a computer model, it's often possible to actually reproduce exactly
 even a stochastic process, because the "{index}`random numbers`" we use are
 actually only pseudo-random and so can be re-created. That can help in
 the narrow sense of seeing whether the model produces the same results
-given the same inputs *and* the same "random" numbers, but it doesn't
-help in the wider sense of capturing the behaviour of a system with
+given the same inputs *and* the same {index}`"random" numbers <random numbers>`,
+but it doesn't help in the wider sense of capturing the behaviour of a system with
 *inherent* randomness.
 
 
@@ -221,9 +223,9 @@ useful ... the approximate nature of the model must always be
 borne in mind".
 ```
 This all sounds like modelling is a horrible mess. But the situation
-isn't hopeless. 
+isn't hopeless. We just need to be careful.
 
-We need to be careful. The results we get from any model, of any kind,
+The results we get from any model, of any kind,
 are tentative and suggestive and can generate insight into the system
 the model is seeking to represent, whether concretely or
 abstractly. There will always be factors outwith the model's

@@ -2,36 +2,51 @@
 
 Everyone suffers from a disease at some point. The lucky amongst us
 avoid anything more serious than {index}`influenza`, {index}`measles`,
-or (in my case, long ago) {index}`whooping cough`. But all diseases
+or (in my case, years ago) {index}`whooping cough`. But all diseases
 share some common characteristics: characteristics so common, in fact,
 that their mathematical properties are shared by other processes that
 aren't actually diseases at all, including the spread of
-{index}`computer viruses` {cite}`KW91` and the spread of rumours and
-other information.
+{index}`computer viruses <computer virus>` {cite}`KW91` and the
+spread of rumours and other information.
 
-The diseases in which we are interested are caused by *pathogens*,
-typically {index}`viruses <virus>` or {index}`bacteria`: simple living
-organisms that make their homes in humans (or other living organisms)
-and cause some adverse reaction as a result of their lifecycle. These
-pathogens can {index}`pass <transmission>` between individuals in a
-number of ways, causing the disease to spread. A disease might be
-**airborne**, able to live in the air and be breathed by passing
-individuals. It might be spread by **droplets**, coughed and sneezed
-into the environment or deposited on objects and picked up by future
-physical contact with the contaminated surfaces. Or it might be
-communicable only by **direct physical contact**, skin to skin,
-through sex, or a blood transfusion. It might be **foodborne**,
-transmitted through contaminated food that infects several people from
-a common source. It might be **vectored** through an animal, as is the
-case for malaria which has to be sporead by mosquitoes and can't
-spread person-to-person. Even diseases that don't *require* a vector
-may still incubate in animal hosts *as well* as in humans (this is
-suspected in the {index}`case <Spanish flu>` of the [1918 "Spanish flu"
+```{margin}
+Diseases that must be vectored through animals to infect humans are
+also known as **zoonoses**.
+```
+The diseases in which we are interested are caused by
+*{index}`pathogens <pathogen>`*, typically viruses or bacteria: simple
+living organisms that make their homes in humans (or other living
+organisms) and cause some adverse reaction as a result of their
+lifecycle. These pathogens can {index}`pass <transmission;modes of transmission>`
+between individuals in a number of ways, causing the
+disease to spread. A disease might be **airborne**, able to live in
+the air and be breathed by passing individuals. It might be spread by
+**droplets**, coughed and sneezed into the environment or deposited on
+objects and picked up by future physical contact with the contaminated
+surfaces. Or it might be communicable only by **direct physical
+contact**, skin to skin, through sex, or a blood transfusion. It might
+be **foodborne**, transmitted through contaminated food that infects
+several people from a common source. It might be **vectored** through
+an animal, as is the case for {index}`malaria` which has to be sporead by
+mosquitoes and can't spread person-to-person. Even diseases that don't
+*require* a vector may still incubate in animal hosts *as well* as in
+humans (this is suspected in the {index}`case <Spanish flu>` of the
+[1918 "Spanish flu"
 pandemic](https://en.wikipedia.org/wiki/1918_flu_pandemic)
 {cite}`OSJ02`). And finally there is a class of **non-communicable**
 diseases such as cancer or heart disease, some of which are
 **hereditary**: not caused directly by pathogens but perhaps
 influenced by their presence, and perhaps made worse by infections.
+
+A disease becomes an **{index}`epidemic`** when it infects a substantial
+fraction of a population within a short time. There's no universally
+accepted definition of how large a fraction is needed to classify an
+outbreak as an epidemic: for new or rare diseases even a small number
+of infections might be considered an epidemic, while some diseases
+persist in a population at a low level and then flare-up
+epidemically. If an epidemic infects people in several populations --
+typically several countries or several continents -- than it is termed
+a **{index}`pandemic`**.
 
 Each different kind of disease will have its own characteristic
 **{index}`pathology`**, how it affects the body of a person infected. It will
@@ -47,11 +62,11 @@ spreads *between* individuals.
 ## Disease progression
 
 A person's infection goes through several periods, starting with their
-**{index}`infection`**. Once infected, the disease resides
-**{index}`latent <latent period>`** in their system, developing its
+**{index}`disease progression;infection`**. Once infected, the disease resides
+**{index}`latent <disease progression;latent period>`** in their system, developing its
 presence but not showing symptoms and not being infectious to
 others. After this latent period the disease becomes
-**{index}`infectious <infectious period>`**, capable of being spread
+**{index}`infectious <disease progression;infectious period>`**, capable of being spread
 to others. Typically a person's infectiousness peaks and dies away
 before the end of the disease progression.
 
@@ -59,9 +74,9 @@ before the end of the disease progression.
 
 These two periods &ndash; latent and infectious &ndash; control the
 **{index}`transamission`** of infection. After initial infection there
-will be an **{index}`incubation period`** before the person shows
+will be an **{index}`disease progression;incubation period`** before the person shows
 symptoms of the disease. After the onset of symptoms, the disease
-progresses and ends in some **{index}`resolution`**: the patient gets better,
+progresses and ends in some **{index}`disease progression;resolution`**: the patient gets better,
 or dies. If they recover, they may then have some immunity to further
 infection.
 
@@ -69,19 +84,20 @@ For different diseases, the lengths of these periods and the ways they
 overlap vary. For **Type A** diseases, the incubation period is longer
 than the latent period. This means that a patient can start to
 transmit the disease before the disease becomes manifest in
-themselves. This happens in cases of {index}`measles`. In **Type B** diseases
-such as {index}`SARS` or {index}`ebola`, by contrast, the incubation
-period is shorter than the latent period, meaning that asymptomatic
-patients cannot infect others. So despite ebola being a more feared
-disease than measles, it may be easier to treat epidemiologically
-since quarantining patients showing symptoms will prevent transmission
-in the general population (although not to medical staff); in measles,
-transmission starts before symptoms show themselves, so quarantine
-based on symptoms is less effective. Moreover for some disease the
-infectious period may continue after the patient has died: the corpses
-of victims of ebola, which is transmitted *via* bodily fluids, can be
-extremely infectious for some time after death, meaning that funerals
-become very dangerous loci of potential infection for mourners.
+themselves. This happens in cases of {index}`measles` and
+{item}`covid-19`. In **Type B** diseases such as {index}`SARS` or
+{index}`ebola`, by contrast, the incubation period is shorter than the
+latent period, meaning that asymptomatic patients cannot infect
+others. So despite ebola being a more feared disease than measles, it
+may be easier to treat epidemiologically since quarantining patients
+showing symptoms will prevent transmission in the general population
+(although not to medical staff); in measles, transmission starts
+before symptoms show themselves, so quarantine based on symptoms is
+less effective. Moreover for some disease the infectious period may
+continue after the patient has died: the corpses of victims of ebola,
+which is transmitted *via* bodily fluids, can be extremely infectious
+for some time after death, meaning that funerals become very dangerous
+loci of potential infection for mourners.
 
 ```{raw} latex
 
@@ -115,28 +131,28 @@ quarantine was the *only* option.)
 (sec:progress-R0)=
 ## Measuring and modelling epidemics
 
-Epidemiology is the science of creating models of diseases and their
-spread that can be analysed, to make predictions or to simulate the
-effects of different responses. To do this, we need to identify the
-core elements of a disease from the perspective of transmission: we
-typically do not need to understand the disease's detailed biology,
-only the timings and other factors that affect its spread.
+{index}`Epidemiology <epidemiology>` is the science of creating models
+of diseases and their spread that can be analysed, to make predictions
+or to simulate the effects of different responses. To do this, we need
+to identify the core elements of a disease from the perspective of
+transmission: we typically do not need to understand the disease's
+detailed biology, only the timings and other factors that affect its
+spread.
 
 We discussed above the periods of diseases, their relationships, and
 their different characteristics. We need some other numbers as well,
 however, and it turns out that these can be measured directly in the
 field.
 
-The most important number is the **{index}`basic case reproduction
-number <R value>`**,
+The most important number is the **{index}`basic case reproduction number <seealso: R value>`**,
 denoted $\mathcal{R}_0$. $\mathcal{R}_0$ represents the total number of secondary
 infections expected for each primary infection in a totally
-susceptible population. The $0$ in $\mathcal{R}_0$ stands for $t = 0$: the basic
-case reproduction number applies at the start of an epidemic. Over the
+susceptible population. The $0$ in $\mathcal{R}_0$ stands for $t = 0$:
+the basic case reproduction number applies at the start of an epidemic. Over the
 course of an epidemic the value of $\mathcal{R}$ will change as people become
 immune post-infection, countermeasures take effect, and so forth, and
-give rise to a **net case reproduction number** indicating how the
-disease is reproducing at a given time.
+give rise to a **{index}`net case reproduction number <seealso: R value>`**
+indicating how the disease is {index}`reproducing <R value>` at a given time.
 
 $\mathcal{R}$ is affected by three factors:
 
@@ -147,15 +163,16 @@ to infect other patients.
 extremely contagious, with each contact having a high probability of
 passing on the infection; others are much harder to pass on to
 secondary cases.
-3. The **rate of contact**. Someone coming into contact with a lot of
+3. The **rate of {index}`contact <contacts>`**. Someone coming into contact with a lot of
 susceptible individuals will have more opportunities to generate a
 secondary case than someone meeting fewer people.
 
 The first two factors are characteristic of the disease, derived from
 its biology. The third is characteristic of the social conditions in
-which the epidemic takes place: it is this factor that social
-distancing, quarantine and so forth affect, by reducing (ideally to
-zero) the contacts an infected person has with uninfected individuals.
+which the epidemic takes place: it is this factor that {doc}`physical distancing <distancing>`,
+{index}`quarantine` and so forth affect, by
+reducing (ideally to zero) the contacts an infected person has with
+uninfected individuals.
 
 
 (sec:progress-r)=
@@ -164,12 +181,12 @@ zero) the contacts an infected person has with uninfected individuals.
 The importance of $\mathcal{R}$ is that it indicates whether, and how fast, a
 disease can spread through a susceptible population. If $\mathcal{R} < 1$ then
 we expect fewer than one secondary case per primary. This means that
-each "generation" of the disease will be smaller than the one that
+each "{index}`generation`" of the disease will be smaller than the one that
 infected it, and the disease will die out. If $\mathcal{R} = 1$ then the
 disease will perpetuate itself in whatever size of population was
 originally infected. Nature is never so precise as to present us with
-a disease like this, of course. However, $\mathcal{R} = 1$ is the **threshold
-value** at which diseases become epidemics. If $\mathcal{R} > 1$, the
+a disease like this, of course. However, $\mathcal{R} = 1$ is the
+**{index}`threshold` value** at which diseases become epidemics. If $\mathcal{R} > 1$, the
 disease will break-out and infect more and more people exponentially
 quickly.
 
@@ -189,8 +206,7 @@ In a typical epidemic the number of people infected grows very
 quickly. If $\mathcal{R} = 2$ then one person infects two others, who
 each infect two others, who each ... and so on -- so each generation
 is twice as big as the last). If you plot the size of the epidemic
-against time on a graph, it'll draw out an **{index>`exponential curve
-<exponential growth>`**.
+against time on a graph, it'll draw out an **{index>`exponential curve <exponential growth>`**.
 
 
 (sec:progress-r-care)=
@@ -210,18 +226,20 @@ amplifier for everything concerning $\mathcal{R}$.
 ```
 The first reason is mathematical. $\mathcal{R}$ is the exponent of the equation
 that controls the epidemic's size. This is important, because it means
-that epidemics behave **{index}`non-linearly <non-linear growth>`**. An $\mathcal{R}$ value of 4 is not twice
+that epidemics behave **non-linearly**. An $\mathcal{R}$ value of 4 is not twice
 as bad as an $\mathcal{R}$ value of 2: the epidemic isn't twice as big, **it
 doubles twice as many times** in the same period. Small differences in
 the value of $\mathcal{R}$ therefore have huge effects.
 
-It's true that $\mathcal{R} = 1$ is the critical value, below which an epidemic
-dies out. But it doesn't follow from this that an $\mathcal{R}$ value slightly
-over 1 is "pretty much 1" and so not a worry. **That non-linearity means
-that even a small excess in $\mathcal{R}$ can lead to a large outbreak**. This has
-implications for epidemic control too: reducing the $\mathcal{R}$ value to just
-below 1 isn't an indication that everything will then be fine, as a
-small increase may set things off again.
+It's true that $\mathcal{R} = 1$ is the critical value, below which an
+epidemic dies out. But it doesn't follow from this that an
+$\mathcal{R}$ value slightly over 1 is "pretty much 1" and so not a
+worry. **That non-linearity means that even a {index}`small excess <sensitivity>` 
+in $\mathcal{R}$ can lead to a large
+outbreak**. This has implications for epidemic control too: reducing
+the $\mathcal{R}$ value to just below 1 isn't an indication that
+everything will then be fine, as a small increase may set things off
+again.
 
 The second reason concerns estimation. The most effective way of
 estimating $\mathcal{R}$ is {doc}`contact tracing <tracing>`, where
@@ -254,16 +272,16 @@ Finally we must remember that $\mathcal{R}$ is the *average* number of secondary
 cases per primary. The use of averaging (and indeed other summary
 statistics) is essential when trying to get the "big picture" of an
 epidemic. But it means that the value of $\mathcal{R}$ reported depends not just
-on the disease but on the population being averaged over.
+on the disease but on the population being {index}`averaged <averaging>` over.
 
 To see what this might mean, consider a country consisting of one city
 surrounded by a collection of small villages &ndash; London in the
 Middle Ages might be a good example. Suppose the disease breaks out
 ferociously in the city but, because they are separated and take
 precautions, the villages see a much sparser rate of infection. If we
-were to take the net case reproduction rate *averaged over the city*
+were to compute the net case reproduction rate *averaged over the city*
 we'd capture all the ferocity of the epidemic's spread. But if we
-calculated the rate *over the whole country*, we'd see a far milder
+compute the rate *over the whole country*, we'd see a far milder
 epidemic. Because the same disease is spreading in different
 circumstances, averaging may be misleading &ndash; too mild for the
 city, but too large for the countryside. **When interpreting an
@@ -326,7 +344,7 @@ A threshold value is an example of what mathematicians call a
 *{index}`seperatrix`*, a value that divides two regimes of qualitatively
 different behaviour -- growing or shrinking, in this case.
 ```
-Just as $\mathcal{R}$ had a threshold at $\mathcal{R} = 1$ that
+Just as $\mathcal{R}$ had a {index}`threshold` at $\mathcal{R} = 1$ that
 determined whether the epidemic was growing or shrinking, so $\lambda
 = 0$ divides growing ($\lambda > 1$) from shrinking ($\lambda <
 0$) conditions. And just like $\mathcal{R}$, we need to be careful

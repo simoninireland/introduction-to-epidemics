@@ -15,8 +15,8 @@ epidemic modelling on networks? I would like to think that there are
 several broad take-away messages.
 
 The most important message by far is that -- despite using advanced
-mathematics, detailed sets of parameters, and extensive computer
-simulation -- modelling remains an inexact science. It's important to
+mathematics, detailed sets of {index}`parameters <parameter>, and extensive computer
+{index}`simulation` -- modelling remains an inexact science. It's important to
 qualify that word "inexact": while models and simulations can generate
 results in extraordinary volume and with great precision, the
 *interpretation* of those results inevitably involves judgement
