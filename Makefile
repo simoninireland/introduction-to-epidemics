@@ -85,10 +85,6 @@ LICENSE = LICENSE
 BOOK_CONFIG = _config.yml
 BOOK_TOC = _toc.yml
 
-# LaTeX Tufte template URL
-LATEX_CLASS_ZIP_URL = http://www.latextemplates.com/templates/books/1/book_1.zip
-LATEX_CLASS_ZIP = book_1.zip
-
 # All content
 CONTENT = \
 	$(INDEX) \
@@ -191,7 +187,7 @@ upload: book
 
 
 # Build a PDF for printed copy
-print: env # bookdir $(LATEX_BUILD_DIR)
+print: env bookdir
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(LATEX_EXTRAS) $(BOOK_DIR)
@@ -213,10 +209,6 @@ latex:
 	$(CHDIR) $(LATEX_BUILD_DIR) && $(LATEX) <<EOF \
 	\\nonstopmode\\input{$(LATEX_BOOK_STEM)} \
 	EOF
-
-$(LATEX_BUILD_DIR):
-	$(MKDIR) $(LATEX_BUILD_DIR) $(LATEX_CLASS_DIR)
-	$(CHDIR) $(LATEX_CLASS_DIR) && $(WGET) $(LATEX_CLASS_ZIP_URL) && $(UNZIP) $(LATEX_CLASS_ZIP)
 
 
 # Build an Epub
