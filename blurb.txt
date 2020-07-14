@@ -1,0 +1,17 @@
+Science is based on models that we construct to help us to better
+understand the world. This is especially true for epidemic diseases,
+where we want to know the effects of different sorts of transmission,
+different control strategies, and so forth.
+
+But what is a model of disease? How are they built, and what questions
+can we ask of them? This book tries to explain network-based epidemic
+modelling through a unique combination of accessible text,
+introductory mathematics, and all the Python code needed to perform
+computational experiments that explore different disease models and
+countermeasures.
+
+Written at the height of the 2020 covid-19 pandemic, the book aims to
+demystify the science that underlies many of the policy responses we
+can make to disease outbreaks, and make the necessary experimental and
+analytical tools more accessible to anyone with an interest in
+science.
