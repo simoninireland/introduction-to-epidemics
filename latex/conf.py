@@ -23,7 +23,9 @@ latex_elements = {
      'fncychap': '',
      'maketitle': '\\maketitlepage\\backoftitlepage',
      'pointsize': '',
-     'preamble': '\\include{style}',
+     'preamble': '''
+\\include{style}
+\\forprint''',
      'passoptionstopackages': '\\PassOptionsToPackage{draft}{hyperref}',
      'releasename': "",
      'babel': '',

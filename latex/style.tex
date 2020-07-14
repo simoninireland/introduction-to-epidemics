@@ -6,10 +6,12 @@
 \usepackage{trimspaces}
 
 
-% prevent creation of hyperlinks (for print version)
-\AtBeginDocument{\NoHyper}
-\renewcommand{\sphinxcrossref}[1]{%
-  {\trim@spaces{#1}}%
+% prevent marking or creation of hyperlinks (for print version)
+\newcommand{\forprint}[0]{%
+  \AtBeginDocument{\NoHyper}
+  \renewcommand{\sphinxcrossref}[1]{%
+    {\trim@spaces{#1}}%
+  }
 }
 
 
