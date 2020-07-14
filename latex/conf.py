@@ -35,7 +35,7 @@ latex_elements = {
      
 }
 
-latex_additional_files = [ 'bibliography.bib', 'style.tex' ]
+latex_additional_files = [ '../src/bibliography.bib', 'style.tex' ]
 
 latex_documents = [
   ('latex', 'em-book.tex', project, author, 'tufte-book'),
@@ -45,4 +45,5 @@ latex_show_pagerefs = False
 latex_domain_indices = False
 latex_use_modindex = False
 latex_logo = None
-latex_show_urls = False
+latex_show_urls = 'no'
+latex_tocdepth = 1
