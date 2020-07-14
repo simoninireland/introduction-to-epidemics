@@ -3,6 +3,14 @@
 \usepackage{makeidx}
 \usepackage{environ}
 \usepackage[none]{hyphenat}
+\usepackage{trimspaces}
+
+
+% prevent creation of hyperlinks (for print version)
+\AtBeginDocument{\NoHyper}
+\renewcommand{\sphinxcrossref}[1]{%
+  {\trim@spaces{#1}}%
+}
 
 
 % lay out shadow boxes in the margin, as per Tufte guidelines
