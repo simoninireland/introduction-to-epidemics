@@ -78,7 +78,6 @@ main.bd-content {
         // Math equations
         span.eqno {
             float: right;
-            margin: 1em 0em;
             font-size: 1.2em;
         }
 
@@ -121,33 +120,6 @@ main.bd-content {
 
             span {
                 font-size: .9em;
-            }
-        }
-
-        // Admonitions
-        div.alert {
-            padding-bottom: .75em;  // Overriding an override
-
-            p:last-child {
-                margin-bottom: 0;
-            }
-
-            p.admonition-title {
-                margin-bottom: .2em;
-                font-weight: bold;
-
-                &::after {
-                    font-family: "Font Awesome 5 Free";
-                    margin-left: 0.5em;
-                    font-weight: 900;
-                    // Default content is exclamation point
-                    content: "\f06a";
-                }
-            }
-
-            &.alert-warning p.admonition-title::after {
-                content: "\f071";
-                color: red;
             }
         }
 
@@ -240,6 +212,16 @@ div.cell {
             overflow-y: auto;
         }
     }
+}
+
+// Extension over-rides
+// Toggle-button overrides
+.toggle.admonition button.toggle-button {
+    top: 0.5em !important;
+}
+
+button.toggle-button-hidden:before {
+    bottom: 0.2em !important;
 }
 
 // Margin and content-sidebar rules
@@ -335,6 +317,16 @@ div.highlight {
     background: none;
 }
 
+// Thebelab over-rides
+.thebelab-cell {
+    border: none !important;
+}
+
+button.thebe-launch-button {
+    height: 2.5em;
+    font-size: 1em;
+}
+
 
 /*********************************************
 * Top Bar *
@@ -362,10 +354,15 @@ div.highlight {
             margin: 0 .1em;
             background-color: white;
             color: $non-content-grey;
-            font-size: 1.4em;
             border: none;
             padding-top: .1rem;
             padding-bottom: .1rem;
+            font-size: 1.4em;
+
+            i.fab {
+                vertical-align: baseline;
+                line-height: 1;
+            }
         }
 
         // buttons float right
@@ -396,9 +393,15 @@ div.dropdown-buttons-trigger {
     div.dropdown-buttons {
         display: none;
         position: absolute;
-        max-width: 120px;
+        max-width: 130px;
         margin-top: .2em;
         z-index: 1000;
+
+        &.sourcebuttons .topbarbtn i {
+            padding-right: 6px;
+            margin-left: -5px;
+            font-size: .9em !important;
+        }
 
         button.topbarbtn {
             padding-top: .35rem;
@@ -619,11 +622,11 @@ button.topbarbtn img {
         text-align: center;
     }
 
-    p.navbar_footer {
+    div.navbar_extra_footer {
         text-align: center;
         font-size: .9em;
-        padding-top: .5em;
         color: $non-content-grey;
+        margin-bottom: 3em;
     }
 
     &.collapsing {
@@ -750,47 +753,6 @@ nav.bd-links {
 *********************************************/
 .prev-next-bottom {
     height: 3em;
-}
-
-
-// Thebelab buttons
-.thebelab-cell {
-    // To ensure that thebelab cells are always the top of the Z-stack
-    position: relative;
-    z-index: 999;
-
-    // Remove styling since we use our own
-    border: 0 !important;
-    border-radius: 0 !important;
-    margin-top: 0 !important;
-    margin-bottom: 8px !important;
-}
-
-.thebelab-button {
-    z-index: 999;
-    display: inline-block;
-    padding: 0.35em 1.2em;
-    margin: 0px 1px;
-    border-radius: 0.12em;
-    box-sizing:  border-box;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-    text-align: center;
-    transition: all 0.2s;
-    background-color: #dddddd;
-    border: 0.05em solid white;
-    color: #000000;
-}
-
-.thebelab-button:hover{
-    border: 0.05em solid black;
-    background-color: #fcfcfc;
-}
-
-
-div.jp-OutputArea-output {
-    padding: 5px;
 }
 
 @import 'print';

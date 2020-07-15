@@ -25,7 +25,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -67,9 +67,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
   </li>
@@ -132,7 +129,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -147,46 +146,56 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/vaccination.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Edit this page -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/vaccination.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
-        <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-            <div class="dropdown-buttons">
-                
-                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/vaccination.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
-                
-                
-                
-            </div>
-        </div>
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 <div class="tocsection onthispage pt-5 pb-3">
@@ -213,7 +222,7 @@
         </li>
     
         <li class="nav-item toc-entry toc-h2">
-            <a href="#super-spreaders" class="nav-link">Super-spreaders</a>
+            <a href="#how-super-are-super-spreaders" class="nav-link">How super are super-spreaders?</a>
         </li>
     
         <li class="nav-item toc-entry toc-h2">
@@ -241,25 +250,25 @@
                 
   <div class="section" id="changing-individual-susceptibility">
 <h1>Changing individual susceptibility<a class="headerlink" href="#changing-individual-susceptibility" title="Permalink to this headline">¶</a></h1>
-<p>We now turn to countermeasures that we can take to reduce the size of an epidemic.</p>
+<p>We now turn to <span class="target" id="index-0"></span>countermeasures that we can take to reduce the size of an epidemic.</p>
 <p>There are several ways we can approach this. In this chapter we’ll look at ways in which we can change an individual’s response to potential infection. By making individuals less likely to be infected, we reduce the chances that an encounter will result in secondary infection and therefor reduce the chance of the disease spreading widely. We’ll see that it matters <em>how many</em> individuals’ susceptibility we modify, and often <em>which individuals</em>.</p>
-<p>(In a  later chapter we’ll look at an alternative approach which leaves individual susceptibilities alone but changes the topology of encounters at the population level.)</p>
+<p>(In a  later chapter we’ll look at an alternative approach which leaves individual susceptibilities alone but <a class="reference internal" href="distancing.html"><span class="doc">changes the topology of encounters</span></a> at the population level.)</p>
 <p><strong>Vaccination</strong> changes susceptibility at a <strong>biological</strong> level, by changing an individual’s immune response, and in this chapter we’ll talk about the ways in which vaccines affect epidemic spreading in a population. But it’s important to remember that the same effect can be achieved at a <strong>physical</strong> level, with no vaccine and in fact no biological interventions at all, as we’ll <a class="reference internal" href="#sec-vaccination-no-vaccine"><span class="std std-ref">see later</span></a>. From the perspective of epidemic spreading both biological and physical approaches behave in largely the same way.</p>
 <div class="section" id="vaccines">
 <h2>Vaccines<a class="headerlink" href="#vaccines" title="Permalink to this headline">¶</a></h2>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Edgar Allan Poe’s short story <em>The Masque of the Red Death</em> fictionalises the ineffectiveness of this strategy (especially when faced with a supernatural opponent).</p>
+<p>Edgar Allan Poe’s short story <em>The Masque of the Red Death</em> fictionalises the ineffectiveness of this strategy, especially when faced with a supernatural opponent.</p>
 </div>
-<p>For most of history we have been unable to affect the progress of diseases by biological means. Instead, we’ve been limited to using topology – isolation and quarantine – to reduce the spread of a disease, or slow down its progress. For many diseases these approaches were ineffective given the dynamics of the disease and the conditions of daily life for the majority of the population, and even being sufficiently rich to lock oneself away was not guaranteed to spare one from infection.</p>
-<p>This changed at the turn of the nineteenth century with the introduction of vaccines. Vaccination was first tried at scale by Sir Edward Jenner, who realised the similarities between smallpox – a ravaging disease and a cause of immense suffering – and cowpox, a far milder complaint commonly encountered by milkmaids who picked it up from cattle. This proved to be the first in a long line of innovations that have now erradicated smallpox entirely.</p>
-<p>Vaccines work by priming a person’s immune system so that, if they are later infected, they already have the immunological machinery needed to fight it off. Critically, this reduces the time between infection happening and the immune response starting, meaning that there is less pathogen to fight off and therefore a better chance of preventing the infection taking hold in that individual. Sometimes this can be so effective that the individual is unaware they were even infected; more commonly they suffer a milder version of the disease, with less severe symptoms which they recover from more quickly.</p>
-<p>There are lots of ways to build a vaccine. One can do as Jenner did and use a <strong>variant</strong> of the disease one is interested in. One can take the actual disease and produce a <strong>denatured</strong> version that cannot cause infection but does nevertheless prime the immune system. Modern vaccines are often even more specific than this, identifying some of the surface proteins that characterise the pathogen and introducing only them as a primer.</p>
-<p>Immunology is an immense subject, but fortunately we don’t need to understand its mechanics – how it works in <em>individuals</em> – to understand its epidemiology – how it works in <em>populations</em>. In fact, as we’ll see, in some cases we don’t need a vaccine to get the <em>effects</em> of vaccination.</p>
+<p>For most of history we have been unable to affect the progress of diseases by biological means. Instead, we’ve been limited to using topology – isolation and <span class="target" id="index-1"></span>quarantine – to reduce the spread of a disease, or slow down its progress. For many diseases these approaches were ineffective given the dynamics of the disease and the conditions of daily life for the majority of the population, and even being sufficiently rich to lock oneself away was not guaranteed to spare one from infection.</p>
+<p>This changed at the turn of the nineteenth century with the introduction of <strong><span class="target" id="index-2"></span>vaccines</strong>. Vaccination was first tried at scale by Sir Edward Jenner, who realised the similarities between smallpox – a ravaging disease and a cause of immense suffering – and cowpox, a far milder complaint commonly encountered in milkmaids who picked it up from cattle. This proved to be the first in a long line of innovations that have now erradicated smallpox entirely.</p>
+<p>Vaccines work by priming a person’s immune system so that, if they are later infected, they already have the immunological machinery needed to fight the pathogen off. Critically, this reduces the time between infection happening and the immune response starting, meaning that there is less pathogen to fight off and therefore a better chance of preventing the infection taking hold in that individual. Sometimes this can be so effective that the individual is unaware they were even infected; more commonly they suffer a milder version of the disease, with less severe symptoms from which they recover more quickly.</p>
+<p>There are lots of ways to build a vaccine. One can do as Jenner did and use a <strong>mild variant</strong> of the disease one is interested in. One can take the actual disease and produce a <strong>denatured</strong> version that cannot cause infection but does nevertheless prime the immune system. Modern vaccines are often even more specific than this, identifying some of the surface proteins that characterise the pathogen and introducing only them as a primer.</p>
+<p>Immunology is an immense subject, but fortunately we don’t need to understand its mechanics – how it works in <em>individuals</em> – to understand its epidemiology – how it works in <em>populations</em>. In fact, as we’ll see, we don’t need a vaccine in order to still get the <em>effects</em> of vaccination.</p>
 </div>
 <div class="section" id="epidemics-on-human-contact-networks">
 <h2>Epidemics on human contact networks<a class="headerlink" href="#epidemics-on-human-contact-networks" title="Permalink to this headline">¶</a></h2>
-<p>Let’s revisit <a class="reference internal" href="hcn.html"><span class="doc">human contact networks</span></a> as a substrate for an epidemic. Such a network resembles a powerlaw-with-cutoff topology rather than the “normal” topology of an <a class="reference internal" href="er.html"><span class="doc">ER network</span></a>: there are nodes that have degrees (contacts) substantially larger than the mean of the network overall. We made the point that such networks are <a class="reference internal" href="hcn.html#sec-hcn-always-percolate"><span class="std std-ref">very good at spreading diseases</span></a>.</p>
+<p>Let’s revisit <a class="reference internal" href="hcn.html"><span class="doc">human contact networks</span></a> as a substrate for an epidemic. Such a <span class="target" id="index-3"></span>contact network resembles a <span class="target" id="index-4"></span>powerlaw-with-cutoff topology rather than the “normal” topology of an <a class="reference internal" href="er.html"><span class="doc">ER network</span></a>: there are nodes that have degrees (contacts) substantially larger than the mean of the network overall. We made the point that such networks are <a class="reference internal" href="hcn.html#sec-hcn-always-percolate"><span class="std std-ref">very good at spreading diseases</span></a>.</p>
 <p>How good? Human contact networks have different cutoffs, the point at which the probability of having nodes with higher degrees reduces dramatically. We can explore what this means by picking the dynamics of a disease and varying the cutoff to see how the <em>same</em> disease propagates on networks with <em>different</em> topologies.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -287,8 +296,9 @@
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">ALPHA</span><span class="p">]</span> <span class="o">=</span> <span class="n">alpha</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>          <span class="c1"># take 50 samples</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">80</span><span class="p">,</span>
+                                                <span class="n">num</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>
 
 <span class="c1"># perform one monitoried epidemic</span>
 <span class="n">m</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
@@ -304,7 +314,8 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 <span class="n">cutoffs</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
     
-<span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
 <span class="k">for</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span> <span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">cutoffs</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
                       <span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">cutoffs</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
@@ -347,16 +358,16 @@
 <span id="sec-vaccination-sir"></span><h2>Vaccination in SIR<a class="headerlink" href="#vaccination-in-sir" title="Permalink to this headline">¶</a></h2>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>We’ve obviously simplified this, as anyone who’s caught a disease for which they’ve been vaccinated will know. Vaccination doesn’t always give full immunity against infection.</p>
+<p>We’ve obviously simplified this, as anyone who’s caught a disease for which they’ve been vaccinated will know. Vaccination doesn’t always give <span class="target" id="index-5"></span>full immunity against infection.</p>
 </div>
-<p>What does vaccination look like in the <a class="reference internal" href="continuous.html"><span class="doc">SIR model</span></a>? A vaccinated individual is one who cannot catch the disease. In model terms it means that an individual who exhibits that characteristics of having already had the disease, and having been “removed” into the <strong>R</strong> compartment. In fact this is what’s happening biologically as well: a vaccinated individual has been exposed to a substance that renders them the same <em>as if</em> they’d had the disease, without actually requiring them to <em>have had</em> it. The effect we’re looking for is <a class="reference internal" href="herd.html"><span class="doc">herd immunity</span></a>, where there are insufficient susceptible individuals in a population to let the disease establish itelf. But critically we’re looking for herd immunity <em>without</em> having the disease pass through the population first, with all the suffering and (possibly) death that this might entail.</p>
-<p>We could model vaccination using a new compartment, leading to a model that might be called <strong>SIVR</strong> capturing the vaccinated individuals <strong>V</strong>. But in conditions of total vaccinated immunity the <strong>V</strong> individuals will behave identically to the <strong>R</strong> individuals, so we may as well simply treat them identically too. (If we were wanting to explore partial immunity through vaccination then SIVR lets us have, for example, different values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> depending on whether it’s an <strong>S</strong> or a <strong>V</strong> individual being potentially infected: <strong>V</strong> becomes a halfway-house between <strong>S</strong> (fully susceptible) and <strong>R</strong> (fully removed).</p>
+<p>What does vaccination look like in the <a class="reference internal" href="continuous.html"><span class="doc">SIR model</span></a>? A vaccinated individual is one who cannot catch the disease. In <span class="target" id="index-6"></span>model terms it means that an individual who exhibits that characteristics of having already had the disease, and having been “removed” into the <strong>R</strong> compartment. In fact this is what’s happening biologically as well: a vaccinated individual has been exposed to a substance that renders them the same <em>as if</em> they’d had the disease, without actually requiring them to <em>have had</em> it. The effect we’re looking for is <a class="reference internal" href="herd.html"><span class="doc">herd immunity</span></a>, where there are <span class="target" id="index-7"></span>insufficient susceptible individuals in a population to let the disease establish itelf. But critically we’re looking for herd immunity <em>without having the disease pass through the population first</em>, with all the suffering and (possibly) death that this might entail.</p>
+<p>We could model vaccination using a new compartment, leading to a model that might be called <strong>SIVR</strong> capturing the vaccinated individuals <strong>V</strong>. But in conditions of total vaccinated immunity the <strong>V</strong> individuals will behave identically to the <strong>R</strong> individuals, so we may as well simply treat them identically too. (If we were wanting to explore <span class="target" id="index-8"></span>partial immunity through vaccination then SIVR would let us have, for example, different values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> depending on whether it’s an <strong>S</strong> or a <strong>V</strong> individual being potentially infected: <strong>V</strong> becomes a halfway-house between <strong>S</strong> (fully susceptible) and <strong>R</strong> (fully removed).</p>
 </div>
 <div class="section" id="vaccinating-the-population-at-random">
 <span id="sec-vaccination-random"></span><h2>Vaccinating the population at random<a class="headerlink" href="#vaccinating-the-population-at-random" title="Permalink to this headline">¶</a></h2>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>For many years seasonal influenza vaccines were grown in chicken eggs, meaning that they were unsuitable for vegans and anyone with a dairy allergy. Modern flu vaccines aren’t created this way.</p>
+<p>For many years seasonal <span class="target" id="index-9"></span>influenza vaccines were grown in chicken eggs, meaning that they were unsuitable for vegans and anyone with a dairy allergy. Modern flu vaccines aren’t created this way.</p>
 </div>
 <p>Most vaccines are applied broadly to a population, typically in childhood for a range of common diseases which most people will face. Ideally everyone is vaccinated; in practice some are missed for various reasons, in some the vaccine will not “take”, some must avoid it for unrelated medical reasons, and so forth.</p>
 <p>We could try to model the ways in which this process happens in detail, but the overall effect is very similar to the case where we take a population and randomly vaccinate some percentage of the individuals before starting the infection. Since this is SIR, this means that we randomly assign some fraction <span class="math notranslate nohighlight">\(p_{vaccinated}\)</span> of nodes to the <strong>R</strong> compartment.</p>
@@ -364,7 +375,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MonitoredVaccinatedSIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
     
-    <span class="n">P_VACCINATED</span> <span class="o">=</span> <span class="s1">&#39;pVaccinated&#39;</span>   <span class="c1">#: Probability that an individual is initially removed.</span>
+    <span class="n">P_VACCINATED</span> <span class="o">=</span> <span class="s1">&#39;pVaccinated&#39;</span>   <span class="c1">#: Probability that an</span>
+                                   <span class="c1"># individual is initially removed.</span>
     
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredVaccinatedSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -445,8 +457,8 @@
 </div>
 </div>
 <p>Comparing this to the figure above shows quite a dramatic reduction in the outbreak size.</p>
-<p>But wait! – there might be a problem Look at the y-axis in this graph. Notice that the maximum susceptible population is about 4000, even though the network has 10000 nodes. A moment’s thought shows why: we modelled vaccination as being  pre-emptively removed, leaving fewer susceptibles. Could it be that this result is what we’d <em>expect</em> on a smaller network? In other words, is there a size effect coming into play as we move from 10000 down to 4000 individuals?</p>
-<p>We should be careful and check this possibility. We can do so by working out the size of the unvaccinated population and creating a network with the same topology of this size, and then running our epidemic over it.</p>
+<p>But wait! – there might be a problem Look at the y-axis in this graph. Notice that the maximum susceptible population is about 4000, even though the network has 10000 nodes. A moment’s thought shows why: we modelled vaccination as being  pre-emptively removed, leaving fewer susceptibles. Could it be that this result is what we’d <em>expect</em> on a smaller network? In other words, is there a <span class="target" id="index-10"></span>size effect coming into play as we move from 10000 down to 4000 individuals?</p>
+<p>We should be careful and <span class="target" id="index-11"></span>check this possibility. We can do so by working out the size of the unvaccinated population and creating a network with the same topology of this size, and then running our epidemic over it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Nsmall</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">pVaccinated</span> <span class="o">-</span> <span class="n">pInfected</span><span class="p">))</span>
@@ -477,7 +489,8 @@
 <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ts</span><span class="p">,</span> <span class="n">iss</span><span class="p">,</span> <span class="s1">&#39;g.&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;infected (no vaccination)&#39;</span><span class="p">)</span>
 <span class="c1">#ax.plot(ts, rss, &#39;ks&#39;, label=&#39;removed&#39;)</span>
 
-<span class="c1"># plot results on same-sized network reduced in size by vaccination</span>
+<span class="c1"># plot results on same-sized network reduced in</span>
+<span class="c1"># size by vaccination</span>
 <span class="n">rc</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">MonitoredVaccinatedSIR</span><span class="o">.</span><span class="n">P_VACCINATED</span><span class="p">]</span> <span class="o">==</span> <span class="mf">0.6</span><span class="p">]</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">rc</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">timeseries</span> <span class="o">=</span> <span class="n">results</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">TIMESERIES</span><span class="p">]</span>
@@ -503,12 +516,11 @@
 <img alt="_images/vaccination_27_0.png" src="_images/vaccination_27_0.png" />
 </div>
 </div>
-<p>The first thing to see is that the two graphs are different: it’s not <em>just</em> the size of the network that affects things. In the small-but-unvaccinated network we see a very small epidemic; in the vaccinated network we see a much larger and faster outbreak.</p>
-<p>This seems strange: what’s different between the two cases, since we’ve eliminated network size as a variable?</p>
-<p>A moment’s thought may suggest the answer. We’ve created two networks with the same topology, one where a fraction of nodes are removed by vaccination, and one where a number of nodes really had been removed (or rather, were never present in the network in the first place). Both networks have high-degree nodes, as we’d expect for powerlaw-with-cutoff networks. But in the latter (vaccinated) case, some of those high-degree nodes will have been vaccinated and so are not able to spread the disease. And since the disease spreads through contact between <strong>S</strong> and <strong>I</strong> nodes, we lose the opportunity to infect a high-degree node that could act as a <strong>super-spreader</strong> able to infect a large number of nodes.</p>
+<p>The first thing to see is that the two graphs are different: it’s not <em>just</em> the size of the network that affects things. In the small-but-unvaccinated network we see a larger epidemic; in the vaccinated network we see a much smaller and slower outbreak. What is different between the two cases, since the networks are the same size?</p>
+<p>A moment’s thought may suggest the answer. We’ve created two networks with the same topology, one where a fraction of nodes are removed by vaccination, and one where a number of nodes really had been removed (or rather, were never present in the network in the first place). Both networks have high-degree nodes, as we’d expect for powerlaw-with-cutoff networks. But in the latter (vaccinated) case, some of those high-degree nodes will have been vaccinated and so are not able to spread the disease. And since the disease spreads through contact between <strong>S</strong> and <strong>I</strong> nodes, we lose the opportunity to infect a high-degree node that could act as <span class="target" id="index-12"></span>super-spreaders able to infect a large number of nodes. And that reduction in super-spreading is enough to change the dynamics of the disease.</p>
 </div>
-<div class="section" id="super-spreaders">
-<span id="sec-vaccination-superspreaders"></span><h2>Super-spreaders<a class="headerlink" href="#super-spreaders" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="how-super-are-super-spreaders">
+<span id="sec-vaccination-superspreaders"></span><h2>How super are super-spreaders?<a class="headerlink" href="#how-super-are-super-spreaders" title="Permalink to this headline">¶</a></h2>
 <p>Let’s look at some numbers. Firstly, how many contacts does the most highly-connected node have?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -519,7 +531,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Maximum degree = 81
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Maximum degree = 62
 </pre></div>
 </div>
 </div>
@@ -532,12 +544,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean node degree = 2.60
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean node degree = 2.59
 </pre></div>
 </div>
 </div>
 </div>
-<p><em>Very</em> different, and it’s this feature that differentiates a human contact network from an ER network: the existence of nodes with degrees that are much higher than the average. In fact such networks have a <strong>long tail</strong> of nodes with high degrees: only a small number relative to the size of the network overall, but nonetheless able to pass infection.</p>
+<p><em>Very</em> different, and it’s this feature that differentiates a human contact network from an ER network: the existence of nodes with degrees that are much higher than the average. In fact such networks have a <strong><span class="target" id="index-13"></span>long tail</strong> of nodes with <span class="target" id="index-14"></span>high degrees: only a small number relative to the size of the network overall, but nonetheless able to pass infection.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="mi">10</span>
@@ -546,7 +558,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Highest 10 nodes by degree [47, 47, 50, 56, 64, 69, 71, 72, 81, 81]
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Highest 10 nodes by degree [43, 44, 45, 46, 46, 50, 54, 54, 56, 62]
 </pre></div>
 </div>
 </div>
@@ -568,8 +580,9 @@
     <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredVaccinatedLowDegreeSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
         
-        <span class="c1"># look through the fraction of high-degree nodes and make them susceptible again,</span>
-        <span class="c1"># replacing them with another node chosen at random</span>
+        <span class="c1"># look through the fraction of high-degree nodes and</span>
+        <span class="c1"># make them susceptible again, replacing them with</span>
+        <span class="c1"># another node chosen at random</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
         <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
         <span class="n">ns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
@@ -583,8 +596,9 @@
                 <span class="c1"># node is removed, make it susceptible again</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">setCompartment</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span>
                 
-                <span class="c1"># choose another node and remove it in place of</span>
-                <span class="c1"># the node we just forced to be susceptible</span>
+                <span class="c1"># choose another node and remove it in</span>
+                <span class="c1"># place of the node we just forced to</span>
+                <span class="c1"># be susceptible</span>
                 <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
                     <span class="n">i</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
                     <span class="n">m</span> <span class="o">=</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -599,7 +613,7 @@
 <p>Running the experiment, again with the same disease parameters and network topology as before, shows us the effects of this failure in vaccination.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kHighFraction</span> <span class="o">=</span> <span class="mf">0.08</span>        <span class="c1"># keep highest-degree 8% susceptible</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kHighFraction</span> <span class="o">=</span> <span class="mf">0.08</span>  <span class="c1"># highest-degree 8% </span>
 
 <span class="n">lab</span><span class="p">[</span><span class="n">MonitoredVaccinatedLowDegreeSIR</span><span class="o">.</span><span class="n">K_HIGH_FRACTION</span><span class="p">]</span> <span class="o">=</span> <span class="n">kHighFraction</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
@@ -643,12 +657,12 @@
 <img alt="_images/vaccination_40_0.png" src="_images/vaccination_40_0.png" />
 </div>
 </div>
-<p>Letting a small fraction of the high-degree nodes – <em>i.e.</em>, the most connected individuals –  remain susceptible changes the epidemic again, making it much larger. It’s not only the <em>size</em> of the vaccinated population that counts: it’s <em>who we vaccinate</em> (or, in this case, don’t vaccinate) that really matters. Missing even a small fraction of the highly connected will radically reduce the effectiveness of a vaccination programme.</p>
+<p>Letting a small fraction of the high-degree nodes – <em>i.e.</em>, the most connected individuals – remain susceptible changes the epidemic again, making it larger and faster. It’s not only the <em>size</em> of the vaccinated population that counts: it’s <em>who we vaccinate</em> (or, in this case, don’t vaccinate) that really matters. Missing even a small fraction of the highly connected will radically reduce the effectiveness of a vaccination programme.</p>
 </div>
 <div class="section" id="targetted-vaccination">
 <span id="sec-vaccination-countermeasure"></span><h2>Targetted vaccination<a class="headerlink" href="#targetted-vaccination" title="Permalink to this headline">¶</a></h2>
-<p>So the existence of high-degree nodes offers an opportunity for the disease to infect far more individuals than it can on average of those nodes remain susceptible to infection.</p>
-<p>But this also offer opportunities for countermeasures. If high-degree nodes are important in spreading the disease, what if – instead of vaccinating at random – we instead <em>explicitly target</em> those nodes that we believe are the most important in spreading the disease? That might make our programme more effective. It might also mean that we could perform a smaller, more focused, programme, where instead of vaccinating widely at random we vaccinate narrowly but in a focused, “smart” way.</p>
+<p>So the existence of high-degree nodes offers an opportunity for the disease to infect far more individuals if those nodes are not protected by vaccination.</p>
+<p>But this also offers opportunities for further countermeasures. If high-degree nodes are important in spreading the disease, what if – instead of vaccinating at random – we instead <em>explicitly target</em> those nodes that we believe are the most important in spreading the disease? That might make our programme more effective. It might also mean that we could perform a smaller, more focused, programme, where instead of vaccinating widely at random we <span class="target" id="index-15"></span>vaccinate narrowly but in a focused, “smart” way.</p>
 <p>We can explore this too. Rather than perform random vaccination, we instead target a specific fraction of the highest-degree nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -662,7 +676,8 @@
     <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredVaccinatedHighDegreeSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">setUp</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 
-        <span class="c1"># look for the fraction of highest-degree nodes and vaccinate (remove) them</span>
+        <span class="c1"># look for the fraction of highest-degree nodes</span>
+        <span class="c1"># and vaccinate (remove) them</span>
         <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
         <span class="n">ns</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">())</span>
         <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">*</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">K_VACCINATED_FRACTION</span><span class="p">])</span>
@@ -680,7 +695,7 @@
 <p>How large a fraction do we need to target? Let’s be ambitious and start small, vaccinating only 2% of nodes – thirty times fewer than before.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kVaccinatedFraction</span> <span class="o">=</span> <span class="mf">0.02</span>        <span class="c1"># vaccinate only the top 2% highest-degree nodes</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kVaccinatedFraction</span> <span class="o">=</span> <span class="mf">0.02</span>    <span class="c1"># top 2% highest-degree nodes</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">MonitoredVaccinatedHighDegreeSIR</span><span class="o">.</span><span class="n">K_VACCINATED_FRACTION</span><span class="p">]</span> <span class="o">=</span> <span class="n">kVaccinatedFraction</span>
 
 <span class="n">m</span> <span class="o">=</span> <span class="n">MonitoredVaccinatedHighDegreeSIR</span><span class="p">()</span>
@@ -723,19 +738,19 @@
 </div>
 </div>
 <p>That’s quite amazing! With almost no-one vaccinated – 200 in a network of 10000 – we both reduce and slow the epidemic. Both these effects are important. The total number of people infected is smaller, but so too is the “ramp-up” at the start of the epidemic, which means less stress is placed on health systems dealing with the influx of sick peoiple.</p>
-<p>When people talk of <strong>flattening the curve</strong>, this is the effect they’re aiming at – achieved in this case through targeted vaccination of a tiny fraction of the population.</p>
+<p>When people talk of <strong><span class="target" id="index-16"></span>flattening the curve</strong>, this is the effect they’re aiming at – achieved in this case through targeted vaccination of a tiny fraction of the population.</p>
 <p>This reduction in vaccination effort makes it faster, cheaper, and more reliable – <em>if</em> we can identify and target the super-spreaders. But this might be possible, because we know that the super-spreaders are the highest-degree nodes, who are simply the ones with the most exposure to other people. In the modern world a person’s contact degree is often at least partially a function of their job, and so by targeting those whose jobs bring them into contact with the most people – and especially into contact with the most <em>infected</em> people – we can create a very effective vaccination strategy and roll it out quickly.</p>
 </div>
 <div class="section" id="vaccination-without-vaccines">
 <span id="sec-vaccination-no-vaccine"></span><h2>“Vaccination” without vaccines<a class="headerlink" href="#vaccination-without-vaccines" title="Permalink to this headline">¶</a></h2>
 <p>We said at the beginning of this chapter that immunology was an enormously complicated topic but one whose details didn’t matter for population-level modelling. The experiments we conducted above have hopefully convinced you of this.</p>
-<p>But if this is the case, then it’s not vaccination that’s the important feature for our purposes. Any technology that <strong>behaves like</strong> a vaccine, preventing the infection of those we treat, will have the same effect.</p>
-<p>What technologies might these be? An obvious example is personal protective equipment such as face masks, surgical gloves, and the like, issued to those whom we identify as being in high-contact professions such as care workers, medical workers, bus drivers, and the like – anyone who, if they were to become infected, would have the potential to spread the disease to a disproportionate number of others. Most importantly this doesn’t require that we protect <em>everyone</em>, just that we protect <em>the most important</em> nodes in the contact network, whom we identify by their contact degree.</p>
+<p>But if this is the case, then it’s not vaccination that’s the important feature for our purposes. Any technology <em>that behaves like a vaccine</em> preventing the infection of those we treat, will have the same effect.</p>
+<p>What technologies might these be? An obvious example is personal protective equipment such as face masks, surgical gloves, and the like, issued to those whom we identify as being in high-contact professions such as care workers, medical workers, bus drivers, and the like – anyone who, if they were to become infected, would have the opportunity to spread the disease to a disproportionate number of others. Most importantly this doesn’t require that we protect <em>everyone</em>, just that we protect <em>the most important</em> people in the contact network, whom we identify by their contact degree.</p>
 </div>
 <div class="section" id="questions-for-discussion">
 <h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>What sorts of people would you target for targetted vaccination?</p></li>
+<li><p>What groups in society would you choose for targetted vaccination?</p></li>
 <li><p>Would you be happy <em>just</em> doing targetted vaccination, or would you want “general” vaccination too?</p></li>
 <li><p>If we never have a vaccine for a disease, how can we protect ourselves against it?</p></li>
 </ul>

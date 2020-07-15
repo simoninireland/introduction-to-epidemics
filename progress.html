@@ -25,7 +25,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -67,9 +67,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
   </li>
@@ -132,7 +129,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -147,35 +146,56 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/progress.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Edit this page -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/progress.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 <div class="tocsection onthispage pt-5 pb-3">
@@ -223,37 +243,54 @@
   <div class="section" id="disease-progression">
 <h1>Disease progression<a class="headerlink" href="#disease-progression" title="Permalink to this headline">¶</a></h1>
 <p>Everyone suffers from a disease at some point. The lucky amongst us
-avoid anything more serious that influenza, measles, or (in my case,
-long ago) whooping cough. But all diseases share some common
-characteristics: characteristics so common, in fact, that their
-mathematical properties are shared by other processes that aren’t
-actually diseases at all, including the spread of computer viruses
-<a class="bibtex reference internal" href="zbibliography.html#kw91" id="id1">[11]</a> and the spread of rumours and other information.</p>
-<p>The diseases in which we are interested are caused by <em>pathogens</em>,
-typically viruses or bacteria: simple living organisms that make their
-homes in humans (or other living organisms) and cause some adverse
-reaction as a result of their lifecycle. These pathogens can pass
-between individuals in a number of ways, causing the disease to
-spread. A disease might be <strong>airborne</strong>, able to live in the air and
-be breathed by passing individuals. It might be spread by
+avoid anything more serious than <span class="target" id="index-0"></span>influenza, <span class="target" id="index-1"></span>measles,
+or (in my case, years ago) <span class="target" id="index-2"></span>whooping cough. But all diseases
+share some common characteristics: characteristics so common, in fact,
+that their mathematical properties are shared by other processes that
+aren’t actually diseases at all, including the spread of
+<span class="target" id="index-3"></span>computer viruses <a class="bibtex reference internal" href="zbibliography.html#kw91" id="id1">[11]</a> and the
+spread of rumours and other information.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>Diseases that must be vectored through animals to infect humans are
+also known as <strong>zoonoses</strong>.</p>
+</div>
+<p>The diseases in which we are interested are caused by
+<em><span class="target" id="index-4"></span>pathogens</em>, typically viruses or bacteria: simple
+living organisms that make their homes in humans (or other living
+organisms) and cause some adverse reaction as a result of their
+lifecycle. These pathogens can <span class="target" id="index-5"></span>pass
+between individuals in a number of ways, causing the
+disease to spread. A disease might be <strong>airborne</strong>, able to live in
+the air and be breathed by passing individuals. It might be spread by
 <strong>droplets</strong>, coughed and sneezed into the environment or deposited on
 objects and picked up by future physical contact with the contaminated
 surfaces. Or it might be communicable only by <strong>direct physical
 contact</strong>, skin to skin, through sex, or a blood transfusion. It might
 be <strong>foodborne</strong>, transmitted through contaminated food that infects
 several people from a common source. It might be <strong>vectored</strong> through
-an animal, as is the case for malaria which has to be sporead by
-mosquitoes and can’t spread person-to-person. Even diseases that
-don’t <em>require</em> a vector may still incubate in animal hosts <em>as well</em>
-as in humans (this is suspected in the case of the <a class="reference external" href="https://en.wikipedia.org/wiki/1918_flu_pandemic">1918 “Spanish flu”
+an animal, as is the case for <span class="target" id="index-6"></span>malaria which has to be sporead by
+mosquitoes and can’t spread person-to-person. Even diseases that don’t
+<em>require</em> a vector may still incubate in animal hosts <em>as well</em> as in
+humans (this is suspected in the <span class="target" id="index-7"></span>case of the
+<a class="reference external" href="https://en.wikipedia.org/wiki/1918_flu_pandemic">1918 “Spanish flu”
 pandemic</a>
 <a class="bibtex reference internal" href="zbibliography.html#osj02" id="id2">[18]</a>). And finally there is a class of <strong>non-communicable</strong>
 diseases such as cancer or heart disease, some of which are
 <strong>hereditary</strong>: not caused directly by pathogens but perhaps
 influenced by their presence, and perhaps made worse by infections.</p>
+<p>A disease becomes an <strong><span class="target" id="index-8"></span>epidemic</strong> when it infects a substantial
+fraction of a population within a short time. There’s no universally
+accepted definition of how large a fraction is needed to classify an
+outbreak as an epidemic: for new or rare diseases even a small number
+of infections might be considered an epidemic, while some diseases
+persist in a population at a low level and then flare-up
+epidemically. If an epidemic infects people in several populations –
+typically several countries or several continents – than it is termed
+a <strong><span class="target" id="index-9"></span>pandemic</strong>.</p>
 <p>Each different kind of disease will have its own characteristic
-<strong>pathology</strong>, how it affects the body of a person infected. It will
-also have its own <strong>epidemiology</strong> that controls how it
+<strong><span class="target" id="index-10"></span>pathology</strong>, how it affects the body of a person infected. It will
+also have its own <strong><span class="target" id="index-11"></span>epidemiology</strong> that controls how it
 spreads. Clinically, both these characteristics are extremely
 important; we will focus here on the epidemiology, but the pathology
 remains important because factors involved in how a disease
@@ -262,40 +299,43 @@ spreads <em>between</em> individuals.</p>
 <div class="section" id="sec-progress-periods">
 <span id="id3"></span><h2>Disease progression<a class="headerlink" href="#sec-progress-periods" title="Permalink to this headline">¶</a></h2>
 <p>A person’s infection goes through several periods, starting with their
-<strong>infection</strong>. Once infected, the disease resides <strong>latent</strong> in their
-system, developing its presence but not showing symptoms and not being
-infectious to others. After this latent period the disease becomes
-<strong>infectious</strong>, capable of being spread to others. Typically a
-person’s infectiousness peaks and dies away before the end of the
-disease progression.</p>
+<strong><span class="target" id="index-12"></span>disease progression;infection</strong>. Once infected, the disease resides
+<strong><span class="target" id="index-13"></span>latent</strong> in their system, developing its
+presence but not showing symptoms and not being infectious to
+others. After this latent period the disease becomes
+<strong><span class="target" id="index-14"></span>infectious</strong>, capable of being spread
+to others. Typically a person’s infectiousness peaks and dies away
+before the end of the disease progression.</p>
 <p><img alt="Disease stages" src="_images/disease-periods.png" /></p>
 <p>These two periods – latent and infectious – control the
-<strong>transmission</strong> of infection. After initial infection there
-will be an <strong>incubation</strong> period before the person shows symptoms of the
-disease. After the onset of symptoms, the disease progresses and ends
-in some <strong>resolution</strong>: the patient gets better, or dies. If they
-recover, they may then have some immunity to further infection.</p>
+<strong><span class="target" id="index-15"></span>transamission</strong> of infection. After initial infection there
+will be an <strong><span class="target" id="index-16"></span>disease progression;incubation period</strong> before the person shows
+symptoms of the disease. After the onset of symptoms, the disease
+progresses and ends in some <strong><span class="target" id="index-17"></span>disease progression;resolution</strong>: the patient gets better,
+or dies. If they recover, they may then have some immunity to further
+infection.</p>
 <p>For different diseases, the lengths of these periods and the ways they
 overlap vary. For <strong>Type A</strong> diseases, the incubation period is longer
 than the latent period. This means that a patient can start to
 transmit the disease before the disease becomes manifest in
-themselves. This happens in cases of measles. In <strong>Type B</strong> diseases
-such as SARS or ebola, by contrast, the incubation period is shorter
-than the latent period, meaning that asymptomatic patients cannot
-infect others. So despite ebola being a more feared disease than
-measles, it may be easier to treat epidemiologically since
-quarantining patients showing symptoms will prevent transmission in
-the general population (although not to medical staff); in measles,
-transmission starts before symptoms show themselves, so quarantine
-based on symptoms is less effective. Moreover for some disease the
-infectious period may continue after the patient has died: the corpses
-of victims of ebola, which is transmitted <em>via</em> bodily fluids, can be
-extremely infectious for some time after death, meaning that funerals
-become very dangerous loci of potential infection for mourners.</p>
+themselves. This happens in cases of <span class="target" id="index-18"></span>measles and
+<span class="target" id="index-19"></span>covid-19. In <strong>Type B</strong> diseases such as <span class="target" id="index-20"></span>SARS or
+<span class="target" id="index-21"></span>ebola, by contrast, the incubation period is shorter than the
+latent period, meaning that asymptomatic patients cannot infect
+others. So despite ebola being a more feared disease than measles, it
+may be easier to treat epidemiologically since quarantining patients
+showing symptoms will prevent transmission in the general population
+(although not to medical staff); in measles, transmission starts
+before symptoms show themselves, so quarantine based on symptoms is
+less effective. Moreover for some disease the infectious period may
+continue after the patient has died: the corpses of victims of ebola,
+which is transmitted <em>via</em> bodily fluids, can be extremely infectious
+for some time after death, meaning that funerals become very dangerous
+loci of potential infection for mourners.</p>
 <p><img alt="Disease types" src="_images/disease-types.png" /></p>
 <p>How long do the different periods last? For each disease there will be
-typical durations, often with substantial variance. In the case of
-ebola, for example, a typical timeline would be a 0–3 day
+typical durations, often with substantial <span class="target" id="index-22"></span>variance. In the case of
+<span class="target" id="index-23"></span>ebola, for example, a typical timeline would be a 0–3 day
 incubation period, a 7–12 day progression to recovery or death,
 and a latent period of 2–5 days. The ranges give the variance of
 periods, different for different individuals that depend on factors
@@ -305,79 +345,81 @@ meaning that a suspected case needs to be quarantined for this period:
 long enough, in other words, for the disease symptoms to manifest if
 the person is actually infected. While one can test for most diseases
 (including ebola) in a laboratory, during an epidemic such tests may
-overwhelm the public health infrastructure, making quarantine the most
+overwhelm the public health infrastructure, making <span class="target" id="index-24"></span>quarantine the most
 practical option. (During historical disease outbreaks, of course,
 quarantine was the <em>only</em> option.)</p>
 </div>
 <div class="section" id="measuring-and-modelling-epidemics">
 <span id="sec-progress-r0"></span><h2>Measuring and modelling epidemics<a class="headerlink" href="#measuring-and-modelling-epidemics" title="Permalink to this headline">¶</a></h2>
-<p>Epidemiology is the science of creating models of diseases and their
-spread that can be analysed, to make predictions or to simulate the
-effects of different responses. To do this, we need to identify the
-core elements of a disease from the perspective of transmission: we
-typically do not need to understand the disease’s detailed biology,
-only the timings and other factors that affect its spread.</p>
+<p><span class="target" id="index-25"></span>Epidemiology is the science of creating models
+of diseases and their spread that can be analysed, to make predictions
+or to simulate the effects of different responses. To do this, we need
+to identify the core elements of a disease from the perspective of
+transmission: we typically do not need to understand the disease’s
+detailed biology, only the timings and other factors that affect its
+spread.</p>
 <p>We discussed above the periods of diseases, their relationships, and
-their different, often characteristics, periods and variances. We need
-some other numbers as well, however, and it turns out that these can
-be measured directly in the field.</p>
-<p>The most important number is the <strong>basic case reproduction number</strong>,
+their different characteristics. We need some other numbers as well,
+however, and it turns out that these can be measured directly in the
+field.</p>
+<p>The most important number is the <strong><span class="target" id="index-26"></span>basic case reproduction number</strong>,
 denoted <span class="math notranslate nohighlight">\(\mathcal{R}_0\)</span>. <span class="math notranslate nohighlight">\(\mathcal{R}_0\)</span> represents the total number of secondary
 infections expected for each primary infection in a totally
-susceptible population. The <span class="math notranslate nohighlight">\(0\)</span> in <span class="math notranslate nohighlight">\(\mathcal{R}_0\)</span> stands for <span class="math notranslate nohighlight">\(t = 0\)</span>: the basic
-case reproduction number applies at the start of an epidemic. Over the
+susceptible population. The <span class="math notranslate nohighlight">\(0\)</span> in <span class="math notranslate nohighlight">\(\mathcal{R}_0\)</span> stands for <span class="math notranslate nohighlight">\(t = 0\)</span>:
+the basic case reproduction number applies at the start of an epidemic. Over the
 course of an epidemic the value of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> will change as people become
 immune post-infection, countermeasures take effect, and so forth, and
-give rise to a <strong>net case reproduction number</strong> indicating how the
-disease is reproducing at a given time..</p>
-<p><span class="math notranslate nohighlight">\(\mathcal{R}_0\)</span> is affected by three factors:</p>
+give rise to a <strong><span class="target" id="index-27"></span>net case reproduction number</strong>
+indicating how the disease is <span class="target" id="index-28"></span>reproducing at a given time.</p>
+<p><span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is affected by three factors:</p>
 <ol class="simple">
 <li><p>The <strong>duration of infectiousness</strong>. All other things being equal, a
 disease with a longer period of infectiousness has more time in which
 to infect other patients.</p></li>
-<li><p>The <strong>probability of transmission</strong> at each contact. Some diseases are
+<li><p>The <strong>probability of <span class="target" id="index-29"></span>transmission</strong> at each contact. Some diseases are
 extremely contagious, with each contact having a high probability of
 passing on the infection; others are much harder to pass on to
 secondary cases.</p></li>
-<li><p>The <strong>rate of contact</strong>. Someone coming into contact with a lot of
+<li><p>The <strong>rate of <span class="target" id="index-30"></span>contact</strong>. Someone coming into contact with a lot of
 susceptible individuals will have more opportunities to generate a
 secondary case than someone meeting fewer people.</p></li>
 </ol>
 <p>The first two factors are characteristic of the disease, derived from
 its biology. The third is characteristic of the social conditions in
-which the epidemic takes place: it is this factor that social
-distancing, quarantine and so forth affect, by reducing (ideally to
-zero) the contacts an infected person has with uninfected individuals.</p>
+which the epidemic takes place: it is this factor that <a class="reference internal" href="distancing.html"><span class="doc">physical distancing</span></a>,
+<span class="target" id="index-31"></span>quarantine and so forth affect, by
+reducing (ideally to zero) the contacts an infected person has with
+uninfected individuals.</p>
 </div>
 <div class="section" id="the-importance-of-mathcal-r">
 <span id="sec-progress-r"></span><h2>The importance of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span><a class="headerlink" href="#the-importance-of-mathcal-r" title="Permalink to this headline">¶</a></h2>
 <p>The importance of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is that it indicates whether, and how fast, a
-disease can spread through a susceptible population. If <span class="math notranslate nohighlight">\(\mathcal{R} \lt 1\)</span> then
+disease can spread through a susceptible population. If <span class="math notranslate nohighlight">\(\mathcal{R} &lt; 1\)</span> then
 we expect fewer than one secondary case per primary. This means that
-each “generation” of the disease will be smaller than the one that
+each “<span class="target" id="index-32"></span>generation” of the disease will be smaller than the one that
 infected it, and the disease will die out. If <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> then the
 disease will perpetuate itself in whatever size of population was
 originally infected. Nature is never so precise as to present us with
-a disease like this, of course. However, <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> is the <strong>threshold
-value</strong> at which diseases become epidemics. If <span class="math notranslate nohighlight">\(\mathcal{R} &gt; 1\)</span>, the
+a disease like this, of course. However, <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> is the
+<strong><span class="target" id="index-33"></span>threshold value</strong> at which diseases become epidemics. If <span class="math notranslate nohighlight">\(\mathcal{R} &gt; 1\)</span>, the
 disease will break-out and infect more and more people exponentially
 quickly.</p>
-<p>Exactly <em>how</em> quickly depends on how large <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is. For measles, <span class="math notranslate nohighlight">\(\mathcal{R}
+<p>Exactly <em>how</em> quickly depends on how large <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is. For <span class="target" id="index-34"></span>measles, <span class="math notranslate nohighlight">\(\mathcal{R}
 \ge 15\)</span> – fifteen new infections for each case – which
 explains how measles spread so quickly in unvaccinated
-populations. Different strains of influenza have different ranges of
-<span class="math notranslate nohighlight">\(R\)</span>: for the 1918 “Spanish flu” it has been
+populations. Different strains of <span class="target" id="index-35"></span>influenza have different ranges of
+<span class="math notranslate nohighlight">\(R\)</span>: for the 1918 “<span class="target" id="index-36"></span>Spanish flu” it has been
 estimated <a class="bibtex reference internal" href="zbibliography.html#vtm07" id="id4">[27]</a> that <span class="math notranslate nohighlight">\(1.2 \le \mathcal{R} \le 3.0\)</span> in the community
 (although substantially more in confined settings). If this sounds
 benign, remember that this epidemic killed more people than the First
 World War. Perhaps interesting in light of its media coverage, for
-ebola we have <span class="math notranslate nohighlight">\(1.5 \le \mathcal{R} \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id5">[2]</a>, roughly the same as
+<span class="target" id="index-37"></span>ebola we have <span class="math notranslate nohighlight">\(1.5 \le \mathcal{R} \le 2.7\)</span> <a class="bibtex reference internal" href="zbibliography.html#alt14" id="id5">[2]</a>, roughly the same as
 a not-too-severe winter flu outbreak.</p>
 <p>In a typical epidemic the number of people infected grows very
 quickly. If <span class="math notranslate nohighlight">\(\mathcal{R} = 2\)</span> then one person infects two others, who
 each infect two others, who each … and so on – so each generation
 is twice as big as the last). If you plot the size of the epidemic
-against time on a graph, it’ll draw out an <strong>exponential curve</strong>.</p>
+against time on a graph, it’ll draw out an <strong><span class="target" id="index-38"></span>exponential curve</strong>.</p>
 </div>
 <div class="section" id="why-we-need-to-be-careful-about-mathcal-r">
 <span id="sec-progress-r-care"></span><h2>Why we need to be careful about <span class="math notranslate nohighlight">\(\mathcal{R}\)</span><a class="headerlink" href="#why-we-need-to-be-careful-about-mathcal-r" title="Permalink to this headline">¶</a></h2>
@@ -398,18 +440,20 @@ that epidemics behave <strong>non-linearly</strong>. An <span class="math notran
 as bad as an <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value of 2: the epidemic isn’t twice as big, <strong>it
 doubles twice as many times</strong> in the same period. Small differences in
 the value of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> therefore have huge effects.</p>
-<p>It’s true that <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> is the critical value, below which an epidemic
-dies out. But it doesn’t follow from this that an <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value slightly
-over 1 is “pretty much 1” and so not a worry. <strong>That non-linearity means
-that even a small excess in <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> can lead to a large outbreak</strong>. This has
-implications for epidemic control too: reducing the <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value to just
-below 1 isn’t an indication that everything will then be fine, as a
-small increase may set things off again.</p>
+<p>It’s true that <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> is the critical value, below which an
+epidemic dies out. But it doesn’t follow from this that an
+<span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value slightly over 1 is “pretty much 1” and so not a
+worry. <strong>That non-linearity means that even a <span class="target" id="index-39"></span>small excess
+in <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> can lead to a large
+outbreak</strong>. This has implications for epidemic control too: reducing
+the <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> value to just below 1 isn’t an indication that
+everything will then be fine, as a small increase may set things off
+again.</p>
 <p>The second reason concerns estimation. The most effective way of
-estimating <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> in the is <a class="reference internal" href="tracing.html"><span class="doc">contract tracing</span></a>, where
-infected individuals’ contacts are located and tested – and can
+estimating <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> is <a class="reference internal" href="tracing.html"><span class="doc">contact tracing</span></a>, where
+infected individuals’ <span class="target" id="index-40"></span>contacts are located and tested – and can
 then be treated or isolated if found to be infected
-themselves. Careful and widespread “test, trace and isolate”
+themselves. Careful and widespread “<span class="target" id="index-41"></span>test, trace, and isolate”
 strategies can be extremely effective in reducing an epidemic. The
 number of infected contacts individuals have on average lets us
 estimate of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>.</p>
@@ -433,15 +477,15 @@ under-counting secondary infections and therefore under-estimating
 cases per primary. The use of averaging (and indeed other summary
 statistics) is essential when trying to get the “big picture” of an
 epidemic. But it means that the value of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> reported depends not just
-on the disease but on the population being averaged over.</p>
+on the disease but on the population being <span class="target" id="index-42"></span>averaged over.</p>
 <p>To see what this might mean, consider a country consisting of one city
 surrounded by a collection of small villages – London in the
 Middle Ages might be a good example. Suppose the disease breaks out
 ferociously in the city but, because they are separated and take
 precautions, the villages see a much sparser rate of infection. If we
-were to take the net case reproduction rate <em>averaged over the city</em>
+were to compute the net case reproduction rate <em>averaged over the city</em>
 we’d capture all the ferocity of the epidemic’s spread. But if we
-calculated the rate <em>over the whole country</em>, we’d see a far milder
+compute the rate <em>over the whole country</em>, we’d see a far milder
 epidemic. Because the same disease is spreading in different
 circumstances, averaging may be misleading – too mild for the
 city, but too large for the countryside. <strong>When interpreting an
@@ -481,7 +525,7 @@ disease. We can think in “real” time instead.</p>
 	N(t) \propto e^{\lambda t} 
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(N(t)\)</span> is the number of cases at time <span class="math notranslate nohighlight">\(t\)</span> (measured in some
-units) and <span class="math notranslate nohighlight">\(\lambda\)</span> is the <strong>growth rate</strong>, the number of new cases
+units) and <span class="math notranslate nohighlight">\(\lambda\)</span> is the <strong><span class="target" id="index-43"></span>growth rate</strong>, the number of new cases
 that appear per unit of time. The utility of this is that if we know
 the growth rate per day <em>and</em> we know how many disease cases we have
 <em>now</em>, we can predict how many diseases cases we’ll have <em>later</em>,
@@ -493,15 +537,15 @@ theoretical curve to the collected data.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>A threshold value is an example of what mathematicians call a
-<em>seperatrix</em>, a value that divides two regimes of qualitatively
+<em><span class="target" id="index-44"></span>seperatrix</em>, a value that divides two regimes of qualitatively
 different behaviour – growing or shrinking, in this case.</p>
 </div>
-<p>Just as <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> had a threshold at <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> that
+<p>Just as <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> had a <span class="target" id="index-45"></span>threshold at <span class="math notranslate nohighlight">\(\mathcal{R} = 1\)</span> that
 determined whether the epidemic was growing or shrinking, so <span class="math notranslate nohighlight">\(\lambda
-= 0\)</span> divides growing (<span class="math notranslate nohighlight">\(\lambda \gt 1\)</span>) from shrinking (<span class="math notranslate nohighlight">\(\lambda \lt
+= 0\)</span> divides growing (<span class="math notranslate nohighlight">\(\lambda &gt; 1\)</span>) from shrinking (<span class="math notranslate nohighlight">\(\lambda &lt;
 0\)</span>) conditions. And just like <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, we need to be careful
 about reading too much into that: mistakes or omissions in reporting
-the ongoing cases can easily cause and over- or under-estimate of
+the ongoing cases can easily cause an over- or under-estimate of
 <span class="math notranslate nohighlight">\(\lambda\)</span>.</p>
 <p>The values of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> and <span class="math notranslate nohighlight">\(\lambda\)</span> are mathematically related,
 of course, with the former being found by integrating the latter
@@ -517,7 +561,7 @@ distribution of infections over time.</p>
 done anything to <em>avoid</em> catching it? Was it made worse by where you
 lived at the time?</p></li>
 <li><p>What can be done to cope with “Type A” diseases, where people can
-transmit the disease without showing symptoms of it?</p></li>
+<span class="target" id="index-46"></span>transmit the disease without showing symptoms of it?</p></li>
 <li><p>Do you think the <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> number is a useful thing to keep track of
 during an epidemic? Why? (Or why not?)</p></li>
 </ul>

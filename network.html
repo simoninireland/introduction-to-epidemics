@@ -25,7 +25,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -67,9 +67,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
   </li>
@@ -132,7 +129,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -147,46 +146,56 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/network.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Edit this page -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/network.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
-        <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-            <div class="dropdown-buttons">
-                
-                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/network.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
-                
-                
-                
-            </div>
-        </div>
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 <div class="tocsection onthispage pt-5 pb-3">
@@ -226,7 +235,7 @@
   <div class="section" id="network-models">
 <h1>Network models<a class="headerlink" href="#network-models" title="Permalink to this headline">¶</a></h1>
 <p>One thing that may be bothering you about SIR is the idea of a population where all the possible interactions between individuals take place. You don’t meet everyone in your city, town, or village like that on a regular basis: that isn’t how societies work.</p>
-<p>Admittedly you get this sort of “complete mixing” in <em>some</em> scenarios. A school for young children (or, even better, a toddler’s nursery) perhaps works like this as the children go out to play together and everyone mixes with everyone else. And this is why diseases spread so rapidly through nurseries: one sick child will infect all the others.</p>
+<p>Admittedly you get this sort of “<span class="target" id="index-0"></span>complete mixing” in <em>some</em> scenarios. A school for young children (or, even better, a toddler’s nursery) perhaps works like this as the children go out to play together and everyone mixes with everyone else. And this is why diseases spread so rapidly through nurseries: one sick child will infect all the others.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>In chickenpox the infected individual – almost always a
@@ -234,24 +243,24 @@ child – is latent for 7–10 days after exposure, but only
 infectious for about 24 hours before the symptoms (an itchy rash)
 appear.</p>
 </div>
-<p>This phenomenon can be used constructively. When I was a child it was commonplace for parents to hold “chickenpox parties” and bring all the neighbouring children together to play so they could be exposed – and then subsequently be immune from further infection, since chickenpox confers very strong immunity.</p>
+<p>This phenomenon can be used constructively. When I was a child it was commonplace for parents to hold “<span class="target" id="index-1"></span>chickenpox parties” and bring all the neighbouring children together to play so they could be exposed – and then subsequently be immune from further infection, since chickenpox confers very strong immunity.</p>
 <p>But in other cases the assumption of complete mixing is going to break down. And since we know that even a small change in infectivity can have a dramatic effect on the progress of an epidemic, can we change SIR to accommodate the social realities in which there are substantially fewer connections between individuals that we might expect?</p>
 <div class="section" id="networks">
 <h2>Networks<a class="headerlink" href="#networks" title="Permalink to this headline">¶</a></h2>
-<p>There are a couple of ways of ansering this question, but the one we’ll turn to here uses networks.</p>
+<p>There are a couple of ways of answering this question, but the one we’ll turn to here uses networks.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>The term <strong>graph</strong> is often used as a synonym for network.</p>
 </div>
-<p>A <strong>network</strong> is simply a collection of <strong>nodes</strong> connected by <strong>edges</strong>. A road map is a good example of a network: the nodes are the road junctions, while the edges (which connect the junctions together) are the segments of roads. This is the reason we sometimes refer to the <em>road network</em>: it’s a collection of (bits of) road that meet at various points.</p>
-<p>Another good example of a network – and closer to our current application – is a <strong>social network</strong>. In a social network the nodes are people and the edges are “social links” or “social contacts” between them. While we usually think of social networks as being online, like Facebook or Twitter, they idea works in the real world too: when you meet your family, go shopping, go to work, or indulge in any of the activities of daily life you add edges to your social network between yourself and the people you meet. Typically the number of people you’ll have social contact with will be considerably less that the entire population.</p>
-<p>Do the same thing for everyone in the population, and you have a social network for that population. The nodes are the individuals; the edges are the potentially infection-carrying social contacts.</p>
+<p>A <strong><span class="target" id="index-2"></span>network</strong> is simply a collection of <strong><span class="target" id="index-3"></span>nodes</strong> connected by <strong><span class="target" id="index-4"></span>edges</strong>. A road map is a good example of a network: the nodes are the road junctions, while the edges (which connect the junctions together) are the segments of roads. This is the reason we sometimes refer to the <em>road network</em>: it’s a collection of (bits of) road that meet at various points.</p>
+<p>Another good example of a network – and closer to our current application – is a <strong><span class="target" id="index-5"></span>social network</strong>. In a <span class="target" id="index-6"></span>social network the nodes are people and the edges are “social links” or “social contacts” between them. While we usually think of social networks as being online, like Facebook or Twitter, the idea works in the real world too: when you meet your family, go shopping, go to work, or indulge in any of the activities of daily life you add edges to your social network between yourself and the people you meet. Typically the number of people you’ll have social contact with will be considerably less than the entire population. The social network records the people with whom you have <span class="target" id="index-7"></span>contact, and so in our application records people whom you might infect or be infected by.</p>
+<p>Do the same thing for everyone in the population, and you have a social network for that population. The nodes are the individuals; the edges are the potentially infection-carrying social contacts. We can then <span class="target" id="index-8"></span>simulate the progress of the epidemic over this network.</p>
 </div>
 <div class="section" id="complete-networks">
 <span id="sec-network-complete"></span><h2>Complete networks<a class="headerlink" href="#complete-networks" title="Permalink to this headline">¶</a></h2>
 <p>Suppose that, on your travels, you <em>did</em> actually happen to come into contact with everyone in the population, so that your social network had edges connecting you to everyone else. And suppose that everyone else did the same, so that everyone was connected to everyone. This is still a social network – a very dense one to be sure, perhaps like what happens on a nightclub dance floor. It also matches the assumptions we made earlier about complete mixing. So if we  ran a simulation of disease spreading over this network, we’d presumably expect to see the same results as we did before.</p>
 <p>Wouldn’t we?</p>
-<p>In the previous chapter we “pushed” an initial population of nodes through the equations. For a network we can do something slightly different. Each node represents an individual, so we have a colleciton of people whose evolution we can track through the SIR disease (rather than simply counting them). That will be useful later. But clearly there’s more “book-keeping” to do in keeping track of everyone. It’s harder, from a programming perspective, to model the disease on a network – but in doing so we gain a lot of flexibility, as we’ll see later.</p>
+<p>In the previous chapter we “pushed” an initial population of nodes through the equations. For a network we can do something slightly different. Each node represents an individual, so we have a colleciton of people whose evolution we can track through the <span class="target" id="index-9"></span>SIR disease (rather than simply counting them). That will be useful later. But clearly there’s more “book-keeping” to do in keeping track of everyone. It’s harder, from a programming perspective, to model the disease on a network – but in doing so we gain a lot of flexibility, as we’ll see later.</p>
 <p>For the moment, we need to set up a computational simulation of the people and their connections. Fortunately there we have software than can help us do this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -296,7 +305,7 @@ appear.</p>
     <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfected</span>
     <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
     <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
-    <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>          <span class="c1"># take 50 samples</span>
+    <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span> <span class="c1"># 50 samples</span>
     
     <span class="c1"># run the simulation</span>
     <span class="n">rc</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
@@ -367,7 +376,7 @@ appear.</p>
 <div class="section" id="the-story-so-far">
 <h2>The story so far<a class="headerlink" href="#the-story-so-far" title="Permalink to this headline">¶</a></h2>
 <p>To recap, we defined SIR as a process and explored what happened in a scenario of complete mixing. We then reproduced these results in a different framework, with the same process running over a network, also with complete mixing. But clearly complete mixing isn’t a good model of a social network: you don’t meet everyone all the time, and therefore don’t get exposed to all possible infected people.</p>
-<p>Real social networks are very different: more “clumpy”, more uneven, some people with more contacts than others. Everyone experiences this, and one would think that the differences (in the social contact structure) will make a difference to the epidemic (in the way it spreads). This is indeed the case, and we can explore it.</p>
+<p>Real social networks are very different: more “clumpy”, more uneven, some people with more contacts than others. Everyone experiences this, and one would think that the differences (in the social contact structure) will make a difference to the epidemic (in the way it spreads). This is indeed the case, and we will <a class="reference internal" href="hcn.html"><span class="doc">explore it later</span></a>.</p>
 <p>The simulation we ran above has two parts: the SIR process, and the network we ran it over – which in this case was a complete graph. We can of course change the network, and as we do we can explore how the disease behaves for different kinds of network. In the spirit of good science, we’ll keep the disease the same, and only change the context in which it occurs, so that any changes we observe will be due to change in the network.</p>
 </div>
 <div class="section" id="questions-for-discussion">

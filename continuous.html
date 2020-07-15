@@ -25,7 +25,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -67,9 +67,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
   </li>
@@ -132,7 +129,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -147,46 +146,56 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/continuous.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Edit this page -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/continuous.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
-        <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-            <div class="dropdown-buttons">
-                
-                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/continuous.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
-                
-                
-                
-            </div>
-        </div>
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 <div class="tocsection onthispage pt-5 pb-3">
@@ -242,21 +251,22 @@
 <li><p><strong><span class="target" id="index-5"></span>Removed (R)</strong>, representing those people whose infection has resolved itself and have been “removed” from progressing the disease any further.</p></li>
 </ul>
 <p>Notice how simple this is. A person is either infected, or they’re not. If they <em>are</em> infected, they are infectious: there’s no latency. And they’re “removed” when their infection resolves, without us noting whether they recovered or died.</p>
-<p>You might ask whether something this simple can tell us anything: does any real disease work like this? But the simplicity of the model makes it tractable and easy to study, and once we’ve got a feel for how these things work we can, if desired, move onto more detailed models. SIR is just one of the possible compartmented models: the others include SIS (for diseases where you can be re-infected once recovered), MSEIR (for diseases with maternally-conferred temporary immunity), so so on in dizzying array (see Hethcote<a class="bibtex reference internal" href="zbibliography.html#heth00" id="id1">[9]</a> for a more detailed discussion). We’ll look at another model, SEIR, <a class="reference internal" href="seir.html"><span class="doc">later</span></a>.</p>
+<p>You might ask whether something this simple can tell us anything: does any real disease work like this? But the simplicity of the model makes it tractable and easy to study, and once we’ve got a feel for how these things work we can, if desired, move onto more detailed models. SIR is just one of the possible compartmented models: the others include <span class="target" id="index-6"></span>SIS (for diseases where you can be re-infected once recovered), MSEIR (for diseases with maternally-conferred temporary immunity), so so on in dizzying array (see Hethcote<a class="bibtex reference internal" href="zbibliography.html#heth00" id="id1">[9]</a> for a more detailed discussion). We’ll look at another model, SEIR, <a class="reference internal" href="seir.html"><span class="doc">later</span></a>.</p>
 </div>
 <div class="section" id="the-mathematical-model">
 <span id="sec-continuous-sir-model"></span><h2>The mathematical model<a class="headerlink" href="#the-mathematical-model" title="Permalink to this headline">¶</a></h2>
 <p>We now need to describe how individuals move between compartments. Actually we’ll simply talk about the <em>number</em> of people in each compartment at each time, and how those numbers change: we won’t track the disease’s progress in a specific individual (there’s a whole class of <em>agent-based</em> models that do this).</p>
 <p>Suppose we have a population of size <span class="math notranslate nohighlight">\(N\)</span>. Let’s represent the number of people in each compartment by <span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(I\)</span>, and <span class="math notranslate nohighlight">\(R\)</span> respectively. Everyone in the population is assigned to exactly one compartment at any time, so we must always have <span class="math notranslate nohighlight">\(S + I + R = N\)</span> as the sub-populations <span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(I\)</span>, and <span class="math notranslate nohighlight">\(R\)</span> change.</p>
-<p>How does someone become infected? – that is to say, how does someone move between compartment <span class="math notranslate nohighlight">\(S\)</span> and compartment <span class="math notranslate nohighlight">\(I\)</span>? In SIR we assume that the infection passes through contact between a susceptible individual and an infected one. If we further assume that everyone in the population meets everyone else equally often, then there will be <span class="math notranslate nohighlight">\(S \times I = SI\)</span> encounters between susceptible and infected individuals in each time period. Think of the population as crowd milling around, some of whom are infected.</p>
+<p>How does someone become <span class="target" id="index-7"></span>infected? – that is to say, how does someone move between compartment <span class="math notranslate nohighlight">\(S\)</span> and compartment <span class="math notranslate nohighlight">\(I\)</span>? In SIR we assume that the infection passes through contact between a susceptible individual and an infected one. If we further assume that everyone in the population meets everyone else equally often, then there will be <span class="math notranslate nohighlight">\(S \times I = SI\)</span> encounters between susceptible and infected individuals in each time period. Think of the population as crowd milling around, some of whom are infected.</p>
 <p>Clearly not all of these interactions will result in an infection, but some fraction will, and the result will be that an individual moves from <span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\(I\)</span>: remember that in SIR we assume that the disease passes on instantly. Let’s refer to this as <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, the probability that an <span class="math notranslate nohighlight">\(I\)</span> will infect an <span class="math notranslate nohighlight">\(S\)</span> in a single contact. There are <span class="math notranslate nohighlight">\(SI\)</span> contacts in each timestep, of which a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> will result in an infection. Putting this all together, the size of <span class="math notranslate nohighlight">\(S\)</span> will <em>reduce</em> by <span class="math notranslate nohighlight">\(p_{\mathit{infect}} \, SI\)</span> (because the disease causes people to leave <span class="math notranslate nohighlight">\(S\)</span> by becoming infected).</p>
-<p>If <span class="math notranslate nohighlight">\(S\)</span> is the number of susceptible people, we can denote the <em>change</em> in <span class="math notranslate nohighlight">\(S\)</span> by <span class="math notranslate nohighlight">\(\Delta S\)</span>, the <span class="target" id="index-6"></span>difference in <span class="math notranslate nohighlight">\(S\)</span> at each timestep. As the disease progresses we expect <span class="math notranslate nohighlight">\(S\)</span> to decrease: unless people enter the population from outside, the number of susceptible people only goes down since once someone has been infected they don’t return to being susceptible again (having the disease makes you immune in this model). Mathematically we can say that</p>
+<p>If <span class="math notranslate nohighlight">\(S\)</span> is the number of susceptible people, we can denote the <em>change</em> in <span class="math notranslate nohighlight">\(S\)</span> by <span class="math notranslate nohighlight">\(\Delta S\)</span>, the <span class="target" id="index-8"></span>difference in <span class="math notranslate nohighlight">\(S\)</span> at each timestep. As the disease progresses we expect <span class="math notranslate nohighlight">\(S\)</span> to decrease: unless people enter the population from outside, the number of susceptible people only goes down since once someone has been infected they don’t return to being susceptible again (having the disease makes you immune in this model). Mathematically we can say that</p>
 <div class="math notranslate nohighlight">
 \[
     \Delta S = -p_{\mathit{infect}} \, SI
 \]</div>
 <p>with the minus sign indicating that <span class="math notranslate nohighlight">\(S\)</span> is getting smaller.</p>
-<p>What about <span class="math notranslate nohighlight">\(I\)</span>? Every person who leaves <span class="math notranslate nohighlight">\(S\)</span> (and so ceases to be susceptible) becomes infected and so enters <span class="math notranslate nohighlight">\(I\)</span>. So we’d expect that the corresponding change in <span class="math notranslate nohighlight">\(I\)</span>, <span class="math notranslate nohighlight">\(\Delta I\)</span>, would <em>increase</em> by the same amount as <span class="math notranslate nohighlight">\(\Delta S\)</span> <em>decreased</em>, so as not to lose anyone from the population. But as well as contracting the disease, people also recover from it (or die): either way they are “removed” from the population affected by the disease.</p>
+<p>The value <span class="math notranslate nohighlight">\(p_{\textit{infect}}\)</span> is called a <strong><span class="target" id="index-9"></span>parameter</strong> of the model. The equations provide a description of the overall behaviour of the model. Within this, you can change the values of the parameters to explore the different kinds of behaviour possible within the model. You can make the disease more infectious by making <span class="math notranslate nohighlight">\(p_{\textit{infect}}\)</span> larger, for example. It’s often the case that, in models with several parameters (as SIR has), the values of the parameters will interact in interesting ways.</p>
+<p>What about <span class="math notranslate nohighlight">\(I\)</span>? Every person who leaves <span class="math notranslate nohighlight">\(S\)</span> (and so ceases to be susceptible) becomes infected and so enters <span class="math notranslate nohighlight">\(I\)</span>. So we’d expect that the corresponding change in <span class="math notranslate nohighlight">\(I\)</span>, <span class="math notranslate nohighlight">\(\Delta I\)</span>, would <em>increase</em> by the same amount as <span class="math notranslate nohighlight">\(\Delta S\)</span> <em>decreased</em>, so as not to lose anyone from the population. But as well as contracting the disease, people also recover from it (or die): either way they are “<span class="target" id="index-10"></span>removed” from the population affected by the disease.</p>
 <p>(Whether you recover or die is obviously quite important to you, but in either event you are no longer infected or susceptible and so take no further part in the spread of the infection. Epidemic modelling can seem quite heartless at times.)</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -283,8 +293,8 @@ understand what’s going on if we spell the meaning of the symbols out.</p>
 </div>
 <div class="section" id="the-computational-model">
 <h2>The computational model<a class="headerlink" href="#the-computational-model" title="Permalink to this headline">¶</a></h2>
-<p>To explore SIR, let’s turn the mathematical model of three equations into a <span class="target" id="index-7"></span>computational model that “runs the numbers” to show how the epidemic progresses.</p>
-<p>We can represent each of the three chanmges in population directly as Python functions. Since they share the parameters <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> and <span class="math notranslate nohighlight">\(p_{remove}\)</span>, we’ll define them together using another function to which we pass the parameters and get back the change functions.</p>
+<p>To explore SIR, let’s turn the mathematical model of three equations into a <span class="target" id="index-11"></span>computational model that “runs the numbers” to show how the epidemic progresses.</p>
+<p>We can represent each of the three changes in population directly as Python functions. Since they share the parameters <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> and <span class="math notranslate nohighlight">\(p_{remove}\)</span>, we’ll define them together using another function to which we pass the parameters and get back the change functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_sir</span><span class="p">(</span><span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">):</span>
@@ -310,7 +320,7 @@ understand what’s going on if we spell the meaning of the symbols out.</p>
 foul of numerical instability in the equations. There are several more
 robust solutions for the more complex cases.</p>
 </div>
-<p>How do we “run” the epidemic? We’ve defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and <span class="target" id="index-8"></span>add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time. The result will be a time series for each sub-population tracking its size over time.</p>
+<p>How do we “run” the epidemic? We’ve defined the ways in which the sizes of the sub-populations change. If we start with some initial sub-populations, we can then compute the change and <span class="target" id="index-12"></span>add it to the previous population to get the population at the next timestep. We can do this repeatedly to trace out the behaviour of the epidemic in time. The result will be a time series for each sub-population tracking its size over time.</p>
 <p>What should the initial sizes of the sub-populations be? Since we’re interested only in their sizes, we could say that given <span class="math notranslate nohighlight">\(N\)</span> individuals a fraction <span class="math notranslate nohighlight">\(p_{\mathit{infected}}\)</span> are initially infected, while everyone else is susceptible: no-one starts off removed.</p>
 <p>We can code this behaviour up as a single function.</p>
 <div class="cell docutils container">
@@ -320,9 +330,9 @@ robust solutions for the more complex cases.</p>
     <span class="p">(</span><span class="n">deltaS</span><span class="p">,</span> <span class="n">deltaI</span><span class="p">,</span> <span class="n">deltaR</span><span class="p">)</span> <span class="o">=</span> <span class="n">make_sir</span><span class="p">(</span><span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">)</span>
     
     <span class="c1"># initial conditions</span>
-    <span class="n">sss</span> <span class="o">=</span> <span class="p">[</span> <span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">pInfected</span><span class="p">)</span> <span class="p">]</span>   <span class="c1"># everyone is initially susceptible...</span>
-    <span class="n">iss</span> <span class="o">=</span> <span class="p">[</span> <span class="n">N</span> <span class="o">*</span> <span class="n">pInfected</span> <span class="p">]</span>           <span class="c1"># ...except for this fraction of people...</span>
-    <span class="n">rss</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="p">]</span>                       <span class="c1"># ...and no-one starts off removed</span>
+    <span class="n">sss</span> <span class="o">=</span> <span class="p">[</span> <span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">pInfected</span><span class="p">)</span> <span class="p">]</span>
+    <span class="n">iss</span> <span class="o">=</span> <span class="p">[</span> <span class="n">N</span> <span class="o">*</span> <span class="n">pInfected</span> <span class="p">]</span> 
+    <span class="n">rss</span> <span class="o">=</span> <span class="p">[</span> <span class="mi">0</span> <span class="p">]</span> 
 
     <span class="c1"># push the initial conditions through the equations</span>
     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
@@ -332,8 +342,9 @@ robust solutions for the more complex cases.</p>
         <span class="n">di</span> <span class="o">=</span> <span class="n">deltaI</span><span class="p">(</span><span class="n">sss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">iss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">rss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">dr</span> <span class="o">=</span> <span class="n">deltaR</span><span class="p">(</span><span class="n">sss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">iss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">rss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
         
-        <span class="c1"># the value at the next timestep are those at the previous</span>
-        <span class="c1"># timestep plus the value of the change in that value</span>
+        <span class="c1"># the value at the next timestep are those at the</span>
+        <span class="c1"># previous timestep plus the value of the change</span>
+        <span class="c1"># in that value</span>
         <span class="n">sss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ds</span><span class="p">)</span>
         <span class="n">iss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">iss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">di</span><span class="p">)</span>
         <span class="n">rss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rss</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">dr</span><span class="p">)</span>
@@ -361,6 +372,7 @@ robust solutions for the more complex cases.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
 <span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
 <span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;png&#39;</span>
+<span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span>
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn&#39;</span><span class="p">)</span>
@@ -372,7 +384,8 @@ robust solutions for the more complex cases.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">epidemics</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="k">for</span> <span class="n">pInfect</span> <span class="ow">in</span> <span class="p">[</span> <span class="mf">0.0000010</span><span class="p">,</span> <span class="mf">0.0000020</span><span class="p">,</span> <span class="mf">0.0000035</span><span class="p">,</span> <span class="mf">0.0000040</span><span class="p">,</span> <span class="mf">0.0000050</span><span class="p">,</span> <span class="mf">0.0000080</span> <span class="p">]:</span>
+<span class="k">for</span> <span class="n">pInfect</span> <span class="ow">in</span> <span class="p">[</span> <span class="mf">0.0000010</span><span class="p">,</span> <span class="mf">0.0000020</span><span class="p">,</span> <span class="mf">0.0000035</span><span class="p">,</span>
+                 <span class="mf">0.0000040</span><span class="p">,</span> <span class="mf">0.0000050</span><span class="p">,</span> <span class="mf">0.0000080</span> <span class="p">]:</span>
     <span class="c1"># run the epidemic equations</span>
     <span class="n">epidemics</span><span class="p">[</span><span class="n">pInfect</span><span class="p">]</span> <span class="o">=</span> <span class="n">epidemic_sir</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">pInfected</span><span class="p">,</span> <span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">)</span>
 </pre></div>
@@ -381,7 +394,8 @@ robust solutions for the more complex cases.</p>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 
 <span class="c1"># draw the sub-plots for selected values of pInfect</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">pInfect</span><span class="p">,</span> <span class="n">ax</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span> <span class="p">(</span><span class="mf">0.0000010</span><span class="p">,</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]),</span>
@@ -426,14 +440,14 @@ in this way the three SIR equations should really be be phrased as
 the passage from discrete to continuous time makes mathematical
 sense. The results obtained are the same in both cases, however.</p>
 </div>
-<p>What are these graphs telling us? Start in the top left. At the start of the epidemic (when <span class="math notranslate nohighlight">\(t = 0\)</span>) we have a very small number of infected individuals and a very large number of susceptibles. The number of infecteds grows slowly as the time passes and the graph moves form left to right. But the disease is not very infectious: only 0.000001 of contacts leads to infection, just one in a million. At the start of the epidemic there are 990 susceptible people and 10 infected (1% of the total population), which means there can be at most 9900 susceptible-infected contacts. In the first timestep, then, the equations suggest that approximately 0.01 people become infected.</p>
+<p>What are these graphs telling us? Start in the top left. At the start of the epidemic (when <span class="math notranslate nohighlight">\(t = 0\)</span>) we have a very small number of infected individuals and a very large number of susceptibles. The number of infecteds grows slowly as the time passes and the graph moves form left to right. But the disease is not very infectious: only 0.000001 of contacts leads to infection, just <span class="target" id="index-13"></span>one in a million. At the start of the epidemic there are 990 susceptible people and 10 infected (1% of the total population), which means there can be at most 9900 susceptible-infected contacts. In the first timestep, then, the equations suggest that approximately 0.01 people become infected.</p>
 <p>We can’t infect two-hundreths of a person, of course: clearly it will take some time for there to be one new person infected. And once infections start people also start to recover, and the epidemic clearly never gets going.</p>
 <p>But now look at the next diagrams. Even for very modest values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> – 0.000002 to 0.000008 – we get considerable epidemics. At the peak of infections around 40–60% of the population is infected, compared to essentially no-one for the smallest value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>. And that’s with <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> still tiny: eight contacts in every million resulting in an infection.</p>
 </div>
 <div class="section" id="consequences">
 <h2>Consequences<a class="headerlink" href="#consequences" title="Permalink to this headline">¶</a></h2>
 <p>Let those figures sink in for a moment.</p>
-<p>The SIR model is telling us that changing the rate of infection from one in a million to eight in a million is enough to change the total proportion of infected people in a population from about 1% to about 60%! To put it another way, the process is very <span class="target" id="index-9"></span>sensitive, and anything that changes the infection rate by even a miniscule amount can have an enormous, outsized, effect on the outbreak.</p>
+<p>The SIR model is telling us that changing the rate of infection from one in a million to eight in a million is enough to change the total proportion of infected people in a population from about 1% to about 60%! To put it another way, the process is very <span class="target" id="index-14"></span>sensitive, and anything that changes the infection rate by even a miniscule amount can have an enormous, outsized, effect on the outbreak.</p>
 <p>We have to be careful what we conclude, though. While we’ve got  a “population” and some “contacts”, we haven’t said anything about the timescale over which we’re talking: it’s all been abstracted. So the “infection rate” is a somewhat notional concept that doesn’t directly relate to <em>any</em> particular rate or disease in the real world. It’s important to remember this and not draw any unsupported conclusions.</p>
 <p>There <em>are</em> some conclusions that are supported, though. Firstly, we can see that the epidemic grows exponentially once it gets started. We can also see that it dies away exponentially after its peak. And we know that the population of infected people is a dynamic thing, with people recovering and new people being infected across the outbreak.</p>
 </div>

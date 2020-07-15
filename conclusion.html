@@ -25,7 +25,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -67,9 +67,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
   </li>
@@ -132,7 +129,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -147,35 +146,56 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/conclusion.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Edit this page -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/conclusion.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 
@@ -207,8 +227,7 @@ flee?</p>
 epidemic modelling on networks? I would like to think that there are
 several broad take-away messages.</p>
 <p>The most important message by far is that – despite using advanced
-mathematics, detailed sets of parameters, and extensive computer
-simulation – modelling remains an inexact science. It’s important to
+mathematics, detailed sets of {index}<code class="docutils literal notranslate"><span class="pre">parameters</span> <span class="pre">&lt;parameter&gt;,</span> <span class="pre">and</span> <span class="pre">extensive</span> <span class="pre">computer</span> <span class="pre">{index}</span></code>simulation` – modelling remains an inexact science. It’s important to
 qualify that word “inexact”: while models and simulations can generate
 results in extraordinary volume and with great precision, the
 <em>interpretation</em> of those results inevitably involves judgement
@@ -224,7 +243,8 @@ activity, and while it may be “driven by” or “informed by” science,
 there will always be other factors needing to be included that may
 skew a final decision away from what a scientist may view as
 “correct”. Many real-world problems are
-<a class="reference external" href="https://en.wikipedia.org/wiki/Wicked_problem"><em>wicked</em></a>, impossible
+<a class="reference external" href="https://en.wikipedia.org/wiki/Wicked_problem"><em>wicked</em></a>,
+<span class="target" id="index-0"></span>impossible
 to solve because of inherent contradictions and the compromises they
 imply, but mandating an immediate response nonetheless.</p>
 <p>In many ways this makes modelling <em>more</em> important, not less. A model
@@ -237,8 +257,8 @@ that <em>can</em>, if only to cut down the space of possibilities that need
 further consideration.</p>
 <p>The second take-away message is the scientific underpinnings of many
 policies with which we’re familiar – so much so that they sometimes
-feel almost part of the world’s folklore. Vaccination, quarantine,
-physical isolation, herd immunity, and so forth are all susceptible to
+feel almost part of the world’s folklore. <span class="target" id="index-1"></span>Vaccination, <span class="target" id="index-2"></span>quarantine,
+<span class="target" id="index-3"></span>physical distancing, <span class="target" id="index-4"></span>herd immunity, and so forth are all susceptible to
 exploration and variation. And the science can expose commonalities
 that are not initially obvious: that the provision of protective
 equipment behaves like vaccination, for example, in the way it can be
@@ -251,19 +271,19 @@ made a huge difference to the results. In the real world, of course,
 one may be <em>stuck</em> with ineffective processes: an imprecise test, a
 limited number of testers-and-tracers, and so forth. This may defeat
 even a well-thought-through strategy.</p>
-<p>The implication of this is that any countermeasure is an <em>experiment</em>
-– and the same is true of any attempt to unwind a countermeasure,
-such as for example when coming our of a physical distancing
-lockdown. It’s possible that the strategy will fail, and that measures
-will need to be re-imposed. This may be difficult for people to take,
-especially if they’ve not been warned of the possibility beforehand.</p>
+<p>The implication of this is that to impose any set of
+<span class="target" id="index-5"></span>countermeasures is to <strong>conduct an experiment</strong> – and the same
+is true of any attempt to unwind a countermeasure, such as for example
+when coming our of a physical distancing lockdown. It’s possible that
+the strategy will fail, and that measures will need to be
+re-imposed. This may be difficult for people to take, especially if
+they’ve not been warned of the possibility beforehand.</p>
 <p>The final message is the most important for me as an academic: the
 <em>democracy</em> of science. People sometimes feel that science is something
 alien, requiring endless qualifications, state or corporate
 sponsorship, and access to techniques and tools that are out of reach
 of the amateur. Nothing could be further from the truth.</p>
-<p>Science, as practiced by real scientists, is largely just an exercise
-of their curiosity that’s conducted within a framework – the
+<p>Science, as practiced by real scientists, is largely just an exerciseb
 <em>scientific method</em> – that has evolved over the years to help stop us
 misleading ourselves. The framework isn’t a barrier to entry into
 science; rather, it’s a guide to help identify simple truth within a
@@ -281,9 +301,9 @@ truth-finding.</p>
 within the reach of everyone. It’s not the preserve of academics,
 although academic scientists have developed many of the ideas and
 tools; it doesn’t need supercomputers, although they’re often useful;
-and no-one should be afraid of posing any question: any question,
-sincerely asked, is worth asking, and worth working to find an answer
-to.</p>
+and no-one should be afraid of posing questions: any question,
+sincerely asked, is worth asking, and worth the cost of working
+towards an answer.</p>
 </div>
 
 

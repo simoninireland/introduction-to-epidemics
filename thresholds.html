@@ -25,7 +25,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -67,9 +67,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
   </li>
@@ -132,7 +129,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -147,46 +146,56 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/thresholds.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Edit this page -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/thresholds.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
-        <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-            <div class="dropdown-buttons">
-                
-                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/thresholds.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
-                
-                
-                
-            </div>
-        </div>
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 <div class="tocsection onthispage pt-5 pb-3">
@@ -217,26 +226,31 @@
                 
   <div class="section" id="epidemic-threshold">
 <h1>Epidemic threshold<a class="headerlink" href="#epidemic-threshold" title="Permalink to this headline">¶</a></h1>
-<p>We’re familiar with the idea that some diseases are more infectious than others. In real-world epidemics this is emobodied in the basic case reproduction number <span class="math notranslate nohighlight">\(R_0\)</span>, which counts the number of other infections arising on average from every infection. In modelling it is embodied in <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, the probability that a contact leads to an infection.</p>
+<p>We’re familiar with the idea that some diseases are more infectious than others. In real-world epidemics this is embodied in the <span class="target" id="index-0"></span>case reproduction number <span class="math notranslate nohighlight">\(\mathcal{R}\)</span>, which counts the number of secondary infections arising on average from every primary infection. In network-based modelling it is embodied in <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, the probability that a contact leads to an infection.</p>
 <p>But how infectious does a disease have to be to cause an epidemic? – that is to say, to create infection in a sizeable fraction of a population?</p>
-<p>Clearly these two ideas are related: a disease that passes easily between people will be more likely to pass to more people. But it turns out that the relationship isn’t as simple as we might expect. It’s affected by a number of factors, including the disease parameters and the topology of the network – in other words, by the disease <em>and</em> the environment in which it finds itself. This is important: we’re limited in what we can do about the basic infectiousness of a disease since that’s defined by its biology, but the significance of topology opens-up the possibilty of countermeasures at a population level.</p>
-<p>Looking back at the SIR model on an ER network, we see patterns in the way it spreads. For very low values of <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>, the mean degree of the network, the epidemic never really “gets going”. We can think of this as being what happens when the disease begins in population that’s too disconnected to spread the disease before the infected individuals recover (or die). This is the other extreme to the fully connected network where <em>all</em> connections are in play and the propagation of the disease depends solely on the relationship between the rates of infection and recovery.</p>
-<p>Let’s ask a different question, though. If we fix the topology but change the infectivity, what happens to the numbers of people infected? We already know that in the fully-mixed case a very small change in infectivity results in a massive change in the size of the epidemic. But that was in a somewhat unrealistic case.</p>
-<p>A related question is: for a particular topology, is there a characteristic degree of infectiousness that’s needed to start an epidemic, below which one doesn’t occur? To put it another way, is there an <strong>epidemic threshold</strong> that a disease must exceed in order to go epidemic?</p>
+<p>Clearly these two ideas are related: a disease that passes easily between people will be more likely to pass to more people. But it turns out that the relationship isn’t as simple as we might expect. It’s affected by a number of factors, including the disease parameters and the <span class="target" id="index-1"></span>topology of the network – in other words, by the disease <em>and</em> the environment in which it finds itself. This is important: we’re limited in what we can do about the basic infectiousness of a disease since that’s defined by its biology, but the significance of topology opens-up the possibilty of <span class="target" id="index-2"></span>countermeasures at a population level.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>We don’t see this phenoemnon in <a class="reference internal" href="continuous.html"><span class="doc">continuous</span></a> (non-network) compartmented models, in which <em>every</em> infection results in an epidemic of some size. This shows that the network approach is capturing something interesting: it lets is see phenomena that are absent from other models.</p>
+</div>
+<p>Looking back at the <span class="target" id="index-3"></span>SIR model on an <span class="target" id="index-4"></span>ER network, we see patterns in the way it spreads. For very low values of <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>, the <span class="target" id="index-5"></span>mean degree of the network, the epidemic never really “gets going”. We can think of this as being what happens when the disease begins in population that’s too disconnected to spread the disease before the infected individuals recover (or die). This is the other extreme to the fully connected network where <em>all</em> connections are in play and the propagation of the disease depends solely on the relationship between the rates of infection and recovery.</p>
+<p>Let’s ask a different question, though. If we fix the topology but change the infectivity, what happens to the numbers of people infected? We already know that in the fully-mixed case a <span class="target" id="index-6"></span>very small change in infectivity results in a massive change in the size of the epidemic. But that was in a somewhat unrealistic case.</p>
+<p>A related question is: for a particular topology, is there a characteristic degree of infectiousness that’s needed to start an epidemic, below which one doesn’t occur? To put it another way, is there an <strong><span class="target" id="index-7"></span>epidemic threshold</strong> that a disease on a network must exceed before it can go epidemic?</p>
 <div class="section" id="the-epidemic-threshold-of-an-er-network">
 <span id="sec-thresholds-er"></span><h2>The epidemic threshold of an ER network<a class="headerlink" href="#the-epidemic-threshold-of-an-er-network" title="Permalink to this headline">¶</a></h2>
 <p>Let’s look at the case for an ER network, the simplest model we have. (We’ve already accepted that it’s not a great model of human contact networks, but we’ll refine this later.)</p>
 <p>To locate the epidemic threshold (assuming it exists), we need to simulate epidemics on networks across a range of infectiousness – that is to say, for different values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>. If we want to test, shall we say, 50 different values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> we’ll need to run at least 50 experiments, one per value.</p>
-<p>But we know there’s a lot of randomness going on here as well. The networks we create are random; we seed them randomly with infected individuals; and the disease progression is itself a random process. What if, by chance, we chose as the “seed” individuals a group of people who were all right next to each other, with few other people to infect? What if, by chance, the infection failed to transmit a large number of times, and so died out?</p>
-<p>There are a number of ways to deal with these issues, but the safest, most general, and most straightforward one is to conduct lots of trials and look at the patterns in the results, possibly then taking averages of the trials to find the “expected result” for a given value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>. By repeating the experiment we reduce the influence of chances that “unlikely” combinations of circumstances will sway the answer.</p>
+<p>But we know there’s a lot of randomness going on as well. The networks we create are random; we <span class="target" id="index-8"></span>seed them randomly with infected individuals; and the disease progression is itself a random or <span class="target" id="index-9"></span>stochastic process. What if, by chance, we chose as the seed individuals a group of people who were all right next to each other, with few other people to infect? Alternatively, what if, by chance, the infection failed to transmit a large number of times, and so died out?</p>
+<p>There are a number of ways to deal with these issues, but the safest, most general, and most straightforward one is to conduct lots of trials and look at the patterns in the results, possibly then taking averages of the trials to find the “expected result” for a given value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>. By repeating the experiment we reduce the influence of chances that “unlikely” combinations of circumstances will sway the answer. A suitably large number of repetitions will often allow us to squeeze out the <span class="target" id="index-10"></span>variance in the results of the individual simulations.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>To professional researchers, anyway: not so much for hobby use, although cloud computing provides access to fairly affordable computing resources.</p>
 </div>
-<p>The disadvantage of this approach is that it involves doing a lot more simulation, which in turn requires more computing power. Fortunately the scale of compute power we need is readily available nowadays, and we can conduct experiments using “clusters” of computers configured identically and each performing a share of the experiments we need doing..</p>
+<p>The disadvantage of this approach is that it involves doing a lot more simulation, which in turn requires more computing power. Fortunately the scale of compute power we need is readily available nowadays, and we can conduct experiments using “clusters” of computers configured identically and each performing a share of the experiments we need doing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-er.json&#39;</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span>
+                      <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-er.json&#39;</span><span class="p">))</span>
 <span class="k">with</span> <span class="n">lab</span><span class="o">.</span><span class="n">sync_imports</span><span class="p">():</span>
     <span class="kn">import</span> <span class="nn">time</span>
     <span class="kn">import</span> <span class="nn">networkx</span>
@@ -308,7 +322,8 @@ importing mpmath on engine(s)
 <span class="c1"># disease parameters</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.002</span>
-<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0002</span><span class="p">,</span>
+                                            <span class="n">num</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -318,7 +333,9 @@ importing mpmath on engine(s)
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">()</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">ERNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
-<span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span>
+                         <span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+                         <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -338,7 +355,8 @@ importing mpmath on engine(s)
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">}$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Epidemic size vs $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">}$&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
@@ -351,8 +369,9 @@ importing mpmath on engine(s)
 <img alt="_images/thresholds_17_0.png" src="_images/thresholds_17_0.png" />
 </div>
 </div>
-<p>What does this show? The two extremes of the curve are easy. Low infectivity (at the left) means that almost none of the poopulation becomes infected, as the disease dies out quickly. High infectivity (at the right) causes almost all the population to become infected – although not quite all, it would seem.</p>
-<p>But what about the middle part of the curve, where it transitions between these extrema? There are two things to notice. Firstly, for each value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> there are a <em>range of possible results</em>, many different possible epidemics that might happen. This is the essence of a stochastic process: you can get different results for the same starting conditions. Remember that we did 10 experiments on each random network, and still we get different answers, so there’s something inherently variable at work. But secondly, notice that for most of the values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> the results are “clustered” into a small line. Remember that we ran experiments on 10 different networks, so there’s clearly also some commonality at work in the process where it gives closely-related (but different) results for different networks and seeds of infection.</p>
+<p>What does this show? Unlike many graphs we see, there are several points corresponding to each value of <span class="math notranslate nohighlight">\(p_{\textit{infect}}\)</span>, each representing the result of a single simulation. The height of the “line” formed by these points is larger for those parameter values that show the highest variance.</p>
+<p>At the two extremes of the curve it’s easy to interpret what’s going on. Low infectivity (at the left) means that almost none of the poopulation becomes infected, as the disease dies out quickly. High infectivity (at the right) causes almost all the population to become infected – although not quite all, it would seem.</p>
+<p>But what about the middle part of the curve, between these extrema? There are two things to notice. Firstly, for each value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, there’s substantially more variance. This is the essence of a <span class="target" id="index-11"></span>stochastic process: you can get different results for the same starting conditions. Remember, we did 10 experiments on each random network and still get different answers, so there’s something inherently variable at work. But secondly, notice that for most of the values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> the results are “clustered” into a small line. Remember that we ran experiments on 10 different networks, so there’s clearly also some commonality at work in the process where it gives closely-related (but different) results for different networks and seeds of infection, even though there’s still variance.</p>
 <p>Let’s zoom-in on part of the curve so see the variation in more detail.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -360,8 +379,10 @@ importing mpmath on engine(s)
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
-<span class="n">pInfects</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">pInfect</span> <span class="o">&gt;</span> <span class="mf">0.00003</span> <span class="ow">and</span> <span class="n">pInfect</span> <span class="o">&lt;</span> <span class="mf">0.00008</span> <span class="k">for</span> <span class="n">pInfect</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]]]</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pInfects</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span> <span class="n">pInfects</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
+<span class="n">pInfects</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">pInfect</span> <span class="o">&gt;</span> <span class="mf">0.00003</span> <span class="ow">and</span> <span class="n">pInfect</span> <span class="o">&lt;</span> <span class="mf">0.00008</span>
+               <span class="k">for</span> <span class="n">pInfect</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]]]</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">pInfects</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">],</span>
+        <span class="n">pInfects</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">],</span> <span class="s1">&#39;r.&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;$p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">}$&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;population that is...&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Epidemic size vs $p_{</span><span class="se">\\</span><span class="s1">mathit</span><span class="si">{infect}</span><span class="s1">}$ (detail)&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
@@ -374,12 +395,12 @@ importing mpmath on engine(s)
 <img alt="_images/thresholds_19_0.png" src="_images/thresholds_19_0.png" />
 </div>
 </div>
-<p>As <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> increases the possible sizes of the epidemic start to vary, from nothing up to maybe a thousand people. As we keep increasing <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> the range keeps increasing, but still with some instances of the epidemic not getting started. But as we <em>keep</em> increasing <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> the epidemic starts being consistently larger, with a smaller chance of it failing to take hold, and the size starts to become more consistent as well. Eventually we have a situation in which around 98% of the experiments result in an epidemic that infects around 60% of the population.</p>
+<p>As <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> increases the possible sizes of the epidemic start to vary, from nothing up to maybe a thousand people. As we keep increasing <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> the range keeps increasing, but still with some instances of the epidemic not getting started. This is shown by the columns of points becoming rather “stretched-out”: sometimes we get an epidemic of about 4000, sometimes we get zero. As we <em>keep</em> increasing <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> the epidemic starts being consistently larger, with a smaller chance of it failing to take hold, and the size starts to become more consistent as well: the variance goes down. Eventually we have a situation in which around 98% of the experiments result in an epidemic that infects around 60% of the population.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Error bars usually show the standard deviation (also called the standard error) of the dataset at that point.</p>
+<p>Error bars usually show the <span class="target" id="index-12"></span>standard deviation (also called the standard error) of the dataset at that point.</p>
 </div>
-<p>We can look at this data slightly differently, by plotting the mean size of epidemic for each value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>: the average of our 100 experiments. But we should also keep track of the errors, and the standard way of doing this is to include error bars on the plot.</p>
+<p>We can look at this data slightly differently, by plotting the average size of the epidemic for each value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>: the average of our 100 experiments. But we should also keep track of the errors, and the standard way of doing this is to include error bars on the plot.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -408,9 +429,10 @@ importing mpmath on engine(s)
 </div>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>The “variance of the variance” is also called the <em>skewness</em>.</p>
+<p>The “variance of the variance” is also called the <em><span class="target" id="index-13"></span>skewness</em>.</p>
 </div>
-<p>So there’s still a lot of variance in the results: we could see that by plotting them “raw”. the error bars just present the same information in a statistical manner. We can also see that the variance changes quite considerably: there’s variance in the variance. Both of these suggest that we should do more experiments to see whether the values converge more closely to cluster around their mean. One advantage of simulation is that we can easily do exactly this, simply by crunching more numbers – a luxury not present in real-world epidemiology.</p>
+<p>So there’s still a lot of variance in the results. The error bars just present the same information in a terms of summary statistics like mean and variance. We can also see that the variance changes quite considerably: there’s variance in the variance. Both of these suggest that we should do more experiments to see whether the values converge more closely to cluster around their mean. One advantage of simulation is that we can easily do exactly this, simply by crunching more numbers – a luxury not present in real-world epidemiology.</p>
+<p>But even if the results do cluster more tightly around the mean, we know from plotting the “raw” results that there’s an important pattern at work by which sometimes, even for infectious disieases, an epidemic fails to happen. This information has been <em>completely lost</em> in the plot of summary statistics: there’s nothing to suggest that a zero-sized epidemic is a possible result. There are ways to present summary statistics that do show this, but it’s important to realise that averaging by its natire hides detail – and that detail may be important.</p>
 </div>
 <div class="section" id="questions-for-discussion">
 <h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>

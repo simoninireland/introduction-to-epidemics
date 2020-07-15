@@ -40,7 +40,6 @@ main.bd-content {
       margin-bottom: 0; }
   main.bd-content #main-content span.eqno {
     float: right;
-    margin: 1em 0em;
     font-size: 1.2em; }
   main.bd-content #main-content div.figure {
     width: 100%;
@@ -64,21 +63,6 @@ main.bd-content {
       font-weight: bold; }
     main.bd-content #main-content div.figure span {
       font-size: .9em; }
-  main.bd-content #main-content div.alert {
-    padding-bottom: .75em; }
-    main.bd-content #main-content div.alert p:last-child {
-      margin-bottom: 0; }
-    main.bd-content #main-content div.alert p.admonition-title {
-      margin-bottom: .2em;
-      font-weight: bold; }
-      main.bd-content #main-content div.alert p.admonition-title::after {
-        font-family: "Font Awesome 5 Free";
-        margin-left: 0.5em;
-        font-weight: 900;
-        content: "\f06a"; }
-    main.bd-content #main-content div.alert.alert-warning p.admonition-title::after {
-      content: "\f071";
-      color: red; }
   main.bd-content #main-content dl.glossary dd {
     margin-left: 1.5em; }
   main.bd-content #main-content div.contents {
@@ -118,6 +102,12 @@ div.cell div.cell_output {
 div.cell.tag_output_scroll div.cell_output {
   max-height: 24em;
   overflow-y: auto; }
+
+.toggle.admonition button.toggle-button {
+  top: 0.5em !important; }
+
+button.toggle-button-hidden:before {
+  bottom: 0.2em !important; }
 
 div.sidebar, div.margin, div.margin-caption p.caption, .cell.tag_popout, .cell.tag_margin {
   width: 40%;
@@ -176,6 +166,13 @@ blockquote {
 div.highlight {
   background: none; }
 
+.thebelab-cell {
+  border: none !important; }
+
+button.thebe-launch-button {
+  height: 2.5em;
+  font-size: 1em; }
+
 /*********************************************
 * Top Bar *
 *********************************************/
@@ -196,10 +193,13 @@ div.highlight {
     margin: 0 .1em;
     background-color: white;
     color: #5a5a5a;
-    font-size: 1.4em;
     border: none;
     padding-top: .1rem;
-    padding-bottom: .1rem; }
+    padding-bottom: .1rem;
+    font-size: 1.4em; }
+    .topbar .topbar-main button.topbarbtn i.fab {
+      vertical-align: baseline;
+      line-height: 1; }
   .topbar .topbar-main div.dropdown-buttons-trigger, .topbar .topbar-main a.edit-button, .topbar .topbar-main a.full-screen-button {
     float: right; }
 
@@ -216,9 +216,13 @@ span.topbar-button-text {
 div.dropdown-buttons-trigger div.dropdown-buttons {
   display: none;
   position: absolute;
-  max-width: 120px;
+  max-width: 130px;
   margin-top: .2em;
   z-index: 1000; }
+  div.dropdown-buttons-trigger div.dropdown-buttons.sourcebuttons .topbarbtn i {
+    padding-right: 6px;
+    margin-left: -5px;
+    font-size: .9em !important; }
   div.dropdown-buttons-trigger div.dropdown-buttons button.topbarbtn {
     padding-top: .35rem;
     padding-bottom: .35rem;
@@ -350,11 +354,11 @@ button.topbarbtn img {
     font-size: 1.1em;
     color: black;
     text-align: center; }
-  .bd-sidebar p.navbar_footer {
+  .bd-sidebar div.navbar_extra_footer {
     text-align: center;
     font-size: .9em;
-    padding-top: .5em;
-    color: #5a5a5a; }
+    color: #5a5a5a;
+    margin-bottom: 3em; }
   .bd-sidebar.collapsing {
     border: none;
     overflow: hidden;
@@ -435,37 +439,6 @@ nav.bd-links {
 *********************************************/
 .prev-next-bottom {
   height: 3em; }
-
-.thebelab-cell {
-  position: relative;
-  z-index: 999;
-  border: 0 !important;
-  border-radius: 0 !important;
-  margin-top: 0 !important;
-  margin-bottom: 8px !important; }
-
-.thebelab-button {
-  z-index: 999;
-  display: inline-block;
-  padding: 0.35em 1.2em;
-  margin: 0px 1px;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 300;
-  text-align: center;
-  transition: all 0.2s;
-  background-color: #dddddd;
-  border: 0.05em solid white;
-  color: #000000; }
-
-.thebelab-button:hover {
-  border: 0.05em solid black;
-  background-color: #fcfcfc; }
-
-div.jp-OutputArea-output {
-  padding: 5px; }
 
 /*********************************************
 * Print-specific CSS *

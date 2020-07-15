@@ -25,7 +25,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -67,9 +67,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
   </li>
@@ -132,7 +129,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -147,46 +146,56 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/er.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Edit this page -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/er.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
-        <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-            <div class="dropdown-buttons">
-                
-                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/er.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
-                
-                
-                
-            </div>
-        </div>
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 <div class="tocsection onthispage pt-5 pb-3">
@@ -231,45 +240,41 @@
                 
   <div class="section" id="making-fewer-connections">
 <h1>Making fewer connections<a class="headerlink" href="#making-fewer-connections" title="Permalink to this headline">¶</a></h1>
-<p>If the complete graph is a representation of complete mixing, how do we represent “incomplete” mixing? With an <em>incomplete</em> graph, obviously…</p>
+<p>If the <span class="target" id="index-0"></span>complete graph is a representation of <span class="target" id="index-1"></span>complete mixing, how do we represent “incomplete” mixing? With an <em>incomplete</em> graph, obviously…</p>
 <p>Of course while there can only be one complete graph with a given number of nodes, once we start talking about incomplete graphs we have a huge number of options. We could have a network with <em>no</em> edges. (How would an epidemic spread over this network?) Or we could have a network that had a very uneven distribution of edges. Perhaps we could even extract a “real” social network from facebook or Twitter data.</p>
-<p>The structure of a network is referred to mathematically as its <strong><span class="target" id="index-0"></span>topology</strong>. You can think of this as being “the way it’s connected” What we’re talking about, then, is exploring how the <span class="target" id="index-1"></span>SIR process spreads over networks with different topologies.</p>
+<p>The structure of a network is referred to mathematically as its <strong><span class="target" id="index-2"></span>topology</strong>. You can think of this as being “the way it’s connected” What we’re talking about, then, is exploring how the <span class="target" id="index-3"></span>SIR process spreads over networks with different topologies.</p>
 <div class="section" id="characterising-a-network-s-topology">
 <h2>Characterising a network’s topology<a class="headerlink" href="#characterising-a-network-s-topology" title="Permalink to this headline">¶</a></h2>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>In the networks we’ll be considering for now the degree of a node is fixed when the network is created. Later on when we encounter adaptive networks degree itself becomes a process that changes with time.</p>
 </div>
-<p>Since we have a range of different topologies, we’ll need some way of describing their properties so thhat we can tell them apart. There are a huge number of such <strong><span class="target" id="index-2"></span>graph metrics</strong> that have been developed, and we’ll encounter a few them in the course of this book. For the time being, we’ll start with the most influential number, the <strong><span class="target" id="index-3"></span>degree</strong> of a node, which is simply the number of edges intersecting each node. Each node has its own degree. In your social network, the degree of the node that represents you is simply the number of people you’re connected to. The degree of a node is usually denoted <span class="math notranslate nohighlight">\(k\)</span>, for no particular reason.</p>
+<p>Since we have a range of different topologies, we’ll need some way of describing their properties so that we can tell them apart. There are a huge number of such <strong><span class="target" id="index-4"></span>graph metrics</strong> that have been developed, and we’ll encounter a few of them in the course of this book. For the time being, we’ll start with the most influential number, the <strong><span class="target" id="index-5"></span>degree</strong> of a node, which is simply the number of edges intersecting each node. Each node has its own degree. In your social network, the degree of the node that represents you is simply the number of people you’re connected to. The degree of a node is usually denoted <span class="math notranslate nohighlight">\(k\)</span>, for no particular reason.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p><span class="math notranslate nohighlight">\(\langle k \rangle\)</span> is usually pronounced “k mean”.</p>
+<p><span class="math notranslate nohighlight">\(\langle k \rangle\)</span> is usually pronounced “<span class="target" id="index-6"></span>k mean”.</p>
 </div>
-<p>For a given network we can enumerate the degrees of every node, but that’s clearly not going to be very useful for a large network: you wouldn’t be able to extract any useful information from the large list of numbers. But we can derive statistics from such lists. The most important is the <strong><span class="target" id="index-4"></span>mean degree</strong>, the “average” degree of a node, denoted <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>. While the degree of every node has to be an integer (you can’t have half a friend), the mean degree of the population overall will typically be a real number.</p>
-<p>For the <span class="target" id="index-5"></span>complete graph every node has exactly the same degree, being one less that the number of nodes in the network, since there’s an edge between every node and every other (except itself). This means that <span class="math notranslate nohighlight">\(k\)</span> is always <span class="math notranslate nohighlight">\((N - 1)\)</span> for every node, and therefore so is <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>.</p>
+<p>For a given network we can enumerate the degrees of every node, but that’s clearly not going to be very useful for a large network: you wouldn’t be able to extract any useful information from the large list of numbers. But we can derive statistics from such lists. The most important is the <strong><span class="target" id="index-7"></span>mean degree</strong>, the “average” degree of a node, denoted <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>. While the degree of every node has to be an integer (you can’t have half a friend), the mean degree of the population overall will typically be a real number.</p>
+<p>For the <span class="target" id="index-8"></span>complete graph every node has exactly the same degree, being one less that the number of nodes in the network, since there’s an edge between every node and every other (except itself). This means that <span class="math notranslate nohighlight">\(k\)</span> is always <span class="math notranslate nohighlight">\((N - 1)\)</span> for every node, and therefore so is <span class="math notranslate nohighlight">\(\langle k \rangle\)</span>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>If this use of the word “distribution” sounds like it should be connected to probability theory – it is. The degree histogram is a shows the relative numbers of nodes with each different degree, and so defines the probability of randomly choosing a node with degree <span class="math notranslate nohighlight">\(k\)</span>. <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> is then the expected value of the degree.</p>
+<p>If this use of the word “distribution” sounds like it should be connected to probability theory – it is. The degree histogram shows the relative numbers of nodes with each different degree, and so defines the probability of randomly choosing a node with degree <span class="math notranslate nohighlight">\(k\)</span>. <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> is then the expected value of the degree.</p>
 </div>
-<p>In general things will be more complicated. The degrees of nodes in a network form a <strong><span class="target" id="index-6"></span>degree distribution</strong>, which we can plot as a histogram to show the number of nodes with each degree (we do this below). If we use <span class="math notranslate nohighlight">\(N\)</span> to represent the number of nodes in the network, we’ll use <span class="math notranslate nohighlight">\(N_k\)</span> to represent the number of nodes with degree <span class="math notranslate nohighlight">\(k\)</span>. Then we can compute <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> very easily from this distibution, by summing up the numbers of ndoes with each degree and then dividing by the number of nodes.</p>
+<p>In general things will be more complicated. The degrees of nodes in a network form a <strong><span class="target" id="index-9"></span>degree distribution</strong>, which we can plot as a histogram to show the number of nodes with each degree (we do this below). If we use <span class="math notranslate nohighlight">\(N\)</span> to represent the number of nodes in the network, we’ll use <span class="math notranslate nohighlight">\(N_k\)</span> to represent the number of nodes with degree <span class="math notranslate nohighlight">\(k\)</span>. Then we can compute <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> very easily from this distibution, by summing up the numbers of ndoes with each degree and then dividing by the number of nodes.</p>
 <div class="math notranslate nohighlight">
 \[
     \langle k \rangle = \frac{\sum_k N_k}{N}
 \]</div>
-<p>There are a lot of other metrics that we could consider, but the degree distribution is the most important and well-studied. It’s not the whole story, however, because there are will be a <em>lot</em> of different networks with the <em>same</em> degree distribution and mean degree, depending on exactly how the edges trhat intersect each node connect to other nodes. So while one side of network toppology is captured by statistics, there’s another side that concerns the details of which nodes are <strong><span class="target" id="index-7"></span>adjacent</strong> to each other by having an edge between them: it matters who your friends are, not just how many you have. We sometimes call the set of nodes adjacent to a node its <strong><span class="target" id="index-8"></span>neighbours</strong>.</p>
+<p>There are a lot of other metrics that we could consider, but the degree distribution is the most important and well-studied. It’s not the whole story, however, because there are will be a <em>lot</em> of different networks with the <em>same</em> degree distribution and mean degree, depending on exactly how the edges that intersect each node connect to other nodes. So while one side of network toppology is captured by statistics, there’s another side that concerns the details of which nodes are <strong><span class="target" id="index-10"></span>adjacent</strong> to each other by having an edge between them: it matters <em>who</em> your friends are, not just <strong>how many</strong> you have. We sometimes call the set of nodes adjacent to a node its <strong><span class="target" id="index-11"></span>neighbours</strong>.</p>
 </div>
 <div class="section" id="er-networks">
-<h2>ER networks<a class="headerlink" href="#er-networks" title="Permalink to this headline">¶</a></h2>
-<p>Let’s start with one of the simplest non-complete topologies. This topology was initially explored in depth in the late 1950’s by Paul Erdős and Alfred Rényi <a class="bibtex reference internal" href="zbibliography.html#er59" id="id1">[6]</a>. They called their approach “random graphs”, but that’s a slightly misleading name: we can produce “random” networks with <em>any</em> topology as we saw above. Fortunately the influence of Erdős and Rényi has been so profound that networks of this type are now referred to as <strong>Erdős-Rényi</strong> or <strong><span class="target" id="index-9"></span>ER networks</strong>.</p>
+<span id="sec-er-network"></span><h2>ER networks<a class="headerlink" href="#er-networks" title="Permalink to this headline">¶</a></h2>
+<p>Let’s start with one of the simplest non-complete topologies. This topology was initially explored in depth in the late 1950’s by Paul Erdős and Alfred Rényi <a class="bibtex reference internal" href="zbibliography.html#er59" id="id1">[6]</a>. They called their approach “random graphs”, but that’s a slightly misleading name: we can produce “random” networks with <em>any</em> topology as we saw above. Fortunately the influence of Erdős and Rényi has been so profound that networks of this type are now referred to as <strong>Erdős-Rényi</strong> or <strong><span class="target" id="index-12"></span>ER networks</strong>.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Alfred Rényi`, the other half of the partnership, was a noted mathematician whose other work has been
-rather overshadowed by his wonderfully productive association with Erdős. He was also responsible for the definition of a mathematician as “a machine for turning coffee into theorems”.</p>
+<p>Alfred Rényi, the other half of the partnership, was a noted mathematician whose very significant other work has been rather overshadowed by his wonderfully productive association with Erdős. He was responsible for the definition of a mathematician as “a machine for turning coffee into theorems”.</p>
 </div>
-<p>(Paul Erdős (pronounced “AIR-dish”) was the most prolific mathematician of the 20th
-century. A peripatetic genius, he owned essentially nothing and
-travelled between university mathematics schools seeking problems to work on.
-His biography <a class="bibtex reference internal" href="zbibliography.html#hof98" id="id2">[10]</a> provides a fascinating insight into mathematical life.)</p>
+<p>(Paul Erdős (pronounced “AIR-dish”) was the most prolific mathematician of the 20th century. A peripatetic genius, he owned essentially nothing and travelled between university mathematics schools seeking problems to work on. He’s also very “central” in the network of mathematical co-authors, where someone’s “Erdős number” measures the number of co-authorships between them and Erdős. (Smaller in better.) His biography <a class="bibtex reference internal" href="zbibliography.html#hof98" id="id2">[10]</a> provides a fascinating insight into mathematical life.)</p>
 <p>The idea of an ER network is that there exists an edge between any pair of nodes with some fixed probability, and the existence of any edge is independent of the existence of any other.</p>
 <div class="section" id="building-er-networks">
 <span id="sec-er-building"></span><h3>Building ER networks<a class="headerlink" href="#building-er-networks" title="Permalink to this headline">¶</a></h3>
@@ -277,11 +282,12 @@ His biography <a class="bibtex reference internal" href="zbibliography.html#hof9
 <p class="sidebar-title"></p>
 <p>Again, in the literature <span class="math notranslate nohighlight">\(p_{edge}\)</span> is usually denoted <span class="math notranslate nohighlight">\(\phi\)</span>.</p>
 </div>
-<p>From this simple description of the degree distribution, an ER network is also very simple to build. Pick a number of nodes <span class="math notranslate nohighlight">\(N\)</span>, and build the complete graph <span class="math notranslate nohighlight">\(K_N\)</span>. Remember that the complete graph has an edge between every pair of nodes. Now pick a parameter <span class="math notranslate nohighlight">\(p_{edge}\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. Work through all the edges, and for each edge pick a random number <span class="math notranslate nohighlight">\(s\)</span> between <span class="math notranslate nohighlight">\(0\)</span> ands <span class="math notranslate nohighlight">\(1\)</span>. If <span class="math notranslate nohighlight">\(s \le p_{edge}\)</span> then keep the edge; if <span class="math notranslate nohighlight">\(s \gt p_{edge}\)</span>, remove it. You’ll end up with a network in which there’s an edge between each pair of nodes with a probability <span class="math notranslate nohighlight">\(p_{edge}\)</span>. If <span class="math notranslate nohighlight">\(p_{edge} = 1\)</span> we have the complete graph (we <em>always</em> keep an edge); if <span class="math notranslate nohighlight">\(p_{edge} = 0\)</span> we have the empty graph (we <em>never</em> keep an edge); and for values in between we have a more or less sparse collection of edges.</p>
+<p>From this simple description of the degree distribution, an ER network is also very simple to build. Pick a number of nodes <span class="math notranslate nohighlight">\(N\)</span>, and build the complete graph <span class="math notranslate nohighlight">\(K_N\)</span>. Remember that the complete graph has an edge between every pair of nodes. Now pick a parameter <span class="math notranslate nohighlight">\(p_{edge}\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. Work through all the edges, and for each edge pick a random number <span class="math notranslate nohighlight">\(s\)</span> between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(1\)</span>. If <span class="math notranslate nohighlight">\(s \le p_{edge}\)</span> then keep the edge; if <span class="math notranslate nohighlight">\(s &gt; p_{edge}\)</span>, remove it. You’ll end up with a network in which there’s an edge between each pair of nodes with a probability <span class="math notranslate nohighlight">\(p_{edge}\)</span>. If <span class="math notranslate nohighlight">\(p_{edge} = 1\)</span> we have the complete graph (we <em>always</em> keep an edge); if <span class="math notranslate nohighlight">\(p_{edge} = 0\)</span> we have the empty graph (we <em>never</em> keep an edge); and for values in between we have a more or less sparse collection of edges.</p>
 <p>Drawing the result can help get the idea straight.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                          <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">))</span>
 
 <span class="c1"># a small network to visualise</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">20</span>
@@ -315,7 +321,7 @@ His biography <a class="bibtex reference internal" href="zbibliography.html#hof9
 <p>We sometimes denote the ER network with <span class="math notranslate nohighlight">\(N\)</span> nodes and a connection probability <span class="math notranslate nohighlight">\(p_{edge}\)</span> by <span class="math notranslate nohighlight">\(G_{N, p_{edge}}\)</span>.</p>
 </div>
 <p>At the top left where <span class="math notranslate nohighlight">\(p_{edge}\)</span> is small, we have very few edges: 5% of the possible total, in fact. As we progress towards the bottom right the network gets more and more dense, until at 99% of the possible edges it’s quite hard to spot that any are actually missing at all.</p>
-<p>What is <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> for this topology? The answer turns out to be quite simple. An ER network has <span class="math notranslate nohighlight">\(\langle k \rangle = \frac{p_{edge}}{N}\)</span>. Moreover the degree distribution – the number of nodes with more, or less, edges than the mean, is a <strong>normal</strong> distribution, the “<span class="target" id="index-10"></span>bell curve” we see in many phenomena.</p>
+<p>What is <span class="math notranslate nohighlight">\(\langle k \rangle\)</span> for this topology? The answer turns out to be quite simple. An ER network has <span class="math notranslate nohighlight">\(\langle k \rangle = \frac{p_{edge}}{N}\)</span>. Moreover the degree distribution – the number of nodes with more, or less, edges than the mean, is a <strong>normal</strong> distribution, the “<span class="target" id="index-13"></span>bell curve” we see in many phenomena.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
@@ -346,7 +352,7 @@ His biography <a class="bibtex reference internal" href="zbibliography.html#hof9
 <img alt="_images/er_11_0.png" src="_images/er_11_0.png" />
 </div>
 </div>
-<p>So about one-third of the nodes (about 675) have a <span class="target" id="index-11"></span>degree around the <span class="target" id="index-12"></span>mean (40), with the number of nodes having more (or less) neighbours dropping off on either side of the mean. There are very few nodes with degrees in single figures, and very few with degrees of twice the mean – and none with really large degree. In fact for any network there will be a <strong>minimum degree</strong> <span class="math notranslate nohighlight">\(k_{min}\)</span> and a <strong>maximum degree</strong> <span class="math notranslate nohighlight">\(k_{max}\)</span>. The ER network’s degree distribution says that the maximum degree is never “too far” from the mean.</p>
+<p>So about one-third of the nodes (about 675) have a <span class="target" id="index-14"></span>degree around the <span class="target" id="index-15"></span>mean (40), with the number of nodes having more (or less) neighbours dropping off on either side of the mean. There are very few nodes with degrees in single figures, and very few with degrees of twice the mean – and none with really large degree. In fact for any network there will be a <strong>minimum degree</strong> <span class="math notranslate nohighlight">\(k_{min}\)</span> and a <strong>maximum degree</strong> <span class="math notranslate nohighlight">\(k_{max}\)</span>. The ER network’s degree distribution says that the maximum degree is never “too far” from the mean.</p>
 </div>
 </div>
 <div class="section" id="epidemic-spreading-on-er-networks">

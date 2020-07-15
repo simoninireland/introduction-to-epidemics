@@ -25,7 +25,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -67,9 +67,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
   </li>
@@ -132,7 +129,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -147,46 +146,56 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/herd.ipynb.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.ipynb</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Edit this page -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/herd.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
-        <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-            <div class="dropdown-buttons">
-                
-                <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/herd.ipynb"><button type="button" class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip" data-placement="left"><img class="binder-button-logo" src="_static/images/logo_binder.svg" alt="Interact on binder">Binder</button></a>
-                
-                
-                
-            </div>
-        </div>
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 <div class="tocsection onthispage pt-5 pb-3">
@@ -229,36 +238,39 @@
                 
   <div class="section" id="herd-immunity">
 <h1>Herd immunity<a class="headerlink" href="#herd-immunity" title="Permalink to this headline">¶</a></h1>
-<p>Epidemics pass through populations by infecting the susceptible. In doing so they change the details of the population, leaving behind a trace of the epidemic’s passing. In a real epidemic this includes the human cost of the  infections and deaths that occur. But it also includes other, more epidemiological, traces that include a change in the proportion of the population who remain susceptible to re-infection.</p>
+<p>Epidemics pass through populations by infecting the susceptible. In doing so they change the details of the population, leaving behind a trace of the epidemic’s passing in the changed biology of those who were infected. In a real epidemic this includes the human cost of the infections and deaths that occur. But it also includes other, more epidemiological, traces such a change in the proportion of the population who remain susceptible to subsequent infection.</p>
 <div class="section" id="immunity">
 <span id="sec-herd-immunity"></span><h2>Immunity<a class="headerlink" href="#immunity" title="Permalink to this headline">¶</a></h2>
-<p>By <strong>immunity</strong> we mean making an individual impervious to future infection by the disease. Immunity is conferred on an individual in three main ways.</p>
+<p>By <strong><span class="target" id="index-0"></span>immunity</strong> we mean making an individual impervious to future infection by the disease. Immunity is conferred on an individual in three main ways.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Note that this isn’t quite the same as saying that the immune individual can’t be re-infected. They <em>are</em> re-infected, but defeat that infection far more efficiently than does a “normal” individual.</p>
+<p>This isn’t quite the same as saying that the immune individual can’t be re-infected. They <em>are</em> re-infected, but defeat that infection far more efficiently than does a “normal” individual.</p>
 </div>
 <p>The simplest way to acquire immunity is to have had the disease before. Having been exposed to (and presumably defeated) the disease pathogen, the immune system stores information about the necessary response. If exposed to the pathogen again, the immune system is able to respond more quickly by having been sensitised to the pathogen. This means that the immune response starts more quickly after exposure, with less pathogen to contend with, and often means that the individual never becomes symptomatic.</p>
+<p>For some diseases, an infection confers immunity on the pre-natal children of any mothers who are infected. This is a clever piece of evolution that means that children born into the midst of an epidemic are often immune to the disease to which their mother was exposed.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>Most diseases pathogens can’t cross the placental barrier and so the mother doesn’t infect the child.</p>
+<p>Many diseases pathogens can’t cross the placental barrier, so the mother doesn’t infect the child but can still pass on her acquired immunity.</p>
 </div>
-<p>For some diseases, an infection confers immunity on the pre-natal children of any mothers who are infected. This is a clever piece of evolution that means that children born into the midst of an epidemic are often immune to the disease if their mother was exposed.</p>
-<p>The widespread use of vaccines in the modern world for serious diseases is the final way to confer immunity. A vaccine essentially just pre-sensitises a person’s immune system in the same way that a pre-occurring infection would do – but without the disadvantage of making the person sick in the first place.</p>
+<p>The widespread use of vaccines in the modern world for serious diseases is the final way to confer immunity. A <span class="target" id="index-1"></span>vaccine essentially just pre-sensitises a person’s immune system in the same way that a pre-occurring infection would do, <a class="reference internal" href="vaccination.html"><span class="doc">changing their individual susceptibility</span></a> without the disadvantage of making them sick.</p>
 </div>
 <div class="section" id="sec-herd-herd-immunity">
 <span id="id1"></span><h2>Herd immunity<a class="headerlink" href="#sec-herd-herd-immunity" title="Permalink to this headline">¶</a></h2>
-<p>If immunity is the inability of an individual to contract a disease, then <strong>herd immunity</strong> is the corresponding property for a population that can’t contract an epidemic of the disease. More precisely, in a herd-immune population any outbreak of the disease will tend to die out quickly without infecting a large proportion of the population.</p>
-<p>To understand herd immunity we need to return to the initial notions we had of how an epidemic persists in a population. We saw that <a class="reference internal" href="tracing.html#sec-tracing-contact-trees"><span class="std std-ref">contact trees</span></a> capture the case reproduction number <span class="math notranslate nohighlight">\(R\)</span> of an ongoing epidemic. We also <a class="reference internal" href="progress.html#sec-progress-r-care"><span class="std std-ref">saw</span></a> that if  <span class="math notranslate nohighlight">\(R \ge 1\)</span> then the epidemic continues, as the next generation of cases is at least the same size as the previous one. If, however, <span class="math notranslate nohighlight">\(R\)</span> falls and remains below 1, then the size of the next generation is smaller than the previous one, and if this trend continues then the disease will die out.</p>
-<p>Herd immunity occurs when <span class="math notranslate nohighlight">\(R \ll 1\)</span> so that any epidemic never gets started. More importantly, it means that if an epidemic re-starts through the disease being re-introduced, it won’t get re-started.</p>
-<p>This doesn’t mean that no-one ever gets infected in a herd-immune population: it’s perfectly possible for people to come into contact with infected individuals from outside, and to become infected themselves if they aren’t personally immune. But the disease doesn’t spread from them into the rest of the population.</p>
-<p>How does this come about? When discussing <span class="math notranslate nohighlight">\(R\)</span> we <a class="reference internal" href="progress.html#sec-progress-r0"><span class="std std-ref">saw</span></a> that the case reproduction number is affected by three things: the duration of infectiousness, the probability of disease transmission per contact, and the rate of contacts between infected and susceptible individuals. The first two are properties of the disease, while the second is a property of the environment in which it finds itself. A herd-immune population is one in which the number of contacts between susceptible and infected individuals is too low to sustain an outbreak. Essentially herd immunity uses the topology of the contact network to reduce the value of <span class="math notranslate nohighlight">\(R\)</span> below the critical threshold of 1.</p>
+<p>If immunity is the inability of an individual to contract a disease, then <strong><span class="target" id="index-2"></span>herd immunity</strong> is the corresponding property for a population that can’t undergo an epidemic of the disease. More precisely, in a herd-immune population any outbreak of the disease will tend to die out quickly without infecting a large fraction of the population.</p>
+<p>To understand herd immunity we need to return to the initial notions we had of how an epidemic grows and persists in a population. We saw that <a class="reference internal" href="tracing.html#sec-tracing-contact-trees"><span class="std std-ref">contact trees</span></a> capture the <span class="target" id="index-3"></span>case reproduction number <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> of an ongoing epidemic. We also <a class="reference internal" href="progress.html#sec-progress-r-care"><span class="std std-ref">saw</span></a> that if  <span class="math notranslate nohighlight">\(\mathcal{R} \ge 1\)</span> then the epidemic continues, as the next generation of cases is at least the same size as the previous one. If, however, <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> falls and remains below 1, then the size of the next generation is smaller than the previous one, and if this trend continues then the disease will die out.</p>
+<p>Herd immunity occurs when <span class="math notranslate nohighlight">\(\mathcal{R} \ll 1\)</span> so that any epidemic never gets started. More importantly, it means that if an epidemic re-starts through the disease being re-introduced, it won’t get re-started. This doesn’t mean that no-one ever gets infected in a herd-immune population: it’s perfectly possible for people to come into contact with infected individuals from outside, and to become infected themselves if they aren’t personally immune. But the disease doesn’t spread from them into the rest of the population.</p>
+<p>How does this come about? When discussing <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> we <a class="reference internal" href="progress.html#sec-progress-r0"><span class="std std-ref">saw</span></a> that it is affected by three things: the duration of infectiousness, the probability of disease transmission per contact, and the rate of contacts between infected and susceptible individuals. The first two are properties of the disease, while the second is a property of the environment in which it finds itself. A herd-immune population is one in which the number of contacts between susceptible and infected individuals is too low to sustain an outbreak, because there are too few susceptibles around. Essentially herd immunity fragments the topology of the <span class="target" id="index-4"></span>contact network to reduce the value of <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> below the critical threshold of 1.</p>
 </div>
 <div class="section" id="epidemics-on-a-residual-network">
 <h2>Epidemics on a residual network<a class="headerlink" href="#epidemics-on-a-residual-network" title="Permalink to this headline">¶</a></h2>
-<p>We can model the effects of herd immunity by using the idea of a disease <em>repeatedly</em> being introduced to the <em>same</em> contact network. We let the disease run through the population, and then note that, for SIR infections, anyone who has been removed from the population cannot be re-infected, and indeed takes no further part in the disease dynamics. We are left with a <strong>residual network</strong> into which we re-introduce the same disease and see what happens.</p>
-<p>The important thing to notice is that the second epidemic is caused by the re-introduction of the <em>same</em> disease, with the same infectiousness and period of infection. Will this instance of the disease spread? – only if the residual network is such that the disease can get hold in it. If the first epidemic caused enough nodes to be removed, then this may prevent a second epidemic in the same population (or, more accurately, in a large sub-set of the population who weren’t infected the first time).</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>There are other disease models such as <span class="target" id="index-5"></span>SIS in which people become susceptible again after infection, and these can be used to study <strong>endemic</strong> diseases that remain active over a long time <a class="bibtex reference internal" href="zbibliography.html#sd13" id="id2">[22]</a>.</p>
+</div>
+<p>We can model the effects of herd immunity by using the idea of a disease <em>repeatedly</em> being introduced to the <em>same</em> contact network. We let the disease run through the population, and then note that, for <span class="target" id="index-6"></span>SIR infections, anyone who has been removed from the population cannot be re-infected, and indeed takes no further part in the disease dynamics. We are left with a <strong><span class="target" id="index-7"></span>residual network</strong> into which we re-introduce the disease by <span class="target" id="index-8"></span>seeding it with new infected individuals, and see what happens.</p>
+<p>The important thing to notice is that the second epidemic is caused by the re-introduction of the <em>same</em> disease, with the same infectiousness and period of infection. Will this instance of the disease spread? – only if the residual network is such that the disease can take hold in it. If the first epidemic caused enough nodes to be removed, then this may prevent a second epidemic in the same population (or, more accurately, in a large sub-set of the fraction of the population who weren’t infected the first time).</p>
 <p>This is another way to think about herd immunity. By removing nodes from the population it changes its topology so that disease propagation is no longer possible, or at least occurs at a radically smaller level. Any subsequent outbreaks are in some sense “squashed by the topology” even though the biology of the situation is unchanged.</p>
-<p>For simplicity let’s return to <a class="reference internal" href="er.html"><span class="doc">ER networks</span></a>. (The same arguments work perfectly well on power-law networks too.) We create a small network and run an SIR epidemic over it, choosing disease parameters that we know will create an epidemic.</p>
+<p>For simplicity let’s return to <a class="reference internal" href="er.html"><span class="doc">ER networks</span></a>. (The same arguments work perfectly well on powerlaw networks too.) We create a small network and run an SIR epidemic over it, choosing disease parameters that we know will create an epidemic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">5000</span>
@@ -286,7 +298,7 @@
 <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfected</span>
 <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
 <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
-<span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>      <span class="c1"># take 50 observations</span>
+<span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">DELTA</span><span class="p">]</span> <span class="o">=</span> <span class="n">T</span> <span class="o">/</span> <span class="mi">50</span>
 </pre></div>
 </div>
 </div>
@@ -300,7 +312,7 @@
 </div>
 </div>
 </div>
-<p>We can now see how many nodes were infected in the course of the epidemic (the size of the removed compartment) and how many escaped infection and remain susceptible.</p>
+<p>We can now see how many nodes were infected in the course of the epidemic (the size of the <strong>R</strong> compartment) and how many escaped infection and remain susceptible.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Remaining susceptible </span><span class="si">{s}</span><span class="s1">, removed </span><span class="si">{r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)),</span> <span class="n">r</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">))))</span>
@@ -308,12 +320,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1156, removed 3844
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1376, removed 3624
 </pre></div>
 </div>
 </div>
 </div>
-<p>Quite a large epidemic, but one that left a substantial number uninfected. We now construct the residual network by deleting all the nodes who are (or have been) infected, leaving the susceptibles. We don’t touch the edges between the nodes.</p>
+<p>Quite a large epidemic, but one that left a substantial number uninfected. We now construct the residual network by deleting all the nodes who are (or have been) infected, leaving the susceptibles. We don’t touch the edges between the nodes that remain.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">network</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -331,7 +343,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Order of residual network 1156
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Order of residual network 1376
 </pre></div>
 </div>
 </div>
@@ -398,13 +410,13 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1134, removed 22
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1340, removed 36
 </pre></div>
 </div>
 </div>
 </div>
 <p>So the same disease barely affected any nodes, despite being re-introduced.</p>
-<p>Why is this? The first epidemic changed the topology of the network. Specifically it reduced the mean degree of nodes because so many of the nodes were removed. In doing so it reduced the disease’s opportunities to spread, effectively reducing <span class="math notranslate nohighlight">\(R_0\)</span> below the critical threshold.</p>
+<p>Why is this? The first epidemic changed the topology of the network. Specifically it reduced the mean degree of nodes because so many of the nodes were removed. In doing so it reduced the disease’s opportunities to spread, effectively reducing <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> below the critical threshold.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean degree of initial network </span><span class="si">{kmean}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kmean</span><span class="o">=</span><span class="n">kmean</span><span class="p">))</span>
@@ -414,7 +426,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean degree of initial network 20
-Mean degree of residual network 4.50
+Mean degree of residual network 5.50
 </pre></div>
 </div>
 </div>
@@ -430,12 +442,15 @@ Mean degree of residual network 4.50
 <span class="n">colours</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span>
 <span class="n">colours</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
 
-<span class="c1"># plot the final network of the first epidemic, colouring for compartment</span>
+<span class="c1"># plot the final network of the first epidemic,</span>
+<span class="c1"># colouring for compartment</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">final</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
 <span class="n">pos1</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">drawing</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">random_layout</span><span class="p">(</span><span class="n">final</span><span class="p">)</span>
 <span class="n">ncs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">colours</span><span class="p">[</span><span class="n">m1</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">final</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> <span class="p">]</span>
-<span class="n">networkx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">ncs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">networkx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos1</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                       <span class="n">node_color</span><span class="o">=</span><span class="n">ncs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                       <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="p">[])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;After first epidemic&#39;</span><span class="p">)</span>
 
@@ -443,23 +458,29 @@ Mean degree of residual network 4.50
 <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">final</span> <span class="o">=</span> <span class="n">m2</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
 <span class="n">pos2</span> <span class="o">=</span> <span class="p">{</span> <span class="n">n</span><span class="p">:</span> <span class="n">pos1</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">pos1</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">final</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> <span class="p">}</span>
-<span class="n">networkx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">colours</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">],</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">networkx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                       <span class="n">node_color</span><span class="o">=</span><span class="n">colours</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">],</span>
+                       <span class="n">node_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="p">[])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Residual susceptibles&#39;</span><span class="p">)</span>
 
 <span class="c1"># plot the final network of the second epidemic</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">ncs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">colours</span><span class="p">[</span><span class="n">m2</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">final</span><span class="o">.</span><span class="n">nodes</span><span class="p">()</span> <span class="p">]</span>
-<span class="n">networkx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">ncs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="p">[])</span>
+<span class="n">networkx</span><span class="o">.</span><span class="n">draw_networkx</span><span class="p">(</span><span class="n">final</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos2</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                       <span class="n">node_color</span><span class="o">=</span><span class="n">ncs</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                       <span class="n">with_labels</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="p">[])</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;After second epidemic&#39;</span><span class="p">)</span>
 
 <span class="c1"># fine-tune figure</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;Progress of two epidemics&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.05</span><span class="p">)</span>
 
-<span class="c1"># the figure we&#39;ve created is large -- very large, actually -- because of the large</span>
-<span class="c1"># network. Since we don&#39;t want to create a large notebook, we generate and  save the</span>
-<span class="c1"># file without displaying it and then re-load the saved image</span>
+<span class="c1"># the figure we&#39;ve created is large -- very large,</span>
+<span class="c1"># actually -- because of the large network. Since we</span>
+<span class="c1"># don&#39;t want to create a large notebook, we generate</span>
+<span class="c1"># and save the # file without displaying it and then</span>
+<span class="c1"># re-load the saved image</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;herd-finals.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
 </pre></div>
@@ -467,25 +488,25 @@ Mean degree of residual network 4.50
 </div>
 </div>
 <p><img alt="Herd immunity" src="_images/herd-finals.png" /></p>
-<p>In the left-hand panel we have the network after the first epidemic, with black nodes being those that have been infected. In the middle panel we remove these nodes, leaving only the residual susceptibles: we’ve not drawn the connections for reasons of scale. In the right-hand panel we show the network after the second epidemic – look carefully to find the nodes that were infected! The visual first impression is what’s important, though: after the first epidemic the network had been mostly infected, but after the second it was largely untouched despite the fact that the same disease was introduced both times. The population has been rendered herd-immune by its first brush with the disease.</p>
+<p>In the left-hand panel we have the network after the first epidemic, with black nodes being those that have been infected. In the middle panel we remove these nodes, leaving only the residual susceptibles. (We’ve not drawn the edges for reasons of scale.) In the right-hand panel we show the network after the second epidemic – look carefully to find the nodes that were infected! The visual first impression is what’s important, though: after the first epidemic the network had been mostly infected, but after the second it was largely untouched despite the fact that the same disease was introduced both times. The population has been rendered herd-immune by its first brush with the disease. Even though some people were infected, the disease never took hold a second time.</p>
 </div>
 <div class="section" id="the-complexities-of-immunity">
 <span id="sec-herd-complexity"></span><h2>The complexities of immunity<a class="headerlink" href="#the-complexities-of-immunity" title="Permalink to this headline">¶</a></h2>
 <p>This description makes things sound simple. Infecting the population once means that they can’t, as a body, be infected again, and so the risks of subsequent disease outbreaks are minimised.</p>
 <p>Not quite. There are more things we need to consider.</p>
-<p>Firstly, and most importantly, gaining herd immunity through infection means that a lot of people have to become sick. Depending on the disease, that can result in a lot of misery and a lot of death. We glossed-over the difference between these two factors in using SIR as our disease model, but we need to remember that “removed” (in the SIR sense)  includes those who recovered and those who died – neither of whom, in this simple model, take any further part in this or future epidemics.</p>
-<p>While the difference between recovered and dead therefore doesn’t matter mathematically, it matters a lot to the individuals concerned – or rather, it matters to those who survive. If a disease with a low death rate infects 60% of a population that still means a <em>lot</em> of deaths.</p>
-<p>Secondly, a further assumption of SIR is that immunity is a binary thing: one is <em>either</em> susceptible <em>or</em> removed, and if susceptible one is <em>entirely</em> susceptible and if removed one is <em>completely</em> removed. These assumptions aren’t an accurate model of many diseases.</p>
-<p>In many diseases, infection by the disease confers only <strong>partial immunity</strong> to further infection. Essentially this decreases an individual’s own personal probability <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, making them less likely to be infected at subsequent encounters.</p>
-<p>In other diseases. infection confers <strong>temporary immunity</strong> so that an individual’s <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> changes with time, perhaps dropping to zero immediately after recovery and rising over time. The exact way in which immunity decays may be different too, perhaps rising steadily or perhaps jumping, and perhaps eventually reaching a “normal” level as though the first infection hadn’t occurred. And of course one can always have the case of <strong>temporary partial immunity</strong> that combines the features of both.</p>
-<p>To all these complexities we also need to add uncertainty. In an epidemic of a new disease we almost certainly <em>don’t know</em> what, if any, immunity infection confers. This implies that we don’t know whether a recurrence of the disease will result in another epidemic or not.</p>
+<p>Firstly, and most importantly, gaining herd immunity through infection means that a lot of people have to become sick. Depending on the disease, that can result in a lot of misery and a lot of death. We glossed-over the difference between these two factors in using SIR as our disease model, but we need to remember that “removed” (in the SIR sense)  includes both those who recovered and those who died – neither of whom, in this simple model, take any further part in this or future epidemics.</p>
+<p>While the difference between being recovered and being dead therefore doesn’t matter mathematically, it matters a lot to the individuals concerned – or rather, it matters to those who survive. If a disease with even a low death rate infects 60% of a population that still potentially means a <em>lot</em> of deaths.</p>
+<p>Secondly, a further assumption of SIR is that immunity is a binary event: one is <em>either</em> susceptible <em>or</em> removed, and if susceptible one is <em>entirely</em> susceptible and if removed one is <em>completely</em> removed. If one becomes infected, one switches instantaneously between these two classes. These assumptions aren’t an accurate model of real diseases.</p>
+<p>In many diseases, infection by the disease confers only <strong><span class="target" id="index-9"></span>partial immunity</strong> to further infection. Essentially this decreases an individual’s own personal probability <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>, making them less likely to be infected at subsequent encounters.</p>
+<p>In other diseases, infection confers <strong>temporary immunity</strong> so that an individual’s <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> changes with time, perhaps dropping to zero immediately after recovery and rising over time. The exact way in which immunity decays may be different too, perhaps rising steadily or perhaps jumping, and perhaps eventually reaching a “normal” level as though the first infection hadn’t occurred. And of course one can always have the case of <strong>temporary partial immunity</strong> that combines the features of both.</p>
+<p>To these complexities we also need to add uncertainty. In an epidemic of a new disease we almost certainly <em>don’t know</em> what, if any, immunity infection confers. This implies that we don’t know whether a recurrence of the disease will result in another epidemic or not.</p>
 <p>All this means that achieving herd immunity isn’t a viable strategy for managing new diseases with large potential epidemic sizes, even if they’re known (or assumed) to have relatively low mortality rates. A tiny fraction of a huge number can still be considerable. Fortunately herd immunity is not the only management strategy we have available to us.</p>
 </div>
 <div class="section" id="questions-for-discussion">
 <h2>Questions for discussion<a class="headerlink" href="#questions-for-discussion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>How would you work out whether a particular disease conferred full immunity, or only partial immunity?</p></li>
-<li><p>Is partial immunity any help in managing a disease? – it still leave speople at risk after infection</p></li>
+<li><p>Is partial immunity any help in managing a disease? – it still leaves people at risk after infection</p></li>
 </ul>
 </div>
 </div>

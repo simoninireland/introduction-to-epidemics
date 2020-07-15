@@ -25,7 +25,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -67,9 +67,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="active">
     <a href="">Models and modelling</a>
   </li>
@@ -132,7 +129,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -147,35 +146,56 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-            <div class="dropdown-buttons">
-                <!-- ipynb file if we had a myst markdown file -->
-                
-                <!-- Download raw file -->
-                <a class="dropdown-buttons" href="_sources/model.md.txt"><button type="button" class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip" data-placement="left">.md</button></a>
-                <!-- Download PDF via print -->
-                <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF" onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-            </div>
-            
-        </div>
-
-        <!-- Edit this page -->
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
         
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/model.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 <div class="tocsection onthispage pt-5 pb-3">
@@ -240,12 +260,13 @@ quantities. There are often some <strong>parameters</strong> involved, quantitie
 whose values are known or assumed.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
-<p>One can also have mechanical models, of course, such as the orreries
-the model the motions of planets. In some senses machines are just
+<p>One can also have <strong>mechanical</strong> models, of course, such as the orreries
+that model the motions of planets. In some senses machines are just
 computation models that happen to use analogue components rather than
 digital.</p>
 </div>
-<p>A <strong><span class="target" id="index-2"></span>computational model</strong>, by contrast, is a program written to simulate the
+<p>A <strong><span class="target" id="index-2"></span>computational model</strong>,
+by contrast, is a program written to <span class="target" id="index-3"></span>simulate the
 behaviour of the system. Such simulations are almost always based on
 underlying mathematical models and include parameters. What do
 computers provide? Sets of equations can often be understood (or
@@ -280,7 +301,7 @@ very concrete questions that depend on the exact details of the
 situation about which they’re asked, and answering them may be
 massively useful in managing this situation. (Taylor provides an
 accessible discussion of the uses and interpretations of the well-known
-Imperial College model of <span class="target" id="index-3"></span>covid-19’s impact on UK NHS bed availability
+Imperial College model of <span class="target" id="index-4"></span>covid-19’s impact on UK NHS bed availability
 during the 2020 outbreak <a class="bibtex reference internal" href="zbibliography.html#tay20" id="id1">[26]</a>.)</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -294,14 +315,14 @@ the outbreak and work with them. We only have partial control, for
 example on enforcing social distancing. It’s often hard to then make
 more general predictions about diseases more widely, to draw
 conclusions that can be used in other cases.</p>
-<p>So should we be more abstract? Abstraction typically brings control
-over the model: we can explore a whole range of modes of transmission,
-for example rather than just the one we happen to have for this
-disease. We can explore different countermeasures in the model without
-committing to one, which means there are no consequences for being
-wrong. We get to observe some general patterns and draw general
-conclusions – which then don’t <em>exactly</em> apply to <em>any</em> real
-disease.</p>
+<p>So should we be more <span class="target" id="index-5"></span>abstract? Abstraction
+typically brings control over the model: we can explore a whole range
+of modes of transmission, for example rather than just the one we
+happen to have for this disease. We can explore different
+countermeasures in the model without committing to one, which means
+there are no consequences for being wrong. We get to observe some
+general patterns and draw general conclusions – which then don’t
+<em>exactly</em> apply to <em>any</em> real disease.</p>
 <p>On the other hand, the conclusions we draw from these abstract models
 can’t be applied blindly to particular situations on the ground. A
 good example (which we’ll come to <a class="reference internal" href="thresholds.html"><span class="doc">later</span></a>) concerns
@@ -315,7 +336,7 @@ this can mean that outbreaks get out of control, and people may die.</p>
 </div>
 <div class="section" id="assumptions">
 <h2>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this headline">¶</a></h2>
-<p>The accuracy of a model depends on its <strong><span class="target" id="index-4"></span>assumptions</strong>,
+<p>The accuracy of a model depends on its <strong><span class="target" id="index-6"></span>assumptions</strong>,
 and how well these match reality. This issue appears
 in several guises. The model’s “mechanics” – the ways it fits
 its various elements together – need to match the disease it’s
@@ -333,7 +354,7 @@ modelling.</p>
 <div class="section" id="correctness">
 <h2>Correctness<a class="headerlink" href="#correctness" title="Permalink to this headline">¶</a></h2>
 <p>Whether we’re interested in concrete or abstract questions, we still
-have the problem of <strong><span class="target" id="index-5"></span>correctness</strong>: does our model produce the
+have the problem of <strong><span class="target" id="index-7"></span>correctness</strong>: does our model produce the
 “right” answers? It might not, either because it has been built
 incorrectly (has “bugs” in computer terms – but mathematical
 equations have them too), or because we don’t know the values of some
@@ -342,17 +363,17 @@ outbreak, when measurement often takes a back seat to treatment), or
 because there are aspects of the real world that we haven’t considered
 but that affect the result (often the case for more abstract models).</p>
 <p>We know quite a lot about building software, much of which applies to
-the building of computer models: unit <span class="target" id="index-6"></span>testing, integration testing,
-clear documentation, source <span class="target" id="index-7"></span>version control, and so on. With modelling
+the building of computer models: unit <span class="target" id="index-8"></span>testing, integration testing,
+clear documentation, source <span class="target" id="index-9"></span>version control, and so on. With modelling
 we then face the additional problem of deciding whether the code we’ve
-built is appropriate  its purpose.</p>
+built is fit for purpose.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>Computer scientists often split the question of assuring
 correctness into two parts: <strong>verification</strong> (“did we build the thing
 right?”) and <strong>validation</strong> (“did we build the right thing?”).</p>
 </div>
-<p>Deciding what “appropriate” means is an interesting question in its own
+<p>Deciding what “fit” means is an interesting question in its own
 right. It’s something we may only know retrospectively: did the
 results that came out of the model match what happened on the ground?
 We may not be able to measure exactly what <em>did</em> happen on the ground:
@@ -374,13 +395,13 @@ infect anyone else, you instead happen to infect Cousin Charlotte
 who’s a noted party animal and goes on to spread the illness
 widely. So even if we know the general pattern of a disease, the exact
 way in spreads is affected by chance factors.</p>
-<p>Systems like this are referred to as <strong><span class="target" id="index-8"></span>stochastic processes</strong>. They
+<p>A system like this is referred to as a <strong><span class="target" id="index-10"></span>stochastic process</strong>. They
 include an element of randomness in their very nature: it’s <em>not</em> a
 bug, it’s a feature.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>One way to think about what’s happening is that each run of the model
-is sampling the distribution of possible outcomes. You expect to
+is sampling the <span class="target" id="index-11"></span>distribution of possible outcomes. You expect to
 seldom see “unlikely” outcomes and mainly see “likely” ones –
 but sometimes you’ll see an “unlikely” outcome by chance.</p>
 </div>
@@ -398,11 +419,11 @@ out of trouble, but in fact we can’t. There may be randomness we can’t
 engineer away.</p>
 <p>What to do? Actually, computer science is unusual in “normally” having
 single answers. If you ask a biologist how long butterflies live for,
-you don’t expect her to go out and observed the lifespan of
-<em>every single butterfly</em> before answering. Instead you get a
-statistical answer: an average and some variance. It’s the same for
-stochastic models: we run the model several times (possibly hundreds
-of times) for the same inputs and collate the results.</p>
+you don’t expect her to go out and observed the lifespan of <em>every
+single butterfly</em> before answering. Instead you get a statistical
+answer: an average and some variance. It’s the same for stochastic
+processes (or models): we run the model several times (possibly
+hundreds of times) for the same inputs, and collate the results.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>At least in principle. It can be tricky to accomplish in practice, not
@@ -411,11 +432,11 @@ making their pseudo-random number sequences less pseudo and more
 random.</p>
 </div>
 <p>In a computer model, it’s often possible to actually reproduce exactly
-even a stochastic process, because the “<span class="target" id="index-9"></span>random numbers” we use are
+even a stochastic process, because the “<span class="target" id="index-12"></span>random numbers” we use are
 actually only pseudo-random and so can be re-created. That can help in
 the narrow sense of seeing whether the model produces the same results
-given the same inputs <em>and</em> the same “random” numbers, but it doesn’t
-help in the wider sense of capturing the behaviour of a system with
+given the same inputs <em>and</em> the same <span class="target" id="index-13"></span>“random” numbers,
+but it doesn’t help in the wider sense of capturing the behaviour of a system with
 <em>inherent</em> randomness.</p>
 </div>
 <div class="section" id="managing-our-expectations">
@@ -429,8 +450,8 @@ useful … the approximate nature of the model must always be
 borne in mind”.</p>
 </div>
 <p>This all sounds like modelling is a horrible mess. But the situation
-isn’t hopeless.</p>
-<p>We need to be careful. The results we get from any model, of any kind,
+isn’t hopeless. We just need to be careful.</p>
+<p>The results we get from any model, of any kind,
 are tentative and suggestive and can generate insight into the system
 the model is seeking to represent, whether concretely or
 abstractly. There will always be factors outwith the model’s

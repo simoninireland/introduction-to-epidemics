@@ -26,7 +26,7 @@
     <script src="_static/copybutton.js"></script>
     <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .secondtoggle, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -66,9 +66,6 @@
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
   
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="index.html">Epidemic modelling – Some notes, maths, and code</a>
-  </li>
   <li class="">
     <a href="model.html">Models and modelling</a>
   </li>
@@ -131,7 +128,9 @@
   </li>
 </ul>
 </nav>
-<p class="navbar_footer">Powered by <a href="https://jupyterbook.org">Jupyter Book</a></p>
+
+ <!-- To handle the deprecated key -->
+
 </div>
 
 
@@ -146,26 +145,44 @@
     </div>
     <div class="col pl-2 topbar-main">
         
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse" data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu" aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation" title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
             <i class="fas fa-bars"></i>
             <i class="fas fa-arrow-left"></i>
             <i class="fas fa-arrow-up"></i>
         </button>
         
         <div class="dropdown-buttons-trigger">
-            <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i class="fas fa-download"></i></button>
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
 
-            
-        </div>
+    
+</div>
+        <!-- Source interaction buttons -->
 
-        <!-- Edit this page -->
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/simoninireland/introduction-to-epidemics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
         
+        
+    </div>
+</div>
+
 
         <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i class="fas fa-expand"></i></button></a>
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
 
         <!-- Launch buttons -->
-        
+
     </div>
     <div class="d-none d-md-block col-md-2 bd-toc show">
 
@@ -191,8 +208,12 @@
  | <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
  | <a href="#P"><strong>P</strong></a>
@@ -201,12 +222,21 @@
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="er.html#index-7">adjacency</a>
+      <li><a href="seir.html#index-11">adaptive network</a>
+</li>
+      <li><a href="er.html#index-10">adjacency</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="seir.html#index-0">asymptomatic transmission</a>
+</li>
+      <li><a href="progress.html#index-42">averaging</a>
 </li>
   </ul></td>
 </tr></table>
@@ -214,9 +244,13 @@
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="network.html#index-1">chickenpox</a>
+</li>
       <li><a href="continuous.html#index-2">compartment</a>
 
       <ul>
+        <li><a href="seir.html#index-3">exposed</a>
+</li>
         <li><a href="continuous.html#index-4">infected</a>
 </li>
         <li><a href="continuous.html#index-5">removed</a>
@@ -224,19 +258,35 @@
         <li><a href="continuous.html#index-3">susceptible</a>
 </li>
       </ul></li>
-      <li><a href="continuous.html#index-1">compartmented model</a>
+      <li><a href="continuous.html#index-1">compartmented model</a>, <a href="seir.html#index-2">[1]</a>
+</li>
+      <li><a href="distancing.html#index-7">complete graph</a>, <a href="er.html#index-0">[1]</a>, <a href="er.html#index-8">[2]</a>
+</li>
+      <li><a href="er.html#index-1">complete mixing</a>, <a href="network.html#index-0">[1]</a>
+</li>
+      <li><a href="progress.html#index-3">computer virus</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="distancing.html#index-6">complete graph</a>, <a href="er.html#index-5">[1]</a>
+      <li><a href="hcn.html#index-9">configuration model</a>
 </li>
-      <li><a href="distancing.html#index-5">contact</a>
+      <li><a href="distancing.html#index-6">contact</a>, <a href="network.html#index-7">[1]</a>
 </li>
-      <li><a href="distancing.html#index-13">contact bubbles</a>, <a href="distancing.html#index-4">[1]</a>
+      <li><a href="distancing.html#index-15">contact bubbles</a>, <a href="distancing.html#index-5">[1]</a>
 </li>
-      <li><a href="model.html#index-5">correctness</a>
+      <li><a href="hcn.html#index-0">contact network</a>, <a href="herd.html#index-4">[1]</a>, <a href="network.html#index-6">[2]</a>, <a href="vaccination.html#index-3">[3]</a>
 </li>
-      <li><a href="model.html#index-3">covid-19</a>
+      <li><a href="progress.html#index-40">contact tracing</a>, <a href="tracing.html#index-0">[1]</a>
+</li>
+      <li><a href="tracing.html#index-6">contact tree</a>
+</li>
+      <li><a href="progress.html#index-30">contacts</a>
+</li>
+      <li><a href="model.html#index-7">correctness</a>, <a href="seir.html#index-17">[1]</a>, <a href="vaccination.html#index-11">[2]</a>
+</li>
+      <li><a href="conclusion.html#index-5">countermeasures</a>, <a href="seir.html#index-10">[1]</a>, <a href="seir.html#index-20">[2]</a>, <a href="thresholds.html#index-2">[3]</a>, <a href="tracing.html#index-1">[4]</a>, <a href="vaccination.html#index-0">[5]</a>
+</li>
+      <li><a href="model.html#index-4">covid-19</a>, <a href="progress.html#index-19">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -244,23 +294,39 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="er.html#index-11">degree</a>, <a href="er.html#index-3">[1]</a>
+      <li><a href="er.html#index-14">degree</a>, <a href="er.html#index-5">[1]</a>, <a href="vaccination.html#index-14">[2]</a>
 </li>
-      <li><a href="distancing.html#index-7">degrees of freedom</a>, <a href="distancing.html#index-8">[1]</a>
+      <li><a href="er.html#index-9">degree distribution</a>, <a href="hcn.html#index-1">[1]</a>, <a href="hcn.html#index-5">[2]</a>
 </li>
-      <li><a href="continuous.html#index-6">difference equation</a>
+      <li><a href="distancing.html#index-10">degrees of freedom</a>, <a href="distancing.html#index-8">[1]</a>, <a href="seir.html#index-21">[2]</a>, <a href="seir.html#index-6">[3]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="continuous.html#index-8">difference equation</a>
+</li>
       <li>
-    distribution
+    disease progression
 
       <ul>
-        <li><a href="er.html#index-6">degree</a>
+        <li><a href="progress.html#index-16">incubation period</a>
 </li>
-        <li><a href="distancing.html#index-10">exponential</a>
+        <li><a href="progress.html#index-12">infection</a>
 </li>
-        <li><a href="distancing.html#index-9">normal</a>, <a href="er.html#index-10">[1]</a>
+        <li><a href="progress.html#index-14">infectious period</a>
+</li>
+        <li><a href="progress.html#index-13">latent period</a>
+</li>
+        <li><a href="progress.html#index-17">resolution</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="model.html#index-11">distribution</a>
+
+      <ul>
+        <li><a href="distancing.html#index-12">exponential</a>
+</li>
+        <li><a href="distancing.html#index-11">normal</a>, <a href="er.html#index-13">[1]</a>, <a href="hcn.html#index-2">[2]</a>
+</li>
+        <li><a href="hcn.html#index-6">powerlaw</a>
 </li>
       </ul></li>
   </ul></td>
@@ -269,7 +335,40 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="er.html#index-9">ER network</a>
+      <li><a href="progress.html#index-21">ebola</a>, <a href="progress.html#index-23">[1]</a>, <a href="progress.html#index-37">[2]</a>
+</li>
+      <li><a href="network.html#index-4">edges</a>
+</li>
+      <li><a href="progress.html#index-8">epidemic</a>
+</li>
+      <li><a href="thresholds.html#index-7">epidemic threshold</a>
+</li>
+      <li><a href="progress.html#index-11">epidemiology</a>, <a href="progress.html#index-25">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="er.html#index-12">ER network</a>, <a href="thresholds.html#index-4">[1]</a>
+</li>
+      <li>
+    events
+
+      <ul>
+        <li><a href="seir.html#index-7">exposed</a>
+</li>
+        <li><a href="continuous.html#index-7">infected</a>, <a href="seir.html#index-8">[1]</a>
+</li>
+        <li><a href="continuous.html#index-10">removed</a>
+</li>
+      </ul></li>
+      <li><a href="progress.html#index-38">exponential growth</a>, <a href="tracing.html#index-5">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="vaccination.html#index-16">flattening the curve</a>
 </li>
   </ul></td>
 </tr></table>
@@ -277,7 +376,25 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="er.html#index-2">graph metrics</a>
+      <li><a href="progress.html#index-32">generation</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="er.html#index-4">graph metrics</a>
+</li>
+      <li><a href="progress.html#index-43">growth rate</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="conclusion.html#index-4">herd immunity</a>, <a href="herd.html#index-2">[1]</a>, <a href="vaccination.html#index-7">[2]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="hcn.html#index-3">hubs</a>
 </li>
   </ul></td>
 </tr></table>
@@ -285,7 +402,35 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="continuous.html#index-8">integration</a>
+      <li><a href="herd.html#index-0">immunity</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="progress.html#index-0">influenza</a>, <a href="progress.html#index-35">[1]</a>, <a href="vaccination.html#index-9">[2]</a>
+</li>
+      <li><a href="continuous.html#index-12">integration</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    k mean
+
+      <ul>
+        <li>
+    see mean degree
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="vaccination.html#index-13">long tail</a>
 </li>
   </ul></td>
 </tr></table>
@@ -293,16 +438,27 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="er.html#index-12">mean degree</a>, <a href="er.html#index-4">[1]</a>
+      <li><a href="progress.html#index-6">malaria</a>, <a href="tracing.html#index-3">[1]</a>
+</li>
+      <li><a href="er.html#index-15">mean degree</a>, <a href="er.html#index-7">[1]</a>, <a href="thresholds.html#index-5">[2]</a>
+</li>
+      <li><a href="progress.html#index-1">measles</a>, <a href="progress.html#index-18">[1]</a>, <a href="progress.html#index-34">[2]</a>
 </li>
       <li><a href="model.html#index-0">model</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    models
 
       <ul>
-        <li><a href="model.html#index-4">assumptions</a>
+        <li><a href="model.html#index-5">abstract</a>
 </li>
-        <li><a href="continuous.html#index-7">computational</a>, <a href="model.html#index-2">[1]</a>
+        <li><a href="model.html#index-6">assumptions</a>
 </li>
-        <li><a href="model.html#index-1">mathematical</a>
+        <li><a href="continuous.html#index-11">computational</a>, <a href="model.html#index-2">[1]</a>
+</li>
+        <li><a href="model.html#index-1">mathematical</a>, <a href="seir.html#index-4">[1]</a>
 </li>
       </ul></li>
   </ul></td>
@@ -311,7 +467,13 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="er.html#index-8">neighbours</a>
+      <li><a href="er.html#index-11">neighbours</a>, <a href="seir.html#index-22">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="network.html#index-2">network</a>
+</li>
+      <li><a href="network.html#index-3">nodes</a>
 </li>
   </ul></td>
 </tr></table>
@@ -319,15 +481,37 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="distancing.html#index-3">physical distancing</a>
+      <li><a href="progress.html#index-9">pandemic</a>
 </li>
+      <li><a href="continuous.html#index-9">parameter</a>, <a href="distancing.html#index-9">[1]</a>, <a href="hcn.html#index-10">[2]</a>, <a href="seir.html#index-16">[3]</a>, <a href="seir.html#index-5">[4]</a>
+</li>
+      <li><a href="herd.html#index-9">partial immunity</a>, <a href="vaccination.html#index-5">[1]</a>, <a href="vaccination.html#index-8">[2]</a>
+</li>
+      <li><a href="progress.html#index-4">pathogen</a>
+</li>
+      <li><a href="progress.html#index-10">pathology</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="tracing.html#index-7">patient zero</a>
+</li>
+      <li><a href="hcn.html#index-12">percolation</a>
+</li>
+      <li><a href="conclusion.html#index-3">physical distancing</a>, <a href="distancing.html#index-3">[1]</a>
+</li>
+      <li><a href="hcn.html#index-7">powerlaw network</a>
+
+      <ul>
+        <li><a href="hcn.html#index-8">with cutoff</a>, <a href="vaccination.html#index-4">[1]</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="Q">Q</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="distancing.html#index-0">quarantine</a>
+      <li><a href="conclusion.html#index-2">quarantine</a>, <a href="distancing.html#index-0">[1]</a>, <a href="progress.html#index-24">[2]</a>, <a href="progress.html#index-31">[3]</a>, <a href="seir.html#index-12">[4]</a>, <a href="tracing.html#index-2">[5]</a>, <a href="vaccination.html#index-1">[6]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -335,7 +519,15 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="model.html#index-9">random numbers</a>
+      <li><a href="herd.html#index-3">R value</a>, <a href="progress.html#index-28">[1]</a>, <a href="seir.html#index-13">[2]</a>, <a href="thresholds.html#index-0">[3]</a>
+</li>
+      <li><a href="model.html#index-12">random numbers</a>, <a href="model.html#index-13">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="herd.html#index-7">residual network</a>
+</li>
+      <li><a href="seir.html#index-15">rewiring</a>
 </li>
   </ul></td>
 </tr></table>
@@ -343,15 +535,45 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="distancing.html#index-12">SEIR</a>, <a href="distancing.html#index-2">[1]</a>
+      <li><a href="progress.html#index-20">SARS</a>
 </li>
-      <li><a href="continuous.html#index-9">sensitivity</a>
+      <li><a href="herd.html#index-8">seeding</a>, <a href="thresholds.html#index-8">[1]</a>
+</li>
+      <li><a href="tracing.html#index-4">seeding with infection</a>
+</li>
+      <li><a href="distancing.html#index-14">SEIR</a>, <a href="distancing.html#index-2">[1]</a>, <a href="seir.html#index-1">[2]</a>, <a href="seir.html#index-19">[3]</a>
+</li>
+      <li><a href="continuous.html#index-13">sensitivity</a>, <a href="continuous.html#index-14">[1]</a>, <a href="progress.html#index-39">[2]</a>, <a href="seir.html#index-9">[3]</a>, <a href="thresholds.html#index-6">[4]</a>
+</li>
+      <li><a href="progress.html#index-44">seperatrix</a>
+</li>
+      <li><a href="model.html#index-3">simulation</a>, <a href="network.html#index-8">[1]</a>
+</li>
+      <li><a href="continuous.html#index-0">SIR</a>, <a href="distancing.html#index-13">[1]</a>, <a href="er.html#index-3">[2]</a>, <a href="hcn.html#index-11">[3]</a>, <a href="herd.html#index-6">[4]</a>, <a href="network.html#index-9">[5]</a>, <a href="seir.html#index-14">[6]</a>, <a href="thresholds.html#index-3">[7]</a>, <a href="vaccination.html#index-6">[8]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="continuous.html#index-0">SIR</a>, <a href="distancing.html#index-11">[1]</a>, <a href="er.html#index-1">[2]</a>
+      <li><a href="continuous.html#index-6">SIS</a>, <a href="herd.html#index-5">[1]</a>
 </li>
-      <li><a href="model.html#index-8">stochastic processes</a>
+      <li><a href="vaccination.html#index-10">size effect</a>
+</li>
+      <li><a href="thresholds.html#index-13">skewness</a>
+</li>
+      <li>
+    social network
+
+      <ul>
+        <li>
+    see contact network
+</li>
+      </ul></li>
+      <li><a href="progress.html#index-36">Spanish flu</a>, <a href="progress.html#index-7">[1]</a>
+</li>
+      <li><a href="thresholds.html#index-12">standard deviation</a>
+</li>
+      <li><a href="model.html#index-10">stochastic process</a>, <a href="thresholds.html#index-11">[1]</a>, <a href="thresholds.html#index-9">[2]</a>
+</li>
+      <li><a href="hcn.html#index-13">super-spreaders</a>, <a href="hcn.html#index-4">[1]</a>, <a href="vaccination.html#index-12">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -359,12 +581,26 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="model.html#index-6">testing</a>
+      <li><a href="vaccination.html#index-15">targetted vaccination</a>
+</li>
+      <li><a href="progress.html#index-41">test, trace, and isolate</a>, <a href="seir.html#index-18">[1]</a>
+</li>
+      <li><a href="model.html#index-8">testing</a>
+</li>
+      <li><a href="progress.html#index-33">threshold</a>, <a href="progress.html#index-45">[1]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="er.html#index-0">topology</a>
+      <li><a href="er.html#index-2">topology</a>, <a href="thresholds.html#index-1">[1]</a>
 </li>
+      <li><a href="progress.html#index-15">transamission</a>
+</li>
+      <li><a href="progress.html#index-29">transmission</a>, <a href="progress.html#index-46">[1]</a>
+
+      <ul>
+        <li><a href="progress.html#index-5">modes of transmission</a>
+</li>
+      </ul></li>
       <li><a href="distancing.html#index-1">Typhoid Mary</a>
 </li>
   </ul></td>
@@ -373,7 +609,25 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="model.html#index-7">version control</a>
+      <li><a href="conclusion.html#index-1">vaccine</a>, <a href="herd.html#index-1">[1]</a>, <a href="vaccination.html#index-2">[2]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="progress.html#index-22">variance</a>, <a href="thresholds.html#index-10">[1]</a>
+</li>
+      <li><a href="model.html#index-9">version control</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="progress.html#index-2">whooping cough</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="conclusion.html#index-0">wicked problems</a>
 </li>
   </ul></td>
 </tr></table>
