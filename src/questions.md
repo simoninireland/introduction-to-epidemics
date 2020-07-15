@@ -1,6 +1,5 @@
 # Questions for discussion
 
-
 ## Models and modelling
 
 - What can models tell us about real-world disease epidemics?
