@@ -110,6 +110,7 @@ BIBTEX = bibtex
 MAKEINDEX = makeindex
 SPHINX = sphinx-build
 GHP_IMPORT = ghp-import
+GHOSTSCRIPT = gs
 PIP = pip
 VIRTUALENV = $(PYTHON) -m venv
 ACTIVATE = . $(VENV)/bin/activate
@@ -133,18 +134,23 @@ DATE = `date`
 VENV = venv3
 REQUIREMENTS = requirements.txt
 
-# Book construction
+# Jupyter Book construction
 BUILD_DIR = _build
 SRC_DIR = src
 BOOK_DIR = bookdir
 BOOK_BUILD_DIR = $(BOOK_DIR)/$(BUILD_DIR)
+
+# LaTeX construction
+LATEX_BUILD_DIR = $(BOOK_BUILD_DIR)/latex
 LATEX_BOOK_STEM = em-book
 LATEX_BOOK = $(LATEX_BOOK_STEM).tex
-LATEX_BUILD_DIR = $(BOOK_BUILD_DIR)/latex
-LATEX_CLASS_DIR = $(LATEX_BUILD_DIR)/book_1
+LATEX_BOOK_PDF = $(LATEX_BOOK_STEM).pdf
+LATEX_BOOK_PDF_300DPI = $(LATEX_BOOK_STEM)-300dpi.pdf
+
+# Epub construction
 EPUB_BUILD_DIR = $(BOOK_BUILD_DIR)/epub
 
-# Constructed commands
+# Commands
 RUN_SERVER = PYTHONPATH=. $(JUPYTER) notebook
 CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
 BUILD_BOOK = $(JUPYTER_BOOK) build $(BOOK_DIR)
