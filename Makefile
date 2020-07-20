@@ -22,7 +22,8 @@ TEXT = \
 	src/genindex.md \
 	src/acknowledgements.md \
 	src/about.md \
-	src/copyright.md
+	src/copyright.md \
+	src/print.md
 
 # Notebooks
 NOTEBOOKS =  \
@@ -145,7 +146,6 @@ LATEX_BUILD_DIR = $(BOOK_BUILD_DIR)/latex
 LATEX_BOOK_STEM = em-book
 LATEX_BOOK = $(LATEX_BOOK_STEM).tex
 LATEX_BOOK_PDF = $(LATEX_BOOK_STEM).pdf
-LATEX_BOOK_PDF_300DPI = $(LATEX_BOOK_STEM)-300dpi.pdf
 
 # Epub construction
 EPUB_BUILD_DIR = $(BOOK_BUILD_DIR)/epub
