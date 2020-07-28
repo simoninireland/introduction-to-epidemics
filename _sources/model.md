@@ -64,11 +64,6 @@ accessible discussion of the uses and interpretations of the well-known
 Imperial College model of {index}`covid-19`'s impact on UK NHS bed availability
 during the 2020 outbreak {cite}`Tay20`.)
 
-```{margin}
-There's a saying among doctors who deal with outbreaks on the
-ground: "When you've seen one pandemic, you've ... seen one pandemic."
-The lessons learned often don't translate to new situations.
-```
 The interplay between these two kinds of questions is quite
 complicated. In concrete cases we presumably measure the specifics of
 the outbreak and work with them. We only have partial control, for
@@ -85,6 +80,11 @@ there are no consequences for being wrong. We get to observe some
 general patterns and draw general conclusions &ndash; which then don't
 *exactly* apply to *any* real disease.
 
+```{margin}
+There's a saying among doctors who deal with outbreaks on the
+ground: "When you've seen one pandemic, you've ... seen one pandemic."
+The lessons learned often don't translate to new situations.
+```
 On the other hand, the conclusions we draw from these abstract models
 can't be applied blindly to particular situations on the ground. A
 good example (which we'll come to {doc}`later <thresholds>`) concerns
