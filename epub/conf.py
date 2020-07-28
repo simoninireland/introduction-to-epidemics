@@ -23,9 +23,8 @@ epub_title = project
 epub_author = author
 epub_copyright = "Copyright (c) 2020, Simon Dobson"
 epub_publisher = "https://simoninireland.github.io/introduction-to-epidemics"
-epub_identifier = "XXX"
+epub_identifier = "978-183853-565-0"
 epub_scheme = "ISBN"
-epub_pre_files = [ ("_static/epublication.html", "") ]
 html_static_path = ["../epub/static"]
 epub_cover = ("_static/ecover.png", "")
 epub_tocdepth = 2
@@ -33,3 +32,4 @@ epub_show_urls = 'no'
 epub_use_index = True
 
 
+b
