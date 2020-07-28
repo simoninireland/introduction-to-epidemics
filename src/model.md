@@ -50,7 +50,7 @@ the effects of different countermeasures, like physical distancing,
 vaccination, or quarantine? Are there any patterns in the epidemic,
 like multiple waves? These are quite abstract questions that could be
 asked of *any* disease, and answering them might tell us something
-about how *all* diseases behave -- including those we encountered yet.
+about how *all* diseases behave -- including those we haven't encountered yet.
 
 On the other hand, we might be interested in **a specific disease**, or
 even in **a specific outbreak**. How will *this* disease spread in a
