@@ -192,7 +192,7 @@ upload: book
 	$(ACTIVATE) && $(UPLOAD_BOOK)
 
 
-# Build a PDF for printed copy
+# Build a PDF for print copy
 print: env bookdir
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
@@ -209,6 +209,7 @@ print: env bookdir
 	-make latex
 	-make latex
 	$(RM) /tmp/$(LATEX_BOOK) /tmp/$(LATEX_BOOK_STEM).idx
+	$(CP) $(LATEX_BUILD_DIR)/$(LATEX_BOOK) $(LATEX_BOOK)
 
 .PHONY: latex
 latex:

@@ -1,7 +1,6 @@
 .. raw:: latex
 
-   \bibliographystyle{plain}
-   %\bibliographystyle{tufte}
+   \bibliographystyle{plainnat}
    \bibliography{bibliography}
 
    \printindex

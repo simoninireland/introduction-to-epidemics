@@ -187,8 +187,7 @@ disease will perpetuate itself in whatever size of population was
 originally infected. Nature is never so precise as to present us with
 a disease like this, of course. However, $\mathcal{R} = 1$ is the
 **{index}`threshold` value** at which diseases become epidemics. If $\mathcal{R} > 1$, the
-disease will break-out and infect more and more people exponentially
-quickly.
+disease will break-out and infect more and more people.
 
 Exactly *how* quickly depends on how large $\mathcal{R}$ is. For {index}`measles`, $\mathcal{R}
 \ge 15$ &ndash; fifteen new infections for each case &ndash; which
@@ -197,12 +196,10 @@ populations. Different strains of {index}`influenza` have different ranges of
 $R$: for the 1918 "{index}`Spanish flu`" it has been
 estimated {cite}`VTM07` that $1.2 \le \mathcal{R} \le 3.0$ in the community
 (although substantially more in confined settings). If this sounds
-benign, remember that this epidemic killed more people than the First
-World War. Perhaps interesting in light of its media coverage, for
-{index}`ebola` we have $1.5 \le \mathcal{R} \le 2.7$ {cite}`Alt14`, roughly the same as
-a not-too-severe winter flu outbreak.
+benign, remember that this epidemic killed substantially more people
+than did the First World War.
 
-In a typical epidemic the number of people infected grows very
+In a typical epidemic the number of people infected grows *very*
 quickly. If $\mathcal{R} = 2$ then one person infects two others, who
 each infect two others, who each ... and so on -- so each generation
 is twice as big as the last). If you plot the size of the epidemic
