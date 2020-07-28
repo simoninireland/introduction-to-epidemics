@@ -209,7 +209,7 @@ print: env bookdir
 	-make latex
 	-make latex
 	$(RM) /tmp/$(LATEX_BOOK) /tmp/$(LATEX_BOOK_STEM).idx
-	$(CP) $(LATEX_BUILD_DIR)/$(LATEX_BOOK) $(LATEX_BOOK)
+	$(CP) $(LATEX_BUILD_DIR)/$(LATEX_BOOK_PDF) $(LATEX_BOOK_PDF)
 
 .PHONY: latex
 latex:
