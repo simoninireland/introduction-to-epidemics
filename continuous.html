@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Compartmented models &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -13,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -23,12 +24,17 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -65,75 +71,128 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="model.html">Models and modelling</a>
-  </li>
-  <li class="">
-    <a href="progress.html">Disease progression</a>
-  </li>
-  <li class="active">
-    <a href="">Compartmented models</a>
-  </li>
-  <li class="">
-    <a href="network.html">Network models</a>
-  </li>
-  <li class="">
-    <a href="er.html">Making fewer connections</a>
-  </li>
-  <li class="">
-    <a href="tracing.html">Contact tracing</a>
-  </li>
-  <li class="">
-    <a href="thresholds.html">Epidemic threshold</a>
-  </li>
-  <li class="">
-    <a href="hcn.html">Human contact networks</a>
-  </li>
-  <li class="">
-    <a href="herd.html">Herd immunity</a>
-  </li>
-  <li class="">
-    <a href="vaccination.html">Changing individual susceptibility</a>
-  </li>
-  <li class="">
-    <a href="seir.html">Asymptomatic transmission</a>
-  </li>
-  <li class="">
-    <a href="distancing.html">Physical distancing</a>
-  </li>
-  <li class="">
-    <a href="conclusion.html">Conclusion</a>
-  </li>
-  <li class="">
-    <a href="reading.html">To find out more</a>
-  </li>
-  <li class="">
-    <a href="zbibliography.html">References</a>
-  </li>
-  <li class="">
-    <a href="genindex.html">Index</a>
-  </li>
-  <li class="">
-    <a href="notes.html">Notes on production</a>
-  </li>
-  <li class="">
-    <a href="acknowledgements.html">Acknowledgements</a>
-  </li>
-  <li class="">
-    <a href="about.html">About the author</a>
-  </li>
-  <li class="">
-    <a href="copyright.html">Copyright</a>
-  </li>
-  <li class="">
-    <a href="print.html">Print copies</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Epidemic modelling – Some notes, maths, and code
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model.html">
+   Models and modelling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="progress.html">
+   Disease progression
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Compartmented models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="network.html">
+   Network models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="er.html">
+   Making fewer connections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tracing.html">
+   Contact tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="thresholds.html">
+   Epidemic threshold
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hcn.html">
+   Human contact networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="herd.html">
+   Herd immunity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vaccination.html">
+   Changing individual susceptibility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="seir.html">
+   Asymptomatic transmission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distancing.html">
+   Physical distancing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conclusion.html">
+   Conclusion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reading.html">
+   To find out more
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zbibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notes.html">
+   Notes on production
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About the author
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copyright.html">
+   Copyright
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="print.html">
+   Print copies
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -199,39 +258,65 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/continuous.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/simoninireland/introduction-to-epidemics/blob/master/continuous.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
 </div>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#sir-a-compartmented-model-of-disease" class="nav-link">SIR: A compartmented model of disease</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#the-mathematical-model" class="nav-link">The mathematical model</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#the-computational-model" class="nav-link">The computational model</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#consequences" class="nav-link">Consequences</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
-        </li>
-    
-    </ul>
-</nav>
+    </div>
 
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sir-a-compartmented-model-of-disease">
+   SIR: A compartmented model of disease
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-mathematical-model">
+   The mathematical model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-computational-model">
+   The computational model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#consequences">
+   Consequences
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-for-discussion">
+   Questions for discussion
+  </a>
+ </li>
+</ul>
 
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -300,7 +385,7 @@ understand what’s going on if we spell the meaning of the symbols out.</p>
 <p>We can represent each of the three changes in population directly as Python functions. Since they share the parameters <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> and <span class="math notranslate nohighlight">\(p_{remove}\)</span>, we’ll define them together using another function to which we pass the parameters and get back the change functions.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_sir</span><span class="p">(</span><span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">make_sir</span><span class="p">(</span><span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">):</span>
     <span class="c1"># turn the equations into update functions</span>
     <span class="k">def</span> <span class="nf">deltaS</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
         <span class="k">return</span> <span class="o">-</span><span class="n">pInfect</span> <span class="o">*</span> <span class="n">S</span> <span class="o">*</span> <span class="n">I</span>
@@ -328,7 +413,7 @@ robust solutions for the more complex cases.</p>
 <p>We can code this behaviour up as a single function.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">epidemic_sir</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">pInfected</span><span class="p">,</span> <span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">epidemic_sir</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">pInfected</span><span class="p">,</span> <span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">):</span>
     <span class="c1"># create the change functions for these parameters</span>
     <span class="p">(</span><span class="n">deltaS</span><span class="p">,</span> <span class="n">deltaI</span><span class="p">,</span> <span class="n">deltaR</span><span class="p">)</span> <span class="o">=</span> <span class="n">make_sir</span><span class="p">(</span><span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">)</span>
     
@@ -361,7 +446,7 @@ robust solutions for the more complex cases.</p>
 <p>We need the initial conditions for the simulation: the population size (that won’t change), the number of timesteps we want to run the simulation for, and the values of the three parameters <code class="docutils literal notranslate"><span class="pre">pInfected</span></code>, <code class="docutils literal notranslate"><span class="pre">pInfect</span></code>, and <code class="docutils literal notranslate"><span class="pre">pRemove</span></code>. For simplicity let’s fix all these apart from <code class="docutils literal notranslate"><span class="pre">pInfect</span></code>. We’ll start with <span class="math notranslate nohighlight">\(1/100\mathrm{th}\)</span> of the population infected (<code class="docutils literal notranslate"><span class="pre">pInfected</span> <span class="pre">=</span> <span class="pre">0.01</span></code>), and <span class="math notranslate nohighlight">\(1/1000\mathrm{th}\)</span> of the infected population recovering in each timestep (<code class="docutils literal notranslate"><span class="pre">pRemove</span> <span class="pre">=</span> <span class="pre">0.001</span></code>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">T</span> <span class="o">=</span> <span class="mi">5000</span>
 <span class="n">pInfected</span> <span class="o">=</span> <span class="mf">0.01</span>
 <span class="n">pRemove</span> <span class="o">=</span> <span class="mf">0.001</span>
@@ -372,9 +457,9 @@ robust solutions for the more complex cases.</p>
 <p>We can then choose different values of <code class="docutils literal notranslate"><span class="pre">pInfect</span></code> and see what the simulation shows us about the ways in which the sub-populations evolve.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;png&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="o">%</span><span class="k">config</span> InlineBackend.figure_format = &#39;png&#39;
 <span class="n">matplotlib</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;figure.dpi&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">300</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span>
@@ -386,7 +471,7 @@ robust solutions for the more complex cases.</p>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">epidemics</span> <span class="o">=</span> <span class="p">{}</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">epidemics</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="k">for</span> <span class="n">pInfect</span> <span class="ow">in</span> <span class="p">[</span> <span class="mf">0.0000010</span><span class="p">,</span> <span class="mf">0.0000020</span><span class="p">,</span> <span class="mf">0.0000035</span><span class="p">,</span>
                  <span class="mf">0.0000040</span><span class="p">,</span> <span class="mf">0.0000050</span><span class="p">,</span> <span class="mf">0.0000080</span> <span class="p">]:</span>
     <span class="c1"># run the epidemic equations</span>
@@ -397,7 +482,7 @@ robust solutions for the more complex cases.</p>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                           <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
 
 <span class="c1"># draw the sub-plots for selected values of pInfect</span>
@@ -463,6 +548,25 @@ sense. The results obtained are the same in both cases, however.</p>
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

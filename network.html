@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Network models &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -13,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -23,12 +24,17 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -65,75 +71,128 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="model.html">Models and modelling</a>
-  </li>
-  <li class="">
-    <a href="progress.html">Disease progression</a>
-  </li>
-  <li class="">
-    <a href="continuous.html">Compartmented models</a>
-  </li>
-  <li class="active">
-    <a href="">Network models</a>
-  </li>
-  <li class="">
-    <a href="er.html">Making fewer connections</a>
-  </li>
-  <li class="">
-    <a href="tracing.html">Contact tracing</a>
-  </li>
-  <li class="">
-    <a href="thresholds.html">Epidemic threshold</a>
-  </li>
-  <li class="">
-    <a href="hcn.html">Human contact networks</a>
-  </li>
-  <li class="">
-    <a href="herd.html">Herd immunity</a>
-  </li>
-  <li class="">
-    <a href="vaccination.html">Changing individual susceptibility</a>
-  </li>
-  <li class="">
-    <a href="seir.html">Asymptomatic transmission</a>
-  </li>
-  <li class="">
-    <a href="distancing.html">Physical distancing</a>
-  </li>
-  <li class="">
-    <a href="conclusion.html">Conclusion</a>
-  </li>
-  <li class="">
-    <a href="reading.html">To find out more</a>
-  </li>
-  <li class="">
-    <a href="zbibliography.html">References</a>
-  </li>
-  <li class="">
-    <a href="genindex.html">Index</a>
-  </li>
-  <li class="">
-    <a href="notes.html">Notes on production</a>
-  </li>
-  <li class="">
-    <a href="acknowledgements.html">Acknowledgements</a>
-  </li>
-  <li class="">
-    <a href="about.html">About the author</a>
-  </li>
-  <li class="">
-    <a href="copyright.html">Copyright</a>
-  </li>
-  <li class="">
-    <a href="print.html">Print copies</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Epidemic modelling – Some notes, maths, and code
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model.html">
+   Models and modelling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="progress.html">
+   Disease progression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous.html">
+   Compartmented models
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Network models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="er.html">
+   Making fewer connections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tracing.html">
+   Contact tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="thresholds.html">
+   Epidemic threshold
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hcn.html">
+   Human contact networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="herd.html">
+   Herd immunity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vaccination.html">
+   Changing individual susceptibility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="seir.html">
+   Asymptomatic transmission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distancing.html">
+   Physical distancing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conclusion.html">
+   Conclusion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reading.html">
+   To find out more
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zbibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notes.html">
+   Notes on production
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About the author
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copyright.html">
+   Copyright
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="print.html">
+   Print copies
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -199,35 +258,60 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/network.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/simoninireland/introduction-to-epidemics/blob/master/network.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
 </div>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#networks" class="nav-link">Networks</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#complete-networks" class="nav-link">Complete networks</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#the-story-so-far" class="nav-link">The story so far</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
-        </li>
-    
-    </ul>
-</nav>
+    </div>
 
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#networks">
+   Networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#complete-networks">
+   Complete networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-story-so-far">
+   The story so far
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-for-discussion">
+   Questions for discussion
+  </a>
+ </li>
+</ul>
 
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -267,7 +351,7 @@ appear.</p>
 <p>For the moment, we need to set up a computational simulation of the people and their connections. Fortunately there we have software than can help us do this.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span>
 <span class="kn">import</span> <span class="nn">epydemic</span>
 </pre></div>
 </div>
@@ -276,7 +360,7 @@ appear.</p>
 <p>Since we’re interested in the progress of an epidemic, we’ll create an SIR process and then add some monitoring to get the same time series that we got for the continuous case.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MonitoredSIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MonitoredSIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
  
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
@@ -297,7 +381,7 @@ appear.</p>
 <p>We can now write a function to perform the simulation for given parameters of <code class="docutils literal notranslate"><span class="pre">pInfected</span></code>, <code class="docutils literal notranslate"><span class="pre">pInfect</span></code>, and <code class="docutils literal notranslate"><span class="pre">pRemove</span></code>. For completeness we’ll also pass the function a network over which to run the simulation. The function sets up the simulation using <code class="docutils literal notranslate"><span class="pre">epydemic</span></code>, runs it, and extracts the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">network_sir</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">pInfected</span><span class="p">,</span> <span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">network_sir</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">pInfected</span><span class="p">,</span> <span class="n">pInfect</span><span class="p">,</span> <span class="n">pRemove</span><span class="p">):</span>
     <span class="c1"># create the simulator</span>
     <span class="n">m</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
     <span class="n">m</span><span class="o">.</span><span class="n">setMaximumTime</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
@@ -329,7 +413,7 @@ appear.</p>
 <p>To test our hypothesis, we need a complete “social network” to operate over. Such networks are often called <em>complete graphs</em>, with every node connected by an edge to every other.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">complete_graph</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">complete_graph</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -337,7 +421,7 @@ appear.</p>
 <p>Finally we can run the equations <em>and</em> the network simulation and plot them together. If they generate the same results, we’d expect the two datasets to agree with each other.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="n">pInfect</span> <span class="o">=</span> <span class="mf">0.000005</span>      <span class="c1"># chosen simply for illustration</span>
@@ -391,6 +475,25 @@ appear.</p>
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

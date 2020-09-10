@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Models and modelling &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -13,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -23,12 +24,17 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -65,75 +71,128 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="active">
-    <a href="">Models and modelling</a>
-  </li>
-  <li class="">
-    <a href="progress.html">Disease progression</a>
-  </li>
-  <li class="">
-    <a href="continuous.html">Compartmented models</a>
-  </li>
-  <li class="">
-    <a href="network.html">Network models</a>
-  </li>
-  <li class="">
-    <a href="er.html">Making fewer connections</a>
-  </li>
-  <li class="">
-    <a href="tracing.html">Contact tracing</a>
-  </li>
-  <li class="">
-    <a href="thresholds.html">Epidemic threshold</a>
-  </li>
-  <li class="">
-    <a href="hcn.html">Human contact networks</a>
-  </li>
-  <li class="">
-    <a href="herd.html">Herd immunity</a>
-  </li>
-  <li class="">
-    <a href="vaccination.html">Changing individual susceptibility</a>
-  </li>
-  <li class="">
-    <a href="seir.html">Asymptomatic transmission</a>
-  </li>
-  <li class="">
-    <a href="distancing.html">Physical distancing</a>
-  </li>
-  <li class="">
-    <a href="conclusion.html">Conclusion</a>
-  </li>
-  <li class="">
-    <a href="reading.html">To find out more</a>
-  </li>
-  <li class="">
-    <a href="zbibliography.html">References</a>
-  </li>
-  <li class="">
-    <a href="genindex.html">Index</a>
-  </li>
-  <li class="">
-    <a href="notes.html">Notes on production</a>
-  </li>
-  <li class="">
-    <a href="acknowledgements.html">Acknowledgements</a>
-  </li>
-  <li class="">
-    <a href="about.html">About the author</a>
-  </li>
-  <li class="">
-    <a href="copyright.html">Copyright</a>
-  </li>
-  <li class="">
-    <a href="print.html">Print copies</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Epidemic modelling – Some notes, maths, and code
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Models and modelling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="progress.html">
+   Disease progression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous.html">
+   Compartmented models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="network.html">
+   Network models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="er.html">
+   Making fewer connections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tracing.html">
+   Contact tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="thresholds.html">
+   Epidemic threshold
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hcn.html">
+   Human contact networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="herd.html">
+   Herd immunity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vaccination.html">
+   Changing individual susceptibility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="seir.html">
+   Asymptomatic transmission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distancing.html">
+   Physical distancing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conclusion.html">
+   Conclusion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reading.html">
+   To find out more
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zbibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notes.html">
+   Notes on production
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About the author
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copyright.html">
+   Copyright
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="print.html">
+   Print copies
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -200,46 +259,52 @@
         <!-- Launch buttons -->
 
     </div>
+
+    <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
-</div>
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#models">
+   Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uses-of-models">
+   Uses of models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#assumptions">
+   Assumptions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#correctness">
+   Correctness
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#stochastic-processes">
+   Stochastic processes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#managing-our-expectations">
+   Managing our expectations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-for-discussion">
+   Questions for discussion
+  </a>
+ </li>
+</ul>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#models" class="nav-link">Models</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#uses-of-models" class="nav-link">Uses of models</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#assumptions" class="nav-link">Assumptions</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#correctness" class="nav-link">Correctness</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#stochastic-processes" class="nav-link">Stochastic processes</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#managing-our-expectations" class="nav-link">Managing our expectations</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
-        </li>
-    
-    </ul>
-</nav>
-
-
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -294,7 +359,7 @@ the effects of different countermeasures, like physical distancing,
 vaccination, or quarantine? Are there any patterns in the epidemic,
 like multiple waves? These are quite abstract questions that could be
 asked of <em>any</em> disease, and answering them might tell us something
-about how <em>all</em> diseases behave – including those we encountered yet.</p>
+about how <em>all</em> diseases behave – including those we haven’t encountered yet.</p>
 <p>On the other hand, we might be interested in <strong>a specific disease</strong>, or
 even in <strong>a specific outbreak</strong>. How will <em>this</em> disease spread in a
 population? How about in another country to the one it’s currently in?
@@ -506,6 +571,25 @@ about the process of modelling?</p></li>
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

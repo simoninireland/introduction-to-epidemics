@@ -163,9 +163,10 @@ to infect other patients.
 extremely contagious, with each contact having a high probability of
 passing on the infection; others are much harder to pass on to
 secondary cases.
-3. The **rate of {index}`contact <contacts>`**. Someone coming into contact with a lot of
+3. The **rate of {index}`contact <contacts>`**. Someone coming into contact with more
 susceptible individuals will have more opportunities to generate a
-secondary case than someone meeting fewer people.
+secondary case than someone meeting fewer.
+s
 
 The first two factors are characteristic of the disease, derived from
 its biology. The third is characteristic of the social conditions in

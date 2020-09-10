@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asymptomatic transmission &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -13,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -23,12 +24,17 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -65,75 +71,128 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="model.html">Models and modelling</a>
-  </li>
-  <li class="">
-    <a href="progress.html">Disease progression</a>
-  </li>
-  <li class="">
-    <a href="continuous.html">Compartmented models</a>
-  </li>
-  <li class="">
-    <a href="network.html">Network models</a>
-  </li>
-  <li class="">
-    <a href="er.html">Making fewer connections</a>
-  </li>
-  <li class="">
-    <a href="tracing.html">Contact tracing</a>
-  </li>
-  <li class="">
-    <a href="thresholds.html">Epidemic threshold</a>
-  </li>
-  <li class="">
-    <a href="hcn.html">Human contact networks</a>
-  </li>
-  <li class="">
-    <a href="herd.html">Herd immunity</a>
-  </li>
-  <li class="">
-    <a href="vaccination.html">Changing individual susceptibility</a>
-  </li>
-  <li class="active">
-    <a href="">Asymptomatic transmission</a>
-  </li>
-  <li class="">
-    <a href="distancing.html">Physical distancing</a>
-  </li>
-  <li class="">
-    <a href="conclusion.html">Conclusion</a>
-  </li>
-  <li class="">
-    <a href="reading.html">To find out more</a>
-  </li>
-  <li class="">
-    <a href="zbibliography.html">References</a>
-  </li>
-  <li class="">
-    <a href="genindex.html">Index</a>
-  </li>
-  <li class="">
-    <a href="notes.html">Notes on production</a>
-  </li>
-  <li class="">
-    <a href="acknowledgements.html">Acknowledgements</a>
-  </li>
-  <li class="">
-    <a href="about.html">About the author</a>
-  </li>
-  <li class="">
-    <a href="copyright.html">Copyright</a>
-  </li>
-  <li class="">
-    <a href="print.html">Print copies</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Epidemic modelling – Some notes, maths, and code
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model.html">
+   Models and modelling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="progress.html">
+   Disease progression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous.html">
+   Compartmented models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="network.html">
+   Network models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="er.html">
+   Making fewer connections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tracing.html">
+   Contact tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="thresholds.html">
+   Epidemic threshold
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hcn.html">
+   Human contact networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="herd.html">
+   Herd immunity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vaccination.html">
+   Changing individual susceptibility
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Asymptomatic transmission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distancing.html">
+   Physical distancing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conclusion.html">
+   Conclusion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reading.html">
+   To find out more
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zbibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notes.html">
+   Notes on production
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About the author
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copyright.html">
+   Copyright
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="print.html">
+   Print copies
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -199,47 +258,75 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/seir.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/simoninireland/introduction-to-epidemics/blob/master/seir.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
 </div>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#seir" class="nav-link">SEIR</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#the-pros-and-cons-of-a-richer-model" class="nav-link">The pros and cons of a richer model</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#simulating-seir" class="nav-link">Simulating SEIR</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#adaptive-countermeasures-and-quarantine" class="nav-link">Adaptive countermeasures and quarantine</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#reducing-infection-through-partial-quarantine" class="nav-link">Reducing infection through partial quarantine</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#quarantining-people-before-they-re-symptomatic" class="nav-link">Quarantining people before they’re symptomatic</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
-        </li>
-    
-    </ul>
-</nav>
+    </div>
 
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#seir">
+   SEIR
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-pros-and-cons-of-a-richer-model">
+   The pros and cons of a richer model
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulating-seir">
+   Simulating SEIR
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adaptive-countermeasures-and-quarantine">
+   Adaptive countermeasures and quarantine
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reducing-infection-through-partial-quarantine">
+   Reducing infection through partial quarantine
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#quarantining-people-before-they-re-symptomatic">
+   Quarantining people before they’re symptomatic
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-for-discussion">
+   Questions for discussion
+  </a>
+ </li>
+</ul>
 
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -280,7 +367,7 @@
 <div class="section" id="the-pros-and-cons-of-a-richer-model">
 <span id="sec-seir-degrees-of-freedom"></span><h2>The pros and cons of a richer model<a class="headerlink" href="#the-pros-and-cons-of-a-richer-model" title="Permalink to this headline">¶</a></h2>
 <p>It’s reasonable to ask at this point why we don’t <em>always</em> use SEIR instead of SIR, since it’s clearly closer to the way a lot of real-world diseases behave. Isn’t SIR <em>too</em> simple, when an only slightly more complex model is readily available in SEIR?</p>
-<p>There are two basic arguments to make here. Firstly, SEIR has twice as many parameters as SIR: four instead of two, each of which controls some aspect of how the process works. An alternative, and very suggestive, name for the number of parameters is the number of <strong><span class="target" id="index-6"></span>degrees of freedom</strong> a model has. A model with more degrees of freedom has more “knobs you can turn” to change its behaviour. And this is both good and bad. It’s good because it lets us fine-tune the model, possibly produce additional effects that a simpler model (with fewer degrees of freedom) wouldn’t show. But it’s bad because that means there’s more work to do to fully explore all the things a model might do. If we’re modelling a “real” disease, we have to collect twice as manay parameters about it. Some of these might be hard to collect: how would you go about funding <span class="math notranslate nohighlight">\(p_{\mathit{infectA}}\)</span>, the rate of asymptopmatic infection, when by definition asymptomatic people are hard to find?</p>
+<p>There are two basic arguments to make here. Firstly, SEIR has twice as many parameters as SIR: four instead of two, each of which controls some aspect of how the process works. An alternative, and very suggestive, name for the number of parameters is the number of <strong><span class="target" id="index-6"></span>degrees of freedom</strong> a model has. A model with more degrees of freedom has more “knobs you can turn” to change its behaviour. And this is both good and bad. It’s good because it lets us fine-tune the model, possibly produce additional effects that a simpler model (with fewer degrees of freedom) wouldn’t show. But it’s bad because that means there’s more work to do to fully explore all the things a model might do. If we’re modelling a “real” disease, we have to collect twice as many parameters about it. Some of these might be hard to collect: how would you go about funding <span class="math notranslate nohighlight">\(p_{\mathit{infectA}}\)</span>, the rate of asymptopmatic infection, when by definition asymptomatic people are hard to find?</p>
 <p>The second argument cuts to the heart of scientific model-making. As we’ve seen, SIR lets us demonstrate a lot of interesting phenomena. It varies depending on the infection rate, depending on the network topology, depending on the way we apply individual countermeasures, and so forth – and we haven’t finished yet! We can say a lot about diseases <em>in general</em> from SIR, even though there are lots of diseases that it can’t robustly capture and for which <em>in detail</em>  SEIR is better. So whether a given model is “correct” depends to a large extent on the questions we’re asking.</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
@@ -294,7 +381,7 @@
 <p>We now have four parameters to specify instead of SIR’s two: the rate <span class="math notranslate nohighlight">\(p_{\mathit{infectA}}\)</span> of asymptomatic transmission (from exposed individuals to susceptibles), and the rate <span class="math notranslate nohighlight">\(p_{symptoms}\)</span> at which symptoms show themselves. We’ll explore the way in which asymptomatic transmission affects the size of the eventual outbreak. SEIR also includes an additional event when a person is <strong><span class="target" id="index-7"></span>exposed</strong> to the disease (and becomes infectious). We re-use the <strong><span class="target" id="index-8"></span>infected</strong> event as when the person becomes symptomatic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span>
                       <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-er.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -303,22 +390,22 @@
 <p>Monitoring an SEIR epidemic is essentially the same as the way we monitored SIR: we record the sizes of the compartments as the epidemic progresses.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">pxlocal</span>
 
-<span class="k">class</span> <span class="nc">MonitoredSEIR</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="p">,</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="p">):</span>
+class MonitoredSEIR(epydemic.SEIR, epydemic.Monitor):
  
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    def __init__(self):
+        super(MonitoredSEIR, self).__init__()
         
-    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Build the observation process.</span>
-<span class="sd">        </span>
-<span class="sd">        :param params: the experimental parameters&#39;&#39;&#39;</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">MonitoredSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    def build(self, params):
+        &#39;&#39;&#39;Build the observation process.
+        
+        :param params: the experimental parameters&#39;&#39;&#39;
+        super(MonitoredSEIR, self).build(params)
 
-        <span class="c1"># also monitor other compartments</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trackNodesInCompartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">)</span>
+        # also monitor other compartments
+        self.trackNodesInCompartment(epydemic.SEIR.SUSCEPTIBLE)
+        self.trackNodesInCompartment(epydemic.SEIR.REMOVED)
 </pre></div>
 </div>
 </div>
@@ -326,7 +413,7 @@
 <p>Let’s explore the outbreak on an ER network again, choosing some values for the different disease parameters and then exploring how the results vary with the value of <span class="math notranslate nohighlight">\(p_{\mathit{infectA}}\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">kmean</span> <span class="o">=</span> <span class="mi">40</span>
 
@@ -341,7 +428,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_EXPOSED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pExposed</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_SYMPTOMS</span><span class="p">]</span> <span class="o">=</span> <span class="n">pSymptoms</span>
@@ -354,7 +441,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="p">()</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">ERNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span>
                          <span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
@@ -366,14 +453,14 @@
 <p>After much computation, we can plot the results. We’ll also show the value of “normal” infection (by symptomatic individuals) for comparison.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-er.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-er.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population and</span>
@@ -396,7 +483,7 @@
 <p>Compare this with the diagram we drew for the <a class="reference internal" href="thresholds.html#sec-thresholds-er"><span class="std std-ref">epidemic threshold</span></a>, and you’ll see that the epidemic takes off a lot earlier – which is probably what we expected, since there’s more infection going on. In fact even a very small amout of early infection is enough to cause an outbreak.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
@@ -443,46 +530,46 @@
 <p>We introduce this into our model in two ways. Firstly, we change the behaviour of infection to include the quarantine step. Second, we define the rewiring operation over all the node’s neighbours.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">pxlocal</span>
 
-<span class="k">class</span> <span class="nc">AdaptiveSIR</span><span class="p">(</span><span class="n">MonitoredSIR</span><span class="p">):</span>
+class AdaptiveSIR(MonitoredSIR):
     
-    <span class="n">P_REWIRE</span> <span class="o">=</span> <span class="s1">&#39;pRewire&#39;</span>   <span class="c1">#: Parameter for the probability</span>
-                           <span class="c1"># of rewiring an SE or SI edge.</span>
+    P_REWIRE = &#39;pRewire&#39;   #: Parameter for the probability
+                           # of rewiring an SE or SI edge.
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    def __init__(self):
+        super(AdaptiveSIR, self).__init__()
         
-    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    def build(self, params):
+        super(AdaptiveSIR, self).build(params)
         
-        <span class="c1"># store the parameters for later</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span>
+        # store the parameters for later
+        self._pRewire = params[self.P_REWIRE]
 
-    <span class="k">def</span> <span class="nf">quarantine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
-        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+    def quarantine(self, n):
+        g = self.network()
+        rng = numpy.random.default_rng()
         
-        <span class="c1"># run through all the neighbours of the infected node </span>
-        <span class="n">ms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ms</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span><span class="p">:</span>
-                <span class="c1"># selected a susceptible neighbour to rewire,</span>
-                <span class="c1"># remove its link to us</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">removeEdge</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+        # run through all the neighbours of the infected node 
+        ms = list(g.neighbors(n))
+        for m in ms:
+            if self.getCompartment(m) == self.SUSCEPTIBLE and rng.random() &lt;= self._pRewire:
+                # selected a susceptible neighbour to rewire,
+                # remove its link to us
+                self.removeEdge(n, m)
                 
-                <span class="c1"># rewire to another random susceptible</span>
-                <span class="n">mprime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">locus</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">mprime</span><span class="p">)</span>
+                # rewire to another random susceptible
+                mprime = self.locus(self.SUSCEPTIBLE).draw()
+                self.addEdge(m, mprime)
         
-    <span class="k">def</span> <span class="nf">infect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-        <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="n">e</span>
+    def infect(self, t, e):
+        (n, _) = e
         
-        <span class="c1"># perform a normal infection event</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">infect</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+        # perform a normal infection event
+        super(AdaptiveSIR, self).infect(t, e)
         
-        <span class="c1"># quarantine the newly-infected node</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>  
+        # quarantine the newly-infected node
+        self.quarantine(n)  
 </pre></div>
 </div>
 </div>
@@ -496,7 +583,7 @@
 <p>We’ll run the same disease for these two scenarios.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">2000</span>
 <span class="n">kmean</span> <span class="o">=</span> <span class="mi">40</span>
 
@@ -513,7 +600,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># experimental parameters common to both experiments</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># experimental parameters common to both experiments</span>
 <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 <span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
 <span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
@@ -540,7 +627,7 @@
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                           <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># plot the two cases side by side</span>
@@ -577,14 +664,14 @@
 <p>Having acquired some confidence in the correctness of the code, we can explore the effect of different values of <span class="math notranslate nohighlight">\(p_{rewire}\)</span> on the size of epidemic. We’ll do this by performing experiments across the parameter range, with 100 repetitions of each to see what the variance is like.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-quarantine.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-quarantine.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfected</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
@@ -600,7 +687,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span>
                          <span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
                        <span class="mi">10</span><span class="p">))</span>
 </pre></div>
@@ -610,14 +697,14 @@
 <p>Again this requires quite a lot of computation, but then we can plot the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-quarantine.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-quarantine.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
@@ -647,57 +734,57 @@
 <p>Again, we can add our scheme to the standard SEIR model. We’ll use the same quarantine function since that process hasn’t changed, but we now perform it when an exposed node develops symptoms, and quarantine some fraction of its neighbouring exposed nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">pxlocal</span>
 
-<span class="k">class</span> <span class="nc">AdaptiveSEIR</span><span class="p">(</span><span class="n">MonitoredSEIR</span><span class="p">):</span>
+class AdaptiveSEIR(MonitoredSEIR):
     
-    <span class="n">P_DETECT</span> <span class="o">=</span> <span class="s1">&#39;pDetect&#39;</span>   <span class="c1">#: Parameter for the probability </span>
-                           <span class="c1"># of detecting an exposed</span>
-                           <span class="c1"># neighbour of an infected node.</span>
-    <span class="n">P_REWIRE</span> <span class="o">=</span> <span class="s1">&#39;pRewire&#39;</span>   <span class="c1">#: Parameter for the probability</span>
-                           <span class="c1"># of rewiring an SE or SI edge.</span>
+    P_DETECT = &#39;pDetect&#39;   #: Parameter for the probability 
+                           # of detecting an exposed
+                           # neighbour of an infected node.
+    P_REWIRE = &#39;pRewire&#39;   #: Parameter for the probability
+                           # of rewiring an SE or SI edge.
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    def __init__(self):
+        super(AdaptiveSEIR, self).__init__()
         
-    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    def build(self, params):
+        super(AdaptiveSEIR, self).build(params)
         
-        <span class="c1"># store the parameters for later</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_pDetect</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">P_DETECT</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span>
+        # store the parameters for later
+        self._pDetect = params[self.P_DETECT]
+        self._pRewire = params[self.P_REWIRE]
 
-    <span class="k">def</span> <span class="nf">quarantine</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
-        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-        <span class="n">ms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ms</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pRewire</span><span class="p">:</span>
-                <span class="c1"># a susceptible neighbour, remove link to us</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">removeEdge</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+    def quarantine(self, n):
+        g = self.network()
+        rng = numpy.random.default_rng()
+        ms = list(g.neighbors(n))
+        for m in ms:
+            if self.getCompartment(m) == self.SUSCEPTIBLE and rng.random() &lt;= self._pRewire:
+                # a susceptible neighbour, remove link to us
+                self.removeEdge(n, m)
                 
-                <span class="c1"># rewire to another random susceptible</span>
-                <span class="n">mprime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">locus</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">addEdge</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">mprime</span><span class="p">)</span>
+                # rewire to another random susceptible
+                mprime = self.locus(self.SUSCEPTIBLE).draw()
+                self.addEdge(m, mprime)
         
-    <span class="k">def</span> <span class="nf">symptoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-        <span class="c1"># perform a normal becoming-symptomatic event</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">AdaptiveSEIR</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">symptoms</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    def symptoms(self, t, n):
+        # perform a normal becoming-symptomatic event
+        super(AdaptiveSEIR, self).symptoms(t, n)
         
-        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">network</span><span class="p">()</span>
-        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+        g = self.network()
+        rng = numpy.random.default_rng()
 
-        <span class="c1"># examine all neighbours and look for exposed</span>
-        <span class="c1"># nodes to quarantine</span>
-        <span class="n">ms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-        <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">ms</span><span class="p">:</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">getCompartment</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">EXPOSED</span> <span class="ow">and</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pDetect</span><span class="p">:</span>
-                <span class="c1"># detected an exposed individual,</span>
-                <span class="c1"># quarantine them</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        # examine all neighbours and look for exposed
+        # nodes to quarantine
+        ms = list(g.neighbors(n))
+        for m in ms:
+            if self.getCompartment(m) == self.EXPOSED and rng.random() &lt;= self._pDetect:
+                # detected an exposed individual,
+                # quarantine them
+                self.quarantine(m)
                 
-        <span class="c1"># quarantine the newly symptomatic node</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">quarantine</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        # quarantine the newly symptomatic node
+        self.quarantine(n)
 </pre></div>
 </div>
 </div>
@@ -706,7 +793,7 @@
 <p>Again, let’s unit-test the code by looking at two extreme cases, where <span class="math notranslate nohighlight">\(p_{detect} = 0\)</span> and <span class="math notranslate nohighlight">\(p_{detect} = 1\)</span>, keeping the value of <span class="math notranslate nohighlight">\(p_{rewire}\)</span> the same.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">kmean</span> <span class="o">=</span> <span class="mi">40</span>
 
@@ -724,7 +811,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># experimental parameters common to both experiments</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># experimental parameters common to both experiments</span>
 <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 <span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
 <span class="n">params</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
@@ -754,7 +841,7 @@
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># plot the two cases side by side</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">rc</span><span class="p">,</span> <span class="n">caption</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span> <span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">rc_0</span><span class="p">,</span> <span class="s1">&#39;No detection ($p_</span><span class="si">{detect}</span><span class="s1"> = 0.0$)&#39;</span><span class="p">),</span>
@@ -792,7 +879,7 @@
 <p>Let’s see what effect detection efficiency has. Remember, <span class="math notranslate nohighlight">\(p_{detect}\)</span> is the probability that an exposed neighbour of an infected individual will be detected and then quarantined: you can think of it as a measure of how effectively we’re doing the “test” and “trace” parts of “test, trace, and isolate”. We probably expect that a more effective detection regime – where more exposed individuals are detected earlier – will have the effect of reducing the size of the epidemic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-quarantine.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span> <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-quarantine.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -800,7 +887,7 @@
 <p>We need to pick values for the other parameters in the model, so let’s rather arbitrarily say that asymptomatic and symptomatic infection happen with the same probability, and that we have a quarantine regime that’s 50%-effective both for infected people and for those we uncover through testing.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">ERNetworkDynamics</span><span class="o">.</span><span class="n">KMEAN</span><span class="p">]</span> <span class="o">=</span> <span class="n">kmean</span>
 
 <span class="n">lab</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SEIR</span><span class="o">.</span><span class="n">P_EXPOSED</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.001</span>
@@ -821,7 +908,7 @@
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">AdaptiveSEIR</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">AdaptiveSEIR</span><span class="p">()</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">ERNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span>
                          <span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> 
@@ -833,14 +920,14 @@
 <p>More simulation results in the following.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-quarantine.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-quarantine.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
@@ -863,14 +950,14 @@
 <p>Might this be to do with the effectiveness of quarantine? If we adopt an 80%-effective regime, what then happens?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pRewire</span> <span class="o">=</span> <span class="mf">0.8</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pRewire</span> <span class="o">=</span> <span class="mf">0.8</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRewire</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">AdaptiveSEIR</span><span class="o">.</span><span class="n">P_REWIRE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRewire</span>
 <span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span>
                          <span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
                        <span class="mi">10</span><span class="p">))</span>
@@ -880,14 +967,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-quarantine.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/seir-quarantine.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
@@ -921,6 +1008,25 @@
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

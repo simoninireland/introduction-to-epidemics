@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Herd immunity &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -13,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -23,12 +24,17 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -65,75 +71,128 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="model.html">Models and modelling</a>
-  </li>
-  <li class="">
-    <a href="progress.html">Disease progression</a>
-  </li>
-  <li class="">
-    <a href="continuous.html">Compartmented models</a>
-  </li>
-  <li class="">
-    <a href="network.html">Network models</a>
-  </li>
-  <li class="">
-    <a href="er.html">Making fewer connections</a>
-  </li>
-  <li class="">
-    <a href="tracing.html">Contact tracing</a>
-  </li>
-  <li class="">
-    <a href="thresholds.html">Epidemic threshold</a>
-  </li>
-  <li class="">
-    <a href="hcn.html">Human contact networks</a>
-  </li>
-  <li class="active">
-    <a href="">Herd immunity</a>
-  </li>
-  <li class="">
-    <a href="vaccination.html">Changing individual susceptibility</a>
-  </li>
-  <li class="">
-    <a href="seir.html">Asymptomatic transmission</a>
-  </li>
-  <li class="">
-    <a href="distancing.html">Physical distancing</a>
-  </li>
-  <li class="">
-    <a href="conclusion.html">Conclusion</a>
-  </li>
-  <li class="">
-    <a href="reading.html">To find out more</a>
-  </li>
-  <li class="">
-    <a href="zbibliography.html">References</a>
-  </li>
-  <li class="">
-    <a href="genindex.html">Index</a>
-  </li>
-  <li class="">
-    <a href="notes.html">Notes on production</a>
-  </li>
-  <li class="">
-    <a href="acknowledgements.html">Acknowledgements</a>
-  </li>
-  <li class="">
-    <a href="about.html">About the author</a>
-  </li>
-  <li class="">
-    <a href="copyright.html">Copyright</a>
-  </li>
-  <li class="">
-    <a href="print.html">Print copies</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Epidemic modelling – Some notes, maths, and code
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model.html">
+   Models and modelling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="progress.html">
+   Disease progression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous.html">
+   Compartmented models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="network.html">
+   Network models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="er.html">
+   Making fewer connections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tracing.html">
+   Contact tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="thresholds.html">
+   Epidemic threshold
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hcn.html">
+   Human contact networks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Herd immunity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vaccination.html">
+   Changing individual susceptibility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="seir.html">
+   Asymptomatic transmission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distancing.html">
+   Physical distancing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conclusion.html">
+   Conclusion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reading.html">
+   To find out more
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zbibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notes.html">
+   Notes on production
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About the author
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copyright.html">
+   Copyright
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="print.html">
+   Print copies
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -199,39 +258,65 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/herd.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/simoninireland/introduction-to-epidemics/blob/master/herd.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
 </div>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#immunity" class="nav-link">Immunity</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#sec-herd-herd-immunity" class="nav-link">Herd immunity</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#epidemics-on-a-residual-network" class="nav-link">Epidemics on a residual network</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#the-complexities-of-immunity" class="nav-link">The complexities of immunity</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
-        </li>
-    
-    </ul>
-</nav>
+    </div>
 
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#immunity">
+   Immunity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sec-herd-herd-immunity">
+   Herd immunity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#epidemics-on-a-residual-network">
+   Epidemics on a residual network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-complexities-of-immunity">
+   The complexities of immunity
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-for-discussion">
+   Questions for discussion
+  </a>
+ </li>
+</ul>
 
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -276,7 +361,7 @@
 <p>For simplicity let’s return to <a class="reference internal" href="er.html"><span class="doc">ER networks</span></a>. (The same arguments work perfectly well on powerlaw networks too.) We create a small network and run an SIR epidemic over it, choosing disease parameters that we know will create an epidemic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">5000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">5000</span>
 <span class="n">kmean</span> <span class="o">=</span> <span class="mi">20</span>
 
 <span class="n">T</span> <span class="o">=</span> <span class="mi">5000</span>
@@ -290,14 +375,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">gnp_random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="p">(</span><span class="n">kmean</span> <span class="o">+</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">gnp_random_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="p">(</span><span class="n">kmean</span> <span class="o">+</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">N</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">param</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECTED</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfected</span>
 <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_INFECT</span><span class="p">]</span> <span class="o">=</span> <span class="n">pInfect</span>
 <span class="n">param</span><span class="p">[</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">P_REMOVE</span><span class="p">]</span> <span class="o">=</span> <span class="n">pRemove</span>
@@ -308,7 +393,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
 <span class="n">e1</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">StochasticDynamics</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span>
 <span class="n">rc1</span> <span class="o">=</span> <span class="n">e1</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
@@ -318,12 +403,12 @@
 <p>We can now see how many nodes were infected in the course of the epidemic (the size of the <strong>R</strong> compartment) and how many escaped infection and remain susceptible.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Remaining susceptible </span><span class="si">{s}</span><span class="s1">, removed </span><span class="si">{r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)),</span> <span class="n">r</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">))))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Remaining susceptible </span><span class="si">{s}</span><span class="s1">, removed </span><span class="si">{r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)),</span> <span class="n">r</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1376, removed 3624
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1376, removed 3624
 </pre></div>
 </div>
 </div>
@@ -331,7 +416,7 @@
 <p>Quite a large epidemic, but one that left a substantial number uninfected. We now construct the residual network by deleting all the nodes who are (or have been) infected, leaving the susceptibles. We don’t touch the edges between the nodes that remain.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">network</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">h</span> <span class="o">=</span> <span class="n">m1</span><span class="o">.</span><span class="n">network</span><span class="p">()</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">h</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">INFECTED</span><span class="p">))</span>
 <span class="n">h</span><span class="o">.</span><span class="n">remove_nodes_from</span><span class="p">(</span><span class="n">m1</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">))</span>
 </pre></div>
@@ -341,12 +426,12 @@
 <p>As a sanity check, the number of nodes in the residual network should match the number of susceptible nodes who were left after the first epidemic.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Order of residual network </span><span class="si">{o}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">o</span><span class="o">=</span><span class="n">h</span><span class="o">.</span><span class="n">order</span><span class="p">()))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Order of residual network </span><span class="si">{o}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">o</span><span class="o">=</span><span class="n">h</span><span class="o">.</span><span class="n">order</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Order of residual network 1376
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Order of residual network 1376
 </pre></div>
 </div>
 </div>
@@ -354,7 +439,7 @@
 <p>We now run the <em>same</em> disease on this network without touching the experimental parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m2</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
 <span class="n">e2</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">StochasticDynamics</span><span class="p">(</span><span class="n">m2</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
 <span class="n">rc2</span> <span class="o">=</span> <span class="n">e2</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">param</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
@@ -364,7 +449,7 @@
 <p>What is the result? We can plot the progress of the two epidemics side by side: the “main” epidemic and the secondary infection on the residual network.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># plot the first epidemic</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -408,12 +493,12 @@
 <p>The first epidemic happens as we would expect: a burst of infections followed by a dying-away. But the second epidemic looks as though nothing happens. We can check by looking at the final compartment sizes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Remaining susceptible </span><span class="si">{s}</span><span class="s1">, removed </span><span class="si">{r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)),</span> <span class="n">r</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">))))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Remaining susceptible </span><span class="si">{s}</span><span class="s1">, removed </span><span class="si">{r}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">SUSCEPTIBLE</span><span class="p">)),</span> <span class="n">r</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">m2</span><span class="o">.</span><span class="n">compartment</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="o">.</span><span class="n">REMOVED</span><span class="p">))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1340, removed 36
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Remaining susceptible 1340, removed 36
 </pre></div>
 </div>
 </div>
@@ -422,13 +507,13 @@
 <p>Why is this? The first epidemic changed the topology of the network. Specifically it reduced the mean degree of nodes because so many of the nodes were removed. In doing so it reduced the disease’s opportunities to spread, effectively reducing <span class="math notranslate nohighlight">\(\mathcal{R}\)</span> below the critical threshold.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean degree of initial network </span><span class="si">{kmean}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kmean</span><span class="o">=</span><span class="n">kmean</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean degree of initial network </span><span class="si">{kmean}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kmean</span><span class="o">=</span><span class="n">kmean</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean degree of residual network </span><span class="si">{kmean:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">kmean</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">()))))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean degree of initial network 20
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean degree of initial network 20
 Mean degree of residual network 5.50
 </pre></div>
 </div>
@@ -437,7 +522,7 @@ Mean degree of residual network 5.50
 <p>We can show this graphically – if less scientifically usefully – by plotting the progress of the disease through the network.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
 <span class="c1"># colours fgor compartments</span>
 <span class="n">colours</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
@@ -514,6 +599,25 @@ Mean degree of residual network 5.50
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

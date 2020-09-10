@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Human contact networks &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -13,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -23,12 +24,17 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -65,75 +71,128 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="model.html">Models and modelling</a>
-  </li>
-  <li class="">
-    <a href="progress.html">Disease progression</a>
-  </li>
-  <li class="">
-    <a href="continuous.html">Compartmented models</a>
-  </li>
-  <li class="">
-    <a href="network.html">Network models</a>
-  </li>
-  <li class="">
-    <a href="er.html">Making fewer connections</a>
-  </li>
-  <li class="">
-    <a href="tracing.html">Contact tracing</a>
-  </li>
-  <li class="">
-    <a href="thresholds.html">Epidemic threshold</a>
-  </li>
-  <li class="active">
-    <a href="">Human contact networks</a>
-  </li>
-  <li class="">
-    <a href="herd.html">Herd immunity</a>
-  </li>
-  <li class="">
-    <a href="vaccination.html">Changing individual susceptibility</a>
-  </li>
-  <li class="">
-    <a href="seir.html">Asymptomatic transmission</a>
-  </li>
-  <li class="">
-    <a href="distancing.html">Physical distancing</a>
-  </li>
-  <li class="">
-    <a href="conclusion.html">Conclusion</a>
-  </li>
-  <li class="">
-    <a href="reading.html">To find out more</a>
-  </li>
-  <li class="">
-    <a href="zbibliography.html">References</a>
-  </li>
-  <li class="">
-    <a href="genindex.html">Index</a>
-  </li>
-  <li class="">
-    <a href="notes.html">Notes on production</a>
-  </li>
-  <li class="">
-    <a href="acknowledgements.html">Acknowledgements</a>
-  </li>
-  <li class="">
-    <a href="about.html">About the author</a>
-  </li>
-  <li class="">
-    <a href="copyright.html">Copyright</a>
-  </li>
-  <li class="">
-    <a href="print.html">Print copies</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Epidemic modelling – Some notes, maths, and code
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model.html">
+   Models and modelling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="progress.html">
+   Disease progression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous.html">
+   Compartmented models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="network.html">
+   Network models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="er.html">
+   Making fewer connections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tracing.html">
+   Contact tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="thresholds.html">
+   Epidemic threshold
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Human contact networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="herd.html">
+   Herd immunity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vaccination.html">
+   Changing individual susceptibility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="seir.html">
+   Asymptomatic transmission
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="distancing.html">
+   Physical distancing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conclusion.html">
+   Conclusion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reading.html">
+   To find out more
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zbibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notes.html">
+   Notes on production
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About the author
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copyright.html">
+   Copyright
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="print.html">
+   Print copies
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -199,43 +258,70 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/hcn.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/simoninireland/introduction-to-epidemics/blob/master/hcn.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
 </div>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#social-structures" class="nav-link">Social structures</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#powerlaw-networks" class="nav-link">Powerlaw networks</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#building-a-contact-network" class="nav-link">Building a contact network</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#epidemics-spreading-on-powerlaw-networks" class="nav-link">Epidemics spreading on powerlaw networks</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#the-preponderance-of-epidemics" class="nav-link">The preponderance of epidemics</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
-        </li>
-    
-    </ul>
-</nav>
+    </div>
 
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#social-structures">
+   Social structures
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#powerlaw-networks">
+   Powerlaw networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-a-contact-network">
+   Building a contact network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#epidemics-spreading-on-powerlaw-networks">
+   Epidemics spreading on powerlaw networks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-preponderance-of-epidemics">
+   The preponderance of epidemics
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-for-discussion">
+   Questions for discussion
+  </a>
+ </li>
+</ul>
 
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -264,7 +350,7 @@
 <span id="sec-hcn-powerlaw"></span><h2>Powerlaw networks<a class="headerlink" href="#powerlaw-networks" title="Permalink to this headline">¶</a></h2>
 <p>So contact networks have some people who have massively more contacts than others, or than the average. This is taken to an extreme on social media, where a relatively small number of public and celebrity figures have <em>millions</em> of “friends”. Even though this notion of “friendship” is different to “real” friendship, we see similar effects in physical contact networks: the networks that capture how people interact in the real world. This happens at an individual social level, where some people are natural (or enforced) recluses while others are social butterflies. It also happens through factors like work, where some people – postal workers, shop cashiers, bus drivers, teachers – interact with far more people, and far more closely, than do those in other jobs.</p>
 <p>What <span class="target" id="index-5"></span>degree distribution do such networks have? They often follow a <span class="target" id="index-6"></span>power law, where the probability of a node having a particular degree. <span class="math notranslate nohighlight">\(p_k \propto k^{-\alpha}\)</span> for some power <span class="math notranslate nohighlight">\(\alpha &gt; 0\)</span>. These <strong><span class="target" id="index-7"></span>powerlaw networks</strong> <a class="bibtex reference internal" href="zbibliography.html#ab02" id="id5">[2]</a> describe the structures of networks in a bewildering range of applications: most famously, they describe both the structure of the underlying engineering of the internet and numbers of links to web pages <a class="bibtex reference internal" href="zbibliography.html#yjb02" id="id6">[29]</a>. These networks are also called <strong>BA networks</strong> after their discoverers, and <strong>scale-free</strong> networks because their large-scale and small-scale structures look the same.</p>
-<p>Power-law networks are not <em>quite</em> right for contact networks, though, because they can create nodes with really, <em>really</em> high degree: too high to appear in human social situations. A variation on the idea was studied by Newman, Watts, and Strogatz <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id7">[15]</a> and dounf to be a better fit. In these networks the power-law degree distribution is “cut off” before it can get too large, essentially setting a ceiling on the number of contacts an individual can have. Unsurprisingly, these networks are known as <strong><span class="target" id="index-8"></span>powerlaw with cutoff networks</strong>.</p>
+<p>Power-law networks are not <em>quite</em> right for contact networks, though, because they can create nodes with really, <em>really</em> high degree: too high to appear in human social situations. A variation on the idea was studied by Newman, Watts, and Strogatz <a class="bibtex reference internal" href="zbibliography.html#nws02" id="id7">[15]</a> and found to be a better fit. In these networks the power-law degree distribution is “cut off” before it can get too large, essentially setting a ceiling on the number of contacts an individual can have. Unsurprisingly, these networks are known as <strong><span class="target" id="index-8"></span>powerlaw with cutoff networks</strong>.</p>
 </div>
 <div class="section" id="building-a-contact-network">
 <span id="sec-hcn-building"></span><h2>Building a contact network<a class="headerlink" href="#building-a-contact-network" title="Permalink to this headline">¶</a></h2>
@@ -274,7 +360,7 @@
 <p>We define a function <code class="docutils literal notranslate"><span class="pre">p()</span></code> that, given a degree <span class="math notranslate nohighlight">\(k\)</span>, returns the probability <span class="math notranslate nohighlight">\(p_k\)</span> of a node with that degree appearing in the network. We then define another function to which we provide this function along with the number of nodes we want, and which creates the random network. It repeatedly picks a random degree and then picks a random number betwen 0 and 1. If this second number is less than the probability of a node with that degree occurring, it adds the degree to the sequence; otrherwise it repeats the process for another degree. This continues until we have <span class="math notranslate nohighlight">\(N\)</span> node degrees, whih we can then pass to the configuration model to wire together.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generateFrom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">maxdeg</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generateFrom</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">maxdeg</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
     <span class="c1"># construct degrees according to the distribution given</span>
     <span class="c1"># by the model function</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
@@ -340,7 +426,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">makePowerlawWithCutoff</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">makePowerlawWithCutoff</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">):</span>
     <span class="n">C</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">mpmath</span><span class="o">.</span><span class="n">polylog</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">cutoff</span><span class="p">))</span>
     <span class="k">def</span> <span class="nf">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span><span class="nb">pow</span><span class="p">((</span><span class="n">k</span> <span class="o">+</span> <span class="mf">0.0</span><span class="p">),</span> <span class="o">-</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">cutoff</span><span class="p">))</span> <span class="o">*</span> <span class="n">C</span>
@@ -352,7 +438,7 @@
 <p>We can then show the degree distribution that results, by again creating a network and then plotting a histogram of the degrees of the nodes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># a small sample network</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a small sample network</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">cutoff</span> <span class="o">=</span> <span class="mi">40</span>
@@ -366,7 +452,7 @@
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># draw the degree distribution</span>
@@ -392,7 +478,7 @@
 <p>Again, we need to conduct some fairly intensive simulation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span>
                       <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-plc.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -401,59 +487,59 @@
 <p>We define a class that constructs random-powerlaw-with cutoff networks, essentially just importing the code we developed <a class="reference internal" href="#sec-hcn-building"><span class="std std-ref">above</span></a> into the simulator.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">pxlocal</span>
 
-<span class="k">class</span> <span class="nc">PLCNetworkDynamics</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">StochasticDynamics</span><span class="p">):</span>
+class PLCNetworkDynamics(epydemic.StochasticDynamics):
     
-    <span class="c1"># Experimental paramerters</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
-    <span class="n">ALPHA</span> <span class="o">=</span> <span class="s1">&#39;alpha&#39;</span>
-    <span class="n">CUTOFF</span> <span class="o">=</span> <span class="s1">&#39;cutoff&#39;</span>
+    # Experimental paramerters
+    N = &#39;N&#39;
+    ALPHA = &#39;alpha&#39;
+    CUTOFF = &#39;cutoff&#39;
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">PLCNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    def __init__(self, p):
+        super(PLCNetworkDynamics, self).__init__(p)
 
-    <span class="k">def</span> <span class="nf">makePowerlawWithCutoff</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">):</span>
-        <span class="n">C</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">mpmath</span><span class="o">.</span><span class="n">polylog</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span> <span class="o">/</span> <span class="n">cutoff</span><span class="p">))</span>
-        <span class="k">def</span> <span class="nf">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">(</span><span class="nb">pow</span><span class="p">((</span><span class="n">k</span> <span class="o">+</span> <span class="mf">0.0</span><span class="p">),</span> <span class="o">-</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">numpy</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">/</span> <span class="n">cutoff</span><span class="p">))</span> <span class="o">*</span> <span class="n">C</span>
-        <span class="k">return</span> <span class="n">p</span>
+    def makePowerlawWithCutoff(self, alpha, cutoff):
+        C = 1.0 / mpmath.polylog(alpha, numpy.exp(-1.0 / cutoff))
+        def p(k):
+            return (pow((k + 0.0), -alpha) * numpy.exp(-(k + 0.0) / cutoff)) * C
+        return p
     
-    <span class="k">def</span> <span class="nf">generatePLC</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">maxdeg</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">makePowerlawWithCutoff</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
-        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-        <span class="n">ns</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
-            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="n">k</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxdeg</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-                    <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-                    <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
-                    <span class="k">break</span>
-        <span class="k">while</span> <span class="n">t</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">i</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">t</span> <span class="o">-=</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="k">del</span> <span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-                <span class="n">k</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">maxdeg</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">rng</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-                    <span class="n">ns</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
-                    <span class="n">t</span> <span class="o">+=</span> <span class="n">k</span>
-                    <span class="k">break</span>
-        <span class="k">return</span> <span class="n">networkx</span><span class="o">.</span><span class="n">configuration_model</span><span class="p">(</span><span class="n">ns</span><span class="p">,</span>
-                                            <span class="n">create_using</span><span class="o">=</span><span class="n">networkx</span><span class="o">.</span><span class="n">Graph</span><span class="p">())</span>
+    def generatePLC(self, N, alpha, cutoff, maxdeg=100):
+        p = self.makePowerlawWithCutoff(alpha, cutoff)
+        rng = numpy.random.default_rng()
+        ns = []
+        t = 0
+        for i in range(N):
+            while True:
+                k = rng.integers(1, maxdeg)
+                if rng.random() &lt; p(k):
+                    ns.append(k)
+                    t += k
+                    break
+        while t % 2 != 0:
+            i = rng.integers(0, len(ns) - 1)
+            t -= ns[i]
+            del ns[i]
+            while True:
+                k = rng.integers(1, maxdeg)
+                if rng.random() &lt; p(k):
+                    ns.append(k)
+                    t += k
+                    break
+        return networkx.configuration_model(ns,
+                                            create_using=networkx.Graph())
 
-    <span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">PLCNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    def configure(self, params):
+        super(PLCNetworkDynamics, self).configure(params)
         
-        <span class="c1"># build a random powerlaw-with-cutoff network</span>
-        <span class="c1"># with the given parameters</span>
-        <span class="n">N</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">]</span>
-        <span class="n">alpha</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">ALPHA</span><span class="p">]</span>
-        <span class="n">cutoff</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generatePLC</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setNetworkPrototype</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        # build a random powerlaw-with-cutoff network
+        # with the given parameters
+        N = params[self.N]
+        alpha = params[self.ALPHA]
+        cutoff = params[self.CUTOFF]
+        g = self.generatePLC(N, alpha, cutoff)
+        self.setNetworkPrototype(g)
 </pre></div>
 </div>
 </div>
@@ -461,7 +547,7 @@
 <p>From this we can build a sample network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">alpha</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">cutoff</span> <span class="o">=</span> <span class="mi">10</span>
 </pre></div>
@@ -471,7 +557,7 @@
 <p>And then define a parameter space over which to to run experiments. We run a normal <span class="target" id="index-11"></span>SIR process for the range of infection probabilities (values of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span>).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># test network</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test network</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">ALPHA</span><span class="p">]</span> <span class="o">=</span> <span class="n">alpha</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span> <span class="o">=</span> <span class="n">cutoff</span>
@@ -487,7 +573,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">epydemic</span><span class="o">.</span><span class="n">SIR</span><span class="p">()</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">PLCNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span>
                          <span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
@@ -499,7 +585,7 @@
 <p>Much computation again ensues before we can retrieve the results.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-plc.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-plc.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -507,7 +593,7 @@
 <p>Plotting the size of the resulting epidemic as before then yields the folowing:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
@@ -531,14 +617,14 @@
 <p>If <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> isn’t a deciding factor in the emergence of an epidemic, might it depend on the details of the network topology? We can explore this by keeping the disease parameters the same but changing the topological parameters.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cutoff</span> <span class="o">=</span> <span class="mi">2</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cutoff</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span> <span class="o">=</span> <span class="n">cutoff</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span><span class="p">[</span><span class="n">PLCNetworkDynamics</span><span class="o">.</span><span class="n">CUTOFF</span><span class="p">]</span> <span class="o">=</span> <span class="n">cutoff</span>
 <span class="n">rc</span> <span class="o">=</span> <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -546,14 +632,14 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-plc.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/threshold-plc.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
@@ -595,6 +681,25 @@
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               

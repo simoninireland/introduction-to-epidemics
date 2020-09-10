@@ -2,9 +2,10 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Physical distancing &#8212; Epidemic modelling &amp;ndash; Some notes, maths, and code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous">
     <link href="_static/css/index.css" rel="stylesheet">
@@ -13,9 +14,9 @@
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-dropdown.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/sphinx-book-theme.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -23,12 +24,17 @@
     <script src="_static/togglebutton.js"></script>
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
-    <script src="_static/mystnb.js"></script>
     <script src="_static/sphinx-book-theme.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -65,75 +71,128 @@
 </form>
 
 <nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-  
   <ul class="nav sidenav_l1">
-  <li class="">
-    <a href="model.html">Models and modelling</a>
-  </li>
-  <li class="">
-    <a href="progress.html">Disease progression</a>
-  </li>
-  <li class="">
-    <a href="continuous.html">Compartmented models</a>
-  </li>
-  <li class="">
-    <a href="network.html">Network models</a>
-  </li>
-  <li class="">
-    <a href="er.html">Making fewer connections</a>
-  </li>
-  <li class="">
-    <a href="tracing.html">Contact tracing</a>
-  </li>
-  <li class="">
-    <a href="thresholds.html">Epidemic threshold</a>
-  </li>
-  <li class="">
-    <a href="hcn.html">Human contact networks</a>
-  </li>
-  <li class="">
-    <a href="herd.html">Herd immunity</a>
-  </li>
-  <li class="">
-    <a href="vaccination.html">Changing individual susceptibility</a>
-  </li>
-  <li class="">
-    <a href="seir.html">Asymptomatic transmission</a>
-  </li>
-  <li class="active">
-    <a href="">Physical distancing</a>
-  </li>
-  <li class="">
-    <a href="conclusion.html">Conclusion</a>
-  </li>
-  <li class="">
-    <a href="reading.html">To find out more</a>
-  </li>
-  <li class="">
-    <a href="zbibliography.html">References</a>
-  </li>
-  <li class="">
-    <a href="genindex.html">Index</a>
-  </li>
-  <li class="">
-    <a href="notes.html">Notes on production</a>
-  </li>
-  <li class="">
-    <a href="acknowledgements.html">Acknowledgements</a>
-  </li>
-  <li class="">
-    <a href="about.html">About the author</a>
-  </li>
-  <li class="">
-    <a href="copyright.html">Copyright</a>
-  </li>
-  <li class="">
-    <a href="print.html">Print copies</a>
-  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="index.html">
+   Epidemic modelling – Some notes, maths, and code
+  </a>
+ </li>
 </ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="model.html">
+   Models and modelling
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="progress.html">
+   Disease progression
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="continuous.html">
+   Compartmented models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="network.html">
+   Network models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="er.html">
+   Making fewer connections
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tracing.html">
+   Contact tracing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="thresholds.html">
+   Epidemic threshold
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hcn.html">
+   Human contact networks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="herd.html">
+   Herd immunity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="vaccination.html">
+   Changing individual susceptibility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="seir.html">
+   Asymptomatic transmission
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Physical distancing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="conclusion.html">
+   Conclusion
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="reading.html">
+   To find out more
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="zbibliography.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="genindex.html">
+   Index
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notes.html">
+   Notes on production
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="acknowledgements.html">
+   Acknowledgements
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="about.html">
+   About the author
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copyright.html">
+   Copyright
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="print.html">
+   Print copies
+  </a>
+ </li>
+</ul>
+
 </nav>
 
  <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
 
 </div>
 
@@ -199,35 +258,60 @@
 
         <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/simoninireland/introduction-to-epidemics/master?urlpath=tree/distancing.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/simoninireland/introduction-to-epidemics/blob/master/distancing.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        
     </div>
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-<div class="tocsection onthispage pt-5 pb-3">
-    <i class="fas fa-list"></i> On this page
 </div>
 
-<nav id="bd-toc-nav">
-    <ul class="nav section-nav flex-column">
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#a-physically-distanced-contact-network" class="nav-link">A physically-distanced contact network</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#making-some-choices" class="nav-link">Making some choices</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#disease-and-distancing" class="nav-link">Disease and distancing</a>
-        </li>
-    
-        <li class="nav-item toc-entry toc-h2">
-            <a href="#questions-for-discussion" class="nav-link">Questions for discussion</a>
-        </li>
-    
-    </ul>
-</nav>
+    </div>
 
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-physically-distanced-contact-network">
+   A physically-distanced contact network
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-some-choices">
+   Making some choices
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#disease-and-distancing">
+   Disease and distancing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#questions-for-discussion">
+   Questions for discussion
+  </a>
+ </li>
+</ul>
 
+        </nav>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -266,7 +350,7 @@
 <p>Building the network involves a complicated piece of code – the most complicated we’ve seen so far.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distanced_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">clusterSizeDistribution</span><span class="p">,</span> <span class="n">contactDistribution</span><span class="p">,</span> <span class="n">clusterContactDistribution</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distanced_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">clusterSizeDistribution</span><span class="p">,</span> <span class="n">contactDistribution</span><span class="p">,</span> <span class="n">clusterContactDistribution</span><span class="p">):</span>
     <span class="c1"># build the initial graph</span>
     <span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
     
@@ -379,7 +463,7 @@
 <p>Since it makes no sense to allow entirely isolated families, those with no size, and “connected” individuals with no contacts, we cut off all the distributions with a minimum of 1.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">averageFamily</span><span class="p">():</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">averageFamily</span><span class="p">():</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -388,7 +472,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coupleOfContacts</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">coupleOfContacts</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">s</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>    
 </pre></div>
@@ -397,7 +481,7 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">expInterBubble</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">expInterBubble</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
     <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -407,14 +491,14 @@
 <p>These three functions, coupled with the network size, are enough to build our network.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">1000</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span> <span class="o">=</span> <span class="n">distanced_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">averageFamily</span><span class="p">,</span> <span class="n">coupleOfContacts</span><span class="p">,</span> <span class="n">expInterBubble</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">clusters</span><span class="p">)</span> <span class="o">=</span> <span class="n">distanced_graph</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">averageFamily</span><span class="p">,</span> <span class="n">coupleOfContacts</span><span class="p">,</span> <span class="n">expInterBubble</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -422,13 +506,13 @@
 <p>We can check the various elements of this network. For example, we can check what range of family “bubble” sizes we have, and how connected the various contact individuals are.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean family size of </span><span class="si">{s:.2f}</span><span class="s1"> (range </span><span class="si">{minf}</span><span class="s1">-</span><span class="si">{maxf}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">clusters</span><span class="p">),</span> <span class="n">minf</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">clusters</span><span class="p">),</span> <span class="n">maxf</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">clusters</span><span class="p">)))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean family size of </span><span class="si">{s:.2f}</span><span class="s1"> (range </span><span class="si">{minf}</span><span class="s1">-</span><span class="si">{maxf}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">clusters</span><span class="p">),</span> <span class="n">minf</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">clusters</span><span class="p">),</span> <span class="n">maxf</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">clusters</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Most connected individual has </span><span class="si">{k}</span><span class="s1"> contacts&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">g</span><span class="o">.</span><span class="n">degree</span><span class="p">())</span><span class="o">.</span><span class="n">values</span><span class="p">())))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mean family size of 4.00 (range 1-10)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean family size of 4.00 (range 1-10)
 Most connected individual has 55 contacts
 </pre></div>
 </div>
@@ -437,7 +521,7 @@ Most connected individual has 55 contacts
 <p>We could also draw the network to inspect it, colouring the nodes with the size of cluster they belong to – although that turns out not to be especially revealing.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_distanced</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw_distanced</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;cluster_size&#39;</span><span class="p">,</span>
                    <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
     <span class="c1"># fill in defaults</span>
@@ -499,7 +583,7 @@ Most connected individual has 55 contacts
 <p>The best we can probably say at this stage, then, is that … it’s complicated. Which is just the sort of situation simulation is intended for.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">lab</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">ClusterLab</span><span class="p">(</span><span class="n">profile</span><span class="o">=</span><span class="s1">&#39;hogun&#39;</span><span class="p">,</span>
                       <span class="n">notebook</span><span class="o">=</span><span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-phydist.json&#39;</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -508,106 +592,106 @@ Most connected individual has 55 contacts
 <p>If we cast the above code into a format suitable for running as an experiment, we can then look at how an epidemic proceeds for a sample point in the parameter space.</p>
 <div class="cell tag_hide-cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">pxlocal</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="k">pxlocal</span>
 
-<span class="k">class</span> <span class="nc">PhyDistNetworkDynamics</span><span class="p">(</span><span class="n">epydemic</span><span class="o">.</span><span class="n">StochasticDynamics</span><span class="p">):</span>
+class PhyDistNetworkDynamics(epydemic.StochasticDynamics):
     
-    <span class="c1"># Experimental parameters</span>
-    <span class="n">N</span> <span class="o">=</span> <span class="s1">&#39;N&#39;</span>
-    <span class="n">BUBBLE_MEAN</span> <span class="o">=</span> <span class="s1">&#39;bubbleMean&#39;</span>
-    <span class="n">BUBBLE_STDDEV</span> <span class="o">=</span> <span class="s1">&#39;bubbleStddev&#39;</span>
-    <span class="n">INTERBUBBLE_EXP</span><span class="o">=</span> <span class="s1">&#39;interBubbleExp&#39;</span>
+    # Experimental parameters
+    N = &#39;N&#39;
+    BUBBLE_MEAN = &#39;bubbleMean&#39;
+    BUBBLE_STDDEV = &#39;bubbleStddev&#39;
+    INTERBUBBLE_EXP= &#39;interBubbleExp&#39;
     
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">PhyDistNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    def __init__(self, p):
+        super(PhyDistNetworkDynamics, self).__init__(p)
         
-    <span class="k">def</span> <span class="nf">bubbleSize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_bubbleMean</span><span class="p">,</span>
-                                  <span class="bp">self</span><span class="o">.</span><span class="n">_bubbleStddev</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
+    def bubbleSize(self):
+        rng = numpy.random.default_rng()
+        return max(int(rng.normal(self._bubbleMean,
+                                  self._bubbleStddev)), 1)
 
-    <span class="k">def</span> <span class="nf">contacts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">s</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>    
+    def contacts(self, s):
+        rng = numpy.random.default_rng()
+        return max(int(rng.normal(min(s / 2, 2), 1)), 1)    
 
-    <span class="k">def</span> <span class="nf">interBubble</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-        <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rng</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_interBubbleExponent</span><span class="p">)),</span> <span class="mi">1</span><span class="p">)</span>
+    def interBubble(self):
+        rng = numpy.random.default_rng()
+        return max(int(rng.exponential(self._interBubbleExponent)), 1)
         
-    <span class="k">def</span> <span class="nf">distanced</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">N</span><span class="p">):</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+    def distanced(self, N):
+        g = networkx.Graph()
     
-        <span class="n">rng</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
-        <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">cid</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="n">clusters</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">while</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bubbleSize</span><span class="p">()</span>
-            <span class="n">K_s</span> <span class="o">=</span> <span class="n">networkx</span><span class="o">.</span><span class="n">complete_graph</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        rng = numpy.random.default_rng()
+        n = 0
+        cid = 1
+        clusters = []
+        while n &lt; N:
+            s = self.bubbleSize()
+            K_s = networkx.complete_graph(s)
             
-            <span class="n">networkx</span><span class="o">.</span><span class="n">relabel_nodes</span><span class="p">(</span><span class="n">K_s</span><span class="p">,</span>
-                                   <span class="k">lambda</span> <span class="n">l</span><span class="p">:</span> <span class="n">n</span> <span class="o">+</span> <span class="n">l</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">K_s</span><span class="o">.</span><span class="n">nodes</span><span class="p">,</span>
-                             <span class="n">cluster</span><span class="o">=</span><span class="n">cid</span><span class="p">,</span> <span class="n">cluster_size</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">(</span><span class="n">K_s</span><span class="o">.</span><span class="n">edges</span><span class="p">,</span>
-                             <span class="n">cluster</span><span class="o">=</span><span class="n">cid</span><span class="p">,</span> <span class="n">cluster_size</span><span class="o">=</span><span class="n">s</span><span class="p">)</span>
-            <span class="n">clusters</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">K_s</span><span class="p">)</span>
-            <span class="n">n</span> <span class="o">+=</span> <span class="n">s</span>
-            <span class="n">cid</span> <span class="o">+=</span> <span class="mi">1</span>
+            networkx.relabel_nodes(K_s,
+                                   lambda l: n + l, copy=False)
+            g.add_nodes_from(K_s.nodes,
+                             cluster=cid, cluster_size=s)
+            g.add_edges_from(K_s.edges,
+                             cluster=cid, cluster_size=s)
+            clusters.append(K_s)
+            n += s
+            cid += 1
         
-        <span class="n">contacts</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">clusters</span><span class="p">:</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">order</span><span class="p">()</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contacts</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-            <span class="n">contacts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+        contacts = []
+        for c in clusters:
+            s = c.order()
+            d = self.contacts(s)
+            contacts.append(d)
             
-        <span class="n">stubs</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">clusters</span><span class="p">)):</span>
-            <span class="n">c</span> <span class="o">=</span> <span class="n">clusters</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="n">ls</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">nodes</span><span class="p">())[:</span><span class="n">contacts</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> 
-            <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">ls</span><span class="p">:</span>
-                <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">interBubble</span><span class="p">()</span>
-                <span class="n">stubs</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">l</span><span class="p">]</span> <span class="o">*</span> <span class="n">e</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stubs</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">us</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">stubs</span><span class="p">))</span>
-            <span class="n">j</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">us</span><span class="p">))</span>
-            <span class="n">stubs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">us</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+        stubs = []
+        for i in range(len(clusters)):
+            c = clusters[i]
+            ls = list(c.nodes())[:contacts[i]] 
+            for l in ls:
+                e = self.interBubble()
+                stubs.extend([l] * e)
+        if len(stubs) % 2 &gt; 0:
+            us = list(set(stubs))
+            j = rng.integers(len(us))
+            stubs.append(us[j])
         
-        <span class="n">rng</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">stubs</span><span class="p">)</span>
-        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-            <span class="n">swaps</span> <span class="o">=</span> <span class="mi">0</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">stubs</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
-                <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">stubs</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="s1">&#39;cluster&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">g</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">stubs</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]][</span><span class="s1">&#39;cluster&#39;</span><span class="p">]:</span>
-                    <span class="n">j</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">stubs</span><span class="p">))</span>
-                    <span class="n">t</span> <span class="o">=</span> <span class="n">stubs</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
-                    <span class="n">stubs</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">stubs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-                    <span class="n">stubs</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span>
-                    <span class="n">swaps</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="k">if</span> <span class="n">swaps</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="k">break</span>
+        rng.shuffle(stubs)
+        while True:
+            swaps = 0
+            for i in range(0, len(stubs), 2):
+                if g.nodes[stubs[i]][&#39;cluster&#39;] == g.nodes[stubs[i + 1]][&#39;cluster&#39;]:
+                    j = rng.integers(len(stubs))
+                    t = stubs[i + 1]
+                    stubs[i + 1] = stubs[j]
+                    stubs[j] = t
+                    swaps += 1
+            if swaps == 0:
+                break
 
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">stubs</span><span class="p">),</span> <span class="mi">2</span><span class="p">):</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">stubs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">stubs</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
-                       <span class="n">cluster</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cluster_size</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        for i in range(0, len(stubs), 2):
+            g.add_edge(stubs[i], stubs[i + 1],
+                       cluster=0, cluster_size=0)
 
-        <span class="k">return</span> <span class="n">g</span>
+        return g
 
-    <span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">PhyDistNetworkDynamics</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+    def configure(self, params):
+        super(PhyDistNetworkDynamics, self).configure(params)
         
-        <span class="n">N</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">N</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_bubbleMean</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BUBBLE_MEAN</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_bubbleStddev</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">BUBBLE_STDDEV</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_interBubbleExponent</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">INTERBUBBLE_EXP</span><span class="p">]</span>
-        <span class="n">g</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">distanced</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">setNetworkPrototype</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+        N = params[self.N]
+        self._bubbleMean = params[self.BUBBLE_MEAN]
+        self._bubbleStddev = params[self.BUBBLE_STDDEV]
+        self._interBubbleExponent = params[self.INTERBUBBLE_EXP]
+        g = self.distanced(N)
+        self.setNetworkPrototype(g)
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network size</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># network size</span>
 <span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>
 
 <span class="c1"># simulation time</span>
@@ -623,7 +707,7 @@ Most connected individual has 55 contacts
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># experimental parameters common to both experiments</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># experimental parameters common to both experiments</span>
 <span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
 <span class="n">params</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">params</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_MEAN</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.5</span>
@@ -646,7 +730,7 @@ Most connected individual has 55 contacts
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="n">timeseries</span> <span class="o">=</span> <span class="n">rc</span><span class="p">[</span><span class="n">epyc</span><span class="o">.</span><span class="n">Experiment</span><span class="o">.</span><span class="n">RESULTS</span><span class="p">][</span><span class="n">epydemic</span><span class="o">.</span><span class="n">Monitor</span><span class="o">.</span><span class="n">TIMESERIES</span><span class="p">]</span>
@@ -675,7 +759,7 @@ Most connected individual has 55 contacts
 <p>Compare this to the <a class="reference internal" href="thresholds.html#sec-thresholds-er"><span class="std std-ref">same disease on an ER network</span></a>. The epidemic doesn’t really get started in the network, even for a value of <span class="math notranslate nohighlight">\(p_{\mathit{infect}}\)</span> that previous experience would suggest would be sufficient. We can explore this by checking the size of the epidemic across a range of infectiousness values.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># network parameters</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">N</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_MEAN</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.5</span>
 <span class="n">lab</span><span class="p">[</span><span class="n">PhyDistNetworkDynamics</span><span class="o">.</span><span class="n">BUBBLE_STDDEV</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span>
@@ -694,7 +778,7 @@ Most connected individual has 55 contacts
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">MonitoredSIR</span><span class="p">()</span>
 <span class="n">m</span><span class="o">.</span><span class="n">setMaximumTime</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">PhyDistNetworkDynamics</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 <span class="n">lab</span><span class="o">.</span><span class="n">runExperiment</span><span class="p">(</span><span class="n">epyc</span><span class="o">.</span><span class="n">RepeatedExperiment</span><span class="p">(</span>
@@ -706,14 +790,14 @@ Most connected individual has 55 contacts
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-phydist.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">epyc</span><span class="o">.</span><span class="n">JSONLabNotebook</span><span class="p">(</span><span class="s1">&#39;datasets/sir-phydist.json&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">dataframe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
 
 <span class="c1"># plot the size of the removed population</span>
@@ -744,6 +828,25 @@ Most connected individual has 55 contacts
 </div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
