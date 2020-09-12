@@ -56,7 +56,8 @@ RAW_IMAGES = \
 	src/sd.png \
 	src/cc-by-nc-sa.png \
 	src/disease-types.png \
-	src/disease-periods.png
+	src/disease-periods.png \
+	src/print-cover-small.png
 
 # Generated plots
 GENERATED_IMAGES = \
@@ -102,7 +103,7 @@ CONTENT = \
 ROOT = $(shell pwd)
 
 # Base commands
-PYTHON = python3.6            # specific sub-version for use with compute cluster
+PYTHON = python3.6                        # specific version for talking to compute cluster
 IPYTHON = ipython
 JUPYTER = jupyter
 JUPYTER_BOOK = jupyter-book
