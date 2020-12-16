@@ -344,7 +344,7 @@ different behaviour -- growing or shrinking, in this case.
 ```
 Just as $\mathcal{R}$ had a {index}`threshold` at $\mathcal{R} = 1$ that
 determined whether the epidemic was growing or shrinking, so $\lambda
-= 0$ divides growing ($\lambda > 1$) from shrinking ($\lambda <
+= 1$ divides growing ($\lambda > 1$) from shrinking ($\lambda <
 0$) conditions. And just like $\mathcal{R}$, we need to be careful
 about reading too much into that: mistakes or omissions in reporting
 the ongoing cases can easily cause an over- or under-estimate of

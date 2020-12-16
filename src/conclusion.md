@@ -79,11 +79,12 @@ alien, requiring endless qualifications, state or corporate
 sponsorship, and access to techniques and tools that are out of reach
 of the amateur. Nothing could be further from the truth.
 
-Science, as practiced by real scientists, is largely just an exerciseb
-*scientific method* -- that has evolved over the years to help stop us
-misleading ourselves. The framework isn't a barrier to entry into
-science; rather, it's a guide to help identify simple truth within a
-complex reality. 
+Science, as practiced by real scientists, is largely just an exercise
+in structured curiosity -- now called the *scientific method* -- that
+has evolved over the years to help stop us misleading ourselves. The
+framework isn't intended to be a barrier to entry into science;
+rather, it's a guide to help identify simple truth within a complex
+reality.
 
 The {ref}`quotation from Rovelli <sec:model-expectations>` with which
 we opened this book highlights that the conclusions drawn by science
