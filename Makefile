@@ -1,8 +1,8 @@
 # Makefile for "Introduction to epidemics"
 #
-# Copyright (C) 2020 Simon Dobson <simon.dobson@st-andrews.ac.uk>
-# 
-# Licensed under the Creative Commons Attribution-Share Alike 4.0 
+# Copyright (C) 2020--2021 Simon Dobson <simon.dobson@st-andrews.ac.uk>
+#
+# Licensed under the Creative Commons Attribution-Share Alike 4.0
 # International License (https://creativecommons.org/licenses/by-sa/4.0/).
 #
 
@@ -43,7 +43,7 @@ LATEX_EXTRAS = \
 	latex/latex.rst \
 	latex/rawbibliography.rst \
 	latex/style.tex
-LATEX_CONFIG = 	latex/conf.py
+LATEX_CONFIG =	latex/conf.py
 
 # Extra e-book files
 EPUB_EXTRAS = \
@@ -135,6 +135,7 @@ DATE = `date`
 # Requirements and venv
 VENV = venv3
 REQUIREMENTS = requirements.txt
+KNOWN_GOOD_REQUIREMENTS = known-good-requirements.txt
 
 # Jupyter Book construction
 BUILD_DIR = _build
@@ -232,9 +233,7 @@ env: $(VENV)
 
 $(VENV):
 	$(VIRTUALENV) $(VENV)
-	$(CP) $(REQUIREMENTS) $(VENV)/requirements.txt
-	$(ACTIVATE) && $(CHDIR) $(VENV) && $(PIP) install -r requirements.txt
-
+	$(ACTIVATE) && $(PIP) install -r $(KNOWN_GOOD_REQUIREMENTS)
 
 # Clean up the build
 clean:
@@ -266,5 +265,3 @@ export HELP_MESSAGE
 
 usage:
 	@echo "$$HELP_MESSAGE"
-
-
