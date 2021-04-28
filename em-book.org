@@ -1,0 +1,24 @@
+#+title: em-book
+
+* Epidemic modelling: Some note, maths, and code                    :PROJECT:
+
+** Plans
+
+   Make the next edition more interactive. It should be possible to
+   download the whole thing and read it, or to interact with it live
+   in the cloud.
+
+** Tasks for next release [0/0]
+
+   - Coding [0/3]
+     - [ ] Upgrade content to latest epydemic version
+     - [ ] Re-create datasets and store in the cloud
+     - [ ] Change all loading of datasets to prefer cached versions
+   - Containerisation [0/4]
+     - [ ] Basic epydemic container
+     - [ ] Decide on container server
+     - [ ] Interface to book (https://jupyterbook.org/interactive/launchbuttons.html)
+     - [ ] Install book and datasets
+
+
++ tags :: [[file:../../personal/notebook/20210301173301-epydemic.org][epydemic]]
