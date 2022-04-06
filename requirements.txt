@@ -3,11 +3,10 @@ jupyter
 jupyter-book >= 0.7.0b
 ghp-import
 networkx >= 2.4
-epydemic
+epydemic >= 1.9.1
 numpy
 mpmath
 matplotlib
 seaborn
 pandas
-
-
+manim

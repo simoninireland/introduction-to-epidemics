@@ -1,6 +1,6 @@
 # Makefile for "Introduction to epidemics"
 #
-# Copyright (C) 2020--2021 Simon Dobson <simon.dobson@st-andrews.ac.uk>
+# Copyright (C) 2020--2022 Simon Dobson <simon.dobson@st-andrews.ac.uk>
 #
 # Licensed under the Creative Commons Attribution-Share Alike 4.0
 # International License (https://creativecommons.org/licenses/by-sa/4.0/).
@@ -77,6 +77,14 @@ GENERATED_DATASETS = \
 	src/datasets/seir-quarantine.json \
 	src/datasets/sir-phydist.json
 
+# Video scenes
+VIDEO = \
+	video/epidemic-threshold/r-value.py \
+	video/epidemic-threshold/network.py \
+	video/epidemic-threshold/topology.py
+VIDEO_UTILS = \
+	video/epidemic-threshold/data.py
+
 # Bibliography
 BIBLIOGRAPHY = src/bibliography.bib
 
@@ -107,6 +115,7 @@ PYTHON = python3.6                        # specific version for talking to comp
 IPYTHON = ipython
 JUPYTER = jupyter
 JUPYTER_BOOK = jupyter-book
+MANIM = manim
 LATEX = pdflatex
 BIBTEX = bibtex
 MAKEINDEX = makeindex
@@ -220,12 +229,18 @@ latex:
 	EOF
 
 
+# Build the video scenes
+.PHONY: video
+video: $(SCENES)
+	$(foreach fn, $(SCENES), ($(CHDIR) `dirname $(fn)` && PYTHONPATH=. $(MANIM) -ql `basename $(fn)`);)
+
 # Build an Epub
 epub: env # bookdir
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(EPUB_EXTRAS) $(BOOK_DIR)
 	$(ACTIVATE) && $(CHDIR) $(BOOK_DIR) && $(BUILD_EPUB_BOOK)
+
 
 # Build a development venv
 .PHONY: env
@@ -235,9 +250,11 @@ $(VENV):
 	$(VIRTUALENV) $(VENV)
 	$(ACTIVATE) && $(PIP) install -r $(KNOWN_GOOD_REQUIREMENTS)
 
+
 # Clean up the build
 clean:
 	$(RM) $(BOOK_DIR) $(LATEX_BUILD_DIR)
+
 
 # Clean up everything, including the venv (which is quite expensive to rebuild)
 reallyclean: clean
