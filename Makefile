@@ -79,9 +79,11 @@ GENERATED_DATASETS = \
 
 # Video scenes
 VIDEO = \
-	video/epidemic-threshold/r-value.py \
-	video/epidemic-threshold/network.py \
-	video/epidemic-threshold/topology.py
+	video/epidemic-threshold/Header.mp4 \
+	video/epidemic-threshold/RValue.mp4 \
+	video/epidemic-threshold/Network.mp4 \
+	video/epidemic-threshold/Topology.mp4 \
+	video/epidemic-threshold/VaryDisease.mp4
 VIDEO_UTILS = \
 	video/epidemic-threshold/data.py
 
@@ -161,6 +163,13 @@ LATEX_BOOK_PDF = $(LATEX_BOOK_STEM).pdf
 # Epub construction
 EPUB_BUILD_DIR = $(BOOK_BUILD_DIR)/epub
 
+# Video construction -- manim quality flag and the sub-directory for assets
+VIDEO_QUALITY = l
+VIDEO_RESOLUTION = 480p15
+
+# Video temporary asset directories
+VIDEO_MEDIA = $(shell find video -type d -name media -print)
+
 # Commands
 RUN_SERVER = PYTHONPATH=. $(JUPYTER) notebook
 CREATE_BOOK = $(JUPYTER_BOOK) create $(BOOK_DIR)
@@ -231,8 +240,8 @@ latex:
 
 # Build the video scenes
 .PHONY: video
-video: $(SCENES)
-	$(foreach fn, $(SCENES), ($(CHDIR) `dirname $(fn)` && PYTHONPATH=. $(MANIM) -ql `basename $(fn)`);)
+video: $(VIDEO)
+
 
 # Build an Epub
 epub: env # bookdir
@@ -253,12 +262,20 @@ $(VENV):
 
 # Clean up the build
 clean:
-	$(RM) $(BOOK_DIR) $(LATEX_BUILD_DIR)
+	$(RM) $(BOOK_DIR) $(LATEX_BUILD_DIR) $(VIDEO) $(VIDEO_MEDIA)
 
 
 # Clean up everything, including the venv (which is quite expensive to rebuild)
 reallyclean: clean
 	$(RM) $(VENV)
+
+
+# ----- Implicit rules -----
+.SUFFIXES: .py .mp4
+
+.py.mp4:
+	$(MANIM) -q$(VIDEO_QUALITY) $<
+	$(CP) media/videos/$(shell basename $< .py)/$(VIDEO_RESOLUTION)/*.mp4 $(shell dirname $<)
 
 
 # ----- Usage -----
@@ -271,6 +288,7 @@ Production:
    make book         build the book using Jupyter Book
    make upload       upload book to public web site
    make print        build a PDF of the book for printing
+   make video        build all the video scenes
 
 Maintenance:
    make env          create a virtual environment
