@@ -106,8 +106,8 @@ class Network(Scene):
     def construct(self):
         N = 10
         kmean = 5
-        pInfect = 0.9
-        tRemove = 2.0
+        pInfect = 1.0
+        tRemove = 4.0
         delay = 1.0
 
         self.begin(N, kmean, pInfect, tRemove, delay=delay)
