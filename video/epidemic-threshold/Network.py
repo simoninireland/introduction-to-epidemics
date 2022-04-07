@@ -1,6 +1,6 @@
 import numpy
 from manim import *
-from epydemic import SIR, SIR_FixedRecovery, ERNetwork
+from epydemic import SIR, SIR_FixedRecovery, ERNetwork, FixedNetwork
 from epydemic_signals import StochasticSignalDynamics, SignalGenerator
 
 
@@ -36,23 +36,32 @@ class SIRVisualiser(SignalGenerator):
         super().__init__(None)
 
         self._scene = scene
+        self._graph = None
 
         self.addEventTypeHandler(SIR.INFECTED, self.infect)
         self.addEventTypeHandler(SIR.REMOVED, self.remove)
 
     def setUp(self, g, params):
-        self.signal().setNetwork(g)
+        super().setUp(g, params)
         m = self.experiment().process()
-        self._graph = Graph.from_networkx(g, layout='spring', layout_scale=3)
+        if self._graph is None:
+            self._graph = Graph.from_networkx(g, layout='spring', layout_scale=3).shift(2 * LEFT)
+            for n in g.nodes():
+                self._graph[n].scale(self._scene._scale)
+
         for n in g.nodes():
             if m.getCompartment(n) == SIR_FixedRecovery.SUSCEPTIBLE:
                 c = self._scene._s_colour
             elif m.getCompartment(n) == SIR_FixedRecovery.INFECTED:
                 c = self._scene._i_colour
             else:
-                c = GREY
-            self._graph[n].scale(self._scene._scale).set_color(c).set_fill(c).set_fill_opacity(1.0)
+                c = GREY   # unexpected!
+            self._graph[n].set_color(c).set_fill(c).set_fill_opacity(1.0)
         self._scene.play(Create(self._graph))
+
+    def tearDown(self):
+        self._scene.play(FadeOut(self._graph))
+        super().tearDown()
 
     def infect(self, t, e):
         (n, _) = e
@@ -70,7 +79,7 @@ class Network(Scene):
     rng = numpy.random.default_rng()
 
 
-    def begin(self, N, kmean, pInfect, tRemove = 1.0,
+    def begin(self, N, kmean, pInfect, tRemove = 1.0, g = None,
               delay = 1.0, scale = 2, s_colour = GREEN, i_colour = RED, r_colour = BLUE):
         self._delay = delay
         self._scale = scale
@@ -83,7 +92,12 @@ class Network(Scene):
         self._params[ERNetwork.KMEAN] = kmean
         self._params[SIR_FixedRecovery.P_INFECT] = pInfect
         self._params[SIR_FixedRecovery.T_INFECTED] = tRemove
-        self._e = StochasticSignalDynamics(SingleSeedSIR(), ERNetwork())
+        if g is None:
+            self._gen = ERNetwork()
+        else:
+            self._gen = FixedNetwork(g)
+
+        self._e = StochasticSignalDynamics(SingleSeedSIR(), self._gen)
         self._e.addSignalGenerator(SIRVisualiser(self))
 
     def run(self):
@@ -96,7 +110,7 @@ class Network(Scene):
         tRemove = 2.0
         delay = 1.0
 
-        self.begin(N, kmean, pInfect, tRemove, delay)
+        self.begin(N, kmean, pInfect, tRemove, delay=delay)
         self.run()
 
         self.wait(5)
