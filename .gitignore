@@ -143,3 +143,6 @@ bookdir/
 
 # Dataset cache
 src/datasets
+
+# Video files
+*.mp4
