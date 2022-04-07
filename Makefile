@@ -275,7 +275,7 @@ reallyclean: clean
 
 .py.mp4:
 	$(MANIM) -q$(VIDEO_QUALITY) $<
-	$(CP) media/videos/$(shell basename $< .py)/$(VIDEO_RESOLUTION)/*.mp4 $(shell dirname $<)
+	$(CP) media/videos/$(shell basename $< .py)/$(VIDEO_RESOLUTION)/$(shell basename $< .py).mp4 $(shell dirname $<)
 
 
 # ----- Usage -----
