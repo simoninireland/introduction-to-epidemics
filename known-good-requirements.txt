@@ -55,7 +55,7 @@ nbdime==2.0.0
 nbformat==5.0.7
 nest-asyncio==1.3.3
 networkx==2.4
-notebook==6.0.3
+notebook==6.4.12
 numpy==1.19.0
 oset==0.1.3
 packaging==20.4
