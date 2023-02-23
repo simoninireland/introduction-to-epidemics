@@ -42,7 +42,7 @@ jupyter-sphinx==0.2.4
 kiwisolver==1.2.0
 latexcodec==2.0.1
 libsass==0.20.0
-markdown-it-py==0.4.7
+markdown-it-py==2.2.0
 MarkupSafe==1.1.1
 matplotlib==3.2.2
 mistune==0.8.4
