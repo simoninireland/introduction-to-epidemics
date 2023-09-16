@@ -20,31 +20,26 @@ visualisation, as implemented by the [Tufte-LaTeX
 Developers](http://www.latextemplates.com/template/tufte-style-book).
 ```
 
-Simulations are all written in [Python 3](https://www.python.org) and
-expressed using the
-[`epydemic`](https://pyepydemic.readthedocs.io/en/latest/) library for
-network simulation, which itself is built on top of the
+Simulations are all written in [Python 3](https://www.python.org)
+using the [`epydemic`](https://pyepydemic.readthedocs.io/en/latest/)
+library for network simulation, which itself is built on top of the
 [`networkx`](https://networkx.github.io/) library for representing and
 manipulating networks in Python.
 
 The mathematics makes heavy use of the [`numpy`](https://numpy.org/).
 The diagrams are all generated using
-[`matplotlib`](https://matplotlib.org/) together with
-[`seaborn`](https://seaborn.pydata.org/) to improve the graphical
-presentation, as well as some of the network visualisation functions
-built into `networkx`.
+[`matplotlib`](https://matplotlib.org/), making extensive use of the
+excellent ideas and explanations from Rougier's book {cite}`Rou21`
+as well as some of the network visualisation functions built into
+`networkx`.
 
 For the experiments where a lot of numbers are being crunched we use
 the [`epyc`](https://epyc.readthedocs.io/en/latest/) computational
-experiment management library and
+experiment management library which underlies `epydemic`, and
 [`pandas`](https://pandas.pydata.org/) to handle the resulting
-datasets. The large experiments use a compute cluster ("`hogun`")
-with 11 machines each with 16Gb of memory and two 4-core Intel Xeon
-E3-1240@3.4MHz processors; all other experiments are performed on a
-2017-vintage MacBook Pro with 16Gb of memory and a dual-core Intel
-i5@3.1GHz processor.
+datasets. All the computations were performed on a 16-core Intel i7
+running at 3.8GHz and with 64GB of memory.
 
 All text, code, and diagrams are available for download from [the
 project's GitHub
 repo](https://github.com/simoninireland/introduction-to-epidemics).
-
