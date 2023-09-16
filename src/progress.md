@@ -144,14 +144,15 @@ their different characteristics. We need some other numbers as well,
 however, and it turns out that these can be measured directly in the
 field.
 
-The most important number is the **{index}`basic case reproduction number <seealso: R value>`**,
+The most important number is the **{index}`basic case reproduction number <see: basic case reproduction number;R value>`**,
 denoted $\mathcal{R}_0$. $\mathcal{R}_0$ represents the total number of secondary
 infections expected for each primary infection in a totally
 susceptible population. The $0$ in $\mathcal{R}_0$ stands for $t = 0$:
 the basic case reproduction number applies at the start of an epidemic. Over the
 course of an epidemic the value of $\mathcal{R}$ will change as people become
 immune post-infection, countermeasures take effect, and so forth, and
-give rise to a **{index}`net case reproduction number <seealso: R value>`**
+give rise to a **{index}`net case reproduction number <see: net case
+reproduction number;R value>`**
 indicating how the disease is {index}`reproducing <R value>` at a given time.
 
 $\mathcal{R}$ is affected by three factors:
@@ -232,7 +233,7 @@ the value of $\mathcal{R}$ therefore have huge effects.
 It's true that $\mathcal{R} = 1$ is the critical value, below which an
 epidemic dies out. But it doesn't follow from this that an
 $\mathcal{R}$ value slightly over 1 is "pretty much 1" and so not a
-worry. **That non-linearity means that even a {index}`small excess <sensitivity>` 
+worry. **That non-linearity means that even a {index}`small excess <sensitivity>`
 in $\mathcal{R}$ can lead to a large
 outbreak**. This has implications for epidemic control too: reducing
 the $\mathcal{R}$ value to just below 1 isn't an indication that
@@ -323,7 +324,7 @@ disease. We can think in "real" time instead.
 Mathematically, the size of an epidemic can be expressed as
 
 $$
-	N(t) \propto e^{\lambda t} 
+    N(t) \propto e^{\lambda t}
 $$
 
 where $N(t)$ is the number of cases at time $t$ (measured in some
@@ -367,4 +368,3 @@ distribution of infections over time.
   {index}`transmit <transmission>` the disease without showing symptoms of it?
 - Do you think the $\mathcal{R}$ number is a useful thing to keep track of
   during an epidemic? Why? (Or why not?)
-  
