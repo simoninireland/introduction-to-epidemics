@@ -1,7 +1,7 @@
 title: "Epidemic modelling &ndash; Some notes, maths, and code"
 author: "Simon Dobson"
 email: simon.dobson@st-andrews.ac.uk
-copyright: "2020"
+copyright: "2023"
 #logo: logo.png
 
 repository:
@@ -9,11 +9,12 @@ repository:
 
 launch_buttons:
   notebook_interface: "classic"
-  
+
 execute:
   execute_notebooks: "off"
 
+bibtex_bibfiles:
+  - bibliography.bib
+
 html:
   use_repository_button: true
-  google_analytics_id: UA-42241903-2
-

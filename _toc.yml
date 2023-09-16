@@ -1,5 +1,6 @@
-- file: index
-
+format: jb-book
+root: index
+chapters:
 - file: model
 - file: progress
 - file: continuous
@@ -23,4 +24,3 @@
 - file: about
 - file: copyright
 - file: print
-

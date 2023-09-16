@@ -1,13 +1,11 @@
 ipython
 jupyter
-jupyter-book >= 0.7.0b
+jupyter-book >= 0.15
 ghp-import
 networkx >= 2.4
-epydemic
+epydemic >= 1.13
 numpy
 mpmath
 matplotlib
 seaborn
 pandas
-
-
