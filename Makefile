@@ -6,10 +6,14 @@
 # International License (https://creativecommons.org/licenses/by-sa/4.0/).
 #
 
+# Edition
+EDITION = 1.1
+
+
 # ----- Sources -----
 
 # Text
-INDEX = src/index.md
+INDEX = src/index.rst
 TEXT = \
 	src/dedication.rst \
 	src/preface.md \
@@ -18,8 +22,6 @@ TEXT = \
 	src/conclusion.md \
 	src/notes.md \
 	src/reading.md \
-	src/zbibliography.md \
-	src/genindex.md \
 	src/acknowledgements.md \
 	src/about.md \
 	src/copyright.md \
@@ -37,6 +39,15 @@ NOTEBOOKS =  \
 	src/vaccination.ipynb \
 	src/seir.ipynb \
 	src/distancing.ipynb
+
+# Front-, back-, and extra matter
+EXTRA = \
+	src/zbibliography.md \
+	src/genindex.md
+
+# Generated content
+GENERATED = \
+	src/substitutions.rst
 
 # Extra print files
 LATEX_EXTRAS = \
@@ -77,8 +88,12 @@ GENERATED_DATASETS = \
 	src/datasets/seir-quarantine.json \
 	src/datasets/sir-phydist.json
 
+# Generated files
+GENERATED_CONTENT = \
+	src/substitutions.rst
+
 # Bibliography
-BIBLIOGRAPHY = src/bibliography.bib
+BIBLIOGRAPHY = bibliography.bib
 
 # License
 LICENSE = LICENSE
@@ -92,6 +107,8 @@ CONTENT = \
 	$(INDEX) \
 	$(TEXT) \
 	$(NOTEBOOKS) \
+	$(EXTRA) \
+	$(GENERATED) \
 	$(RAW_IMAGES) $(GENERATED_IMAGES) \
 	$(BIBLIOGRAPHY) \
 	$(BOOK_CONFIG) $(BOOK_TOC)
@@ -103,7 +120,7 @@ CONTENT = \
 ROOT = $(shell pwd)
 
 # Base commands
-PYTHON = python3.6                        # specific version for talking to compute cluster
+PYTHON = python3
 IPYTHON = ipython
 JUPYTER = jupyter
 JUPYTER_BOOK = jupyter-book
@@ -130,10 +147,11 @@ WGET = wget
 ECHO = echo
 
 # Datestamp
-DATE = `date`
+DATE = $(shell date)
 
 # Requirements and venv
 VENV = venv3
+DEV_VENV = $(VENV)
 REQUIREMENTS = requirements.txt
 KNOWN_GOOD_REQUIREMENTS = known-good-requirements.txt
 
@@ -176,7 +194,7 @@ live: env
 
 
 # Build HTML
-book: env bookdir $(CONTENT)
+book: env bookdir $(GENERATED) $(CONTENT)
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(ACTIVATE) && $(BUILD_BOOK)
@@ -195,7 +213,7 @@ upload: book
 
 
 # Build a PDF for print copy
-print: env bookdir
+print: env bookdir $(GENERATED)
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(LATEX_EXTRAS) $(BOOK_DIR)
@@ -221,19 +239,31 @@ latex:
 
 
 # Build an Epub
-epub: env # bookdir
+epub: env # bookdir $(GENERATED)
 	$(RM) $(BOOK_BUILD_DIR)/jupyter_execute
 	$(RSYNC) $(CONTENT) $(BOOK_DIR)
 	$(RSYNC) $(EPUB_EXTRAS) $(BOOK_DIR)
 	$(ACTIVATE) && $(CHDIR) $(BOOK_DIR) && $(BUILD_EPUB_BOOK)
 
-# Build a development venv
-.PHONY: env
+# Build a venv using known-good package versions
 env: $(VENV)
 
 $(VENV):
 	$(VIRTUALENV) $(VENV)
-	$(ACTIVATE) && $(PIP) install -r $(KNOWN_GOOD_REQUIREMENTS)
+	$(ACTIVATE) && $(PIP) install -U pip wheel && $(PIP) install -r $(KNOWN_GOOD_REQUIREMENTS)
+
+# Build a venv using latest versions, for development
+.PHONY: devenv
+devenv:
+	$(MAKE) reallyclean
+	$(VIRTUALENV) $(DEV_VENV)
+	$(ACTIVATE) && $(PIP) install -U pip wheel && $(PIP) install -r $(REQUIREMENTS)
+
+# Save the current package versions
+.PHONY: freeze
+freewz: $(DEV_VENV)
+	$(ACTIVATE) && $(PIP) freeze >$(KNOWN_GOOD_REQUIREMENTS)
+
 
 # Clean up the build
 clean:
@@ -242,6 +272,13 @@ clean:
 # Clean up everything, including the venv (which is quite expensive to rebuild)
 reallyclean: clean
 	$(RM) $(VENV)
+
+
+# ---------- Generated content ----------
+
+# Substitutions
+src/substitutions.rst: src/substitutions.rst.in Makefile
+	$(CAT) src/substitutions.rst.in | $(SED) -e 's|EDITION|$(EDITION)|g' -e 's|DATE|$(DATE)|g' >$@
 
 
 # ----- Usage -----
@@ -259,6 +296,11 @@ Maintenance:
    make env          create a virtual environment
    make clean        clean-up the build
    make reallyclean  delete the venv as well
+
+Development:
+   make devenv       create a virtual environment using latest package versions
+		     (runs an implicit 'make reallyclean')
+   make freeze       capture and save the current package versions
 
 endef
 export HELP_MESSAGE
