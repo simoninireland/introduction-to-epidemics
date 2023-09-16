@@ -92,6 +92,9 @@ GENERATED_DATASETS = \
 GENERATED_CONTENT = \
 	src/substitutions.rst
 
+# Styles
+BOOK_STYLE = src/book.mplstyle
+
 # Bibliography
 BIBLIOGRAPHY = bibliography.bib
 
@@ -111,7 +114,7 @@ CONTENT = \
 	$(GENERATED) \
 	$(RAW_IMAGES) $(GENERATED_IMAGES) \
 	$(BIBLIOGRAPHY) \
-	$(BOOK_CONFIG) $(BOOK_TOC)
+	$(BOOK_CONFIG) $(BOOK_TOC) $(BOOK_STYLE)
 
 
 # ----- Tools -----
