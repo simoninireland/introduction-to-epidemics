@@ -1,0 +1,5 @@
+figure.dpi: 150
+savefig.dpi: 300
+
+font.serif: Bitstream Vera Serif, DejaVu Serif
+font.sans-serif: Bitstream Vera Sans, DejaVu Sans
